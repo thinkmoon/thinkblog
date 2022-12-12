@@ -92,7 +92,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import ArticleApi from '~/api/ArticleApi';
+import ArticleApi from '@/api/ArticleApi';
 import { formatTime } from '~/utils/TimeUtils';
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';

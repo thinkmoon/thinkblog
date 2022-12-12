@@ -1,11 +1,13 @@
-import viteCompression from 'vite-plugin-compression';
+// https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
+  compatibilityDate: '2024-11-01',
+  devtools: { enabled: true },
   app: {
     head: {
       meta: [
         { name: 'keywords', content: ['thinkmoon,指尖魔法屋,醉月思的博客'] },
-        { name: 'description', content: '醉月思的博客——指尖魔法屋：前端工程师，分享和记录日常学习的笔记。总结与记录是两个极其优秀的学习习惯、对知识和技术保持敬畏之心！' },
+        { name: 'description', content: '醉月思的博客——指尖魔法屋：分享和记录日常学习的笔记。总结与记录是两个极其优秀的学习习惯、对知识和技术保持敬畏之心！' },
       ],
     },
   },
@@ -14,13 +16,11 @@ export default defineNuxtConfig({
     "client": false
   },
   css: ['assets/css/index.less'],
-  vite: {
-    plugins: [viteCompression()],
-  },
   experimental: {
     writeEarlyHints: false
   },
   modules: [
+    '@nuxt/content',
     ['@pinia/nuxt', {
       autoImports: [
         // 自动引入 `usePinia()`
@@ -30,4 +30,24 @@ export default defineNuxtConfig({
       ],
     }]
   ],
+  content: {
+    // 文档驱动模式
+    documentDriven: true,
+    // 导航
+    navigation: {
+      fields: ['title', 'description', 'icon']
+    },
+    // 高亮
+    highlight: {
+      theme: 'github-dark',
+      preload: ['json', 'js', 'ts', 'html', 'css', 'vue']
+    },
+    // 实时预览
+    liveEdit: true,
+    // 支持动态路径
+    markdown: {
+      remarkPlugins: [],
+      rehypePlugins: []
+    }
+  }
 });

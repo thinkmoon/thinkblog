@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import ArticleApi from '~/api/ArticleApi';
+import ArticleApi from '@/api/ArticleApi';
 
 import { pushUrl } from '~/utils/BaiduSite';
 

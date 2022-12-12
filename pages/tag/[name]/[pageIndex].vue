@@ -6,9 +6,9 @@
 </template>
 
 <script lang="ts" setup>
-import TagApi from '~/api/TagApi';
+import TagApi from '@/api/TagApi';
 import { useRoute } from 'vue-router';
-import ArticleApi from '~/api/ArticleApi';
+import ArticleApi from '@/api/ArticleApi';
 
 const config = useAppConfig();
 const route = useRoute();

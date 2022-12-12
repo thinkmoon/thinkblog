@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import TagApi from '~/api/TagApi';
+import TagApi from '@/api/TagApi';
 
 const config = useAppConfig();
 const { data } = await useAsyncData('tag', () => TagApi.getTag());

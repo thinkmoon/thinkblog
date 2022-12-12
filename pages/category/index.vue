@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import CategoryApi from '~/api/CategoryApi';
+import CategoryApi from '@/api/CategoryApi';
 
 const config = useAppConfig();
 const {data} = await useAsyncData('category', () => CategoryApi.getCategory());

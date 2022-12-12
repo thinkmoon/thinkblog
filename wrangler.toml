@@ -1,8 +1,0 @@
-name = "blog"
-main = "./.output/server/index.mjs"
-workers_dev = true
-account_id = "16ad0828dc835634da2bc9b3a9b8b9e8"
-route = "blog.thinkmoon.cn"
-compatibility_date = "2022-10-23"
-[site]
-bucket = ".output/public"

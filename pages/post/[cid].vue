@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 import VMdPreview from "~/components/VMdPreview";
-import ArticleApi from '~/api/ArticleApi';
+import ArticleApi from '@/api/ArticleApi';
 import { useRoute } from 'vue-router';
 import { pushUrl } from '~/utils/BaiduSite';
 import { computed } from 'vue';

@@ -26,7 +26,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import UserApi from '~/api/UserApi';
+import UserApi from '@/api/UserApi';
 import { ElMessage } from 'element-plus';
 
 const config = useAppConfig();

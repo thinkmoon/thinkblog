@@ -6,7 +6,7 @@
         <ClientOnly>
           <el-select
             key="category"
-            v-model="articleStore.article.category_id"
+            v-model="articleStore.article.categoryId"
           >
             <el-option
               v-for="item of categoryList"
@@ -69,8 +69,8 @@
 </template>
 <script setup lang="ts">
 import { useArticle } from "~/store/article";
-import CategoryApi from '~/api/CategoryApi';
-import TagApi from '~/api/TagApi';
+import CategoryApi from '@/api/CategoryApi';
+import TagApi from '@/api/TagApi';
 import { onMounted } from "vue";
 
 const articleStore = useArticle();

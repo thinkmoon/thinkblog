@@ -2,11 +2,11 @@
   <div class="editor-wrapper">
     <div class="editor-container">
       <el-input
-        v-model="article.title"
+        v-model="articleStore.article.title"
         class="title-input"
       />
       <v-md-editor
-        v-model="article.text"
+        v-model="articleStore.article.text"
         mode="editable"
         height="620px"
         :disabled-menus="[]"
@@ -14,87 +14,69 @@
         @upload-image="handleUploadImage"
       />
     </div>
-    <EditorRight :article="article" :category-list="categoryList" :tag-list="tagList"/>
+    <EditorRight/>
   </div>
 </template>
 <script lang="ts" setup>
 import EditorRight from "~/components/admin/EditorRight.vue";
+import VMdEditor from "~/components/MdEditor";
+import ArticleApi from '@/api/ArticleApi';
+import AttachmentApi from '@/api/AttachmentApi';
+import dayjs from 'dayjs';
+import { useArticle } from "~/store/article";
+import * as qiniu from 'qiniu-js';
+import { useRouter, useRoute } from 'vue-router';
+import { ElMessage } from "element-plus";
+
+const router = useRouter();
+const route = useRoute();
 
 definePageMeta({
   keepalive: true,
 });
-</script>
-<script lang="ts">
-import ArticleApi from '~/api/ArticleApi';
-import AttachmentApi from '~/api/AttachmentApi';
-import dayjs from 'dayjs';
-import VMdEditor from "~/components/MdEditor";
-import { useArticle } from "~/store/article";
-import * as qiniu from 'qiniu-js';
 
-export default defineComponent({
-  components: {
-    'v-md-editor': VMdEditor
-  },
-  data() {
-    return {
-      article: {
-        title: '',
-        text: '',
-        category_id: '',
-        tag: [],
-        selectedTag: [],
-        fields: [],
-      },
-    };
-  },
-  activated() {
-    if (this.$route.query.cid) {
-      ArticleApi.getDetail({ cid: this.$route.query.cid }).then((res) => {
-        this.article = {
-          ...this.article,
-          ...res,
-        };
-        this.article.selectedTag = this.article.tag.map(item => item.tid);
-        const articleStore = useArticle();
-        articleStore.setArticle(this.article);
-      });
-    } else {
-      this.data = {};
-    }
-  },
-  methods: {
-    saveArticle() {
-      const op = this.$route.query.cid ? 'update' : 'add';
-      if (!this.article.categoryId) {
-        return this.$message.error('请选择文章分类');
-      }
-      if (!this.article.fields.length) {
-        return this.$message.error('请选择文章标签');
-      }
-      ArticleApi[op](this.article).then(() => {
-        this.$message.success('保存成功');
-        location.href = '/admin/post-list';
-      }).catch((err) => {
-        this.$message.error('保存失败');
-        console.error(err);
-      });
-    },
-    handleUploadImage(event, insertImage, files) {
-      console.log(arguments);
-      AttachmentApi.getUploadToken()
-        .then((token: string) => {
-          const key = dayjs().format('YYYY-MM-DD/HH-mm-ss');
-          const observable = qiniu.upload(files[0], key, token);
-          observable.subscribe(null, null, (res) => {
-            insertImage({
-              url: `https://blog.cdn.thinkmoon.cn/${res.key}`,
-            });
-          });
-        });
-    },
-  },
+let articleStore = useArticle();
+
+onActivated(() => {
+  if (route.query.cid) {
+    ArticleApi.getDetail({ cid: route.query.cid }).then((res) => {
+      articleStore.setArticle(res);
+    });
+  } else {
+    articleStore.reset();
+  }
 });
+
+function saveArticle() {
+  const op = route.query.cid ? 'update' : 'add';
+  if (!articleStore.article.categoryId) {
+    return ElMessage.error('请选择文章分类');
+  }
+  if (!articleStore.article.selectedTag) {
+    return ElMessage.error('请选择文章标签');
+  }
+  ArticleApi[op](articleStore.article).then(() => {
+    ElMessage.success('保存成功');
+    location.href = '/admin/post-list';
+  }).catch((err) => {
+    ElMessage.error('保存失败');
+    console.error(err);
+  });
+}
+
+function handleUploadImage(event, insertImage, files) {
+  console.log(arguments);
+  AttachmentApi.getUploadToken()
+    .then((token: string) => {
+      const key = dayjs().format('YYYY-MM-DD/HH-mm-ss');
+      const observable = qiniu.upload(files[0], key, token);
+      observable.subscribe(null, null, (res) => {
+        insertImage({
+          url: `https://blog.cdn.thinkmoon.cn/${res.key}`,
+        });
+      });
+    });
+}
 </script>
 <style lang="less">
 .editor-wrapper {
