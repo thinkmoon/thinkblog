@@ -20,8 +20,8 @@
 <script lang="ts" setup>
 import EditorRight from "~/components/admin/EditorRight.vue";
 import VMdEditor from "~/components/MdEditor";
-import ArticleApi from '@/api/ArticleApi';
-import AttachmentApi from '@/api/AttachmentApi';
+import ArticleApi from '~/api/ArticleApi';
+import AttachmentApi from '~/api/AttachmentApi';
 import dayjs from 'dayjs';
 import { useArticle } from "~/store/article";
 import * as qiniu from 'qiniu-js';
