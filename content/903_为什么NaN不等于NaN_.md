@@ -1,0 +1,9 @@
+---
+title: 为什么NaN不等于NaN?
+date: ''
+modified: ''
+category: 闲余折腾
+tags: []
+---
+
+<!--markdown-->猪不是人，猴子不是人，那么猪会等于猴子吗？
