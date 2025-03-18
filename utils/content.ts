@@ -8,15 +8,6 @@ export interface ContentData {
   icon?: string
 }
 
-export interface Content extends ContentData {
-  _path: string
-  _dir: string
-  _draft: boolean
-  _locale: string
-  _type: string
-  _file: string
-  _extension: string
-}
 
 interface WhereQuery {
   where: (query: any) => ContentQuery
@@ -26,7 +17,6 @@ interface WhereQuery {
 
 interface ContentQuery extends WhereQuery {}
 
-declare const queryCollection: (collection: string) => ContentQuery
 declare const createContent: (path: string, data: any) => Promise<void>
 declare const updateContent: (path: string, data: any) => Promise<void>
 
@@ -82,4 +72,33 @@ export async function listContent(path: string = '/content') {
     console.error('Failed to list content:', error)
     return []
   }
-} 
+}
+
+interface Content {
+  title?: string
+  description?: string
+  text?: string
+  tag?: Array<{ name: string }>
+  fields?: {
+    desc?: string
+    [key: string]: any
+  }
+  path?: string
+  [key: string]: any
+}
+
+export const getContentUrl = (path: string) => {
+  return `/post${path}`
+}
+
+export const getContentByPath = async (path: string) => {
+  console.log(queryCollection('content').path(path).first())
+  return queryCollection('content').path(path).first()
+}
+
+export const getContentById = async (id: string) => {
+  console.log(id, await queryCollection('content').path('/' + id))
+  return queryCollection('content').path('/' + id).first()
+}
+
+export type { Content } 

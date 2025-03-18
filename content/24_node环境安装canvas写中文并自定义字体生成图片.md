@@ -1,7 +1,7 @@
 ---
 title: node环境安装canvas写中文并自定义字体生成图片
-date: ''
-modified: ''
+date: '2019-01-16 11:09:30'
+modified: '2019-01-16 11:09:30'
 category: 学习笔记
 tags:
 - nodejs

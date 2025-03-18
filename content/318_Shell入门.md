@@ -1,7 +1,7 @@
 ---
 title: 'Shell入门 '
-date: ''
-modified: ''
+date: '2019-07-01 17:09:24'
+modified: '2019-07-01 17:09:24'
 category: 学习笔记
 tags:
 - Shell

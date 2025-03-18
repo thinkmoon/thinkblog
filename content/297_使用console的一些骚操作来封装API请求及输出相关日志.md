@@ -1,7 +1,7 @@
 ---
 title: 使用console的一些骚操作来封装API请求及输出相关日志
-date: ''
-modified: ''
+date: '2019-04-02 11:39:22'
+modified: '2019-04-02 11:39:22'
 category: 学习笔记
 tags: []
 ---

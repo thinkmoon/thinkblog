@@ -1,11 +1,11 @@
 ---
 title: TypeScript封装API，让代码编写柔润丝滑
-date: ''
-modified: ''
+date: '2020-07-21 09:20:02'
+modified: '2020-07-21 09:20:02'
 category: 教程分享
 tags:
-- vuejs
 - typescript
+- vuejs
 desc: 干前端工作，大致离不开三大任务：切图，对接口，写页面逻辑。说到对接口，那肯定是离不开网络请求API的封装的。我将网络请求的封装模式大致分为三个派系：
 thumb: http://blog.cdn.thinkmoon.cn/blog/typecho/2020-07-17T08:19:34.png
 ---

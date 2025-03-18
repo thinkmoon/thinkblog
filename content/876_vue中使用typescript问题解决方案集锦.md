@@ -1,11 +1,11 @@
 ---
 title: vue中使用typescript问题解决方案集锦
-date: ''
-modified: ''
+date: '2020-06-23 22:04:32'
+modified: '2020-06-23 22:04:32'
 category: 学习笔记
 tags:
-- typescript
 - webpack
+- typescript
 - vue
 desc: typescript是个好东西，可是在vue中使用的时候却经常会遇到很多问题，本文收集了作者遇到的一些问题，已经对应的解决方案，希望能对读者有所帮助
 thumb: http://blog.cdn.thinkmoon.cn/blog/typecho/2018-12-25-ts.jpeg

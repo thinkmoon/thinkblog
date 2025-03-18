@@ -7,7 +7,6 @@ interface Content {
 
 const route = useRoute()
 const { data: content } = await useAsyncData(route.path, () => {
-  console.log(route.params.slug)
   return queryCollection('content').path('/' + route.params.slug as string).first()
 })
 

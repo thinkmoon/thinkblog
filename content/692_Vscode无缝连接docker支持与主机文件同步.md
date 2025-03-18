@@ -1,12 +1,12 @@
 ---
 title: Vscode无缝连接docker支持与主机文件同步
-date: ''
-modified: ''
+date: '2020-01-02 15:46:08'
+modified: '2020-01-02 15:46:08'
 category: 学习笔记
 tags:
+- tensorflow
 - vscode
 - docker
-- tensorflow
 thumb: https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-21T01:33:55.png
 ---
 

@@ -1,11 +1,11 @@
 ---
 title: 路由器openwrt安装python
-date: ''
-modified: ''
+date: '2023-12-25 21:10:14'
+modified: '2023-12-25 21:10:14'
 category: 闲余折腾
 tags:
-- python
 - linux
+- python
 desc: 使用u盘当路由器的系统盘，一不小心碰到它，路由器又挂了。决定把U盘作为挂载盘安装软件
 thumb: https://blog.cdn.thinkmoon.cn/2023-12-18/22-08-33
 ---

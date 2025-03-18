@@ -1,7 +1,7 @@
 ---
 title: Ubuntu深度学习的相关配置
-date: ''
-modified: ''
+date: '2019-12-20 22:06:35'
+modified: '2019-12-20 22:06:35'
 category: 学习笔记
 tags: []
 thumb: https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-19T14:19:05.png

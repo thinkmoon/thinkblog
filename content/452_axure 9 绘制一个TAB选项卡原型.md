@@ -1,7 +1,7 @@
 ---
 title: axure 9 绘制一个TAB选项卡原型
-date: ''
-modified: ''
+date: '2019-10-25 12:58:20'
+modified: '2019-10-25 12:58:20'
 category: 学习笔记
 tags: []
 thumb: https://blog.cdn.thinkmoon.cn/blog/typecho/2019-10-17T00:43:02.png

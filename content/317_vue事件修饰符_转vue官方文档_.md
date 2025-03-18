@@ -1,7 +1,7 @@
 ---
 title: vue事件修饰符（转vue官方文档）
-date: ''
-modified: ''
+date: '2019-06-05 16:02:38'
+modified: '2019-06-05 16:02:38'
 category: 学习笔记
 tags: []
 ---

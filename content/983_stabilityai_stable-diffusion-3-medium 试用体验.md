@@ -1,7 +1,7 @@
 ---
 title: stabilityai/stable-diffusion-3-medium 试用体验
-date: ''
-modified: ''
+date: '2024-06-21 23:23:30'
+modified: '2024-06-21 23:23:30'
 category: 学习笔记
 tags:
 - AI

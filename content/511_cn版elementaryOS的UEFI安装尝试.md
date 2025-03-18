@@ -1,7 +1,7 @@
 ---
 title: cn版elementaryOS的UEFI安装尝试
-date: ''
-modified: ''
+date: '2019-10-28 17:18:51'
+modified: '2019-10-28 17:18:51'
 category: 闲余折腾
 tags:
 - linux

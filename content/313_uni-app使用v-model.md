@@ -1,11 +1,11 @@
 ---
 title: uni-app使用v-model
-date: ''
-modified: ''
+date: '2019-05-27 16:42:46'
+modified: '2019-05-27 16:42:46'
 category: 学习笔记
 tags:
-- vue
 - uni-app
+- vue
 - 微信小程序
 ---
 

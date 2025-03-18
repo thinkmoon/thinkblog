@@ -1,7 +1,7 @@
 ---
 title: 如何理解Promise
-date: ''
-modified: ''
+date: '2022-12-09 21:35:49'
+modified: '2022-12-09 21:35:49'
 category: 学习笔记
 tags:
 - 前端

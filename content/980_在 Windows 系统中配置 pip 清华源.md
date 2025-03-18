@@ -1,7 +1,7 @@
 ---
 title: 在 Windows 系统中配置 pip 清华源
-date: ''
-modified: ''
+date: '2024-05-15 23:46:18'
+modified: '2024-05-15 23:46:18'
 category: 学习笔记
 tags:
 - python

@@ -1,7 +1,7 @@
 ---
 title: 在 Windows 下使用 Python virtualenv的教程
-date: ''
-modified: ''
+date: '2024-06-07 22:15:03'
+modified: '2024-06-07 22:15:03'
 category: 学习笔记
 tags:
 - python

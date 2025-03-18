@@ -1,9 +1,11 @@
 <script setup lang="ts">
 interface Content {
-  _path: string
   title: string
-  description: string
-  date?: string
+  description?: string
+  date: string
+  modified?: string
+  category?: string
+  tags?: string[]
   [key: string]: any
 }
 
@@ -13,6 +15,7 @@ const currentPage = computed(() => Number(route.params.page) || 1)
 
 const { data: contentList } = await useAsyncData<Content[]>('content-list', () => {
   return queryCollection('content')
+    .order('date', 'DESC')
     .skip((currentPage.value - 1) * pageSize)
     .limit(pageSize)
     .all()

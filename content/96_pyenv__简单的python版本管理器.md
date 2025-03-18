@@ -1,7 +1,7 @@
 ---
 title: pyenv——简单的python版本管理器
-date: ''
-modified: ''
+date: '2019-09-03 10:27:15'
+modified: '2019-09-03 10:27:15'
 category: 学习笔记
 tags:
 - python

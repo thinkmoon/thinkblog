@@ -30,24 +30,4 @@ export default defineNuxtConfig({
       ],
     }]
   ],
-  content: {
-    // 文档驱动模式
-    documentDriven: true,
-    // 导航
-    navigation: {
-      fields: ['title', 'description', 'icon']
-    },
-    // 高亮
-    highlight: {
-      theme: 'github-dark',
-      preload: ['json', 'js', 'ts', 'html', 'css', 'vue']
-    },
-    // 实时预览
-    liveEdit: true,
-    // 支持动态路径
-    markdown: {
-      remarkPlugins: [],
-      rehypePlugins: []
-    }
-  }
 });

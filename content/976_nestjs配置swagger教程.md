@@ -1,7 +1,7 @@
 ---
 title: nestjs配置swagger教程
-date: ''
-modified: ''
+date: '2022-12-16 20:58:16'
+modified: '2022-12-16 20:58:16'
 category: 教程分享
 tags:
 - typescript

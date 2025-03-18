@@ -1,7 +1,7 @@
 ---
 title: 使用github Action自动部署博客
-date: ''
-modified: ''
+date: '2022-06-14 23:59:09'
+modified: '2022-06-14 23:59:09'
 category: 闲余折腾
 tags:
 - 折腾

@@ -1,7 +1,7 @@
 ---
 title: Deepin下Clion的相关问题
-date: ''
-modified: ''
+date: '2019-02-16 22:31:19'
+modified: '2019-02-16 22:31:19'
 category: 学习笔记
 tags:
 - Clion

@@ -1,7 +1,7 @@
 ---
 title: 初探JavaFx
-date: ''
-modified: ''
+date: '2019-10-28 17:28:36'
+modified: '2019-10-28 17:28:36'
 category: 学习笔记
 tags: []
 ---

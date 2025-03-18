@@ -1,7 +1,7 @@
 ---
 title: Python venv：创建虚拟环境及生成 requirements.txt
-date: ''
-modified: ''
+date: '2024-05-19 18:29:53'
+modified: '2024-05-19 18:29:53'
 category: 学习笔记
 tags:
 - python

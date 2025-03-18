@@ -1,7 +1,7 @@
 ---
 title: win10下使用wsl配置Clion toolchain
-date: ''
-modified: ''
+date: '2019-03-28 13:16:13'
+modified: '2019-03-28 13:16:13'
 category: 学习笔记
 tags: []
 thumb: https://www.thinkmoon.cn/usr/uploads/2019/03/3388117114.png

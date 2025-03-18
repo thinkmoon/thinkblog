@@ -1,7 +1,7 @@
 ---
 title: win10添加Ubuntu子系统右键打开项
-date: ''
-modified: ''
+date: '2019-03-29 10:31:17'
+modified: '2019-03-29 10:31:17'
 category: 闲余折腾
 tags: []
 thumb: https://www.thinkmoon.cn/usr/uploads/2019/03/1039522002.png

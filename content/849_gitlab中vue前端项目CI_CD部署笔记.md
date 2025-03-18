@@ -1,7 +1,7 @@
 ---
 title: gitlab中vue前端项目CI/CD部署笔记
-date: ''
-modified: ''
+date: '2020-06-23 19:34:48'
+modified: '2020-06-23 19:34:48'
 category: 学习笔记
 tags:
 - gitlab

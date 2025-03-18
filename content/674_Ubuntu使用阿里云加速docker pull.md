@@ -1,7 +1,7 @@
 ---
 title: Ubuntu使用阿里云加速docker pull
-date: ''
-modified: ''
+date: '2019-12-19 17:19:22'
+modified: '2019-12-19 17:19:22'
 category: 学习笔记
 tags:
 - docker

@@ -1,7 +1,7 @@
 ---
 title: MFC课程设计以及对xml文件的操作
-date: ''
-modified: ''
+date: '2020-02-18 18:36:35'
+modified: '2020-02-18 18:36:35'
 category: 教程分享
 tags:
 - MFC

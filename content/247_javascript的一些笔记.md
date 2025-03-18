@@ -1,7 +1,7 @@
 ---
 title: javascript的一些笔记
-date: ''
-modified: ''
+date: '2019-03-13 14:51:30'
+modified: '2019-03-13 14:51:30'
 category: 学习笔记
 tags:
 - javascript

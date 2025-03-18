@@ -1,7 +1,7 @@
 ---
 title: 在Colab上运行DeepfaceLab训练模型
-date: ''
-modified: ''
+date: '2022-06-14 23:59:41'
+modified: '2022-06-14 23:59:41'
 category: 闲余折腾
 tags:
 - 机器学习

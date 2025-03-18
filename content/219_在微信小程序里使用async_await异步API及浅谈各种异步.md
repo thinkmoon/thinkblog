@@ -1,7 +1,7 @@
 ---
 title: 在微信小程序里使用async/await异步API及浅谈各种异步
-date: ''
-modified: ''
+date: '2019-03-06 15:46:37'
+modified: '2019-03-06 15:46:37'
 category: 教程分享
 tags:
 - 微信小程序

@@ -1,7 +1,7 @@
 ---
 title: uni-app使用fly封装网络请求接口
-date: ''
-modified: ''
+date: '2019-11-22 15:55:32'
+modified: '2019-11-22 15:55:32'
 category: 学习笔记
 tags: []
 thumb: https://www.thinkmoon.cn/usr/uploads/2019/05/3661142475.png

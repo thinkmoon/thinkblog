@@ -1,7 +1,7 @@
 ---
 title: 使用zsh让windows cmd变得性感又迷人
-date: ''
-modified: ''
+date: '2019-12-19 15:41:33'
+modified: '2019-12-19 15:41:33'
 category: 教程分享
 tags:
 - 折腾

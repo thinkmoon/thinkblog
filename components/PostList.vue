@@ -2,18 +2,18 @@
   <div class="blog-posts">
     <div
       v-for="item in postList"
-      :key="item.cid"
+      :key="item.id"
       class="content-box"
     >
       <div class="posts-default-img">
         <a
-          :href="`/post/${item.cid}`"
+          :href="getPostPath(item)"
           :title="item.title"
         >
           <div class="overlay"/>
           <el-image
-            v-if="item.fields.thumb"
-            :src="item.fields.thumb"
+            v-if="item.meta.thumb"
+            :src="item.meta.thumb"
             fit="cover"
             lazy
           />
@@ -22,25 +22,25 @@
       <div class="posts-default-box">
         <div class="posts-default-title">
           <div
-            v-if="item.tag"
+            v-if="item.tags.length > 0"
             class="post-entry-categories"
           >
             <el-tag
-              v-for="tagItem in item.tag"
+              v-for="tagItem in item.tags"
               :key="tagItem"
               class="post-tag"
               rel="tag"
             >
               <el-link
-                :href="`/tag/${tagItem.name}/1`"
+                :href="`/tag/${tagItem}/1`"
                 type="primary"
               >
-                {{ tagItem.name }}
+                {{ tagItem }}
               </el-link>
             </el-tag>
           </div>
           <el-link
-            :href="`/post/${item.cid}`"
+             :href="getPostPath(item)"
             :underline="false"
             class="post-title"
           >
@@ -49,7 +49,7 @@
         </div>
         <div class="posts-default-content">
           <div class="posts-text">
-            {{ item.fields.desc }}
+            {{ item.meta.desc }}
           </div>
           <div class="posts-default-info">
             <div class="left">
@@ -80,7 +80,7 @@
                 <el-icon>
                   <IconCalendar/>
                 </el-icon>
-                <a>{{ formatTime(item.created * 1000) }}</a>
+                <a>{{ item.date }}</a>
               </div>
             </div>
             <div class="right">
@@ -104,7 +104,9 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { formatTime } from '~/utils/TimeUtils';
+function getPostPath(item:any) {
+    return `/post${item.path}`
+}
 
 const avatar = 'https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg';
 

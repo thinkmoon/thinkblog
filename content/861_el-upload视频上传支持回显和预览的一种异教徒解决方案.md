@@ -1,7 +1,7 @@
 ---
 title: el-upload视频上传支持回显和预览的一种异教徒解决方案
-date: ''
-modified: ''
+date: '2020-06-18 11:28:57'
+modified: '2020-06-18 11:28:57'
 category: 学习笔记
 tags:
 - 前端

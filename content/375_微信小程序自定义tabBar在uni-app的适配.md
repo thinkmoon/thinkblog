@@ -1,11 +1,11 @@
 ---
 title: 微信小程序自定义tabBar在uni-app的适配
-date: ''
-modified: ''
+date: '2020-07-10 09:12:17'
+modified: '2020-07-10 09:12:17'
 category: 学习笔记
 tags:
-- uni-app
 - webpack
+- uni-app
 - 微信小程序
 ---
 

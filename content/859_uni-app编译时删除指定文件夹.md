@@ -1,7 +1,7 @@
 ---
 title: uni-app编译时删除指定文件夹
-date: ''
-modified: ''
+date: '2020-06-18 11:25:31'
+modified: '2020-06-18 11:25:31'
 category: 学习笔记
 tags:
 - webpack

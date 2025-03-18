@@ -1,7 +1,7 @@
 ---
 title: centos下supervisor的使用笔记
-date: ''
-modified: ''
+date: '2019-09-03 10:47:19'
+modified: '2019-09-03 10:47:19'
 category: 学习笔记
 tags: []
 ---

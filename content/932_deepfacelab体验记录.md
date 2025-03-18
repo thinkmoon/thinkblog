@@ -1,7 +1,7 @@
 ---
 title: deepfacelab体验记录
-date: ''
-modified: ''
+date: '2020-10-25 20:47:43'
+modified: '2020-10-25 20:47:43'
 category: 闲余折腾
 tags:
 - AI

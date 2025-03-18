@@ -1,11 +1,11 @@
 ---
 title: 【leetcode】5. Longest Palindromic Substring最长回文子串
-date: ''
-modified: ''
+date: '2020-02-06 14:43:58'
+modified: '2020-02-06 14:43:58'
 category: 学习笔记
 tags:
-- python
 - leetcode
+- python
 thumb: https://blog.cdn.thinkmoon.cn/blog/typecho/2020-01-18T14:20:17.png
 ---
 

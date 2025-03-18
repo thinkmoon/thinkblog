@@ -1,11 +1,11 @@
 ---
 title: 【leetcode】1. two sum两数之和
-date: ''
-modified: ''
+date: '2020-01-15 10:12:10'
+modified: '2020-01-15 10:12:10'
 category: 学习笔记
 tags:
-- leetcode
 - javascript
+- leetcode
 thumb: https://blog.cdn.thinkmoon.cn/blog/typecho/2020-01-13T04:11:52.png
 ---
 

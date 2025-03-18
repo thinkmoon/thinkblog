@@ -1,11 +1,11 @@
 ---
 title: Django启航篇
-date: ''
-modified: ''
+date: '2020-06-30 22:23:05'
+modified: '2020-06-30 22:23:05'
 category: 学习笔记
 tags:
-- python
 - django
+- python
 thumb: https://www.thinkmoon.cn/usr/uploads/2019/03/1943239531.png
 ---
 

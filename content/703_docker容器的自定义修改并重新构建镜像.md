@@ -1,7 +1,7 @@
 ---
 title: docker容器的自定义修改并重新构建镜像
-date: ''
-modified: ''
+date: '2020-01-02 16:19:54'
+modified: '2020-01-02 16:19:54'
 category: 学习笔记
 tags:
 - vscode

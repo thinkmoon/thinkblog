@@ -1,7 +1,7 @@
 ---
 title: Deepin安装微信开发者工具
-date: ''
-modified: ''
+date: '2019-10-28 17:14:44'
+modified: '2019-10-28 17:14:44'
 category: 学习笔记
 tags:
 - linux

@@ -1,7 +1,7 @@
 ---
 title: ubuntu安装后需要做的事情
-date: ''
-modified: ''
+date: '2019-12-18 16:51:26'
+modified: '2019-12-18 16:51:26'
 category: 学习笔记
 tags:
 - linux

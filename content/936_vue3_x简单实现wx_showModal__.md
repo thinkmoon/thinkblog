@@ -1,7 +1,7 @@
 ---
 title: vue3.x简单实现wx.showModal()
-date: ''
-modified: ''
+date: '2020-11-30 23:30:53'
+modified: '2020-11-30 23:30:53'
 category: 学习笔记
 tags:
 - tm-ui

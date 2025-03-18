@@ -1,11 +1,11 @@
 ---
 title: uni-app对微信小程序云函数的适配
-date: ''
-modified: ''
+date: '2021-05-16 13:27:29'
+modified: '2021-05-16 13:27:29'
 category: 教程分享
 tags:
-- 云函数
 - uni-app
+- 云函数
 - 微信小程序
 thumb: https://blog.cdn.thinkmoon.cn/blog/typecho/2019-10-22T01:28:39.png
 ---

@@ -1,13 +1,13 @@
 ---
 title: Ubutnu使用问题记录贴
-date: ''
-modified: ''
+date: '2019-12-20 19:52:13'
+modified: '2019-12-20 19:52:13'
 category: 学习笔记
 tags:
-- bash
 - ubuntu
-- apt
 - linux
+- bash
+- apt
 thumb: https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-18T05:46:47.png
 ---
 

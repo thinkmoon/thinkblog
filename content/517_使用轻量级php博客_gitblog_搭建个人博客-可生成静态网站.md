@@ -1,7 +1,7 @@
 ---
 title: 使用轻量级php博客(gitblog)搭建个人博客-可生成静态网站
-date: ''
-modified: ''
+date: '2019-10-28 17:25:10'
+modified: '2019-10-28 17:25:10'
 category: 教程分享
 tags: []
 ---

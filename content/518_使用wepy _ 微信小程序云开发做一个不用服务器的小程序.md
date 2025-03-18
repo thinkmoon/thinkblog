@@ -1,7 +1,7 @@
 ---
 title: 使用wepy + 微信小程序云开发做一个不用服务器的小程序
-date: ''
-modified: ''
+date: '2019-10-28 17:26:18'
+modified: '2019-10-28 17:26:18'
 category: 学习笔记
 tags: []
 ---

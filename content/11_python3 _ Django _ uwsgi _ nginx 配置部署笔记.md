@@ -1,7 +1,7 @@
 ---
 title: python3 + Django + uwsgi + nginx 配置部署笔记
-date: ''
-modified: ''
+date: '2019-01-16 11:13:56'
+modified: '2019-01-16 11:13:56'
 category: 学习笔记
 tags:
 - python

@@ -1,7 +1,7 @@
 ---
 title: Bootstrap-table 爬坑之旅
-date: ''
-modified: ''
+date: '2019-02-16 22:29:38'
+modified: '2019-02-16 22:29:38'
 category: 学习笔记
 tags:
 - Bootstrap-table
