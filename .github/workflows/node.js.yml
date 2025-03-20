@@ -17,8 +17,15 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 20      # 指定 Node.js 版本，可按需修改
-        cache: 'pnpm'         # 启用 pnpm 缓存优化安装速度
+        node-version: 22
+        # 新增配置：显式启用 pnpm
+        cache: 'pnpm'
+        # 新增核心配置：自动安装 pnpm
+        registry-url: 'https://registry.npmjs.org'
+
+    # 方法一：推荐使用 corepack（Node.js 16+ 内置）
+    - name: Enable corepack (for pnpm)
+      run: corepack enable
 
     - name: Install dependencies
       run: pnpm install        # 使用 pnpm 安装依赖
