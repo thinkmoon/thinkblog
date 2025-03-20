@@ -33,6 +33,9 @@ jobs:
     - name: Build project
       run: pnpm run build:cf   # 执行构建命令
 
+    - name: Install Wrangler with PNPM
+      run: pnpm add -g wrangler@latest
+
     # 使用 Cloudflare 官方 Action 处理 API Token 认证
     - name: Deploy with Wrangler (API Token)
       uses: cloudflare/wrangler-action@v3.0
