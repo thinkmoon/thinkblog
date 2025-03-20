@@ -32,7 +32,15 @@ jobs:
 
     - name: Build project
       run: pnpm run build:cf   # 执行构建命令
-
+      
+    # 使用 Cloudflare 官方 Action 处理 OIDC 认证
+    - name: Deploy with Wrangler (OIDC)
+      uses: cloudflare/wrangler-action@v3.0
+      with:
+        command: deploy
+        environment: production  # 对应 wrangler.toml 中的环境配置
+      env: 
+        CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}  # 推荐使用变量而非 secrets
     # 可选：添加测试或其他步骤
     # - name: Run tests
     #   run: pnpm test
