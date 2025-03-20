@@ -1,48 +1,31 @@
 name: Node.js CI
+
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]  # 在推送到 main/master 分支时触发
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ] # 在针对 main/master 分支的 PR 时触发
+
 jobs:
   build:
-   runs-on: ubuntu-latest
-   strategy:
-      matrix:
-        node-version: [16.x]
-   steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-      - run: npm install
-      - run: npm run build
-      - name: Zip Release
-        # You may pin to the exact commit or the version.
-        # uses: TheDoctor0/zip-release@09336613be18a8208dfa66bd57efafd9e2685657
-        uses: TheDoctor0/zip-release@0.6.2
-        with:
-          # Filename for archive
-          filename: output.zip
-          # Base path for archive files
-          path: .output
-      - name: Release file
-        # You may pin to the exact commit or the version.
-        # uses: djnicholson/release-action@e9a535b3eced09c460e07a84118fb74ae9b53236
-        uses: djnicholson/release-action@v2.10
-        with:
-          # GitHub auth token
-          token: ${{ secrets.ACCESS_TOKEN }}
-          # Name of Release to add file to
-          release-name: autoBuild
-          # Name of the tag for the release (will be associated with current branch)
-          tag-name: autoBuild
-          # Name for the asset
-          asset-name: output.zip
-          # File to release
-          file: output.zip
-      - name: GitHub Pages v3
-        uses: peaceiris/actions-github-pages@v3.1.12
-        with:
-          personal_token: ${{ secrets.ACCESS_TOKEN }}
-          publish_dir: .output/public
+    runs-on: ubuntu-latest     # 使用 GitHub 托管的 Ubuntu 最新版运行器
 
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4 # 官方代码检出动作
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20      # 指定 Node.js 版本，可按需修改
+        cache: 'pnpm'         # 启用 pnpm 缓存优化安装速度
+
+    - name: Install dependencies
+      run: pnpm install        # 使用 pnpm 安装依赖
+
+    - name: Build project
+      run: pnpm run build:cf   # 执行构建命令
+
+    # 可选：添加测试或其他步骤
+    # - name: Run tests
+    #   run: pnpm test
