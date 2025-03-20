@@ -35,9 +35,8 @@ jobs:
 
     # 使用 Cloudflare 官方 Action 处理 API Token 认证
     - name: Deploy with Wrangler (API Token)
-      uses: cloudflare/wrangler-action@v3.0
+      uses: cloudflare/wrangler-action@v3
       with:
-        workingDirectory: '.'
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
         command: pages deploy dist/
