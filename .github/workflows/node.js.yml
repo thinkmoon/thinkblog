@@ -40,6 +40,7 @@ jobs:
     - name: Deploy with Wrangler (API Token)
       uses: cloudflare/wrangler-action@v3.0
       with:
+        packageManager: pnpm
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
         command: pages deploy dist/
