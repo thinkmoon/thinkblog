@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "build:cf": "nuxi build --preset=cloudflare_pages && npx wrangler pages deploy dist/"
+    "build:cf": "nuxi build --preset=cloudflare_pages"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
