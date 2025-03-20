@@ -13,8 +13,7 @@ jobs:
     environment: production  # 必须先在仓库设置中创建同名环境
     permissions:
       contents: read
-      id-token: write  # 关键权限：启用 OIDC 令牌
-      
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4 # 官方代码检出动作
@@ -23,10 +22,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 22
-        # 新增配置：显式启用 pnpm
-        cache: 'pnpm'
-        # 新增核心配置：自动安装 pnpm
-        registry-url: 'https://registry.npmjs.org'
 
     # 方法一：推荐使用 corepack（Node.js 16+ 内置）
     - name: Enable corepack (for pnpm)
@@ -38,12 +33,13 @@ jobs:
     - name: Build project
       run: pnpm run build:cf   # 执行构建命令
 
-    # 使用 Cloudflare 官方 Action 处理 OIDC 认证
-    - name: Deploy with Wrangler (OIDC)
+    # 使用 Cloudflare 官方 Action 处理 API Token 认证
+    - name: Deploy with Wrangler (API Token)
       uses: cloudflare/wrangler-action@v3.0
       with:
         command: deploy
         environment: production  # 对应 wrangler.toml 中的环境配置
+        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}  # 使用 API Token 进行认证，将其设置为仓库的 secrets
       env: 
         CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}  # 推荐使用变量而非 secrets
     # 可选：添加测试或其他步骤
