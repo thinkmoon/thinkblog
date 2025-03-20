@@ -31,6 +31,9 @@ export default defineNuxtConfig({
     }]
   ],
   content: {
+    preview:{
+      api: 'https://api.nuxt.studio'
+    },
     database: {
       type: 'd1',
       bindingName: 'blog'
