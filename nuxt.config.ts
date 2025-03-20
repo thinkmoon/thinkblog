@@ -19,17 +19,14 @@ export default defineNuxtConfig({
   experimental: {
     writeEarlyHints: false
   },
-  modules: [
-    '@nuxt/content',
-    ['@pinia/nuxt', {
-      autoImports: [
-        // 自动引入 `usePinia()`
-        'defineStore',
-        // 自动引入 `usePinia()` 并重命名为 `usePiniaStore()`
-        ['defineStore', 'definePiniaStore'],
-      ],
-    }]
-  ],
+  modules: ['@nuxt/content', ['@pinia/nuxt', {
+    autoImports: [
+      // 自动引入 `usePinia()`
+      'defineStore',
+      // 自动引入 `usePinia()` 并重命名为 `usePiniaStore()`
+      ['defineStore', 'definePiniaStore'],
+    ],
+  }], '@nuxtjs/tailwindcss'],
   content: {
     preview:{
       api: 'https://api.nuxt.studio'
