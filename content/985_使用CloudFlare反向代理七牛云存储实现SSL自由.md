@@ -1,32 +1,39 @@
 ---
-title: 使用CloudFlare反向代理七牛云存储实现SSL自由 
-date: '2025-03-19 14:19:00'
-modified: '2025-03-19 14:30:00'
-category: 技术实践 
+title: 使用CloudFlare反向代理七牛云存储实现SSL自由
+date: 2025-03-19 14:19:00
+modified: 2025-03-19 14:30:00
+category: 技术实践
 tags:
-- CDN加速 
-- 云存储 
-- 网络安全 
-desc: '在混合云架构实践中，如何为第三方存储服务实现零成本HTTPS加密一直是开发者关注的焦点。本文将深入解析通过CloudFlare Workers反向代理技术，为七牛云存储资源构建全自动SSL加密体系的完整方案。该方案不仅规避了传统SSL证书部署的复杂流程，还能实现全球CDN加速与内容安全策略的统一管控。'
-thumb:   
+  - CDN加速
+  - 云存储
+  - 网络安全
+desc: 在混合云架构实践中，如何为第三方存储服务实现零成本HTTPS加密一直是开发者关注的焦点。本文将深入解析通过CloudFlare
+  Workers反向代理技术，为七牛云存储资源构建全自动SSL加密体系的完整方案。该方案不仅规避了传统SSL证书部署的复杂流程，还能实现全球CDN加速与内容安全策略的统一管控。
+thumb: null
 ---
- 
-# 基于CloudFlare Workers的七牛云HTTPS代理方案 
- 
-## 一、方案背景与核心价值 
-### 1.1 问题场景 
+
+# 基于CloudFlare Workers的七牛云HTTPS代理方案
+
+## 一、方案背景与核心价值
+
+### 1.1 问题场景
+
 七牛云存储作为国内主流对象存储服务，其HTTP直连访问存在两大痛点：
-- **SSL证书成本**：自定义域名HTTPS服务需单独购买证书 
-- **混合内容风险**：主站HTTPS页面加载HTTP资源触发安全警告 
- 
-### 1.2 技术选型 
+
+- **SSL证书成本**：自定义域名HTTPS服务需单独购买证书
+- **混合内容风险**：主站HTTPS页面加载HTTP资源触发安全警告
+
+### 1.2 技术选型
+
 通过CloudFlare Workers实现四大核心能力：
-- **协议转换层**：将用户HTTPS请求转换为对七牛HTTP源站的请求 
-- **动态内容改写**：实时替换响应中的HTTP资源链接 
-- **全局缓存加速**：利用全球CDN节点提升访问速度 
-- **零运维成本**：无需维护服务器基础设施 
+
+- **协议转换层**：将用户HTTPS请求转换为对七牛HTTP源站的请求
+- **动态内容改写**：实时替换响应中的HTTP资源链接
+- **全局缓存加速**：利用全球CDN节点提升访问速度
+- **零运维成本**：无需维护服务器基础设施
 
 ## 二、原理说明
+
 Cloudflare Worker 是一个无服务器计算平台，通过拦截请求并修改响应实现代理。核心思路是：
 
 将用户 HTTPS 请求转发到原始 HTTP 站点。
@@ -76,9 +83,11 @@ async function handleRequest(request) {
 ```
 
 ### 3. 部署并配置路由
+
 1. 点击 Deploy 部署 Worker。
-2. 在 Worker 设置中绑定自定义域名（如 https://proxy.your-domain.com ）。
+2. 在 Worker 设置中绑定自定义域名（如 <https://proxy.your-domain.com> ）。
 
 ### 4. 调整 SSL/TLS 模式
+
 1. 进入 Cloudflare 域名控制台 → SSL/TLS → 概述。
 2. 选择 Flexible 模式（允许 Cloudflare 通过 HTTPS 连接用户，但到源站使用 HTTP）。
