@@ -37,11 +37,7 @@ jobs:
     - name: Deploy with Wrangler (API Token)
       uses: cloudflare/wrangler-action@v3.0
       with:
-        command: deploy
-        environment: production  # 对应 wrangler.toml 中的环境配置
-        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}  # 使用 API Token 进行认证，将其设置为仓库的 secrets
-      env: 
-        CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}  # 推荐使用变量而非 secrets
-    # 可选：添加测试或其他步骤
-    # - name: Run tests
-    #   run: pnpm test
+        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        command: pages deploy dist/
+      
