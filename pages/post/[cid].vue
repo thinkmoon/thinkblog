@@ -27,26 +27,37 @@ const route = useRoute();
 const { data: content } = await useAsyncData(route.path, () => {
   return getContentById(route.params.cid as string)
 })
-
-const url = `https://www.thinkmoon.cn/post/${route.params.cid}`;
-
-const copyRight = computed(() => {
-  if (!content.value) return '';
-  return `> 版权声明: （${url}）\n 本文首发于[指尖魔法屋-${content.value.title}](${url})\n转载或引用必须申明原指尖魔法屋来源及源地址！`;
-})
-
-const markdownContent = computed(() => {
-  if (!content.value) return '';
-  return `# ${content.value.title} \r\n ${content.value.rawbody?.replace(/\n/g, '')} \r\n ${copyRight.value}`;
-})
+const url = `https://blog.thinkmoon.cn/post/${route.params.cid}`;
+const copyRightAST = [
+    "blockquote",
+    {},
+    [
+        "p",
+        {},
+        `版权声明: （${url}）本文首发于`,
+        [
+            "a",
+            {
+                "href": url
+            },
+            `指尖魔法屋-${content.value?.title}`
+        ],
+        "转载或引用必须申明原指尖魔法屋来源及源地址！"
+    ]
+]
 
 pushUrl(`/post/${route.params.cid}`);
-
+if(!process.client){
+   // @ts-ignore
+   content.value?.body.value.push(copyRightAST)
+}
 if(process.client && content.value){
+  const contentData = content.value as Content;
+ 
   useHead({
     meta: [
-      { name: 'keywords', content: content.value.tag?.map((i: { name: string }) => i.name).join(',') || config.KEYWORDS },
-      { name: 'description', content: content.value.fields?.desc || config.DESCRIPTION },
+      { name: 'keywords', content: String(contentData.tags?.join(',') || config.KEYWORDS) },
+      { name: 'description', content: String(contentData.description || config.DESCRIPTION) },
     ],
   });
 }
