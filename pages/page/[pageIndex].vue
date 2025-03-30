@@ -2,7 +2,7 @@
   <div class="page-content">
     <Title>第{{ route.params.pageIndex }}页 | {{ config.TITLE }}</Title>
     <div class="post-container">
-      <PostList :post-list="postList" />
+      <PostList :post-list="postList || []" />
       <div class="pagination-div">
         <div class="pagination-container">
           <el-link
@@ -47,6 +47,22 @@
 </template>
 
 <script lang="ts" setup>
+interface PostItem {
+  id: string;
+  title: string;
+  path: string;
+  date: string;
+  tags: string[];
+  category: string;
+  meta: {
+    thumb?: string;
+    desc: string;
+  };
+  views: number;
+  likes: number;
+  fields: Record<string, any>;
+}
+
 interface Content {
   title: string
   description?: string
@@ -62,12 +78,28 @@ const route = useRoute()
 const pageSize = 10
 const currentPage = computed(() => Number(route.params.pageIndex) || 1)
 
-const { data: postList } = await useAsyncData<Content[]>('content-list', () => {
+const { data: postList } = await useAsyncData<PostItem[]>('content-list', () => {
   return queryCollection('content')
     .order('date', 'DESC')
     .skip((currentPage.value - 1) * pageSize)
     .limit(pageSize)
     .all()
+    .then(articles => (articles || []).map(article => ({
+      id: article.path || '',
+      title: article.title || '',
+      path: article.path || '',
+      date: article.date,
+      description: article.description || '',
+      tags: article.tags || [],
+      category: article.category || '',
+      meta: {
+        thumb: typeof article.meta?.thumb === 'string' ? article.meta.thumb : '',
+        desc: article.description || ''
+      },
+      views: 0,
+      likes: 0,
+      fields: article.fields || {}
+    })))
 })
 
 const { data: total } = await useAsyncData('content-total', () => {
@@ -136,7 +168,6 @@ pushUrl(`/page/${route.params.pageIndex}`)
 </script>
 
 <style lang="less" scoped>
-
 @media (max-width: 1024px) {
   .page-content {
     width: 100%;
@@ -158,29 +189,53 @@ pushUrl(`/page/${route.params.pageIndex}`)
 
 .pagination-div {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin: 30px 0;
 }
 
 .pagination-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   flex-wrap: wrap;
+  background: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
 }
 
 .pagination-item {
-  min-width: 32px;
-  height: 32px;
+  min-width: 36px;
+  height: 36px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 8px;
-  border-radius: 4px;
+  padding: 0 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.3s ease;
   
   &:hover {
-    background-color: #f5f7fa;
+    background-color: var(--el-color-primary-light-9);
+    color: var(--el-color-primary);
+  }
+
+  &.is-disabled {
+    color: #c0c4cc;
+    cursor: not-allowed;
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &.is-active {
+    background-color: var(--el-color-primary);
+    color: #fff;
+    &:hover {
+      background-color: var(--el-color-primary);
+      color: #fff;
+    }
   }
 }
-
 </style>

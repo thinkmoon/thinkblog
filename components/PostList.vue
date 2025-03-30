@@ -104,15 +104,31 @@
   </div>
 </template>
 <script lang="ts" setup>
-function getPostPath(item:any) {
-    return `/post${item.path}`
+interface PostItem {
+  id: string;
+  title: string;
+  path: string;
+  date: string;
+  tags: string[];
+  category: string;
+  meta: {
+    thumb?: string;
+    desc: string;
+  };
+  views: number;
+  likes: number;
+  fields: Record<string, any>;
+}
+
+function getPostPath(item: PostItem) {
+  return `/post${item.path}`
 }
 
 const avatar = 'https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg';
 
-defineProps({
-  postList: Array,
-});
+defineProps<{
+  postList: PostItem[];
+}>();
 </script>
 <style lang="less" scoped>
 .blog-posts {
