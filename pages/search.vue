@@ -64,7 +64,7 @@ const performSearch = () => {
     return titleMatch || contentMatch;
   }).map((item: SearchableContent) => ({
     title: item.title,
-    path: `/content${item.id}`,
+    path: `/post${item.id}`,
     excerpt: item.content.substring(0, 200) + '...',
     date: '', // 由于搜索结果中没有日期信息，暂时留空
     category: '' // 由于搜索结果中没有分类信息，暂时留空

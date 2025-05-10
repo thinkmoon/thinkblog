@@ -1,6 +1,7 @@
 {
-  "name": "nuxt-app",
+  "name": "think-blog",
   "private": true,
+  "version": "5.3.0",
   "type": "module",
   "scripts": {
     "build": "nuxt build",
