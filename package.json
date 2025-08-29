@@ -21,6 +21,7 @@
     "@pinia/nuxt": "^0.4.6",
     "@vue/compiler-sfc": "^3.2.45",
     "axios": "^1.2.1",
+    "better-sqlite3": "^12.2.0",
     "dayjs": "^1.11.7",
     "element-plus": "^2.2.26",
     "gsap": "^3.11.3",
