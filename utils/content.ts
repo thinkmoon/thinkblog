@@ -92,24 +92,12 @@ export const getContentUrl = (path: string) => {
 }
 
 export const getContentByPath = async (path: string) => {
-  try {
-    // 在静态模式下，直接使用queryContent
-    const content = await queryContent('content', path)
-    return content
-  } catch (error) {
-    console.error('Failed to get content by path:', error)
-    return null
-  }
+  console.log(queryCollection('content').path(path).first())
+  return queryCollection('content').path(path).first()
 }
 
 export const getContentById = async (id: string) => {
-  try {
-    // 在静态模式下，直接使用queryContent
-    const content = await queryContent('content', id)
-    return content
-  } catch (error) {
-    console.error('Failed to get content by id:', error)
-    return null
-  }
+  console.log(id, await queryCollection('content').path('/' + id))
+  return queryCollection('content').path('/' + id).first()
 }
 export type { Content } 
