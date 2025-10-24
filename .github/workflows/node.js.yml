@@ -36,11 +36,18 @@ jobs:
     - name: Install dependencies
       run: pnpm install --no-frozen-lockfile        # 使用 pnpm 安装依赖，允许更新锁文件
 
+    - name: Rebuild native modules
+      run: |
+        pnpm rebuild better-sqlite3
+        pnpm rebuild bindings
+
     - name: Generate static site
       run: pnpm run generate   # 生成静态站点
       env:
         NODE_ENV: production
         NUXT_CONTENT_DATABASE: false
+        NUXT_CONTENT_DRIVER: fs
+        NUXT_CONTENT_SOURCES: '{}'
 
     # 使用 Cloudflare 官方 Action 处理 API Token 认证
     - name: Deploy with Wrangler (API Token)

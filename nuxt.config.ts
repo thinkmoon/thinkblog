@@ -36,6 +36,13 @@ export default defineNuxtConfig({
     // 静态模式使用文件系统存储
     preview:{
       api: 'https://api.nuxt.studio'
+    },
+    // 强制禁用数据库，使用文件系统
+    sources: {
+      content: {
+        driver: 'fs',
+        prefix: '/api/_content'
+      }
     }
   },
   // 静态生成配置
