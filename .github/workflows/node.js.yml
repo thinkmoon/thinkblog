@@ -27,6 +27,12 @@ jobs:
     - name: Enable corepack (for pnpm)
       run: corepack enable
 
+    # 安装构建工具和依赖
+    - name: Install build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential python3
+
     - name: Install dependencies
       run: pnpm install --no-frozen-lockfile        # 使用 pnpm 安装依赖，允许更新锁文件
 
@@ -34,6 +40,7 @@ jobs:
       run: pnpm run generate   # 生成静态站点
       env:
         NODE_ENV: production
+        NUXT_CONTENT_DATABASE: false
 
     # 使用 Cloudflare 官方 Action 处理 API Token 认证
     - name: Deploy with Wrangler (API Token)

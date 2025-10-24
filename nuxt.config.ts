@@ -42,6 +42,9 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: ['/']
+    },
+    rollupConfig: {
+      external: ['better-sqlite3', 'bindings']
     }
   },
   // 静态生成模式
