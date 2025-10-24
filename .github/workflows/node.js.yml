@@ -27,6 +27,12 @@ jobs:
     - name: Enable corepack (for pnpm)
       run: corepack enable
 
+    # 安装构建工具和依赖
+    - name: Install build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential python3
+
     - name: Install dependencies
       run: pnpm install        # 使用 pnpm 安装依赖
 

@@ -37,14 +37,25 @@ export default defineNuxtConfig({
     preview:{
       api: 'https://api.nuxt.studio'
     },
-    database: {
-      type: 'd1',
-      bindingName: 'blog'
-    }
+    // 根据环境变量决定是否使用数据库
+    ...(process.env.NUXT_CONTENT_DATABASE === 'false' ? {} : {
+      database: {
+        type: 'd1',
+        bindingName: 'blog'
+      }
+    })
   },
+  // Cloudflare Pages 构建优化
+  ssr: true,
   nitro: {
     rollupConfig: {
       external: ['file-uri-to-path', 'bindings', 'better-sqlite3', 'delayed-stream', 'combined-stream', 'mime-types', 'form-data', 'proxy-from-env', 'follow-redirects', 'qiniu-js']
+    },
+    // Cloudflare Pages 特定配置
+    preset: 'cloudflare-pages',
+    // 禁用原生模块
+    experimental: {
+      wasm: false
     }
   }
 });
