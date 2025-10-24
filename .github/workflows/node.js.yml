@@ -41,6 +41,12 @@ jobs:
         pnpm rebuild better-sqlite3
         pnpm rebuild bindings
 
+    - name: Install prebuilt better-sqlite3
+      run: |
+        pnpm remove better-sqlite3
+        pnpm add better-sqlite3@^12.4.1 --force
+        pnpm rebuild better-sqlite3
+
     - name: Generate static site
       run: pnpm run generate   # 生成静态站点
       env:
@@ -48,6 +54,8 @@ jobs:
         NUXT_CONTENT_DATABASE: false
         NUXT_CONTENT_DRIVER: fs
         NUXT_CONTENT_SOURCES: '{}'
+        NUXT_CONTENT_DISABLE_DATABASE: true
+        NUXT_CONTENT_USE_FILESYSTEM: true
 
     # 使用 Cloudflare 官方 Action 处理 API Token 认证
     - name: Deploy with Wrangler (API Token)

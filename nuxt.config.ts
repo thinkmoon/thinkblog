@@ -37,12 +37,9 @@ export default defineNuxtConfig({
     preview:{
       api: 'https://api.nuxt.studio'
     },
-    // 强制禁用数据库，使用文件系统
-    sources: {
-      content: {
-        driver: 'fs',
-        prefix: '/api/_content'
-      }
+    // 强制禁用数据库
+    experimental: {
+      clientDB: false
     }
   },
   // 静态生成配置

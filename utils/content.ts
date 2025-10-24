@@ -100,5 +100,4 @@ export const getContentById = async (id: string) => {
   console.log(id, await queryCollection('content').path('/' + id))
   return queryCollection('content').path('/' + id).first()
 }
-
 export type { Content } 
