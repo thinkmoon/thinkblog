@@ -28,7 +28,7 @@ jobs:
       run: corepack enable
 
     - name: Install dependencies
-      run: pnpm install        # 使用 pnpm 安装依赖
+      run: pnpm install --no-frozen-lockfile        # 使用 pnpm 安装依赖，允许更新锁文件
 
     - name: Generate static site
       run: pnpm run generate   # 生成静态站点
