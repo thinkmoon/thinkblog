@@ -33,12 +33,12 @@ export default defineNuxtConfig({
   },
   content: {
     // 使用文件系统存储，不需要数据库
-    // preview:{
-    //   api: 'https://api.nuxt.studio'
-    // },
-    // database: {
-    //   type: 'd1',
-    //   bindingName: 'blog'
-    // }
+    preview:{
+      api: 'https://api.nuxt.studio'
+    },
+    database: {
+      type: 'd1',
+      bindingName: 'blog'
+    }
   }
 });

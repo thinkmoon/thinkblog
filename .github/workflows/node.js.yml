@@ -32,6 +32,9 @@ jobs:
 
     - name: Build project
       run: pnpm run build:cf   # 执行构建命令
+      env:
+        NODE_ENV: production
+        NUXT_CONTENT_DATABASE: false
 
     # 使用 Cloudflare 官方 Action 处理 API Token 认证
     - name: Deploy with Wrangler (API Token)
