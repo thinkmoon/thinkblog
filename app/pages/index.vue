@@ -24,7 +24,6 @@
 import ThreeLayerUtil from "~/utils/ThreeLayerUtil";
 import * as THREE from 'three';
 import { onMounted } from "#imports";
-import Footer from "~/components/Footer.vue";
 
 const DEFAULT_SPEED = 0.5;
 const speed = ref(DEFAULT_SPEED);
@@ -55,8 +54,9 @@ definePageMeta({
 });
 
 onMounted(() => {
-  const threeLayerUtil = new ThreeLayerUtil();
-  threeLayerUtil.createScene(document.querySelector('.app-container'));
+  if (process.client) {
+    const threeLayerUtil = new ThreeLayerUtil();
+    threeLayerUtil.createScene(document.querySelector('.app-container'));
 
     const x = 0, y = 0;
 
@@ -110,6 +110,7 @@ onMounted(() => {
       }
       starGeo.attributes.position.needsUpdate = true;
     });
+  }
 });
 
 </script>

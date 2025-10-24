@@ -9,8 +9,6 @@
           </div>
           <div class="page-section">
             <Search/>
-            <CategorySidebar/>
-            <TagSidebar/>
             <GoogleAd/>
           </div>
         </div>
@@ -24,8 +22,6 @@
 </template>
 <script lang="ts" setup>
 import Search from '~~/components/section/Search.vue';
-import CategorySidebar from '~/components/section/CategorySidebar.vue';
-import TagSidebar from '~/components/section/TagSidebar.vue';
 import GoogleAd from '~/components/section/GoogleAd.vue';
 
 useHead({

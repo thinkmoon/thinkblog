@@ -58,6 +58,8 @@ interface PostItem {
     thumb?: string;
     desc: string;
   };
+  views: number;
+  likes: number;
   fields: Record<string, any>;
 }
 
@@ -94,6 +96,8 @@ const { data: postList } = await useAsyncData<PostItem[]>('content-list', () => 
         thumb: typeof article.meta?.thumb === 'string' ? article.meta.thumb : '',
         desc: article.description || ''
       },
+      views: 0,
+      likes: 0,
       fields: article.fields || {}
     })))
 })
@@ -171,6 +175,7 @@ pushUrl(`/page/${route.params.pageIndex}`)
     .blog-posts {
       width: 100%;
 
+      .posts-default-content .right,
       .post-author {
         display: none;
       }

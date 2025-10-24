@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     "server": false,
     "client": false
   },
-  css: ['assets/css/index.less'],
+  css: ['~/assets/css/index.less'],
   experimental: {
     writeEarlyHints: false
   },
@@ -28,12 +28,13 @@ export default defineNuxtConfig({
     ],
   }], '@nuxtjs/tailwindcss', '@nuxtjs/sitemap', '@nuxtjs/seo'],
   content: {
-    preview:{
-      api: 'https://api.nuxt.studio'
-    },
-    database: {
-      type: 'd1',
-      bindingName: 'blog'
-    }
+    // 使用文件系统存储，不需要数据库
+    // preview:{
+    //   api: 'https://api.nuxt.studio'
+    // },
+    // database: {
+    //   type: 'd1',
+    //   bindingName: 'blog'
+    // }
   }
 });

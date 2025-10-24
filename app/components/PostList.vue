@@ -83,6 +83,20 @@
                 <a>{{ item.date }}</a>
               </div>
             </div>
+            <div class="right">
+              <div class="ico-warp">
+                <el-icon>
+                  <IconView/>
+                </el-icon>
+                <span>{{ item.views }}</span>
+              </div>
+              <div class="ico-warp">
+                <el-icon>
+                  <IconStar/>
+                </el-icon>
+                <span>{{ item.likes }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -101,6 +115,8 @@ interface PostItem {
     thumb?: string;
     desc: string;
   };
+  views: number;
+  likes: number;
   fields: Record<string, any>;
 }
 

@@ -28,18 +28,14 @@
 <script lang="ts" setup>
 import UserApi from '@/api/UserApi';
 import { ElMessage } from 'element-plus';
-import { onMounted } from 'vue';
 
 const config = useAppConfig();
 
 const auth = useCookie('auth', { domain: 'thinkmoon.cn', maxAge: 3600 });
 
-// 检查认证状态并重定向
-onMounted(() => {
-  if (auth.value) {
-    navigateTo({ path: '/admin' });
-  }
-});
+if (process.client && auth.value) {
+  navigateTo({ path: '/admin' });
+}
 
 definePageMeta({
   layout: false,
@@ -53,9 +49,13 @@ const form = reactive({
 function onSubmit() {
   UserApi.login(form).then((res: string) => {
     auth.value = res;
-    window.location.href = '/admin';
+    if (process.client) {
+      window.location.href = '/admin';
+    }
   }).catch(() => {
-    ElMessage.error('登录失败');
+    if (process.client) {
+      ElMessage.error('登录失败');
+    }
   });
 }
 

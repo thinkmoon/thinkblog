@@ -18,7 +18,7 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
 import { pushUrl } from '~/utils/BaiduSite';
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { getContentById, type Content } from '~/utils/content';
 
 const config = useAppConfig();
@@ -47,16 +47,11 @@ const copyRightAST = [
 ]
 
 pushUrl(`/post/${route.params.cid}`);
-
-// 在客户端添加版权声明
-onMounted(() => {
-  if (content.value) {
-    // @ts-ignore
-    content.value?.body.value.push(copyRightAST)
-  }
-});
-
-if (content.value) {
+if(!process.client){
+   // @ts-ignore
+   content.value?.body.value.push(copyRightAST)
+}
+if(process.client && content.value){
   const contentData = content.value as Content;
  
   useHead({
