@@ -47,6 +47,16 @@ export default defineNuxtConfig({
       external: ['better-sqlite3', 'bindings']
     }
   },
+  // 配置路由生成
+  hooks: {
+    'nitro:config': async (nitroConfig) => {
+      // 在构建时生成所有内容路由
+      if (nitroConfig.prerender?.routes) {
+        // 这里可以添加动态路由生成逻辑
+        nitroConfig.prerender.routes.push('/sitemap.xml')
+      }
+    }
+  },
   // 静态生成模式
   ssr: false
 });
