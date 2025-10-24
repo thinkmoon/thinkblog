@@ -19,14 +19,18 @@ export default defineNuxtConfig({
   experimental: {
     writeEarlyHints: false
   },
-  modules: ['@nuxt/content', ['@pinia/nuxt', {
+  modules: ['@nuxtjs/sitemap', '@nuxt/content', ['@pinia/nuxt', {
     autoImports: [
       // 自动引入 `usePinia()`
       'defineStore',
       // 自动引入 `usePinia()` 并重命名为 `usePiniaStore()`
       ['defineStore', 'definePiniaStore'],
     ],
-  }], '@nuxtjs/tailwindcss', '@nuxtjs/sitemap', '@nuxtjs/seo'],
+  }], '@nuxtjs/tailwindcss', '@nuxtjs/seo'],
+  sitemap: {
+    exclude: ['/admin/**'],
+    autoLastmod: true
+  },
   content: {
     // 使用文件系统存储，不需要数据库
     // preview:{
