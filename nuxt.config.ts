@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -39,6 +40,11 @@ export default defineNuxtConfig({
     database: {
       type: 'd1',
       bindingName: 'blog'
+    }
+  },
+  nitro: {
+    rollupConfig: {
+      external: ['file-uri-to-path', 'bindings', 'better-sqlite3', 'delayed-stream', 'combined-stream', 'mime-types', 'form-data', 'proxy-from-env', 'follow-redirects', 'qiniu-js']
     }
   }
 });
