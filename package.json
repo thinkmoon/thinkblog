@@ -8,8 +8,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "build:cf": "nuxi build --preset=cloudflare_pages"
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
@@ -18,13 +17,9 @@
     "@nuxtjs/seo": "3.2.2",
     "@nuxtjs/sitemap": "^7.4.7",
     "@nuxtjs/tailwindcss": "6.14.0",
-    "@oxc-minify/binding-linux-x64-gnu": "^0.95.0",
-    "@oxc-parser/binding-linux-x64-gnu": "^0.95.0",
-    "@oxc-transform/binding-linux-x64-gnu": "^0.95.0",
     "@pinia/nuxt": "^0.11.2",
     "@vue/compiler-sfc": "^3.5.22",
     "axios": "^1.12.2",
-    "better-sqlite3": "^12.4.1",
     "dayjs": "^1.11.18",
     "element-plus": "^2.11.5",
     "gsap": "^3.13.0",

@@ -33,29 +33,17 @@ export default defineNuxtConfig({
     autoLastmod: true
   },
   content: {
-    // 使用文件系统存储，不需要数据库
+    // 静态模式使用文件系统存储
     preview:{
       api: 'https://api.nuxt.studio'
-    },
-    // 根据环境变量决定是否使用数据库
-    ...(process.env.NUXT_CONTENT_DATABASE === 'false' ? {} : {
-      database: {
-        type: 'd1',
-        bindingName: 'blog'
-      }
-    })
-  },
-  // Cloudflare Pages 构建优化
-  ssr: true,
-  nitro: {
-    rollupConfig: {
-      external: ['file-uri-to-path', 'bindings', 'better-sqlite3', 'delayed-stream', 'combined-stream', 'mime-types', 'form-data', 'proxy-from-env', 'follow-redirects', 'qiniu-js']
-    },
-    // Cloudflare Pages 特定配置
-    preset: 'cloudflare-pages',
-    // 禁用原生模块
-    experimental: {
-      wasm: false
     }
-  }
+  },
+  // 静态生成配置
+  nitro: {
+    prerender: {
+      routes: ['/']
+    }
+  },
+  // 静态生成模式
+  ssr: false
 });

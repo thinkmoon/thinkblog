@@ -27,20 +27,13 @@ jobs:
     - name: Enable corepack (for pnpm)
       run: corepack enable
 
-    # 安装构建工具和依赖
-    - name: Install build dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential python3
-
     - name: Install dependencies
       run: pnpm install        # 使用 pnpm 安装依赖
 
-    - name: Build project
-      run: pnpm run build:cf   # 执行构建命令
+    - name: Generate static site
+      run: pnpm run generate   # 生成静态站点
       env:
         NODE_ENV: production
-        NUXT_CONTENT_DATABASE: false
 
     # 使用 Cloudflare 官方 Action 处理 API Token 认证
     - name: Deploy with Wrangler (API Token)
@@ -48,5 +41,5 @@ jobs:
       with:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-        command: pages deploy dist/ --project-name=blog
+        command: pages deploy .output/public/ --project-name=blog
       
