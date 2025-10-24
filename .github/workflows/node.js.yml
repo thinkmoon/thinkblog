@@ -38,21 +38,15 @@ jobs:
     - name: Install dependencies
       run: pnpm install --no-frozen-lockfile        # 使用 pnpm 安装依赖，允许更新锁文件
 
-    - name: Rebuild native modules
-      run: |
-        pnpm rebuild better-sqlite3
-        pnpm rebuild bindings
-
-    - name: Force rebuild better-sqlite3
+    - name: Rebuild all native modules
       run: |
         # 设置环境变量强制编译
         export npm_config_build_from_source=true
         export npm_config_cache=false
         export npm_config_target_arch=x64
         export npm_config_target_platform=linux
-        # 清理并重新编译better-sqlite3
-        rm -rf node_modules/.pnpm/better-sqlite3*
-        pnpm rebuild better-sqlite3 --force
+        # 立即重建所有原生模块
+        pnpm rebuild
         # 验证better-sqlite3是否正确安装
         node -e "console.log('Testing better-sqlite3...'); try { const sqlite3 = require('better-sqlite3'); console.log('✅ better-sqlite3 loaded successfully'); } catch(e) { console.log('❌ better-sqlite3 failed:', e.message); process.exit(1); }"
 
@@ -64,6 +58,7 @@ jobs:
         npm_config_build_from_source: true
         npm_config_target_arch: x64
         npm_config_target_platform: linux
+        npm_config_cache: false
 
     # 使用 Cloudflare 官方 Action 处理 API Token 认证
     - name: Deploy with Wrangler (API Token)
