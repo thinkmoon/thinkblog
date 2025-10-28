@@ -2,6 +2,10 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
+  site: { 
+    url: 'https://blog.thinkmoon.cn', 
+    name: '醉月思的博客-指尖魔法屋' 
+  }, 
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   runtimeConfig: {
