@@ -1,7 +1,7 @@
 ---
 title: 一些在Jetson设备的开发经验
-date: '2025-01-27 10:30:00'
-modified: '2025-01-27 10:30:00'
+date: '2025-10-27 10:30:00'
+modified: '2025-10-27 10:30:00'
 category: 技术实践
 tags:
   - Jetson
