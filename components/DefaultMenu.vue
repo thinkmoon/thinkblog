@@ -42,7 +42,28 @@
 </template>
 <script lang="ts" setup>
 const route = useRoute();
-const defaultActive : string = route?.path ?? '/';
+
+// 计算高亮项：如果是分类或标签相关页面，则高亮对应菜单项
+const defaultActive = computed(() => {
+  const path = route?.path ?? '/';
+  
+  // 如果是分类页面或分类相关页面
+  if (path.startsWith('/category')) {
+    return '/category';
+  }
+  
+  // 如果是标签页面或标签相关页面
+  if (path.startsWith('/tag')) {
+    return '/tag';
+  }
+  
+  // 首页
+  if (path === '/page/1' || path === '/' || path === '/index.html') {
+    return '/page/1';
+  }
+  
+  return path;
+});
 
 function select(url) {
   location.href = url;
