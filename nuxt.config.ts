@@ -45,6 +45,10 @@ export default defineNuxtConfig({
     // 静态模式使用文件系统存储
     preview:{
       api: 'https://api.nuxt.studio'
+    },
+    highlight: {
+      theme: 'github-dark',
+      langs: ['javascript', 'typescript', 'python', 'yaml', 'bash', 'json', 'css', 'html']
     }
   },
   // 静态生成配置
