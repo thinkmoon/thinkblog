@@ -2,60 +2,60 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Uni-App on 指尖魔法屋</title>
-    <link>https://example.org/tags/uni-app/</link>
+    <link>https://blog.thinkmoon.cn/tags/uni-app/</link>
     <description>Recent content in Uni-App on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Sun, 16 May 2021 13:27:29 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/uni-app/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/uni-app/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>uni-app对微信小程序云函数的适配</title>
-      <link>https://example.org/post/466_uni-app%E5%AF%B9%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%91%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%82%E9%85%8D/</link>
+      <link>https://blog.thinkmoon.cn/post/466_uni-app%E5%AF%B9%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%91%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%82%E9%85%8D/</link>
       <pubDate>Sun, 16 May 2021 13:27:29 +0000</pubDate>
-      <guid>https://example.org/post/466_uni-app%E5%AF%B9%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%91%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%82%E9%85%8D/</guid>
+      <guid>https://blog.thinkmoon.cn/post/466_uni-app%E5%AF%B9%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%91%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%82%E9%85%8D/</guid>
       <description>引言 熟悉uni-app的人应该都知道，uni-app并未对微信小程序云函数（本文统称云函数）进行相应的适配。但是，如果我们在某些业务场景的下需要使用云函数呢？我们知道，云函数可以复制到微信开发者工具，这样的话我们不得不每次编译一次就手动复制一次，不得不说麻烦至极。本文就问题做出以下解决方案。&#xA;本文环境 Hbuilder X 微信开发者工具 创建云函数目录 首先，我们需要在uni-app项目文件夹下，创建一个云函数目录，路径随意，我这里是functions。然后先随便在里面放一些文件，这里以new_file.css为例。&#xA;修改manifest.json 在uni-app根目录下，修改manifest.json中的微信小程序项，结构如下&#xA;&amp;#34;mp-weixin&amp;#34; : { /* 小程序特有相关 */ &amp;#34;appid&amp;#34; : &amp;#34;wxd7de467f6e6cf741&amp;#34;, &amp;#34;cloudfunctionRoot&amp;#34;: &amp;#34;./functions/&amp;#34;, // 这一行就是标记云函数目录的字段 &amp;#34;setting&amp;#34; : { &amp;#34;urlCheck&amp;#34; : false }, &amp;#34;usingComponents&amp;#34; : true } 编写vue.config.js 我们在项目根目录创建vue.config.js文件&#xA;写入以下内容（如路径不一样请做相应适配）&#xA;const path = require(&amp;#39;path&amp;#39;) const CopyWebpackPlugin = require(&amp;#39;copy-webpack-plugin&amp;#39;) module.exports = { configureWebpack: { plugins: [ new CopyWebpackPlugin([{ from: path.join(__dirname, &amp;#39;cloudFunctions&amp;#39;), to: path.join(__dirname, &amp;#39;unpackage/dist&amp;#39;, process.env.NODE_ENV === &amp;#39;production&amp;#39; ? &amp;#39;build&amp;#39; : &amp;#39;dev&amp;#39;, process.env .UNI_PLATFORM, &amp;#39;cloudFunctions&amp;#39;) }]) ] } } 编译运行 发现提示如下内容</description>
     </item>
     <item>
       <title>js使用装饰器实现操作前二次确认询问</title>
-      <link>https://example.org/post/900_js%E4%BD%BF%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E5%89%8D%E4%BA%8C%E6%AC%A1%E7%A1%AE%E8%AE%A4%E8%AF%A2%E9%97%AE/</link>
+      <link>https://blog.thinkmoon.cn/post/900_js%E4%BD%BF%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E5%89%8D%E4%BA%8C%E6%AC%A1%E7%A1%AE%E8%AE%A4%E8%AF%A2%E9%97%AE/</link>
       <pubDate>Sun, 20 Sep 2020 13:18:57 +0000</pubDate>
-      <guid>https://example.org/post/900_js%E4%BD%BF%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E5%89%8D%E4%BA%8C%E6%AC%A1%E7%A1%AE%E8%AE%A4%E8%AF%A2%E9%97%AE/</guid>
+      <guid>https://blog.thinkmoon.cn/post/900_js%E4%BD%BF%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E5%89%8D%E4%BA%8C%E6%AC%A1%E7%A1%AE%E8%AE%A4%E8%AF%A2%E9%97%AE/</guid>
       <description>引言 相信大家平常在开发过程中，经常会遇到此类需求。危险操作（如删除，退出登录）往往需要弹框提示给用户二次确认一下。本文介绍的是，如何使用js方法装饰器，封装二次确认弹框操作，增加小伙伴的开发效率。&#xA;装饰器介绍 装饰器是对类、函数、属性之类的一种装饰，可以针对其添加一些额外的行为。详细使用，自行百度！&#xA;常规手段 view&#xA;&amp;lt;div class=&amp;#34;bg-white flex justify-center&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;btn-primary&amp;#34; @click=&amp;#34;clickMe&amp;#34;&amp;gt;点我&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; js&#xA;clickMe() { uni.showModal({ title: &amp;#34;点击提示&amp;#34;, content: &amp;#34;你确定要点我？&amp;#34;, success: (res) =&amp;gt; { if (res.confirm) { console.log(&amp;#34;点我干啥&amp;#34;); } }, }); } 效果展示&#xA;装饰器写法 confirm.js&#xA;function confirm(message: string, title: string, cancelFn = function() {}) { return function(target: any, name: string, descriptor: any) { const originFn = descriptor.value; descriptor.value = function(rest: any) { uni.showModal({ title: title, content: message, success: (res) =&amp;gt; { if (res.</description>
     </item>
     <item>
       <title>微信小程序自定义tabBar在uni-app的适配</title>
-      <link>https://example.org/post/375_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89tabbar%E5%9C%A8uni-app%E7%9A%84%E9%80%82%E9%85%8D/</link>
+      <link>https://blog.thinkmoon.cn/post/375_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89tabbar%E5%9C%A8uni-app%E7%9A%84%E9%80%82%E9%85%8D/</link>
       <pubDate>Fri, 10 Jul 2020 09:12:17 +0000</pubDate>
-      <guid>https://example.org/post/375_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89tabbar%E5%9C%A8uni-app%E7%9A%84%E9%80%82%E9%85%8D/</guid>
+      <guid>https://blog.thinkmoon.cn/post/375_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89tabbar%E5%9C%A8uni-app%E7%9A%84%E9%80%82%E9%85%8D/</guid>
       <description>引言：此方法可用作大部分微信小程序支持，但uni-app文档中却找不到相关说明的API&#xA;需求 需要在微信小程序中，实现一个中间图标突出显示的异形导航栏。&#xA;如下图 实现方法设计 要做这种异形的导航栏，用直接在配置文件里面写list的方法肯定做不到。那么，就有以下两种可替代方法。&#xA;在每一个页面都加载一个tabBar组件，与页面同时渲染。&#xA;设置自定义tabBar,修改tabBar的样式。&#xA;优缺点分析：方法1实现起来略为简单，但是会出现代码可重用率低，降低性能，已经界面跳动等问题。方法2则是微信官方提供的，自定义方式，相信在性能方面也会有很大的优势。故选择方法2。&#xA;1. 查看文档及官方Demo 官方文档&#xA;简要描述一下就是需要在根目录中加入一个custom-tab-bar目录，里面的文件结构与自定义组件的结构一致。然后再在小程序配置文件中修改tabbar为custom模式。&#xA;官方代码&#xA;主要重点为三个部分&#xA;配置文件 custom-tab-bar目录 页面生命周期中的设置索引方法 这段代码其实很容易理解，pageLifetimes就是监听组件所在页面的生命周期。上述代码就是监听页面显示。当页面显示后，获取到tabBar的对象，然后再设置tabBar中的index索引。&#xA;2. 迁移到uni-app框架 上面的方法是使用微信小程序的开发方式，而我使用的是uni-app框架开发微信小程序的。所以我们需要把它们移植到uni-app框架内。&#xA;配置文件的修改 uni-app中，page.json被编译为微信小程序的app.json。所以，我们直接修改page.json&#xA;custom-tab-bar目录的适配 我们知道，uni-app使用的是类Vue开发，将一个Vue文件编译为四个微信页面文件（wxml，wxss，json，js）。那么，是否可以直接写一个custom-tab-bar.vue的文件呢？刚开始我也是这么想的，后来发现uni-app只会编译page目录和component目录下的vue文件。而微信小程序要求custom-tab-bar必须在项目的根目录下。那么就只能在uni-app下创建一个custom-tab-bar目录，并老老实实写微信四件套了。&#xA;写完后，uni-app会将该目录完美的复制至微信小程序项目的根目录。&#xA;tab页面内的适配方法 这个在我实际开发中，是最令我头痛的了。因为微信小程序的this引用与uni-app的this引用并不相同。所以如果直接复制代码是会编译出错的。而另一个问题则是，uni-app并未提供pageLifetimes的事件监听。&#xA;在我经过一番摸索之后，发现将设置索引方法写在onShow事件里面，效果是等效的。接下来便只剩下this的问题了。&#xA;如果直接复制的话，会出现无任何效果的情况&#xA;因为uni-app的this引用不一样，所以它在判断getTabBar的时候，获取的是“undefined”所以不会执行下面的操作。如果你将判断去掉，则会直接报“undefined”错误。&#xA;难道实现不了？其实不然，万变不离其宗。uni-app也是编译到小程序的，所以绝对有迹可循。&#xA;我们首先看看uni-app里面this的内容。&#xA;我们可以很明显的看到里面有个$mp的对象，说明这应该是微信小程序专用的对象。接下来我们继续分析$mp。&#xA;这里面有一个隐藏很深的getTabBar方法，我们直接调用它，和在微信小程序里面调用this.getTabBar是等效的。&#xA;所以我们就可以把onShow里面的内容写成这样。&#xA;一些优雅点的封装 设置索引方法独立出来 在methods对象中，添加&#xA;setTabBarIndex(index){ if (typeof this.$mp.page.getTabBar === &amp;#39;function&amp;#39; &amp;amp;&amp;amp; this.$mp.page.getTabBar()) { this.$mp.page.getTabBar().setData({ selected:index }) } } 使用mixin避免重复书写复制 在main.js中，添加&#xA;Vue.mixin({ methods:{ setTabBarIndex(index){ if (typeof this.$mp.page.getTabBar === &amp;#39;function&amp;#39; &amp;amp;&amp;amp; this.$mp.page.getTabBar()) { this.$mp.page.getTabBar().setData({ selected:index }) } } } }) 混入后的使用 在页面文件中</description>
     </item>
     <item>
       <title>uni-app编译时删除指定文件夹</title>
-      <link>https://example.org/post/859_uni-app%E7%BC%96%E8%AF%91%E6%97%B6%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9/</link>
+      <link>https://blog.thinkmoon.cn/post/859_uni-app%E7%BC%96%E8%AF%91%E6%97%B6%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9/</link>
       <pubDate>Thu, 18 Jun 2020 11:25:31 +0000</pubDate>
-      <guid>https://example.org/post/859_uni-app%E7%BC%96%E8%AF%91%E6%97%B6%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9/</guid>
+      <guid>https://blog.thinkmoon.cn/post/859_uni-app%E7%BC%96%E8%AF%91%E6%97%B6%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9/</guid>
       <description>remove-files-webpack-plugin 原理就是在项目中添加一个webpack插件，然后配置插件&#xA;项目根目录新增vue.config.js&#xA;const path = require(&amp;#39;path&amp;#39;) const RemovePlugin = require(&amp;#39;remove-files-webpack-plugin&amp;#39;) module.exports = { configureWebpack: { plugins: [ new RemovePlugin({ after: { root: path.join(__dirname, &amp;#39;./unpackage&amp;#39;), include: [ path.join(__dirname, &amp;#39;unpackage/dist&amp;#39;, process.env.NODE_ENV === &amp;#39;production&amp;#39; ? &amp;#39;build&amp;#39; : &amp;#39;dev&amp;#39;, process.env .UNI_PLATFORM, &amp;#39;./mp-weixin/static/APPPIC&amp;#39;) ], trash: false } }) ] } } 部分webpack类似的webpack插件&#xA;copy-webpack-plugin&#xA;clean-webpack-plugin</description>
     </item>
     <item>
       <title>微信小程序页面改写组件教程</title>
-      <link>https://example.org/post/847_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E6%94%B9%E5%86%99%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B/</link>
+      <link>https://blog.thinkmoon.cn/post/847_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E6%94%B9%E5%86%99%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B/</link>
       <pubDate>Fri, 01 May 2020 22:29:12 +0000</pubDate>
-      <guid>https://example.org/post/847_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E6%94%B9%E5%86%99%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B/</guid>
+      <guid>https://blog.thinkmoon.cn/post/847_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E6%94%B9%E5%86%99%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B/</guid>
       <description>为什么需要？ 微信小程序里面页面与自定义组件的区别较大，而页面的可复用程度太低了。要么就是跳转页面，要么就是copy代码。如果我们要增加代码的可复用性，就可以借用Vue组件的思想，将页面改写为自定义组件。&#xA;结构对比 两者的视图文件，样式文件没有什么区别。主要区别最大的就是js文件，我们首先来看一下两者的结构。&#xA;page.js page({ // 数据内容 data:{}, // 生命周期函数 onLoad(){}, // 一些自定义函数 someMethods(){} }) componet.js componet({ // 预设属性 properties: {}, // 数据内容 data: {}, //组件所在页面生命周期 pageLifetimes: {}, // 生命周期函数-挂载 attached: function() { // 在组件实例进入页面节点树时执行 }, // 生命周期函数-卸载 detached: function() { // 在组件实例被从页面节点树移除时执行 }, // 自定义函数写结构里面 methods:{ someMethods(){} } }) 我们可以看到，两者的基本相似，大同小异。所以改写起来就特别方便啦~&#xA;将page改为componet&#xA;适配生命周期函数，例如将页面onLoad()函数改写为组件的attached()函数&#xA;将自定义函数someMethods()写到Componet的methods里面</description>
     </item>
     <item>
       <title>微信小程序通过uni-app实现v-html渲染视图</title>
-      <link>https://example.org/post/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/</link>
+      <link>https://blog.thinkmoon.cn/post/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/</link>
       <pubDate>Tue, 02 Jul 2019 11:44:51 +0000</pubDate>
-      <guid>https://example.org/post/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/</guid>
+      <guid>https://blog.thinkmoon.cn/post/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/</guid>
       <description>v-html介绍 如果不使用v-html而是直接将html标签加入视图层会出现html标签不解析的情况，如果我们想实现解析的效果。vue中提供了v-html指令。使用 v-html 指令，你可以将html标签解析渲染到视图层。&#xA;微信小程序如何使用？ 由于微信小程序只是类vue的，与vue存在着很多不同点。但是为了秉承将vue进行到底的宗旨，很多微信小程序开发框架如雨后春笋。在我使用的过程中，感觉uni-app与vue最为贴近，而且适配了很多vue的特性，如：v-model，filters，v-html等。官网是这样介绍的。&#xA;其中，他们是通过微信小程序rich-text的属性来实现v-html的效果的。所以，我们想知道支持什么标签，就得移步至rich-text | 微信开发文档&#xA;开始实现Demo demo 中的需求是一个赛事报名list，其中赛事状态有，预报名，报名成功，正在进行，已结束等。&#xA;预实现方法：由于微信小程序的rich-text组件会禁用所有的节点事件，所以想通过@click绑定v-html节点事件，filter渲染界面。但是在实现过程中发现不支持在v-html中使用filter, 故后来采用methods的返回值来实现视图层的渲染。&#xA;效果如下：至此效果，v-html解析成功&#xA;添加状态判断</description>
     </item>
     <item>
       <title>uni-app使用v-model</title>
-      <link>https://example.org/post/313_uni-app%E4%BD%BF%E7%94%A8v-model/</link>
+      <link>https://blog.thinkmoon.cn/post/313_uni-app%E4%BD%BF%E7%94%A8v-model/</link>
       <pubDate>Mon, 27 May 2019 16:42:46 +0000</pubDate>
-      <guid>https://example.org/post/313_uni-app%E4%BD%BF%E7%94%A8v-model/</guid>
+      <guid>https://blog.thinkmoon.cn/post/313_uni-app%E4%BD%BF%E7%94%A8v-model/</guid>
       <description>v-model 介绍 首先明确一点，v-model仅仅是语法糖。&#xA;&amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;something&amp;#34;&amp;gt; 等价于&#xA;&amp;lt;input type=&amp;#34;text&amp;#34; v-bind:value=&amp;#34;something&amp;#34; v-on:input=&amp;#34;something = $event.target.value&amp;#34;&amp;gt; 它将一个较复杂的input双向数据绑定简化了他的书写方式。&#xA;微信小程序绑定input 最开始我是使用微信推荐的写法&#xA;&amp;lt;input bindtap=&amp;#34;input&amp;#34; /&amp;gt; 然后在js里面解析event，然后再setData&#xA;uni-app下v-model的写法 本文采用uni-app自定义组件模式&#xA;wxml&#xA;... &amp;lt;form @submit=&amp;#34;formSubmit&amp;#34; @reset=&amp;#34;formReset&amp;#34; :model=&amp;#34;formItem&amp;#34; class=&amp;#34;tm-every-center padding bg-white&amp;#34;&amp;gt; &amp;lt;view class=&amp;#34;section flex align-center&amp;#34;&amp;gt; &amp;lt;view class=&amp;#34;section__title&amp;#34;&amp;gt;姓名：&amp;lt;/view&amp;gt; &amp;lt;input name=&amp;#34;name&amp;#34; placeholder=&amp;#34;请填写您的姓名&amp;#34; class=&amp;#34;bg-gray&amp;#34; v-model=&amp;#34;formItem.name&amp;#34; /&amp;gt; &amp;lt;/view&amp;gt; &amp;lt;view class=&amp;#34;section flex align-center&amp;#34;&amp;gt; &amp;lt;view class=&amp;#34;section__title&amp;#34;&amp;gt;手机：&amp;lt;/view&amp;gt; &amp;lt;input name=&amp;#34;name&amp;#34; placeholder=&amp;#34;请填写您的姓名&amp;#34; class=&amp;#34;bg-gray&amp;#34; v-model=&amp;#34;formItem.phone&amp;#34; /&amp;gt; &amp;lt;/view&amp;gt; &amp;lt;view class=&amp;#34;section flex align-center&amp;#34;&amp;gt; &amp;lt;view class=&amp;#34;section__title&amp;#34;&amp;gt;赛点：&amp;lt;/view&amp;gt; &amp;lt;input name=&amp;#34;name&amp;#34; placeholder=&amp;#34;请填写您的姓名&amp;#34; class=&amp;#34;bg-gray&amp;#34; v-model=&amp;#34;formItem.competition&amp;#34; /&amp;gt; &amp;lt;/view&amp;gt; &amp;lt;view class=&amp;#34;btn-area margin-top&amp;#34;&amp;gt;&amp;lt;button formType=&amp;#34;submit&amp;#34; class=&amp;#34;cu-btn&amp;#34;&amp;gt;提交&amp;lt;/button&amp;gt;&amp;lt;/view&amp;gt; &amp;lt;/form&amp;gt; .</description>
     </item>
   </channel>

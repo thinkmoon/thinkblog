@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>篆书转换器相关 on 指尖魔法屋</title>
-    <link>https://example.org/categories/%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%9B%B8%E5%85%B3/</link>
+    <link>https://blog.thinkmoon.cn/categories/%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%9B%B8%E5%85%B3/</link>
     <description>Recent content in 篆书转换器相关 on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Wed, 01 Jan 2020 11:32:35 +0000</lastBuildDate>
-    <atom:link href="https://example.org/categories/%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%9B%B8%E5%85%B3/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/categories/%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%9B%B8%E5%85%B3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>篆书转换器简介</title>
-      <link>https://example.org/post/52_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%AE%80%E4%BB%8B/</link>
+      <link>https://blog.thinkmoon.cn/post/52_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%AE%80%E4%BB%8B/</link>
       <pubDate>Wed, 01 Jan 2020 11:32:35 +0000</pubDate>
-      <guid>https://example.org/post/52_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%AE%80%E4%BB%8B/</guid>
+      <guid>https://blog.thinkmoon.cn/post/52_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%AE%80%E4%BB%8B/</guid>
       <description>篆书转换器（Zhuan_Converter） 支持篆书与楷书互转，提供一个学习交流篆刻，书法的平台.&#xA;让篆书学习变得更加容易&#xA;如果你也有公众那我们关联在一起吧： 登录微信公众号&#xA;小程序管理-添加&#xA;关联小程序&#xA;输入小程序APPID(小程序ID)&#xA;wxecf9aa9fecacd72d&#xA;我们的公众号 </description>
     </item>
     <item>
       <title>篆书转换器版本说明</title>
-      <link>https://example.org/post/61_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E/</link>
+      <link>https://blog.thinkmoon.cn/post/61_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E/</link>
       <pubDate>Thu, 19 Dec 2019 13:15:55 +0000</pubDate>
-      <guid>https://example.org/post/61_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E/</guid>
+      <guid>https://blog.thinkmoon.cn/post/61_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E/</guid>
       <description>版本更新(仅显示发布版) v0.1.0(当前版本) 新版界面改版 V19.1.20 调整篆书生成输入框 2.优化篆书生成结果分享功能&#xA;V19.1.9 新增篆书生成颜色选择&#xA;重构代码逻辑&#xA;优化界面显示&#xA;V18.12.27 删除了使用必须先登录的操作&#xA;增加了意见反馈跳转的功能&#xA;V18.10.16 修复高清下载无效BUG&#xA;增加字体库选择时字体的预览效果&#xA;界面优化，缩小字号&#xA;V18.9.15 广告优化 V18.8.28 完善识别功能&#xA;优化分享功能&#xA;修复关于页面图片不显示的问题&#xA;V18.8.24 新增篆书识别功能&#xA;暂时关闭社区功能&#xA;美化界面&#xA;V18.8.15 新增转换翻转功能 感谢@梦马的反馈建议&#xA;删除一个转换界面&#xA;优化程序响应速度&#xA;V18.8.6 新增社区功能&#xA;美化系统界面&#xA;V18.8.2 优化广告组件的显示 V18.7.17 新增文言文转换功能 V18.7.10 删除进入时的模态对话框&#xA;新增广告组件&#xA;此后所有的版本将采用新的版本编号规则， 此规则更新为【某年.某月.某日】&#xA;V1.8.7-2018/7/4 修复关于展板乱码BUG 感谢@遥哥传媒的反馈&#xA;V1.8.4-2018/6/22 修复关于界面显示BUG V1.8.3-2018/6/21 修复转换界面BUG V1.8.2-2018/6/20 更新展板功能，支持图片高清下载和预览&#xA;美化功能导航页面&#xA;简化web页面&#xA;V1.8.1-2018/6/4 再次舍弃了一些暂时没用的页面 V1.8.0-2018/3/23 舍弃了原转换界面。&#xA;优化了转换效率&#xA;更新了字体库。&#xA;V1.7.0-2018/3/11 feature 美化了程序界面，将意见反馈移至页面-我&#xA;将下载与收藏设置为长按图片操作，兼容低分辨率机型&#xA;在页面-我，增加了一个版本说明页&#xA;新增展板文章页字体大小调节功能，可选择适合手机的最佳展现方式&#xA;更新了输入错误的提示。&#xA;BUG 修复展板输入，字数不动的BUG</description>
     </item>
     <item>
       <title>篆书转换器意见反馈</title>
-      <link>https://example.org/post/55_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%84%8F%E8%A7%81%E5%8F%8D%E9%A6%88/</link>
+      <link>https://blog.thinkmoon.cn/post/55_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%84%8F%E8%A7%81%E5%8F%8D%E9%A6%88/</link>
       <pubDate>Sat, 29 Dec 2018 15:47:19 +0000</pubDate>
-      <guid>https://example.org/post/55_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%84%8F%E8%A7%81%E5%8F%8D%E9%A6%88/</guid>
+      <guid>https://blog.thinkmoon.cn/post/55_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E6%84%8F%E8%A7%81%E5%8F%8D%E9%A6%88/</guid>
       <description>Q&amp;amp;A 为什么要加入广告？ 为了维持正常的运行，因为服务器，CDN都是收费的。所以我们在不影响正常操作的情况下，适度植入了广告。如果您觉得那个位置的广告影响操作了，欢迎到公众号反馈。&#xA;为什么没有篆书转楷书？ 首先，目前的文字识别光手写汉字就非常难，而且准确度并不高。更别说识别千姿百态的篆书了。当然，我们会朝这个方向努力。&#xA;暂时支持单字识别,测试服务不保证服务稳定性&#xA;意见&amp;amp;反馈 对小程序有任何改善建议，或者BUG反馈。你可以在本文下面留言，我看到之后会第一时间回复你。&#xA;或者您可以加群：（篆书转换器用户交流群）&#xA;620530742 与我交流</description>
     </item>
   </channel>

@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nodejs on 指尖魔法屋</title>
-    <link>https://example.org/tags/nodejs/</link>
+    <link>https://blog.thinkmoon.cn/tags/nodejs/</link>
     <description>Recent content in Nodejs on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Fri, 16 Dec 2022 20:58:16 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>nestjs配置swagger教程</title>
-      <link>https://example.org/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/</link>
+      <link>https://blog.thinkmoon.cn/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/</link>
       <pubDate>Fri, 16 Dec 2022 20:58:16 +0000</pubDate>
-      <guid>https://example.org/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/</guid>
+      <guid>https://blog.thinkmoon.cn/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/</guid>
       <description>本文记录如何在nestjs框架下配置swagger。OpenAPI是一个与语言无关的RESTful API定义说明，Nest提供了一个专有的模块来利用装饰器生成类似声明。&#xA;安装 npm install --save @nestjs/swagger swagger-ui-express 引导 import { NestFactory } from &amp;#34;@nestjs/core&amp;#34;; import { AppModule } from &amp;#34;./modules/app.module&amp;#34;; import { Logger } from &amp;#34;@nestjs/common&amp;#34;; import { SwaggerModule, DocumentBuilder } from &amp;#39;@nestjs/swagger&amp;#39;; async function bootstrap() { const app = await NestFactory.create(AppModule); const options = new DocumentBuilder() .setTitle(&amp;#39;api-collect&amp;#39;) .setDescription(&amp;#39;API文档&amp;#39;) .setVersion(&amp;#39;1.0&amp;#39;) .build(); const document = SwaggerModule.createDocument(app, options); SwaggerModule.setup(&amp;#39;doc&amp;#39;, app, document); await app.listen(3001); } bootstrap().then(() =&amp;gt; { Logger.log(&amp;#34;启动成功&amp;#34;); }); 这里主要引入了两个模块，SwaggerModule和DocumentBuilder。其中DocumentBuilder建立一个遵循OpenAPI 标准的基础文档。它提供了不同的方法来配置类似标题、描述、版本等信息属性。</description>
     </item>
     <item>
       <title>nodejs的一些笔记</title>
-      <link>https://example.org/post/208_nodejs%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</link>
+      <link>https://blog.thinkmoon.cn/post/208_nodejs%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Tue, 12 Mar 2019 16:20:43 +0000</pubDate>
-      <guid>https://example.org/post/208_nodejs%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://blog.thinkmoon.cn/post/208_nodejs%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</guid>
       <description>安装nodejs sudo apt-get install nodejs sudo apt-get install npm 全局安装包 sudo npm i -g cnpm 查看全局安装的包 npm list -g --depth 0 全局卸载包 sudo npm uninstall -g cnpm 清理缓存 npm cache clean -f 默认镜像太慢换淘宝镜像 npm config set registry https://registry.npm.taobao.org 现在我常使用cnpm包&#xA;检查配置是否成功&#xA;npm config get registry </description>
     </item>
     <item>
       <title>微信小程序svg转canvas</title>
-      <link>https://example.org/post/123_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fsvg%E8%BD%ACcanvas/</link>
+      <link>https://blog.thinkmoon.cn/post/123_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fsvg%E8%BD%ACcanvas/</link>
       <pubDate>Mon, 21 Jan 2019 22:07:52 +0000</pubDate>
-      <guid>https://example.org/post/123_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fsvg%E8%BD%ACcanvas/</guid>
+      <guid>https://blog.thinkmoon.cn/post/123_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fsvg%E8%BD%ACcanvas/</guid>
       <description>首先，为什么我们需要这个？&#xA;因为微信小程序虽然可以可以绘制svg图片，但是在真机调试的时候却渲染不出来。所以我们需要一个工具(可以将svg转成微信小程序支持的canvas并绘制出来)。&#xA;我使用的是touch-wx + vs code 开发。&#xA;现已启用该开发模式.因为Ubuntu下经常编译不完整&#xA;Touch WX 是什么？ Touch WX是一套完全免费的微信小程序开发框架，包含丰富的UI控件用于官方组件的补充。与Touch UI开发方式很相似，也是通过VSCode编辑器+插件的方式开发，经过编译后输出小程序代码。&#xA;与其他小程序框架最主要的区别在于：Touch UI完全是基于小程序官方的自定义组件机制实现，输出的是小程序原始代码，而不是输出开发者完全无法阅读的编译代码。这样当遇到问题时，开发者可以很方便的定位问题所在，还可以基于输出的原始代码继续开发。&#xA;当你用Touch UI开发了H5应用，可以直接导入到Touch WX进行转换，稍作调整就能生成小程序。反之也同样，当你Touch WX开发了微信小程序，可以导出为Touch UI工程来生成H5应用。&#xA;Touch WX 的特点 我的理解 Touch WX 就是一个可以将特定的nodejs项目编译成微信小程序项目的框架&#xA;Touch WX更多操作 更多操作见http://www.touchui.io/touchui_doc_wx/&#xA;推荐大家看一下，或许会打开新世界的大门哦！&#xA;接下来，我默认你已经看了Touch WX的文档，并且拥有一定的nodejs基础&#xA;开始流程 安装parse-svg-path npm install parse-svg-path --save&#xA;引入parse-svg-path var parse = require(&#39;parse-svg-path&#39;)&#xA;使用parse-svg-path parse(d)&#xA;d为svg中的path值&#xA;不了解svg？&#xA;请转http://www.w3school.com.cn/svg/svg_intro.asp&#xA;如何获得path值？ var options = { url:&amp;#34;svg的URL&amp;#34;, success:function(res){ const ctx = wx.createCanvasContext(&amp;#39;myCanvas&amp;#39;) ctx.setFillStyle(&amp;#39;black&amp;#39;) var match = res.data.match(/d=&amp;#34;(.*?)&amp;#34;/); var d = match[1]; console.</description>
     </item>
     <item>
       <title>node环境安装canvas写中文并自定义字体生成图片</title>
-      <link>https://example.org/post/24_node%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85canvas%E5%86%99%E4%B8%AD%E6%96%87%E5%B9%B6%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87/</link>
+      <link>https://blog.thinkmoon.cn/post/24_node%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85canvas%E5%86%99%E4%B8%AD%E6%96%87%E5%B9%B6%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87/</link>
       <pubDate>Wed, 16 Jan 2019 11:09:30 +0000</pubDate>
-      <guid>https://example.org/post/24_node%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85canvas%E5%86%99%E4%B8%AD%E6%96%87%E5%B9%B6%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87/</guid>
+      <guid>https://blog.thinkmoon.cn/post/24_node%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85canvas%E5%86%99%E4%B8%AD%E6%96%87%E5%B9%B6%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87/</guid>
       <description>为什么要在服务端装canvas？ 因为并不是所有的客户端都能很好的支持canvas（比如微信小程序不能修改自定义字体），所以我们需要一个&#xA;能够在服务端生成图片的，然后将图片传输&#xA;安装node-canvas 1. 更新编译环境 sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++ -y 2. 安装node-canvas npm install -g canvas 3. 测试代码 var Canvas = require(&amp;#39;canvas&amp;#39;), canvas = new Canvas(300, 200), ctx = canvas.getContext(&amp;#39;2d&amp;#39;), fs = require(&amp;#39;fs&amp;#39;); var out = fs.createWriteStream(__dirname + &amp;#39;/image.png&amp;#39;) , stream = canvas.createPNGStream(); stream.on(&amp;#39;data&amp;#39;, function(chunk){ out.write(chunk); }); //在左边画正方形 ctx.fillStyle = &amp;#39;#A00&amp;#39; ctx.fillRect(0, 30,50,50); //在右边画正方形 ctx.fillStyle = &amp;#39;#aaa&amp;#39; ctx.fillRect(50, 30, 50, 50); //画文字 ctx.fillStyle = &amp;#34;#000&amp;#34;; ctx.</description>
     </item>
   </channel>

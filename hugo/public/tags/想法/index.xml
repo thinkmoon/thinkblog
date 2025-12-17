@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>想法 on 指尖魔法屋</title>
-    <link>https://example.org/tags/%E6%83%B3%E6%B3%95/</link>
+    <link>https://blog.thinkmoon.cn/tags/%E6%83%B3%E6%B3%95/</link>
     <description>Recent content in 想法 on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Sun, 04 Jun 2023 16:20:04 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/%E6%83%B3%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/%E6%83%B3%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>游戏设计模式之组件模式</title>
-      <link>https://example.org/post/978_%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://blog.thinkmoon.cn/post/978_%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Sun, 04 Jun 2023 16:20:04 +0000</pubDate>
-      <guid>https://example.org/post/978_%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://blog.thinkmoon.cn/post/978_%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F/</guid>
       <description>&#xA;前言 我第一次接触到组件模式是在饥荒的mod开发过程中了解到的。在组件模式下，一系列的能力（如灯光，buff）将会被抽象为组件，组件内部实现这种能力。不同的对象都可以使用这一个组件，提高代码的复用性，避免耦合性过强。&#xA;什么是组件模式 允许一个单一的实体跨越多个不同域而不会导致耦合。&#xA;为什么需要组件模式 组件模式的目的是减少代码耦合性，提高代码复用率。&#xA;可以拿饭店菜单打比方。如果每个实体是一个类，那就只能订套餐。 我们需要为每种可能的组合定义各自的类。 为了满足每位用户，我们需要十几种套餐。&#xA;组件是照单点菜——每位顾客都可以选他们想要的，菜单记录可选的菜式。&#xA;参考文档 组件模式 【游戏编程模式】组件模式 </description>
     </item>
     <item>
       <title>腾讯云对象存储(调用篇)</title>
-      <link>https://example.org/post/529_%E8%85%BE%E8%AE%AF%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8_%E8%B0%83%E7%94%A8%E7%AF%87_/</link>
+      <link>https://blog.thinkmoon.cn/post/529_%E8%85%BE%E8%AE%AF%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8_%E8%B0%83%E7%94%A8%E7%AF%87_/</link>
       <pubDate>Mon, 28 Oct 2019 17:38:37 +0000</pubDate>
-      <guid>https://example.org/post/529_%E8%85%BE%E8%AE%AF%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8_%E8%B0%83%E7%94%A8%E7%AF%87_/</guid>
+      <guid>https://blog.thinkmoon.cn/post/529_%E8%85%BE%E8%AE%AF%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8_%E8%B0%83%E7%94%A8%E7%AF%87_/</guid>
       <description>接上篇，云对象存储（配置篇)&#xA;旧版本《篆书转换器》响应网络图&#xA;![enter description here](https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png &#34;响应流程图&#34;) 响应流程图 复习一个计组知识（cache“读不命中”的解决办法） 将内存中的数据复制到Cache中，然后把这个字传给CPU。&#xA;启动常规的主存读取周期，将字从主存中读出在并送到CPU，同时将这个字送入Cache。&#xA;原理类比 软件请求 =&amp;gt; CPU运算&#xA;云对象存储（CDN分发)响应 =&amp;gt; 高速缓存Cache读取&#xA;服务器带宽响应 =&amp;gt; 主存读取&#xA;新的响应网络图（采用解决方法2）&#xA;![enter description here](https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E3%80%8A%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E3%80%8B%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E5%9B%BE-CDN.png &#34;《篆书转换器》网络拓扑图-CDN&#34;) 《篆书转换器》网络拓扑图-CDN 优势 提高图片资源响应速度&#xA;减少服务器带宽占用&#xA;实现思路的用例图 ![enter description here](https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20%281%29.png &#34;实现思路的用例图&#34;) 实现思路的用例图 总结 这只是思路，日访问量没有500+(如果真的到了，这样做也解决不了问题)&#xA;完全没必要这么做，而且数据，资源重用率低，冗余非常高，几乎没有实现这个的必要。&#xA;所以这个想法放弃</description>
     </item>
   </channel>

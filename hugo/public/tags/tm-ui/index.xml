@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tm-Ui on 指尖魔法屋</title>
-    <link>https://example.org/tags/tm-ui/</link>
+    <link>https://blog.thinkmoon.cn/tags/tm-ui/</link>
     <description>Recent content in Tm-Ui on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Mon, 30 Nov 2020 23:30:53 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/tm-ui/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/tm-ui/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>vue3.x简单实现wx.showModal()</title>
-      <link>https://example.org/post/936_vue3_x%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0wx_showmodal__/</link>
+      <link>https://blog.thinkmoon.cn/post/936_vue3_x%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0wx_showmodal__/</link>
       <pubDate>Mon, 30 Nov 2020 23:30:53 +0000</pubDate>
-      <guid>https://example.org/post/936_vue3_x%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0wx_showmodal__/</guid>
+      <guid>https://blog.thinkmoon.cn/post/936_vue3_x%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0wx_showmodal__/</guid>
       <description>引言 开发过微信小程序的同学想必都对wx.showModal不陌生。用起来还是比较方便的，以api的形式挂载在全局对象wx上，只需调用一下这个api即可显示一个弹窗，还可以根据设置的参数做一些定制。一些知名的组件库，也实现了此类功能。比如element的$message。所以，我也来分享一个简单实现方式，以此来加深对Vue的理解。&#xA;代码结构 在Message目录下，有着两个文件，vue文件负责组件内容，js负责处理服务APi。&#xA;实现原理 首先使用vue文件创建一个弹窗组件，然后按正常写组件方式写一个组件逻辑。唯一不同的是引入方式不一样，不在别的组件中引用该组件。使用js文件将其注册到全局api，调用该api。&#xA;实现过程 注意：本文使用的是Vue3.x版本。由于本人Vue3.x也正出于学习之处，如有理解/实现不当之处，恳请指正！&#xA;Vue文件 &amp;lt;template&amp;gt; &amp;lt;div v-if=&amp;#34;visible&amp;#34; class=&amp;#34;tm-message-wrapper&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;tm-message-dialog&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;tm-message-title&amp;#34;&amp;gt;{{ title }}&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;tm-message-content&amp;#34;&amp;gt;{{ content }}&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;tm-message-noRepeat&amp;#34; v-if=&amp;#34;showNoRepeat&amp;#34;&amp;gt;&amp;lt;input type=&amp;#34;checkbox&amp;#34; v-model=&amp;#34;noRepeat&amp;#34;&amp;gt;不再提示&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;tm-message-operation-area&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;tm-message-cancel tm-message-operation&amp;#34; @click=&amp;#34;action(&amp;#39;cancel&amp;#39;)&amp;#34;&amp;gt;取消&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;tm-message-confirm tm-message-operation&amp;#34; @click=&amp;#34;action(&amp;#39;confirm&amp;#39;)&amp;#34;&amp;gt;确定&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script&amp;gt; export default { data() { return { uid: &amp;#34;default&amp;#34;, visible: false, title: &amp;#34;提示&amp;#34;, content: &amp;#34;消息内容&amp;#34;, showNoRepeat: false, noRepeat: false, callBack: null } }, methods: { action(action) { this.</description>
     </item>
   </channel>

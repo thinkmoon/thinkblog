@@ -19,7 +19,7 @@
     {{ end }}
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ "favicon.ico" | absURL }}">
+    <link rel="icon" href="/favicon.ico">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/reset.css">
@@ -32,11 +32,11 @@
     <nav class="top-menu">
         <div class="container">
             <div class="left">
-                <a href="{{ .Site.BaseURL }}">指尖魔法屋</a>
+                <a href="/">指尖魔法屋</a>
             </div>
             <ul class="menu">
                 <li class="{{ if .IsHome }}active{{ end }}">
-                    <a href="{{ .Site.BaseURL }}">首页</a>
+                    <a href="/">首页</a>
                 </li>
                 <li class="{{ if strings.HasPrefix .RelPermalink "/categories" }}active{{ end }}">
                     <a href="/categories/">分类</a>

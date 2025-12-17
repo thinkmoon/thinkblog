@@ -136,7 +136,7 @@
                     {{ end }}
 
                     <!-- 始终显示最后一页 -->
-                    <a href="{{ printf "/page/%d" $totalPages | absURL }}"
+                    <a href="{{ printf "/page/%d" $totalPages }}"
                        class="pagination-item {{ if eq $currentPage $totalPages }}is-active{{ end }}">
                         {{ $totalPages }}
                     </a>

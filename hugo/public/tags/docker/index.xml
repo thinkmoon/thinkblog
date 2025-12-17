@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker on 指尖魔法屋</title>
-    <link>https://example.org/tags/docker/</link>
+    <link>https://blog.thinkmoon.cn/tags/docker/</link>
     <description>Recent content in Docker on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Mon, 03 Mar 2025 23:26:31 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>武林秘籍--docker篇</title>
-      <link>https://example.org/post/984_%E6%AD%A6%E6%9E%97%E7%A7%98%E7%B1%8D/</link>
+      <link>https://blog.thinkmoon.cn/post/984_%E6%AD%A6%E6%9E%97%E7%A7%98%E7%B1%8D/</link>
       <pubDate>Mon, 03 Mar 2025 23:26:31 +0000</pubDate>
-      <guid>https://example.org/post/984_%E6%AD%A6%E6%9E%97%E7%A7%98%E7%B1%8D/</guid>
+      <guid>https://blog.thinkmoon.cn/post/984_%E6%AD%A6%E6%9E%97%E7%A7%98%E7%B1%8D/</guid>
       <description>Docker 列出所有的容器 docker ps -a&#xA;列出所有的镜像 docker images 从镜像中简单启动一个容器 docker run -it node:22.14.0 /bin/bash 从宿主机中复制文件 docker cp C:\\Users\\YourUsername\\myfolder my-container:/app docker进入容器 docker attach my_container 启动容器 docker start my_container 将镜像推送到Registry docker login --username=13433616623 crpi-93tge61gwe5cjd70.cn-shenzhen.personal.cr.aliyuncs.com docker tag [ImageId] crpi-93tge61gwe5cjd70.cn-shenzhen.personal.cr.aliyuncs.com/docker_thinkmoon/api-collect:[镜像版本号] docker push crpi-93tge61gwe5cjd70.cn-shenzhen.personal.cr.aliyuncs.com/docker_thinkmoon/api-collect:[镜像版本号] 从Registry中拉取镜像 docker pull crpi-93tge61gwe5cjd70.cn-shenzhen.personal.cr.aliyuncs.com/docker\_thinkmoon/api-collect:\[镜像版本号] 容器打包成镜像 docker commit [容器名] [镜像名]:[标签]&#xA;镜像保存为文件 docker save -o &amp;lt;tar文件名&amp;gt;.tar &amp;lt;镜像名称&amp;gt;:&amp;lt;标签&amp;gt;&#xA;从文件中加载镜像 docker load -i &amp;lt;tar文件名&amp;gt;.tar&#xA;从镜像中按自定义命令启动容器 docker run --restart=always -idt --cpus=&amp;quot;1&amp;quot; -m 1024m -p 7003:7002 --name zhuan_instance zhuan_node /bin/sh -c &amp;quot;cd /var/www &amp;amp;&amp;amp; pm2 start ecosystem.</description>
     </item>
     <item>
       <title>docker容器的自定义修改并重新构建镜像</title>
-      <link>https://example.org/post/703_docker%E5%AE%B9%E5%99%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%AE%E6%94%B9%E5%B9%B6%E9%87%8D%E6%96%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F/</link>
+      <link>https://blog.thinkmoon.cn/post/703_docker%E5%AE%B9%E5%99%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%AE%E6%94%B9%E5%B9%B6%E9%87%8D%E6%96%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F/</link>
       <pubDate>Thu, 02 Jan 2020 16:19:54 +0000</pubDate>
-      <guid>https://example.org/post/703_docker%E5%AE%B9%E5%99%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%AE%E6%94%B9%E5%B9%B6%E9%87%8D%E6%96%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F/</guid>
+      <guid>https://blog.thinkmoon.cn/post/703_docker%E5%AE%B9%E5%99%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%AE%E6%94%B9%E5%B9%B6%E9%87%8D%E6%96%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F/</guid>
       <description>前言 在上篇文章中，我们已经实现了VS code的无缝连接docker，却依旧存在着一些问题。比如它需要安装pylint方便调试，但是每次stop 容器之后，重新启动又需要重新安装，不可谓不麻烦。而且我发现它也需要重新安装VS code server,这是一个严重影响生产力的过程。所以目前的需求就变了如何作一些自定义的修改，并让这些修改永久性的保存。那答案当然是自定义的构建镜像啦，它可以让我们在构建的实践使用容器的过程中，将所做的更新持续化保存到自定义镜像。&#xA;自定义修改 在这里，我手动做了两个修改，一个是安装pylint，一个是更新pip。&#xA;提交更改 docker commit -m=&amp;#34;install pylint&amp;#34; -a=&amp;#34;chauncey&amp;#34; tf chauncey/tf 如上命令，将所有对容器的操作都保存至自定义镜像chauncey/tf 中。&#xA;测试效果 停止当前容器 docker stop tf 使用自定义镜像创建容器 docker run --gpus all -itd --name tf --rm -v ~/Project:/root/Project chauncey/tf 使用VS code远程连接，观察pip版本和pylint的安装情况。 如上图，我们发现pip已经是最新的版本。而且细心小伙伴会发现，连接容器时以及没有了install Dev container的提示了，这说明我们的VS code也已经预设安装进了镜像。</description>
     </item>
     <item>
       <title>Vscode无缝连接docker支持与主机文件同步</title>
-      <link>https://example.org/post/692_vscode%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5docker%E6%94%AF%E6%8C%81%E4%B8%8E%E4%B8%BB%E6%9C%BA%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/</link>
+      <link>https://blog.thinkmoon.cn/post/692_vscode%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5docker%E6%94%AF%E6%8C%81%E4%B8%8E%E4%B8%BB%E6%9C%BA%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/</link>
       <pubDate>Thu, 02 Jan 2020 15:46:08 +0000</pubDate>
-      <guid>https://example.org/post/692_vscode%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5docker%E6%94%AF%E6%8C%81%E4%B8%8E%E4%B8%BB%E6%9C%BA%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/</guid>
+      <guid>https://blog.thinkmoon.cn/post/692_vscode%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5docker%E6%94%AF%E6%8C%81%E4%B8%8E%E4%B8%BB%E6%9C%BA%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/</guid>
       <description>为什么需要？ 我们在上一篇Ubuntu深度学习的相关配置中最后讲到，将工作目录下的文件装载到了容器之下，这样我们在主机中编写一个文件，如tf.py。在容器中执行，需要输入以下命令。&#xA;docker exec tf python &amp;#39;./tf.py&amp;#39; 这样每改一下文件，想要看效果的话，就需要输入以上命令。而且，还不方便调试。然后，我就在想能不能做到像我平常写代码那样，在VScode中，点一下就运行，而且可以调试呢？于是便有了本文。&#xA;准备工作 安装好VScode并且保证互联网连接正常。然后将工作目录装载到容器的/root/Project目录下，不然/tmp的文件实在是太乱七八糟了。 docker run --gpus all -itd --name tf --rm -v ~/Project:/root/Project tensorflow/tensorflow:latest-gpu-py3 操作流程 首先安装两个插件docker和Remote Development&#xA;上图中可以看到tensorflow的容器已经处于运行中了，然后再打开Remote Development&#xA;显示有一个容器待连接，然后选择它，打开容器中的Project文件夹&#xA;然后安装Python插件和调试工具，修改tf.py文件&#xA;import tensorflow as tf print(&amp;#34;hello tensorflow&amp;#34;) 点击右边的运行图标，成功输出。&#xA;打开主机文件&#xA;发现修改也已经同步，Over，现在可以愉快的写代码了。</description>
     </item>
     <item>
       <title>Ubuntu使用阿里云加速docker pull</title>
-      <link>https://example.org/post/674_ubuntu%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%8A%A0%E9%80%9Fdocker-pull/</link>
+      <link>https://blog.thinkmoon.cn/post/674_ubuntu%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%8A%A0%E9%80%9Fdocker-pull/</link>
       <pubDate>Thu, 19 Dec 2019 17:19:22 +0000</pubDate>
-      <guid>https://example.org/post/674_ubuntu%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%8A%A0%E9%80%9Fdocker-pull/</guid>
+      <guid>https://blog.thinkmoon.cn/post/674_ubuntu%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%8A%A0%E9%80%9Fdocker-pull/</guid>
       <description>使用 Docker 时需要首先下载一个官方镜像，例如 mysql、wordpress。然而由于网络原因，下载一个 Docker 官方镜像可能会需要很长的时间，甚至下载失败。为此，阿里云容器镜像服务提供了官方的镜像站点，从而加速官方镜像的下载。&#xA;登陆阿里云容器镜像服务 由上图可以看到，阿里给我们分配的专享加速域名。&#xA;配置docker源 针对Docker客户端版本大于 1.10.0 的用户&#xA;可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器&#xA;不过默认没有这个文件的，所以我们需要新建一个&#xA;新建daemon.json sudo mkdir -p /etc/docker sudo touch /etc/docker/daemon.json 设置源地址 { &amp;#34;registry-mirrors&amp;#34;: [&amp;#34;&amp;lt;your accelerate address&amp;gt;&amp;#34;] } 重启生效 sudo systemctl daemon-reload sudo systemctl restart docker 大功吿成！！</description>
     </item>
   </channel>
