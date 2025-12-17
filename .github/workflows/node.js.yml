@@ -33,9 +33,7 @@ jobs:
         extended: true
 
     - name: Build Hugo site
-      run: |
-        cd hugo
-        hugo --minify
+      run: hugo --minify
 
     # 使用 Cloudflare 官方 Action 处理 API Token 认证
     - name: Deploy with Wrangler (API Token)
@@ -43,5 +41,5 @@ jobs:
       with:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-        command: pages deploy hugo/public/ --project-name=blog
+        command: pages deploy public/ --project-name=blog
       
