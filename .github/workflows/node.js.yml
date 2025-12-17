@@ -18,6 +18,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4 # 官方代码检出动作
 
+    - name: Setup Node.js (for Wrangler)
+      uses: actions/setup-node@v3
+      with:
+        node-version: 22
+
+    - name: Enable corepack (for pnpm)
+      run: corepack enable
+
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
       with:
