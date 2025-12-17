@@ -1080,6 +1080,20 @@ sudo apt-get update sudo apt-get install gnome-tweak-tool sudo apt-get install g
     </footer>
 
     
+    <script>
+      
+      console.log('JavaScript loaded successfully');
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOMContentLoaded event fired');
+        const timerElement = document.getElementById('site-timer');
+        if (timerElement) {
+          console.log('Found timer element:', timerElement);
+          timerElement.textContent = 'JavaScript is working!';
+        } else {
+          console.log('Timer element not found');
+        }
+      });
+    </script>
     <script src="/js/thinkblog.js"></script>
 </body>
 </html>

@@ -1042,6 +1042,20 @@ A: 直接用微信打开是可以, 然后你在微信里面让用户再注册一
     </footer>
 
     
+    <script>
+      
+      console.log('JavaScript loaded successfully');
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOMContentLoaded event fired');
+        const timerElement = document.getElementById('site-timer');
+        if (timerElement) {
+          console.log('Found timer element:', timerElement);
+          timerElement.textContent = 'JavaScript is working!';
+        } else {
+          console.log('Timer element not found');
+        }
+      });
+    </script>
     <script src="/js/thinkblog.js"></script>
 </body>
 </html>

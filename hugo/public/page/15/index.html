@@ -1069,6 +1069,20 @@ var function(){ //预计一大波人即将取关 console.warn(&#34;You have been
     </footer>
 
     
+    <script>
+      
+      console.log('JavaScript loaded successfully');
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOMContentLoaded event fired');
+        const timerElement = document.getElementById('site-timer');
+        if (timerElement) {
+          console.log('Found timer element:', timerElement);
+          timerElement.textContent = 'JavaScript is working!';
+        } else {
+          console.log('Timer element not found');
+        }
+      });
+    </script>
     <script src="/js/thinkblog.js"></script>
 </body>
 </html>

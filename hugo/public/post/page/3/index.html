@@ -9417,6 +9417,20 @@ end：我的唤醒流程 被唤醒主机：宿舍win10 台式
     </footer>
 
     
+    <script>
+      
+      console.log('JavaScript loaded successfully');
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOMContentLoaded event fired');
+        const timerElement = document.getElementById('site-timer');
+        if (timerElement) {
+          console.log('Found timer element:', timerElement);
+          timerElement.textContent = 'JavaScript is working!';
+        } else {
+          console.log('Timer element not found');
+        }
+      });
+    </script>
     <script src="/js/thinkblog.js"></script>
 </body>
 </html>

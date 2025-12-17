@@ -96,7 +96,8 @@ window.ThinkBlog = {
     };
 
     const updateTimer = () => {
-      siteTimerElement.textContent = `本站已顽强运行：${calculateRunningTime()}`;
+      const timeStr = calculateRunningTime();
+      siteTimerElement.textContent = `本站已顽强运行：${timeStr}`;
     };
 
     // 立即更新一次
@@ -109,5 +110,6 @@ window.ThinkBlog = {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOMContentLoaded fired, initializing ThinkBlog');
   window.ThinkBlog.init();
 });
