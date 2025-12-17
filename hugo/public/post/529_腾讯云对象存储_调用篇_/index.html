@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>腾讯云对象存储(调用篇) | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="想法">
+
+    
+    <meta property="og:title" content="腾讯云对象存储(调用篇)">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/529_%E8%85%BE%E8%AE%AF%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8_%E8%B0%83%E7%94%A8%E7%AF%87_/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>腾讯云对象存储(调用篇)</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-10-28">2019-10-28</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E5%BF%83%E8%B7%AF%E9%87%8C%E7%A8%8B">
+                            心路里程
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="https://example.org/tags/%E6%83%B3%E6%B3%95" class="tag">想法</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <div style="font-family: 'Helvetica Neue' , Helvetica , Tahoma , Arial , 'Hiragino Sans GB' , STHeiti , 'Microsoft YaHei' , '微软雅黑' , 'WenQuanYi Micro Hei' , STXihei , '华文细黑' , Heiti , '黑体' , SimSun , '宋体' , Song , sans-serif; font-size: 18px; line-height: 1.33; font-weight: 100; color: #2f2f2f; word-wrap: break-word;">
+<div class="preview html_preview">
+<blockquote>
+<p>接上篇，云对象存储（配置篇)</p>
+</blockquote>
+<p>旧版本《篆书转换器》响应网络图</p>
+<!-- more -->
+<div class="story_image_container story_block_image" style="page-break-inside: avoid; text-align: center;">
+<div class="story_image" style="display: inline-block; position: relative; max-width: 80%;">![enter description here](https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png "响应流程图")</div>
+<p> </p>
+<div class="story_image_caption " style="border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 10px;">响应流程图</div>
+</div>
+<div class="xiaoshujiang_element xsj_anchor" style="position: absolute;"><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="e5a48de4b9a0e4b880e4b8aae8aea1e7bb84e79fa5e8af86efbc88cachee2809ce8afbbe4b88de591bde4b8ade2809de79a84e8a7a3e586b3e58a9ee6b395efbc89_1"></a><a id="e5a48de4b9a0e4b880e4b8aae8aea1e7bb84e79fa5e8af86efbc88cachee2809ce8afbbe4b88de591bde4b8ade2809de79a84e8a7a3e586b3e58a9ee6b395efbc89_1" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="复习一个计组知识cache读不命中的解决办法"></a><a id="复习一个计组知识cache读不命中的解决办法" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a></div>
+<h3 id="复习一个计组知识cache读不命中的解决办法">复习一个计组知识（cache“读不命中”的解决办法）</h3>
+<ol>
+<li>
+<p>将内存中的数据复制到Cache中，然后把这个字传给CPU。</p>
+</li>
+<li>
+<p>启动常规的主存读取周期，将字从主存中读出在并送到CPU，同时将这个字送入Cache。</p>
+</li>
+</ol>
+<div class="xiaoshujiang_element xsj_anchor" style="position: absolute;"><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="e58e9fe79086e7b1bbe6af94_2"></a><a id="e58e9fe79086e7b1bbe6af94_2" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="原理类比"></a><a id="原理类比" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a></div>
+<h3 id="原理类比">原理类比</h3>
+<blockquote>
+<p>软件请求 =&gt; CPU运算</p>
+</blockquote>
+<blockquote>
+<p>云对象存储（CDN分发)响应 =&gt; 高速缓存Cache读取</p>
+</blockquote>
+<blockquote>
+<p>服务器带宽响应 =&gt; 主存读取</p>
+</blockquote>
+<p>新的响应网络图（采用解决方法2）</p>
+<div class="story_image_container story_block_image" style="page-break-inside: avoid; text-align: center;">
+<div class="story_image" style="display: inline-block; position: relative; max-width: 80%;">![enter description here](https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E3%80%8A%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E3%80%8B%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E5%9B%BE-CDN.png "《篆书转换器》网络拓扑图-CDN")</div>
+<p> </p>
+<div class="story_image_caption " style="border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 10px;">《篆书转换器》网络拓扑图-CDN</div>
+</div>
+<div class="xiaoshujiang_element xsj_anchor" style="position: absolute;"><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="e4bc98e58abf_3"></a><a id="e4bc98e58abf_3" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="优势"></a><a id="优势" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a></div>
+<h3 id="优势">优势</h3>
+<ol>
+<li>
+<p>提高图片资源响应速度</p>
+</li>
+<li>
+<p>减少服务器带宽占用</p>
+</li>
+</ol>
+<div class="xiaoshujiang_element xsj_anchor" style="position: absolute;"><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="e5ae9ee78eb0e6809de8b7afe79a84e794a8e4be8be59bbe_4"></a><a id="e5ae9ee78eb0e6809de8b7afe79a84e794a8e4be8be59bbe_4" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="实现思路的用例图"></a><a id="实现思路的用例图" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a></div>
+<h3 id="实现思路的用例图">实现思路的用例图</h3>
+<div class="story_image_container story_block_image" style="page-break-inside: avoid; text-align: center;">
+<div class="story_image" style="display: inline-block; position: relative; max-width: 80%;">![enter description here](https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20%281%29.png "实现思路的用例图")</div>
+<p> </p>
+<div class="story_image_caption " style="border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 10px;">实现思路的用例图</div>
+</div>
+<hr>
+<div class="xiaoshujiang_element xsj_anchor" style="position: absolute;"><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="e680bbe7bb93_5"></a><a id="e680bbe7bb93_5" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a><a class="blank_anchor_name" style="color: #0088cc; text-decoration: none;" target="_blank" name="总结"></a><a id="总结" class="blank_anchor_id" style="color: #0088cc; text-decoration: none; float: left; visibility: hidden;" target="_blank"></a></div>
+<h3 id="总结">总结</h3>
+<blockquote>
+<p>这只是思路，日访问量没有500+(如果真的到了，这样做也解决不了问题)</p>
+</blockquote>
+<blockquote>
+<p>完全没必要这么做，而且数据，资源重用率低，冗余非常高，几乎没有实现这个的必要。</p>
+</blockquote>
+<blockquote>
+<p>所以这个想法放弃</p>
+</blockquote>
+</div>
+</div>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/529_%E8%85%BE%E8%AE%AF%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8_%E8%B0%83%E7%94%A8%E7%AF%87_/）本文首发于
+                        <a href="https://example.org/post/529_%E8%85%BE%E8%AE%AF%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8_%E8%B0%83%E7%94%A8%E7%AF%87_/">指尖魔法屋-腾讯云对象存储(调用篇)</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

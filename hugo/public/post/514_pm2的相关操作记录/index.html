@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>pm2的相关操作记录 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    
+    <meta property="og:title" content="pm2的相关操作记录">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/514_pm2%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>pm2的相关操作记录</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-10-28">2019-10-28</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E9%97%B2%E4%BD%99%E6%8A%98%E8%85%BE">
+                            闲余折腾
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <blockquote>
+<p>pm2: Advanced, production process manager for Node.js</p>
+</blockquote>
+<!-- more -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//run.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">{</span> <span class="nx">exec</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;hexo s&#39;</span><span class="p">,(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">stdout</span><span class="p">,</span> <span class="nx">stderr</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`exec error: </span><span class="si">${</span><span class="nx">error</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="k">return</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`stdout: </span><span class="si">${</span><span class="nx">stdout</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`stderr: </span><span class="si">${</span><span class="nx">stderr</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><p><code>pm2 delete all</code></p>
+<blockquote>
+<p>删除所有进程</p>
+</blockquote>
+<p><code>pm2 start run.js</code></p>
+<blockquote>
+<p>启动run.js fork模式</p>
+</blockquote>
+<p><code>pm2 start run.js -i 2</code></p>
+<blockquote>
+<p>启动run.js 创建两个进程</p>
+</blockquote>
+<h2 id="待续">待续</h2>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/514_pm2%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/）本文首发于
+                        <a href="https://example.org/post/514_pm2%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/">指尖魔法屋-pm2的相关操作记录</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

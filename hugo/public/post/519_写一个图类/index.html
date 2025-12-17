@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>写一个图类 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    
+    <meta property="og:title" content="写一个图类">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/519_%E5%86%99%E4%B8%80%E4%B8%AA%E5%9B%BE%E7%B1%BB/">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>写一个图类</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-12-07">2019-12-07</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <p>说到交通网路的模拟化表示，那就不得不用到数据结构中的图。想必这应该是最方便形象的表示方法了把。</p>
+<h2 id="图的概念">图的概念</h2>
+<blockquote>
+<p>图是由顶点集合及顶点之间关系的集合组成的一种数据结构，Graph = （V，E）。</p>
+</blockquote>
+<p>其中顶点集合V = { x | x ∈ 某个数据对象集}是个有穷非空集合。E = { &lt;x, y&gt; | x , y ∈ V &amp;&amp; Path( x , y )} ，即边集。</p>
+<h2 id="我所知的图的存储结构">我所知的图的存储结构</h2>
+<h3 id="邻接矩阵表示">邻接矩阵表示</h3>
+<p>邻接矩阵的表示，首先将所有的顶点信息组成一个表。然后利用一个矩阵来表示各顶点之间的相邻关系，称之为邻接矩阵。</p>
+<h3 id="邻接表表示">邻接表表示</h3>
+<p>在第i行的单链表中，各节点（或称边节点）分别存放与同一个顶点Vi关联的各条边。各个节点配有其标识（及对应的顶点）和权值（若为有权图）以及指向另一个边节点的指针。</p>
+<h3 id="邻接多重表表示">*邻接多重表表示</h3>
+<p>邻接多重表的表示，主要一处理图的边为主（为什么会有这个需求？在什么情况会用到？），要求每条边处理一次的实际应用中特别有用（比如？）。它的主要思想是把多重表结构引入到图的邻接表中，就有点像把边作为研究的基本单位，用一个多重表节点来表示一条边。</p>
+<h3 id="十字链表表示">*十字链表表示</h3>
+<p>此为百度词条：十字链表（Orthogonal List)是有向图的另一种<a href="https://baike.baidu.com/item/%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84">链式存储结构</a>。该结构可以看成是将有向图的<a href="https://baike.baidu.com/item/%E9%82%BB%E6%8E%A5%E8%A1%A8">邻接表</a>(和逆邻接表结合起来得到的。用十字链表来存储有向图，可以达到高效的存取效果。同时，代码的可读性也会得到提升。</p>
+<h2 id="我该选什么存储结构">我该选什么存储结构</h2>
+<p>首先，交通道路网络是双向的，所以我们可以将其视为无向图; 其次在一座城市的交通网络下，道路E 与路口 n的关系是 E &laquo; n^2，而且道路是会出现两点之间多条路的情况（即多重图）所以我舍弃第一种方法; 后面两种表示方式其实我也是一知半解，我有种感觉，如果在交通道路的分层模型下，可能第三种方式要更具优势，但是目前还想不了那么远。所以我暂时选用第二种方式，用邻接表表示。</p>
+<h2 id="我的实现代码">我的实现代码</h2>
+<p><code>(代码年久失修，已失去完整内容，仅供参考)</code></p>
+<h3 id="graph_lnkh--v101">Graph_lnk.h // V1.0.1</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pragma</span> <span class="n">once</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp"># include 
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">DefaultMaxVertices</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span> <span class="c1">//最大顶点数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">memory_error</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">char</span> <span class="o">*</span> <span class="n">function</span><span class="p">,</span> <span class="n">string</span> <span class="n">aim</span><span class="p">)</span> <span class="p">{</span>    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">function</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;申请&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">aim</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;内存分配错误&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">};</span> <span class="c1">//内存申请错误的提示lamba表达式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Edge</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">dest</span><span class="p">;</span> <span class="c1">//标记关系节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">weight</span><span class="p">;</span><span class="c1">//权值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Edge</span> <span class="o">*</span> <span class="n">link</span><span class="p">;</span><span class="c1">//指向边的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Edge</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="kt">double</span> <span class="n">weight</span><span class="p">)</span><span class="o">:</span> <span class="n">dest</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="n">weight</span><span class="p">(</span><span class="n">weight</span><span class="p">),</span> <span class="n">link</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span> <span class="p">{}</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Vertex</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="n">data</span><span class="p">;</span> <span class="c1">//道路口的信息，暂时用string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Edge</span> <span class="o">*</span> <span class="n">adj</span><span class="p">;</span> <span class="c1">//指向边的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Vertex</span><span class="p">(</span><span class="n">string</span> <span class="n">data</span> <span class="o">=</span> <span class="s">&#34;点&#34;</span><span class="p">)</span><span class="o">:</span> <span class="n">data</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">adj</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span> <span class="p">{}</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">};</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Graph_lnk</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">friend</span> <span class="n">ostream</span> <span class="o">&amp;</span> <span class="k">operator</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="n">in</span><span class="p">,</span> <span class="n">Graph_lnk</span> <span class="o">&amp;</span> <span class="n">G</span><span class="p">);</span> <span class="c1">//运算符重载，图的输出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Graph_lnk</span><span class="p">(</span><span class="kt">int</span> <span class="n">sv</span> <span class="o">=</span> <span class="n">DefaultMaxVertices</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">~</span><span class="n">Graph_lnk</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">NumberOfVertices</span><span class="p">()</span> <span class="p">{</span>  <span class="k">return</span> <span class="n">numVertices</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//返回当前顶点数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">NumberOfEdges</span><span class="p">()</span> <span class="p">{</span>  <span class="k">return</span> <span class="n">numEdges</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//返回当前边数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Vertex</span> <span class="n">getVertex</span><span class="p">(</span><span class="k">return</span> <span class="n">NodeTable</span><span class="p">[</span><span class="n">v</span><span class="p">];</span> <span class="p">}</span> <span class="c1">//返回该节点  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="nf">getValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">NodeTable</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="n">data</span><span class="p">;}</span> <span class="c1">//返回道路信息  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">insertEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">weight</span><span class="p">);</span> <span class="c1">//插入一条边  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">insertVertex</span><span class="p">(</span><span class="n">string</span> <span class="n">data</span><span class="p">);</span> <span class="c1">//插入一个路口  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">protected</span><span class="o">:</span> <span class="kt">int</span> <span class="n">numVertices</span><span class="p">;</span> <span class="c1">//当前顶点数  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">numEdges</span><span class="p">;</span> <span class="c1">//当前边数  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span> <span class="n">Vertex</span> <span class="o">*</span> <span class="n">NodeTable</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">};</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">							
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Graph_lnk</span><span class="o">::</span><span class="n">Graph_lnk</span><span class="p">(</span><span class="kt">int</span> <span class="n">sv</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">numVertices</span> <span class="o">=</span> <span class="n">sv</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">numEdges</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">NodeTable</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vertex</span><span class="p">[</span><span class="n">DefaultMaxVertices</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">NodeTable</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="n">memory_error</span><span class="p">(</span><span class="n">__func__</span><span class="p">,</span> <span class="s">&#34;NodeTable&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">};</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">Graph_lnk</span><span class="o">::</span><span class="n">insertEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">weight</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">												
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">v1</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">v1</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">v2</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				        <span class="n">Edge</span> <span class="o">*</span> <span class="n">q</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">,</span> <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				        <span class="k">if</span> <span class="p">(</span><span class="n">NodeTable</span><span class="p">[</span><span class="n">v1</span><span class="p">].</span><span class="n">adj</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="n">p</span> <span class="o">=</span> <span class="n">NodeTable</span><span class="p">[</span><span class="n">v1</span><span class="p">].</span><span class="n">adj</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="n">q</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="n">link</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="k">while</span> <span class="p">(</span><span class="n">q</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				                <span class="n">p</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				                <span class="n">q</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="n">link</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Edge</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span> <span class="n">weight</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="n">p</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="n">link</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="n">NodeTable</span><span class="p">[</span><span class="n">v1</span><span class="p">].</span><span class="n">adj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Edge</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span> <span class="n">weight</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				        <span class="k">if</span> <span class="p">(</span><span class="n">NodeTable</span><span class="p">[</span><span class="n">v2</span><span class="p">].</span><span class="n">adj</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="n">p</span> <span class="o">=</span> <span class="n">NodeTable</span><span class="p">[</span><span class="n">v2</span><span class="p">].</span><span class="n">adj</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="n">q</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="n">link</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="k">while</span> <span class="p">(</span><span class="n">q</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				                <span class="n">p</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				                <span class="n">q</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="n">link</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Edge</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">weight</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="n">p</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="n">link</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				            <span class="n">NodeTable</span><span class="p">[</span><span class="n">v2</span><span class="p">].</span><span class="n">adj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Edge</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">weight</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				        <span class="n">numEdges</span><span class="o">++</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				<span class="kt">bool</span> <span class="n">Graph_lnk</span><span class="o">::</span><span class="n">insertVertex</span><span class="p">(</span><span class="n">string</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				    <span class="k">if</span> <span class="p">(</span><span class="n">numVertices</span> <span class="o">==</span> <span class="n">DefaultMaxVertices</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">												
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				    <span class="k">else</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				        <span class="n">NodeTable</span><span class="p">[</span><span class="n">numVertices</span><span class="p">].</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				        <span class="n">NodeTable</span><span class="p">[</span><span class="n">numVertices</span><span class="p">].</span><span class="n">adj</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				        <span class="n">numVertices</span><span class="o">++</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">										
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="n">Graph_lnk</span><span class="o">::~</span><span class="n">Graph_lnk</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">						
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">delete</span><span class="p">[]</span> <span class="n">NodeTable</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">								
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="分析与理由">分析与理由</h2>
+<p>在交通道路网络图的构建中，一定需要的两个函数insertEdge();和insertVertex(); 我使用两个主要的数据结构，Edge（表示边），Vertex（表示点）。用它们的集合来表示整个图，这样做可以有效的利用空间？（但是还是申请了VerTex（500））</p>
+<p> </p>
+<h2 id="缺陷与不足">缺陷与不足</h2>
+<p>不管你构建含多少个点的图，都需要申请固定的空间，只有当点小于而且越接近于500时空间利用率才最高。</p>
+<p>插入边时，需要在两个点做增加，但是好像对于实际情况这样做并没有好处？</p>
+<p>。。。。</p>
+<p> </p>
+<h2 id="问题与思考">问题与思考</h2>
+<p>作为交通网络图，是否还需要拓展一些别的功能？</p>
+<p>在储存的过程中，是否用bit矩阵来存储数据？</p>
+<p>能不能在插入的过程中只新增一个点上的边？</p>
+<p>或者直接以边为基本研究单位，来构建图类？</p>
+<h2 id="心得与感悟">心得与感悟</h2>
+<p>本来以为写一个图类，会是一件比较容易的事，没想到却也花了这么久，是考虑的太多？还是基础不牢？</p>
+<p>刚开始想用模板类来表示，这样在后期数据类型拓展时比较方便，没想到却是发现一堆错误，还解决不了，最后要重新来过。</p>
+<p>基础还是要牢固才可以，现在写的东西自己都感觉境界不够，没有别人那种精妙绝伦的感觉。</p>
+<p>平常有时间多沉下心来学习，切记好高骛远，绕了一圈最后发现自己什么都不行&hellip;</p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/519_%E5%86%99%E4%B8%80%E4%B8%AA%E5%9B%BE%E7%B1%BB/）本文首发于
+                        <a href="https://example.org/post/519_%E5%86%99%E4%B8%80%E4%B8%AA%E5%9B%BE%E7%B1%BB/">指尖魔法屋-写一个图类</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

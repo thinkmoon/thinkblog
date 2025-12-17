@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ubutnu使用问题记录贴 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="ubuntu, linux, bash, apt">
+
+    
+    <meta property="og:title" content="Ubutnu使用问题记录贴">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/650_ubutnu%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E8%B4%B4/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-18T05:46:47.png">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>Ubutnu使用问题记录贴</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-12-20">2019-12-20</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="https://example.org/tags/ubuntu" class="tag">ubuntu</a>
+                    
+                    <a href="https://example.org/tags/linux" class="tag">linux</a>
+                    
+                    <a href="https://example.org/tags/bash" class="tag">bash</a>
+                    
+                    <a href="https://example.org/tags/apt" class="tag">apt</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <h2 id="安装软件未满足依赖关系">安装软件未满足依赖关系</h2>
+<blockquote>
+<p>安装软件curl时提示以下内容</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">下列软件包有未满足的依赖关系：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> curl : 依赖: libcurl4 <span class="o">(=</span> 7.64.0-2ubuntu1.2<span class="o">)</span> 但是 7.65.3-1ubuntu3 正要被安装
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">E: 无法修正错误，因为您要求某些软件包保持现状，就是它们破坏了软件包间的依赖关系。
+</span></span></code></pre></div><p>这是由于版本不符的导致的，可能是以前卸载的时候未卸载干净。所以我们需要使用<code>purge</code>选项来重新卸载一次。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo apt-get purge libcurl4
+</span></span></code></pre></div><p>然后重新安装，解决问题！！</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-18T05:46:47.png" alt="Ubutnu安装软件未满足依赖关系"></p>
+<h2 id="执行bash命令提示bash-devfd63-没有那个文件或目录">执行bash命令提示<code>bash: /dev/fd/63: 没有那个文件或目录</code></h2>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-18T07:27:55.png" alt="bash: /dev/fd/63: 没有那个文件或目录"></p>
+<p>原因：<code>&lt;（…）</code>运算符称为进程替换，是运行命令的一种方式，其输出进入匿名管道。这就是/dev/fd/63。其思想是允许外部命令（这里是bash）将另一个命令输出视为一个文件。通常形式是使用&lt;将伪文件对象重定向到bash的输入流中。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-18T07:28:44.png" alt="解决方案，使用两个&lt;"></p>
+<p>解决方案，使用两个<code>&lt;</code></p>
+<h2 id="用户不在sudo列表">用户不在sudo列表</h2>
+<blockquote>
+<p>别问为什么出现这个问题，，，</p>
+</blockquote>
+<h3 id="解决方法">解决方法</h3>
+<ol>
+<li>
+<p>重启进恢复模式</p>
+</li>
+<li>
+<p>选择root用户</p>
+</li>
+<li>
+<p>添加用户至sudo组</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">adduser username sudo
+</span></span></code></pre></div><h2 id="系统没有设置图标">系统没有设置图标</h2>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/ubuntu%E6%B2%A1%E6%9C%89%E8%AE%BE%E7%BD%AE.png" alt="ubuntu没有设置.png"></p>
+<blockquote>
+<p>天哪，为啥我的电脑老是出现些奇怪的问题。</p>
+</blockquote>
+<h3 id="解决方法-1">解决方法</h3>
+<ol>
+<li>
+<p>-sudo apt update-</p>
+</li>
+<li>
+<p>sudo apt  install gnome-control-center</p>
+</li>
+</ol>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-20T11:51:33.png" alt="系统修复设置"></p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/650_ubutnu%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E8%B4%B4/）本文首发于
+                        <a href="https://example.org/post/650_ubutnu%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E8%B4%B4/">指尖魔法屋-Ubutnu使用问题记录贴</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

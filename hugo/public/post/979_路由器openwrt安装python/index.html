@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>路由器openwrt安装python | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="使用u盘当路由器的系统盘，一不小心碰到它，路由器又挂了。决定把U盘作为挂载盘安装软件">
+    <meta name="keywords" content="linux, python">
+
+    
+    <meta property="og:title" content="路由器openwrt安装python">
+    <meta property="og:description" content="使用u盘当路由器的系统盘，一不小心碰到它，路由器又挂了。决定把U盘作为挂载盘安装软件">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/2023-12-18/22-08-33">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>路由器openwrt安装python</h1>
+
+                <div class="post-meta">
+                    <time datetime="2023-12-25">2023-12-25</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E9%97%B2%E4%BD%99%E6%8A%98%E8%85%BE">
+                            闲余折腾
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="https://example.org/tags/linux" class="tag">linux</a>
+                    
+                    <a href="https://example.org/tags/python" class="tag">python</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <p><img src="https://blog.cdn.thinkmoon.cn/2023-12-18/22-08-33" alt="Description"></p>
+<blockquote>
+<p>使用u盘当路由器的系统盘，一不小心碰到它，路由器又挂了。决定把U盘作为挂载盘安装软件</p>
+</blockquote>
+<h2 id="挂载u盘">挂载U盘</h2>
+<p><img src="https://blog.cdn.thinkmoon.cn/2023-12-18/22-14-40" alt="Description"></p>
+<p>启用挂载的设备</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/2023-12-18/22-15-23" alt="Description"></p>
+<h2 id="opkg包配置安装目录">opkg包配置安装目录</h2>
+<p>增加一个opkg安装路径</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/2023-12-18/22-16-29" alt="Description"></p>
+<h2 id="配置path路径">配置PATH路径</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/mnt/sda/opkg/usr//bin
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;export PATH=$PATH:/mnt/sda/opkg/usr/bin&#39;</span> &gt;&gt; /etc/profile
+</span></span></code></pre></div><h2 id="指定路径安装okpg包">指定路径安装okpg包</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">opkg update
+</span></span><span class="line"><span class="cl">opkg -d usb install python3 
+</span></span><span class="line"><span class="cl">opkg -d usb install python3-pip
+</span></span></code></pre></div><p>请注意：<code>-d usb</code>为必需的，否则依旧会安装到根目录</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/2023-12-18/22-21-15" alt="Description"></p>
+<p>打开对应目录可以看到，已经多了一个opkg目录</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/2023-12-18/22-22-02" alt="Description"></p>
+<p>输出python3，测试是否安装成功</p>
+<h2 id="安装pip">安装pip</h2>
+<pre tabindex="0"><code>python -m pip install -U --force pip
+</code></pre><p><img src="https://blog.cdn.thinkmoon.cn/2023-12-18/22-41-39" alt="Description"></p>
+<h2 id="安装python依赖">安装python依赖</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip3 install requests
+</span></span></code></pre></div><p><img src="https://blog.cdn.thinkmoon.cn/2023-12-18/22-45-57" alt="Description"></p>
+<h2 id="换国内源">换国内源</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip config <span class="nb">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+</span></span></code></pre></div><h2 id="后记">后记</h2>
+<blockquote>
+<p>现在换成挂载overlays了，直接在系统盘上面再套一层，避免u盘掉线后的系统启动不了的情况</p>
+</blockquote>
+<h2 id="参考文章">参考文章</h2>
+<ol>
+<li><a href="https://openwrt.org/zh/docs/techref/opkg">OPKG 软件包管理</a></li>
+</ol>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/）本文首发于
+                        <a href="https://example.org/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/">指尖魔法屋-路由器openwrt安装python</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

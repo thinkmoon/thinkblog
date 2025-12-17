@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C&#43;&#43;11新特性之auto的妙用 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="C&#43;&#43;">
+
+    
+    <meta property="og:title" content="C&#43;&#43;11新特性之auto的妙用">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/77_c__11%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8Bauto%E7%9A%84%E5%A6%99%E7%94%A8/">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>C&#43;&#43;11新特性之auto的妙用</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-01-16">2019-01-16</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="https://example.org/tags/c&#43;&#43;" class="tag">C&#43;&#43;</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <blockquote>
+<p>C++11引入了auto和decltype关键字实现类型推导，通过这两个关键字不仅能方便地获得复杂的类型，还能简化书写，提高编码效率。下面说一下C++中的auto</p>
+</blockquote>
+<h3 id="旧标准">旧标准</h3>
+<p>auto其实并不是一个新的关键字，在旧的标准C++98/03中，它代表着“具有自动存储周期的局部变量”。啥意思呢？就是我们平常所说的变量，他与static相对。就是说所有非static类型的都是“具有自动存储期的”。也就是说在旧的标准下。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">autoint</span> <span class="n">i</span> <span class="o">=</span><span class="mi">3</span><span class="p">;</span><span class="c1">//等价于int i=3;
+</span></span></span></code></pre></div><h3 id="新标准">新标准</h3>
+<p>在C++11中，auto作为一个新的类型指示符（如int，double）来指示编译器的，但是auto申明的变量的类型必须由编译器在编译时期推导出来，也称类型推导。这种类型推导不是C++所独有的，还有很多具备这种能力的语言（如Python，Javascript）。我们先来看一段Python代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span><span class="s2">&#34;thinkmoon&#34;</span><span class="nb">print</span><span class="s2">&#34;hello,&#34;</span><span class="o">+</span> <span class="n">name</span> 
+</span></span></code></pre></div><p>在这里的name是不需要定义类型的，因为这个类型很容易被推导为字符串性，如过要想在C++中实现这种效果，我们可以这样。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">auto</span> <span class="n">name</span> <span class="o">=</span><span class="s">&#34;thinkmoon&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span><span class="s">&#34;hello,&#34;</span><span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">return0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>效果是一样的，是不是觉得写起来特别的方便呢？</p>
+<p>但是需要注意的是，在C++中这种静态类型推导是发生在编译期间的。而像Python这种动态类型推导却是发生在运行期间的。</p>
+<h3 id="auto的基本用法">auto的基本用法</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">usingnamespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">x</span> <span class="o">=</span><span class="mi">5</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span><span class="c1">//x被推导为intauto p =newauto(1);    
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span><span class="s">&#34;*&#34;</span><span class="o">&lt;&lt;</span> <span class="n">p</span> <span class="o">&lt;&lt;</span><span class="s">&#34;=&#34;</span><span class="o">&lt;&lt;*</span><span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span><span class="c1">//p被推导为
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">constauto</span><span class="o">*</span><span class="n">v</span> <span class="o">=&amp;</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span><span class="mi">6</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span><span class="s">&#34;*&#34;</span><span class="o">&lt;&lt;</span> <span class="n">v</span> <span class="o">&lt;&lt;</span><span class="s">&#34;=&#34;</span><span class="o">&lt;&lt;*</span><span class="n">v</span> <span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> u=&#34;</span><span class="o">&lt;&lt;</span> <span class="n">u</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span><span class="c1">//v被推导为const int *，u被推导const int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>对于最后一个类型推导有几个需要注意</p>
+<ol>
+<li>
+<p>v被推导为const int *而这里auto代替int，但是u等于6还是要写的，否则编译器会报错。</p>
+</li>
+<li>
+<p>u的等号后面只能写整型的变量，否则会报错，因为不能让编译器产生具有二义性的推断。</p>
+</li>
+</ol>
+<blockquote>
+<p>其实我们学习的时候可以把auto理解为占位符，它只是占着一个位置并不做其它的事情，由编译器将其类型推导出来再用对应的类型去运行，所以这个时候auto的类型推导是不能让编译器产生二义性的。</p>
+</blockquote>
+<h3 id="auto的推导规则">auto的推导规则</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="k">auto</span><span class="o">*</span> <span class="n">a</span> <span class="o">=&amp;</span><span class="n">x</span><span class="p">;</span><span class="c1">//auto推导为int，
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">b</span> <span class="o">=&amp;</span><span class="n">x</span><span class="p">;</span><span class="c1">//auto推导为int *，即使不申明为指针也能推断为指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">auto</span><span class="o">&amp;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span><span class="c1">//auto推导为int，等价于int 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">d</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span><span class="c1">//auto推导为int，auto会抛弃右值的引用类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="k">auto</span> <span class="n">e</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span><span class="c1">//e是const int类型，
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span><span class="c1">//f是int型constauto&amp;g = x;//g是const 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">&amp;</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="n">h</span> <span class="o">=</span> <span class="n">g</span><span class="p">;</span>  <span class="c1">//h是const int &amp; 
+</span></span></span></code></pre></div><blockquote>
+<p>总结：</p>
+</blockquote>
+<ol>
+<li>
+<p>当不申明为引用或者指针时，auto的推导规则会抛弃对应右值的cv限定符（cv-qualifier，const，volatile限定符的总称）。</p>
+</li>
+<li>
+<p>当申明为引用或者指针时，auto推导规则会保留右值的cv属性。</p>
+</li>
+</ol>
+<h3 id="auto的限制">auto的限制</h3>
+<ol>
+<li>auto s</li>
+</ol>
+<blockquote>
+<p>错误原因:s没有明确的类型，auto无法推断。</p>
+</blockquote>
+<ol start="2">
+<li>void fun(auto a=1){….}</li>
+</ol>
+<blockquote>
+<p>错误原因：auto类型推导不能用作函数参数。</p>
+</blockquote>
+<ol start="3">
+<li>auto不能用于非静态成员函数</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Foo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">auto</span> <span class="n">var_1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//错误，auto不能用于非静态成员函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="k">const</span> <span class="k">auto</span> <span class="n">var_2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//OK，var_2为static const int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="4--auto无法定义数组">4.  auto无法定义数组</h3>
+<pre tabindex="0"><code>
+int main()
+
+{
+
+	int arr[10]={0};
+
+	auto aa    = arr; //OK,aa为int *
+
+	auto bb[10]=arr;//error,auto无法定义数组
+
+}
+</code></pre><h3 id="5--auto无法推导出模板参数">5.  auto无法推导出模板参数</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Bar</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">bar</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Bar</span><span class="o">&lt;</span><span class="k">auto</span><span class="o">&gt;</span> <span class="n">bb</span> <span class="o">=</span> <span class="n">bar</span><span class="p">;</span><span class="c1">//error,auto无法推导出模板参数
+</span></span></span></code></pre></div><h3 id="auto的优势">auto的优势</h3>
+<p>既然auto的功能特性这么方便，那么它的优势在哪？或者说，我们什么时候使用它能达到神效呢？</p>
+<ol>
+<li>遍历vector</li>
+</ol>
+<blockquote>
+<p>这是一个简单的遍历。</p>
+</blockquote>
+<p><code>vector&lt;int&gt; vs;for(auto i = vs.begin(); i &lt; vs.end(); i++){......}</code></p>
+<p>其实还可以更简单</p>
+<p><code>for(auto var : vs){.......}</code></p>
+<ol start="2">
+<li>待补充。。。。。。。嘿嘿！</li>
+</ol>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/77_c__11%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8Bauto%E7%9A%84%E5%A6%99%E7%94%A8/）本文首发于
+                        <a href="https://example.org/post/77_c__11%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8Bauto%E7%9A%84%E5%A6%99%E7%94%A8/">指尖魔法屋-C&#43;&#43;11新特性之auto的妙用</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>有监督学习中的回归问题与分类问题 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="机器学习">
+
+    
+    <meta property="og:title" content="有监督学习中的回归问题与分类问题">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/475_%E6%9C%89%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98%E4%B8%8E%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>有监督学习中的回归问题与分类问题</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-12-09">2019-12-09</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="https://example.org/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0" class="tag">机器学习</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <h2 id="what-is-machine-learning">What is Machine Learning?</h2>
+<blockquote>
+<p><strong>Two definitions of Machine Learning are offered.</strong></p>
+</blockquote>
+<ol>
+<li>
+<p>Arthur Samuel described it as: &ldquo;the field of study that gives computers the ability to learn without being explicitly programmed.&rdquo; This is an older, informal definition.</p>
+</li>
+<li>
+<p>Tom Mitchell provides a more modern definition: &ldquo;A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.&rdquo;</p>
+</li>
+</ol>
+<pre tabindex="0"><code>
+Example: playing checkers.
+
+E = the experience of playing many games of checkers
+
+T = the task of playing checkers.
+
+P = the probability that the program will win the next game.
+</code></pre><p>In general, any machine learning problem can be assigned to one of two broad classifications:</p>
+<p>Supervised learning and Unsupervised learning.</p>
+<h2 id="什么是机器学习">什么是机器学习？</h2>
+<blockquote>
+<p><strong>机器学习的两个定义</strong></p>
+</blockquote>
+<ol>
+<li>
+<p><code>Arthur Samuel</code>定义机器学习为: &ldquo;研究使计算机在无需特定明确的编程下自主学习的邻域.&rdquo; 这是一个很老的非正式定义</p>
+</li>
+<li>
+<p><code>Tom Mitchell</code>提供了一个正式的定义: &ldquo;一个程序被认为能从经验E中学习，解决任务 T，达到 性能度量值P，当且仅当，有了经验E后，经过P评判， 程序在处理 T 时的性能有所提升。&rdquo;</p>
+</li>
+</ol>
+<pre tabindex="0"><code>
+例如: 国际象棋.
+
+E = 下棋的经验
+
+T = 下棋的任务.
+
+P = 程序赢得下一场比赛的概率.
+</code></pre><p>一般来说，任何机器学习问题都可以分为两大类:监督学习和非监督学习</p>
+<h2 id="有监督学习">有监督学习</h2>
+<blockquote>
+<p>有监督学习（Supervised learning），是一个机器学习中的方法，可以由训练资料中学到或建立一个模式（ learning model），并依此模式推测新的实例。训练资料是由输入物件（通常是向量）和预期输出所组成。函数的输出可以是一个连续的值（称为回归分析），或是预测一个分类标签（称作分类）。</p>
+</blockquote>
+<h2 id="回归问题">回归问题</h2>
+<p>这是收集到的房价与房子大小相关性的数据轴</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-11-23T13:11:57.png" alt="2019-11-23T13:11:57.png"></p>
+<p>现在假设你有750平的房子，想要预测它能卖多少钱。那么机器学习该如何帮助你呢？它会使用这些数据试图用一条线来拟合，拟合的线可能是线性关系也可能是其他函数关系。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-11-23T13:15:53.png" alt="2019-11-23T13:15:53.png"></p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-11-23T13:16:41.png" alt="2019-11-23T13:16:41.png"></p>
+<p>拟合的越完美，学习算法预测的结果就越准确。而使用什么函数来拟合，就需要经验和技术。</p>
+<p>这就是一个简单的线性回归问题，通过已知的数据集来预测一个连续的输出值。</p>
+<h2 id="分类问题">分类问题</h2>
+<p>我们来看另一个例子，学习判断肿瘤是否为恶性的算法。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-11-23T13:23:24.png" alt="2019-11-23T13:23:24.png"></p>
+<p>以上是肿块大小与是否为恶性肿瘤的数据图，假设一个人的肿块大小为以下位置。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-11-23T13:25:58.png" alt="2019-11-23T13:25:58.png"></p>
+<p>想知道自己的肿瘤是否为恶性肿瘤的话，学习算法会根据已知的数据对患者患恶性肿瘤的概率进行预测。我们再拓展一下，我们可以对恶性肿瘤的各种性质数据做采集，然后根据其值判断其患恶性肿瘤的概率，甚至是判断其患的是哪种类型的肿瘤。这就是有监督学习中的分类问题。</p>
+<h2 id="supervised-learning">Supervised Learning</h2>
+<p>In supervised learning, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.</p>
+<p>Supervised learning problems are categorized into &ldquo;regression&rdquo; and &ldquo;classification&rdquo; problems. In a regression problem, we are trying to predict results within a continuous output, meaning that we are trying to map input variables to some continuous function. In a classification problem, we are instead trying to predict results in a discrete output. In other words, we are trying to map input variables into discrete categories.</p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://www.coursera.org/learn/machine-learning/lecture/1VkCb/supervised-learning">Supervised Learning - 斯坦福大学 | Coursera</a></p>
+<p><a href="https://blog.csdn.net/u011067360/article/details/24735415">机器学习中的有监督学习，无监督学习，半监督学习</a></p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/475_%E6%9C%89%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98%E4%B8%8E%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/）本文首发于
+                        <a href="https://example.org/post/475_%E6%9C%89%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98%E4%B8%8E%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/">指尖魔法屋-有监督学习中的回归问题与分类问题</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

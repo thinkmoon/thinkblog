@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>如何理解Promise | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="Promise是啥？异步函数？对象？怎么用才更自信？如何理解更好的理解Promise？本文将分享本人对于Promise的一些经验与想法。em......, 但不保证权威，哈哈哈。">
+    <meta name="keywords" content="前端, js基础, javascript">
+
+    
+    <meta property="og:title" content="如何理解Promise">
+    <meta property="og:description" content="Promise是啥？异步函数？对象？怎么用才更自信？如何理解更好的理解Promise？本文将分享本人对于Promise的一些经验与想法。em......, 但不保证权威，哈哈哈。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/956_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3promise/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/2022-06-10/23-57-00">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>如何理解Promise</h1>
+
+                <div class="post-meta">
+                    <time datetime="2022-12-09">2022-12-09</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="https://example.org/tags/%E5%89%8D%E7%AB%AF" class="tag">前端</a>
+                    
+                    <a href="https://example.org/tags/js%E5%9F%BA%E7%A1%80" class="tag">js基础</a>
+                    
+                    <a href="https://example.org/tags/javascript" class="tag">javascript</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <blockquote>
+<p>Promise是啥？异步函数？对象？怎么用才更自信？如何理解更好的理解Promise？本文将分享本人对于Promise的一些经验与想法。</p>
+</blockquote>
+<h2 id="背景知识">背景知识</h2>
+<blockquote>
+<p>此段将介绍一些理解本文的背景知识，你可以很轻松愉快的阅读此段。</p>
+</blockquote>
+<h3 id="函数是一等公民">函数是一等公民</h3>
+<p>总所周知，在JavaScript里面，函数是一等公民。你可以用来赋值，传参，回调，包装，作为函数返回值return。</p>
+<blockquote>
+<p>以下内容援引于<a href="https://github.com/felix-cao/Blog/issues/150">JavaScript 为什么说函数是一等公民？</a></p>
+</blockquote>
+<ol>
+<li>函数与数字一样可以存储到变量中</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">fortyTwo</span> <span class="o">=</span> <span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">fortyOne</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">41</span><span class="p">;</span> <span class="p">}</span>
+</span></span></code></pre></div><ol start="2">
+<li>函数与数字一样可以存储为数组的一个元素</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">41</span> <span class="p">}]</span>
+</span></span></code></pre></div><ol start="3">
+<li>函数与数字一样可以在使用时直接创建出来</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="mi">42</span> <span class="o">+</span> <span class="p">(</span><span class="nx">fuction</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">41</span> <span class="p">})();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 83
+</span></span></span></code></pre></div><ol start="4">
+<li>函数与数字一样可以被传递给另一个函数</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">weirdAdd</span><span class="p">(</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">fun</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">n</span> <span class="o">+</span> <span class="nx">fun</span><span class="p">()}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">weirdAdd</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">41</span> <span class="p">})</span>
+</span></span></code></pre></div><ol start="5">
+<li>函数与数字一样可以被另一个函数返回</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">add</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">num1</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">num2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fun</span> <span class="o">=</span> <span class="nx">add</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fun</span><span class="p">(</span><span class="mi">41</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 83
+</span></span></span></code></pre></div><p>函数就是变量，变量可以存放函数。就是玩~</p>
+<h2 id="链式调用">链式调用</h2>
+<p>由于函数可以作为对象的属性值，那我们访问形如<code>a.b</code>时就相当与访问到了一个函数体。那么，给它再加上<code>()</code>不就执行了么，比如图：<code>a.b()</code>;再拓展一下，如果这个函数又返回了一个同样的对象，那是不是可以继续执行下去了呢？比如: a.b().c().d()；这操作，实属放飞自我了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setAge</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">age</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setWeight</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">weight</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">weight</span> <span class="o">=</span> <span class="nx">weight</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sb">`{age: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="si">}</span><span class="sb">, weight: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">weight</span><span class="si">}</span><span class="sb">}`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">des</span> <span class="o">=</span> <span class="nx">person</span><span class="p">.</span><span class="nx">setAge</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">setWeight</span><span class="p">(</span><span class="mi">30</span><span class="p">).</span><span class="nx">get</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">des</span><span class="p">);</span>
+</span></span></code></pre></div><h3 id="js的事件循环">js的事件循环</h3>
+<p>详见<a href="https://www.thinkmoon.cn/post/907">js事件循环&ndash;指尖魔法屋</a></p>
+<h3 id="--promise的用法">- promise的用法</h3>
+<blockquote>
+<p>Promise 对象用于表示一个异步操作的最终完成（或失败）及其结果值。&mdash;来自《MDN》</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">myPromise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">resolve</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reject</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">myPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">handleResolvedA</span><span class="p">,</span> <span class="nx">handleRejectedA</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="我们要如何理解promise">我们要如何理解promise</h2>
+<p>从实现角度，我们可以这样理解。首先Promise是对象，然后呢，这个对象有三个属性一个叫then一个叫catch，最后一个叫做finally。构造函数会传递两个参数（resolve,reject)。这两个参数本身是个封装的函数，如果调用resolve，它就执行Promise.then()里面的函数，最后再执行Prmise.finally()。catch反之。</p>
+<blockquote>
+<p>注：此段只是为了便于理解编造的，实际并非这么简单。</p>
+</blockquote>
+<h2 id="举个简单例子">举个简单例子</h2>
+<p>new Promise()就是好像在肯德基下了一个单，返回的值就是对应的单号。肯德基会接单并开始备餐，备餐完成就通知你（调用then)，如果你叫的炸鸡已经卖完了，也会给你返回异常（调用catch)</p>
+<h3 id="订阅发布者模式">订阅发布者模式</h3>
+<p>从设计的角度，我可以可以把Promise看作一个订阅者发布者模式。订阅then和catch，以及finally。当发布者发布resolve或reject的时候，接收者就会执行对应的回调函数。</p>
+<h2 id="一些强化理解的实践">一些强化理解的实践</h2>
+<p>为啥下面的变量拿不到想要的值？</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="mi">1</span><span class="p">)).</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="p">=&gt;</span> <span class="nx">b</span><span class="o">=</span><span class="nx">res</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+</span></span></code></pre></div><p>原因：由于js是单线程的，线程第一次进来只管发消息和执行下面的console。在输出之前，then函数都只是绑定回调函数，还没执行呢。</p>
+<blockquote>
+<p>准备好，接下来我要放飞自我了。</p>
+</blockquote>
+<p>如果我在一个函数里面resolve或者reject了，那后面的语句还会执行么？</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-06-10/23-32-36" alt="Description"></p>
+<p>在Promise入参函数里面return相等于什么？</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-06-10/23-36-44" alt="Description"></p>
+<p>此时相当于啥消息都没发布，那如果我return 一个Error对象呢？</p>
+<blockquote>
+<p>此处本来还有四段话加五个截图，由于自研系统的bug没保存。我们先假装它们还在，有空补上</p>
+</blockquote>
+<p>你老说Promise就是一个订阅者发布者模式。你如何证明？脱离了Promsie构造入参函数，你还能触发Promsie.then么？</p>
+<p>虽然业界都推荐在Promise构造入参函数内部改变Promise的状态。但是有了一等公民的地位，天下之大，何处不可去？看我来伪装一个订阅者发布者模式（虽然是一次性的）。有函数，我不调，哎，就是玩儿。。</p>
+<h3 id="--外部修改promise状态反模式实际不推荐用">- 外部修改promise状态(反模式，实际不推荐用)</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-06-10/23-57-00" alt="Description"></p>
+<h3 id="--请求队列返回promise状态">- 请求队列返回promise状态</h3>
+<p>登录失效了，后面的白写了，心累，先空着。</p>
+<h3 id="heading">&hellip;</h3>
+<h2 id="后记">后记</h2>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/956_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3promise/）本文首发于
+                        <a href="https://example.org/post/956_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3promise/">指尖魔法屋-如何理解Promise</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

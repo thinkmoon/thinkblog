@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Xposed on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/xposed/</link>
+    <link>https://example.org/tags/xposed/</link>
     <description>Recent content in Xposed on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Mon, 28 Oct 2019 17:40:39 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/xposed/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/xposed/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>&amp;lt;运动世界校园&amp;gt;外挂</title>
-      <link>http://localhost:1313/532__lt_%E8%BF%90%E5%8A%A8%E4%B8%96%E7%95%8C%E6%A0%A1%E5%9B%AD_gt_%E5%A4%96%E6%8C%82/</link>
+      <link>https://example.org/post/532__lt_%E8%BF%90%E5%8A%A8%E4%B8%96%E7%95%8C%E6%A0%A1%E5%9B%AD_gt_%E5%A4%96%E6%8C%82/</link>
       <pubDate>Mon, 28 Oct 2019 17:40:39 +0000</pubDate>
-      <guid>http://localhost:1313/532__lt_%E8%BF%90%E5%8A%A8%E4%B8%96%E7%95%8C%E6%A0%A1%E5%9B%AD_gt_%E5%A4%96%E6%8C%82/</guid>
+      <guid>https://example.org/post/532__lt_%E8%BF%90%E5%8A%A8%E4%B8%96%E7%95%8C%E6%A0%A1%E5%9B%AD_gt_%E5%A4%96%E6%8C%82/</guid>
       <description>所需条件 安卓手机（模拟器我没试过）&#xA;已获ROOT或已安装Virtual Xposed&#xA;Xposed框架能安装成功&#xA;所需软件 xposed install（安装xposed 框架）&#xA;lataclysm（模拟运动位置）&#xA;SoDo Hide（对应用隐藏xposed框架）&#xA;运动模拟器（模拟计步传感器）&#xA;准备工作 安装上述软件&#xA;在xposed install里面将模块激活&#xA;重启手机&#xA;未完待续，心情好了再续</description>
     </item>
   </channel>

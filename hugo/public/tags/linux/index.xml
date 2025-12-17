@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/linux/</link>
+    <link>https://example.org/tags/linux/</link>
     <description>Recent content in Linux on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Sat, 10 May 2025 14:19:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>x2ray端口转发-解决端口被强</title>
-      <link>http://localhost:1313/987_x2ray%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91-%E8%A7%A3%E5%86%B3%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%BC%BA/</link>
+      <link>https://example.org/post/987_x2ray%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91-%E8%A7%A3%E5%86%B3%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%BC%BA/</link>
       <pubDate>Sat, 10 May 2025 14:19:00 +0000</pubDate>
-      <guid>http://localhost:1313/987_x2ray%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91-%E8%A7%A3%E5%86%B3%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%BC%BA/</guid>
+      <guid>https://example.org/post/987_x2ray%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91-%E8%A7%A3%E5%86%B3%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%BC%BA/</guid>
       <description>x2ray端口转发-解决端口被强 执行命令，将40000:60000的流量转发到本地443端口&#xA;iptables -t nat -A PREROUTING -p tcp --dport 40000:60000 -j REDIRECT --to-ports 443 </description>
     </item>
     <item>
       <title>路由器openwrt安装python</title>
-      <link>http://localhost:1313/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/</link>
+      <link>https://example.org/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/</link>
       <pubDate>Mon, 25 Dec 2023 21:10:14 +0000</pubDate>
-      <guid>http://localhost:1313/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/</guid>
+      <guid>https://example.org/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/</guid>
       <description>&#xA;使用u盘当路由器的系统盘，一不小心碰到它，路由器又挂了。决定把U盘作为挂载盘安装软件&#xA;挂载U盘 启用挂载的设备&#xA;opkg包配置安装目录 增加一个opkg安装路径&#xA;配置PATH路径 export PATH=$PATH:/mnt/sda/opkg/usr//bin echo &amp;#39;export PATH=$PATH:/mnt/sda/opkg/usr/bin&amp;#39; &amp;gt;&amp;gt; /etc/profile 指定路径安装okpg包 opkg update opkg -d usb install python3 opkg -d usb install python3-pip 请注意：-d usb为必需的，否则依旧会安装到根目录&#xA;打开对应目录可以看到，已经多了一个opkg目录&#xA;输出python3，测试是否安装成功&#xA;安装pip python -m pip install -U --force pip 安装python依赖 pip3 install requests 换国内源 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple 后记 现在换成挂载overlays了，直接在系统盘上面再套一层，避免u盘掉线后的系统启动不了的情况&#xA;参考文章 OPKG 软件包管理 </description>
     </item>
     <item>
       <title>Ubutnu使用问题记录贴</title>
-      <link>http://localhost:1313/650_ubutnu%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E8%B4%B4/</link>
+      <link>https://example.org/post/650_ubutnu%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E8%B4%B4/</link>
       <pubDate>Fri, 20 Dec 2019 19:52:13 +0000</pubDate>
-      <guid>http://localhost:1313/650_ubutnu%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E8%B4%B4/</guid>
+      <guid>https://example.org/post/650_ubutnu%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E8%B4%B4/</guid>
       <description>安装软件未满足依赖关系 安装软件curl时提示以下内容&#xA;下列软件包有未满足的依赖关系： curl : 依赖: libcurl4 (= 7.64.0-2ubuntu1.2) 但是 7.65.3-1ubuntu3 正要被安装 E: 无法修正错误，因为您要求某些软件包保持现状，就是它们破坏了软件包间的依赖关系。 这是由于版本不符的导致的，可能是以前卸载的时候未卸载干净。所以我们需要使用purge选项来重新卸载一次。&#xA;sudo apt-get purge libcurl4 然后重新安装，解决问题！！&#xA;执行bash命令提示bash: /dev/fd/63: 没有那个文件或目录 原因：&amp;lt;（…）运算符称为进程替换，是运行命令的一种方式，其输出进入匿名管道。这就是/dev/fd/63。其思想是允许外部命令（这里是bash）将另一个命令输出视为一个文件。通常形式是使用&amp;lt;将伪文件对象重定向到bash的输入流中。&#xA;解决方案，使用两个&amp;lt;&#xA;用户不在sudo列表 别问为什么出现这个问题，，，&#xA;解决方法 重启进恢复模式&#xA;选择root用户&#xA;添加用户至sudo组&#xA;adduser username sudo 系统没有设置图标 天哪，为啥我的电脑老是出现些奇怪的问题。&#xA;解决方法 -sudo apt update-&#xA;sudo apt install gnome-control-center</description>
     </item>
     <item>
       <title>ubuntu安装后需要做的事情</title>
-      <link>http://localhost:1313/26_ubuntu%E5%AE%89%E8%A3%85%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/</link>
+      <link>https://example.org/post/26_ubuntu%E5%AE%89%E8%A3%85%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/</link>
       <pubDate>Wed, 18 Dec 2019 16:51:26 +0000</pubDate>
-      <guid>http://localhost:1313/26_ubuntu%E5%AE%89%E8%A3%85%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/</guid>
+      <guid>https://example.org/post/26_ubuntu%E5%AE%89%E8%A3%85%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/</guid>
       <description>1. 安装chrome sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/ wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - sudo apt update sudo apt install google-chrome-stable 19年12月18日：现在觉得火狐也不错&#xA;2. 安装Shadowsocks 不然美化界面太慢了&#xA;3. 美化界面参考链接 安装工具&#xA;sudo apt-get update sudo apt-get install gnome-tweak-tool sudo apt-get install gnome-shell-extensions sudo apt-get install gnome-shell-extension-dashtodock 3. 安装搜狗输入法ubuntu 18.04 LTS 安装搜狗输入法 实在是不喜欢默认输入法&#xA;4. 换阿里源 1. 先备份源 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak 2. 删除原文件 sudo rm -f /etc/apt/sources.list 3. 新建源文件 sudo vi /etc/apt/sources.</description>
     </item>
     <item>
       <title>cn版elementaryOS的UEFI安装尝试</title>
-      <link>http://localhost:1313/511_cn%E7%89%88elementaryos%E7%9A%84uefi%E5%AE%89%E8%A3%85%E5%B0%9D%E8%AF%95/</link>
+      <link>https://example.org/post/511_cn%E7%89%88elementaryos%E7%9A%84uefi%E5%AE%89%E8%A3%85%E5%B0%9D%E8%AF%95/</link>
       <pubDate>Mon, 28 Oct 2019 17:18:51 +0000</pubDate>
-      <guid>http://localhost:1313/511_cn%E7%89%88elementaryos%E7%9A%84uefi%E5%AE%89%E8%A3%85%E5%B0%9D%E8%AF%95/</guid>
+      <guid>https://example.org/post/511_cn%E7%89%88elementaryos%E7%9A%84uefi%E5%AE%89%E8%A3%85%E5%B0%9D%E8%AF%95/</guid>
       <description>首先下载UEFI版 下载链接在官方QQ群里面&#xA;TIPS: 直接在群文件里面下载可能会因为各种原因中断下载，建议登录QQ群空间里面，再使用迅雷下载。&#xA;接下来为转载的操作 mount挂载 mount {{根挂载点}} /mnt 第一次尝试（2018.9.21 9：05） 自动清除磁盘安装，未找到/分区，手动分区尝试中。&#xA;手动分区，发现格式好奇怪，看不懂，格式化尝试中。&#xA;更新: 好像是开启了LVM的原因，尝试不开启LVM。清除整个磁盘安装&#xA;第二次尝试清除整个磁盘安装 （2018.9.21 9：15） 磁盘情况，分区情况如下，但是无法进入系统&#xA;好像联网安装就成功了？？？？</description>
     </item>
     <item>
       <title>Deepin安装微信开发者工具</title>
-      <link>http://localhost:1313/507_deepin%E5%AE%89%E8%A3%85%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/</link>
+      <link>https://example.org/post/507_deepin%E5%AE%89%E8%A3%85%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Mon, 28 Oct 2019 17:14:44 +0000</pubDate>
-      <guid>http://localhost:1313/507_deepin%E5%AE%89%E8%A3%85%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/</guid>
+      <guid>https://example.org/post/507_deepin%E5%AE%89%E8%A3%85%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/</guid>
       <description>我们都知道，微信开发者工具是没有linux版的，还是有点难受。好在有大神迁移了。&#xA;1. 下载项目 git clone https://github.com/cytle/wechat_web_devtools.git 2. 进入目录 cd wechat_web_devtools 3. 自动下载最新 nw.js , 同时部署目录 ~/.config/微信web开发者工具/ ./bin/wxdt install 最好先切换npm淘宝源npm太慢使用淘宝npm镜像&#xA;4. 运行 ./bin/wxdt 7. 错误排除 1. 提示“小程序重启耗时过久，请确认业务逻辑中是否有复杂运算或死循环” 解决方案：apt-get install wine-binfmt</description>
     </item>
   </channel>

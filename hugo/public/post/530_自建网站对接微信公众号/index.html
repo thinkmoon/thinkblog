@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>自建网站对接微信公众号 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    
+    <meta property="og:title" content="自建网站对接微信公众号">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/530_%E8%87%AA%E5%BB%BA%E7%BD%91%E7%AB%99%E5%AF%B9%E6%8E%A5%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>自建网站对接微信公众号</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-10-28">2019-10-28</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB">
+                            教程分享
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <blockquote>
+<p>平常我们有些写各种网站, 个人博客系统, 物流管理系统, 通信录管理系统, 校园二手网站. 我们都知道, 只需要租用一个服务器, 再配置一个备案好的域名, 就可以在浏览器上进行访问了.</p>
+</blockquote>
+<blockquote>
+<p>不知大家, 不知大家有没有想过, 将你搭的网站对接微信公众号, 利用微信这个大用户软件, 来为你引流呢?</p>
+</blockquote>
+<!-- more -->
+<hr>
+<p>|  本文环境  |  版本  |</p>
+<p>| &mdash; | &mdash; |</p>
+<p>| 操作系统 |  Ubuntu 16.04.03   |</p>
+<p>| 运行方式 | VMware虚拟机   |</p>
+<p>| 编程语言 | PHP |</p>
+<p>| 项目局域网地址 | http://192.168.253.1/audit |</p>
+<hr>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523606408034.jpg" alt="enter description here"></p>
+<p>Q: 你在搞笑吗? 不是直接在微信里面打开的吗?</p>
+<blockquote>
+<p>A: 直接用微信打开是可以, 然后你在微信里面让用户再注册一个账号? 对于大部分不想麻烦的小伙伴来说, 他们会对此忘而却步. 其实微信是提供接口, 让你可以获取到微信的用户名,和用户头像的.</p>
+</blockquote>
+<h2 id="一般来说分为三种情况">一般来说分为三种情况</h2>
+<ol>
+<li>使用通过的微信<strong>开放</strong>平台( 注意,不是微信公众平台)</li>
+</ol>
+<blockquote>
+<p>需要开发者认证</p>
+</blockquote>
+<ol start="2">
+<li>使用认证过的订阅号.</li>
+</ol>
+<blockquote>
+<p>需要微信认证</p>
+</blockquote>
+<ol start="3">
+<li>使用认证过的服务号</li>
+</ol>
+<blockquote>
+<p>需要微信认证</p>
+</blockquote>
+<h2 id="额-那其实不是没认证就没得玩">额, 那其实不是没认证就没得玩?</h2>
+<blockquote>
+<p>好吧, 实际是的确如此, 不过. 如果你真的只是想玩玩. 你可以去这儿. <a href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login">https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login</a></p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523712185351.jpg" alt="enter description here"></p>
+<blockquote>
+<p>微信测试号</p>
+</blockquote>
+<blockquote>
+<h3 id="优点">优点</h3>
+</blockquote>
+<blockquote>
+<ul>
+<li>拥有几乎所有接口,</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>以及享受局域网IP回调(意思就是说,可以支持局域网, 这是正式微信平台号所不具备的)</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>发送模板消息, 不用审核.</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="缺点">缺点</h3>
+</blockquote>
+<blockquote>
+<ul>
+<li>只支持最多100个用户</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>不能设置名称, 头像.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>对于一些只是想玩玩, 或者小规模用户的是没有问题的.</p>
+</blockquote>
+<h3 id="跟我一起操作">跟我一起操作</h3>
+<h4 id="登录">登录</h4>
+<blockquote>
+<p>扫码登录就好了;</p>
+</blockquote>
+<h4 id="微信token">微信token</h4>
+<blockquote>
+<p>新建php文件(啥语言都可以,自行修改)</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">token</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$nonce</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;nonce&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$token</span> <span class="o">=</span> <span class="s1">&#39;weixin&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$timestamp</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$echostr</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;echostr&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$signature</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;signature&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//形成数组，然后按字典序排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$array</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$array</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$nonce</span><span class="p">,</span> <span class="nv">$timestamp</span><span class="p">,</span> <span class="nv">$token</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">sort</span><span class="p">(</span><span class="nv">$array</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//拼接成字符串,sha1加密 ，然后与signature进行校验
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$str</span> <span class="o">=</span> <span class="nx">sha1</span><span class="p">(</span><span class="nx">implode</span><span class="p">(</span><span class="nv">$array</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nv">$str</span> <span class="o">==</span> <span class="nv">$signature</span> <span class="o">&amp;&amp;</span> <span class="nv">$echostr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">//第一次接入weixin api接口的时候
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">            <span class="k">echo</span> <span class="nv">$echostr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">exit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p>然后在测试号里填写路径和token, 认证成功后就可以继续操作了</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523713636476.jpg" alt="enter description here"></p>
+<blockquote>
+<p>TIP: 这个链接并不需要一直可访问,<strong>只需要第一次认证通过就OK</strong>, 甚至认证过可以直接删掉.</p>
+</blockquote>
+<h3 id="修改回调域名-接口-网页授权获取用户基本信息--修改">修改回调域名, 接口&gt; 网页授权获取用户基本信息 &gt; 修改</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523781481068.jpg" alt="enter description here"></p>
+<blockquote>
+<p><strong>只有测试号支持ip</strong></p>
+</blockquote>
+<h3 id="微信的接口">微信的接口</h3>
+<blockquote>
+<p>接口详情可在<em><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141013">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141013</a></em>里查看</p>
+</blockquote>
+<blockquote>
+<p><strong>注意</strong>:</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>这些接口不是简单的对接就好了, 每次请求都需要携带access_token,</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>而获取access_token, 每天有获取上限.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>access-token具有有效期(7200s) , 过期需要重新获取.</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>获取access_token的方法<em><a href="https://mp.weixin.qq.com/debug/cgi-bin/apiinfo?t=index&amp;type=%E5%9F%BA%E7%A1%80%E6%94%AF%E6%8C%81&amp;form=%E8%8E%B7%E5%8F%96access_token%E6%8E%A5%E5%8F%A3%20/token">https://mp.weixin.qq.com/debug/cgi-bin/apiinfo?t=index&amp;type=%E5%9F%BA%E7%A1%80%E6%94%AF%E6%8C%81&amp;form=%E8%8E%B7%E5%8F%96access_token%E6%8E%A5%E5%8F%A3%20/token</a></em></p>
+</blockquote>
+<h3 id="获取用户信息-实现免登录的效果">获取用户信息, 实现免登录的效果</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523714004736.jpg" alt="enter description here"></p>
+<blockquote>
+<p>在这儿我们需要三个接口</p>
+</blockquote>
+<h4 id="所用接口">所用接口:</h4>
+<blockquote>
+<p>接口一:</p>
+</blockquote>
+<p><em><code>https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=SCOPE&amp;state=STATE#wechat_redirect</code></em></p>
+<blockquote>
+<p>接口二:</p>
+</blockquote>
+<p><em><code>https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&amp;secret=SECRET&amp;code=CODE&amp;grant_type=authorization_code</code></em></p>
+<blockquote>
+<p>接口三:</p>
+</blockquote>
+<p><em><code>https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&amp;openid=OPENID&amp;lang=zh_CN</code></em></p>
+<blockquote>
+<p>接口四: 刷新access_token</p>
+</blockquote>
+<p><em><code>https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&amp;grant_type=refresh_token&amp;refresh_token=REFRESH_TOKEN</code></em></p>
+<blockquote>
+<p>接口返回数据, 详见<em><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842</a></em></p>
+</blockquote>
+<ol>
+<li>第一步：用户同意授权，获取code</li>
+</ol>
+<blockquote>
+<p>示例:( 注意appid, redirect_url是变量)</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$str</span> <span class="o">=</span> <span class="s1">&#39;http://open.weixin.qq.com/connect/oauth2/authorize?appid=wx20874ebf2ea1fc7f&amp;redirect_uri=&#39;</span> <span class="o">.</span> <span class="nx">urlencode</span><span class="p">(</span><span class="s2">&#34;http://192.168.253.1/audit/client/&#34;</span><span class="p">)</span> <span class="o">.</span> <span class="s1">&#39;&amp;response_type=code&amp;scope=snsapi_base&amp;state=123#wechat_redirect&#39;</span><span class="p">;</span>
+</span></span></code></pre></div><p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523714822433.jpg" alt="enter description here"></p>
+<ol start="2">
+<li>第二步：通过code换取网页授权access_token</li>
+</ol>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$data</span> <span class="o">=</span> <span class="nx">json_decode</span><span class="p">(</span><span class="nx">file_get_contents</span><span class="p">(</span><span class="s2">&#34;https://api.weixin.qq.com/sns/oauth2/access_token?appid=&#34;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">appid</span> <span class="o">.</span> <span class="s2">&#34;&amp;secret=&#34;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">secret</span> <span class="o">.</span> <span class="s2">&#34;&amp;code=&#34;</span> <span class="o">.</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&#34;&amp;grant_type=authorization_code&#34;</span><span class="p">));</span>
+</span></span></code></pre></div><blockquote>
+<p><strong>注意</strong>: 此处的access_token与上面的access_token不是同一个东西</p>
+</blockquote>
+<ol start="3">
+<li>第三步: 通过access_token换取userinfo</li>
+</ol>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$userInfo</span> <span class="o">=</span> <span class="nx">json_decode</span><span class="p">(</span><span class="nx">file_get_contents</span><span class="p">(</span><span class="s2">&#34;https://api.weixin.qq.com/sns/userinfo?access_token=&#34;</span> <span class="o">.</span> <span class="nv">$data</span><span class="o">-&gt;</span><span class="na">access_token</span> <span class="o">.</span> <span class="s2">&#34;&amp;openid=&#34;</span> <span class="o">.</span> <span class="nv">$data</span><span class="o">-&gt;</span><span class="na">openid</span> <span class="o">.</span> <span class="s2">&#34;&amp;lang=zh_CN&#34;</span><span class="p">));</span>
+</span></span></code></pre></div><ol start="4">
+<li>刷新access_token, 如果需要</li>
+</ol>
+<blockquote>
+<p>这是我画的一个请求过程图, 可以帮助理解</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20%281%29.svg" alt="enter description here" title="未命名文件 (1)"></p>
+<h3 id="测试演示">测试演示</h3>
+<h4 id="1-将授权url发给手机">1. 将授权url发给手机</h4>
+<blockquote>
+<p>非必需, 也可以在电脑上, 也可以写到公众号子菜单中点击进入.</p>
+</blockquote>
+<h4 id="2-关注测试号">2. 关注测试号</h4>
+<blockquote>
+<p>不然会这样</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523781959421.jpg" alt="enter description here"></p>
+<h4 id="关注后点击">关注后点击</h4>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523782005232.jpg" alt="enter description here"></p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523782015976.jpg" alt="enter description here"></p>
+<h4 id="测试号访问成功">测试号访问成功.</h4>
+<blockquote>
+<p>额, 关于后台代码原理就不讲了.</p>
+</blockquote>
+<blockquote>
+<p>类似于一个从微信服务器发来的表单, 登录进了系统, 然后再把这些数据存入数据库就好了.</p>
+</blockquote>
+<h3 id="正式号运行效果">正式号运行效果</h3>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523890856126.jpg" alt="enter description here"></p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2018-4-1523890881266.jpg" alt="enter description here"></p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/530_%E8%87%AA%E5%BB%BA%E7%BD%91%E7%AB%99%E5%AF%B9%E6%8E%A5%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/）本文首发于
+                        <a href="https://example.org/post/530_%E8%87%AA%E5%BB%BA%E7%BD%91%E7%AB%99%E5%AF%B9%E6%8E%A5%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">指尖魔法屋-自建网站对接微信公众号</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

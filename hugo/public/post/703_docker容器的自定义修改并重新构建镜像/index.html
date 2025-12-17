@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>docker容器的自定义修改并重新构建镜像 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="vscode, docker">
+
+    
+    <meta property="og:title" content="docker容器的自定义修改并重新构建镜像">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/703_docker%E5%AE%B9%E5%99%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%AE%E6%94%B9%E5%B9%B6%E9%87%8D%E6%96%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/blog/typecho/2020-01-02T08:04:43.png">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>docker容器的自定义修改并重新构建镜像</h1>
+
+                <div class="post-meta">
+                    <time datetime="2020-01-02">2020-01-02</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="https://example.org/tags/vscode" class="tag">vscode</a>
+                    
+                    <a href="https://example.org/tags/docker" class="tag">docker</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <h2 id="前言">前言</h2>
+<p>在上篇文章中，我们已经实现了<code>VS code</code>的无缝连接docker，却依旧存在着一些问题。比如它需要安装<code>pylint</code>方便调试，但是每次stop 容器之后，重新启动又需要重新安装，不可谓不麻烦。而且我发现它也需要重新安装<code>VS code server</code>,这是一个严重影响生产力的过程。所以目前的需求就变了如何作一些自定义的修改，并让这些修改永久性的保存。那答案当然是自定义的构建镜像啦，它可以让我们在构建的实践使用容器的过程中，将所做的更新持续化保存到自定义镜像。</p>
+<h2 id="自定义修改">自定义修改</h2>
+<p>在这里，我手动做了两个修改，一个是安装<code>pylint</code>，一个是更新<code>pip</code>。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2020-01-02T08:04:43.png" alt="自定义修改容器"></p>
+<h2 id="提交更改">提交更改</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker commit -m<span class="o">=</span><span class="s2">&#34;install pylint&#34;</span> -a<span class="o">=</span><span class="s2">&#34;chauncey&#34;</span> tf chauncey/tf 
+</span></span></code></pre></div><p>如上命令，将所有对容器的操作都保存至自定义镜像<code>chauncey/tf </code>中。</p>
+<h2 id="测试效果">测试效果</h2>
+<ol>
+<li>停止当前容器</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker stop tf
+</span></span></code></pre></div><ol start="2">
+<li>使用自定义镜像创建容器</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker run --gpus all -itd --name tf --rm -v ~/Project:/root/Project  chauncey/tf  
+</span></span></code></pre></div><ol start="3">
+<li>使用VS code远程连接，观察pip版本和pylint的安装情况。</li>
+</ol>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2020-01-02T08:11:37.png" alt="pip版本和pylint的安装情况"></p>
+<p>如上图，我们发现pip已经是最新的版本。而且细心小伙伴会发现，连接容器时以及没有了install Dev container的提示了，这说明我们的VS code也已经预设安装进了镜像。</p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/703_docker%E5%AE%B9%E5%99%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%AE%E6%94%B9%E5%B9%B6%E9%87%8D%E6%96%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F/）本文首发于
+                        <a href="https://example.org/post/703_docker%E5%AE%B9%E5%99%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%AE%E6%94%B9%E5%B9%B6%E9%87%8D%E6%96%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F/">指尖魔法屋-docker容器的自定义修改并重新构建镜像</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

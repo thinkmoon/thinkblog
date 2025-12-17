@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shell入门  | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="Shell">
+
+    
+    <meta property="og:title" content="Shell入门 ">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/318_shell%E5%85%A5%E9%97%A8/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/2019/7/maxresdefault.jpg">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>Shell入门 </h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-07-01">2019-07-01</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="https://example.org/tags/shell" class="tag">Shell</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <blockquote>
+<p>本文诞生原因：作为一个程序员，居然不会shell，说起来也尴尬。</p>
+</blockquote>
+<h2 id="基本格式">基本格式</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><h2 id="shell变量">Shell变量</h2>
+<ol>
+<li>
+<p>Shell变量定义不需要关键字，直接定义，不要加$。如<code>name = &quot;hello&quot;</code></p>
+</li>
+<li>
+<p>Shell变量使用的时候需要加$, 花括号为可选项，但是为了让程序可以分清边界，一般使用花括号。如<code>echo ${name}</code></p>
+</li>
+</ol>
+<h3 id="只读变量">只读变量</h3>
+<p>在前面加<code>readonly</code></p>
+<p>如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span><span class="s2">&#34;Hello&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">readonly</span> name
+</span></span></code></pre></div><h3 id="删除变量">删除变量</h3>
+<p>在前面加<code>unset</code></p>
+<p>变量被删除后不能再次使用。unset 命令不能删除只读变量。</p>
+<p>如：</p>
+<pre tabindex="0"><code>
+#!/bin/sh
+
+name=&#34;Hello&#34;
+
+unset name
+</code></pre><h2 id="shell获取输入">shell获取输入</h2>
+<p>read - 从标准输入读取数值，命令语法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">read: <span class="nb">read</span> <span class="o">[</span>-ers<span class="o">]</span> <span class="o">[</span>-a array<span class="o">]</span> <span class="o">[</span>-d delim<span class="o">]</span> <span class="o">[</span>-i text<span class="o">]</span> <span class="o">[</span>-n nchars<span class="o">]</span> <span class="o">[</span>-N nchars<span class="o">]</span> <span class="o">[</span>-p prompt<span class="o">]</span> <span class="o">[</span>-t timeout<span class="o">]</span> <span class="o">[</span>-u fd<span class="o">]</span> <span class="o">[</span>name ...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    从标准输入中读取一行。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    从标准输入中读取一行, 如果提供 -u 则从文件描述符FD中读取一行。该行数据与单词一样分隔, 第一个单词分给第一个变量，第二个分给第二个变量，依次类推，直至最后一个单词. 只有在<span class="nv">$IFS中找到的字符才会被识别为单词分隔符</span>。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    如果不提供变量，这一行的读取将被存在REPLY变量中。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    Options:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      -a 数组	将读取的单词分配给顺序数组，下标从零开始。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      -d delim	继续读取直到读取DELIM的第一个字符，而不是换行符.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      -e	use Readline to obtain the line in an interactive shell
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      -i text	use TEXT as the initial text <span class="k">for</span> Readline
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      -n nchars	<span class="k">return</span> after reading NCHARS characters rather than waiting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    		<span class="k">for</span> a newline, but honor a delimiter <span class="k">if</span> fewer than
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    		NCHARS characters are <span class="nb">read</span> before the delimiter
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      -N nchars	<span class="k">return</span> only after reading exactly NCHARS characters, unless
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    		EOF is encountered or <span class="nb">read</span> <span class="nb">times</span> out, ignoring any
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    		delimiter
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      -p prompt	output the string PROMPT without a trailing newline before
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    		attempting to <span class="nb">read</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      -r	<span class="k">do</span> not allow backslashes to escape any characters
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      -s	<span class="k">do</span> not <span class="nb">echo</span> input coming from a terminal
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      -t timeout	<span class="nb">time</span> out and <span class="k">return</span> failure <span class="k">if</span> a <span class="nb">complete</span> line of
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    		input is not <span class="nb">read</span> within TIMEOUT seconds.  The value of the
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    		TMOUT variable is the default timeout.  TIMEOUT may be a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    		fractional number.  If TIMEOUT is 0, <span class="nb">read</span> returns
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    		immediately, without trying to <span class="nb">read</span> any data, returning
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    		success only <span class="k">if</span> input is available on the specified
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    		file descriptor.  The <span class="nb">exit</span> status is greater than <span class="m">128</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    		<span class="k">if</span> the timeout is exceeded
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      -u fd	<span class="nb">read</span> from file descriptor FD instead of the standard input
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    Exit Status:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    The <span class="k">return</span> code is zero, unless end-of-file is encountered, <span class="nb">read</span> <span class="nb">times</span> out
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">(</span>in which <span class="k">case</span> it<span class="err">&#39;</span>s greater than 128<span class="o">)</span>, a variable assignment error occurs,
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    or an invalid file descriptor is supplied as the argument to -u.
+</span></span></code></pre></div><p>不翻译了，反正都是很简单的英语</p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/318_shell%E5%85%A5%E9%97%A8/）本文首发于
+                        <a href="https://example.org/post/318_shell%E5%85%A5%E9%97%A8/">指尖魔法屋-Shell入门 </a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

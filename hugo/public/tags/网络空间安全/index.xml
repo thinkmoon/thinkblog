@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>网络空间安全 on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8/</link>
+    <link>https://example.org/tags/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8/</link>
     <description>Recent content in 网络空间安全 on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Tue, 16 Jun 2020 13:38:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>局域网DNS欺骗的艺术</title>
-      <link>http://localhost:1313/345_%E5%B1%80%E5%9F%9F%E7%BD%91dns%E6%AC%BA%E9%AA%97%E7%9A%84%E8%89%BA%E6%9C%AF/</link>
+      <link>https://example.org/post/345_%E5%B1%80%E5%9F%9F%E7%BD%91dns%E6%AC%BA%E9%AA%97%E7%9A%84%E8%89%BA%E6%9C%AF/</link>
       <pubDate>Tue, 16 Jun 2020 13:38:00 +0000</pubDate>
-      <guid>http://localhost:1313/345_%E5%B1%80%E5%9F%9F%E7%BD%91dns%E6%AC%BA%E9%AA%97%E7%9A%84%E8%89%BA%E6%9C%AF/</guid>
+      <guid>https://example.org/post/345_%E5%B1%80%E5%9F%9F%E7%BD%91dns%E6%AC%BA%E9%AA%97%E7%9A%84%E8%89%BA%E6%9C%AF/</guid>
       <description>百度定义 DNS欺骗就是攻击者冒充域名服务器的一种欺骗行为。&#xA;百度原理 如果可以冒充域名服务器，然后把查询的IP地址设为攻击者的IP地址，这样的话，用户上网就只能看到攻击者的主页，而不是用户想要取得的网站的主页了，这就是DNS欺骗的基本原理。DNS欺骗其实并不是真的“黑掉”了对方的网站，而是冒名顶替、招摇撞骗罢了。&#xA;为什么会有DNS欺骗？ 其实DNS欺骗不能叫欺骗，为什么这么说，因为dns解析采取就近原则，意思是说谁能先帮我解析我就听谁的。给你解析一个假的ip就是欺骗。例如本来www.baidu.com 对应ip是202.16.25.78 ，你在本地架设一个dns服务器将www.baidu.com 解析为192.168.100.2 , 这不就等于骗了别人吗。【1】&#xA;如何防护DNS欺骗？ 360安全卫士号称可以，防护DNS欺骗&#xA;经实测：DNS防护并未防护成功，而局域网防护却可以找出攻击者IP，和伪装后的DNS服务器IP。但是却无法实际性的抵御DNS攻击。&#xA;被攻击后如何恢复？ 改host文件。&#xA;指定DNS服务器。&#xA;开代理&#xA;如何发起攻击？ 申明：以下目的只有一个就是学习技术，如果有人利用本文技术进行非法操作带来的后果都是操作者自己承担，和本文以及本文作者没有任何关系。&#xA;本文环境 win10 + vmware + kali-linux-2019-02&#xA;其实新一代的win10预览版升级的WSL2已经兼容了很多linux网络设备相关操作了，比如Nmap之类的。但是因为WSL的网络连接方式只有NAT模式，这样就不利于我测试了，所以我使用的是vmware虚拟机运行KALI，网络模式如下&#xA;1. 查看网络 ifconfig 由上图可以看到，有两个网络连接，一个eth0有线连接，一个lo无线设备。因为我装了外置网卡，所以虚拟机下有无线连接。&#xA;确保你已经连上你想要攻击的目标网络。&#xA;因为我使用的是有线连接，所以我接下来的操作都是在eth0上操作。&#xA;2. 修改DNS文件 vim /etc/ettercap/etter.dns 熟悉host文件的小伙伴一看就明白，这一条条都是DNS解析记录嘛。&#xA;我们在文件最后追加&#xA;* A 192.168.0.131 这句话的意思就是，将所有的域名都解析到IP地址为192.168.0.131的主机上。而这个是我的kali的本机ip。&#xA;3. 发起DNS欺骗 ettercap -Tq -i eth0 -M arp:remote -P dns_spoof /// /// 参数就不解释啦--help就都知道啦，我只讲思路。&#xA;如上图DNS欺骗就已经开始了。&#xA;4. 局域网断网攻击 因为上面我将所有的域名地址都解析到了，我的本机IP。而我本地却没有搭建任何web服务，这个时候如果用户访问网站都会出现如下图效果。&#xA;由于浏览器DNS缓存的问题，此方式可能短期内对近期访问过的网站不起作用。&#xA;5. 针对特定网站攻击 假如我对百度很有意见，我见不惯别人使用百度。&#xA;vim /etc/ettercap/etter.dns 那么我可以将dns文件修改为&#xA;*.baidu.com A 192.168.0.131 这样只要别人访问百度就会出现</description>
     </item>
   </channel>

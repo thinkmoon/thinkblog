@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>nestjs配置swagger教程 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="本文记录如何在nestjs框架下配置swagger。OpenAPI是一个与语言无关的RESTful API定义说明，Nest提供了一个专有的模块来利用装饰器生成类似声明。">
+    <meta name="keywords" content="typescript, nodejs, javascript">
+
+    
+    <meta property="og:title" content="nestjs配置swagger教程">
+    <meta property="og:description" content="本文记录如何在nestjs框架下配置swagger。OpenAPI是一个与语言无关的RESTful API定义说明，Nest提供了一个专有的模块来利用装饰器生成类似声明。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/2022-12-16/20-41-35">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>nestjs配置swagger教程</h1>
+
+                <div class="post-meta">
+                    <time datetime="2022-12-16">2022-12-16</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB">
+                            教程分享
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="https://example.org/tags/typescript" class="tag">typescript</a>
+                    
+                    <a href="https://example.org/tags/nodejs" class="tag">nodejs</a>
+                    
+                    <a href="https://example.org/tags/javascript" class="tag">javascript</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <blockquote>
+<p>本文记录如何在nestjs框架下配置swagger。OpenAPI是一个与语言无关的RESTful API定义说明，Nest提供了一个专有的模块来利用装饰器生成类似声明。</p>
+</blockquote>
+<h2 id="安装">安装</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install --save @nestjs/swagger swagger-ui-express
+</span></span></code></pre></div><h2 id="引导">引导</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">NestFactory</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;@nestjs/core&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">AppModule</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;./modules/app.module&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Logger</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;@nestjs/common&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">SwaggerModule</span><span class="p">,</span> <span class="nx">DocumentBuilder</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@nestjs/swagger&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">bootstrap() {</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">NestFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">AppModule</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DocumentBuilder</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">setTitle</span><span class="p">(</span><span class="s1">&#39;api-collect&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">setDescription</span><span class="p">(</span><span class="s1">&#39;API文档&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">setVersion</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">build</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nb">document</span> <span class="o">=</span> <span class="nx">SwaggerModule</span><span class="p">.</span><span class="nx">createDocument</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">SwaggerModule</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="nx">app</span><span class="p">,</span> <span class="nb">document</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">await</span> <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3001</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">bootstrap</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;启动成功&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><p>这里主要引入了两个模块，<code>SwaggerModule</code>和<code>DocumentBuilder</code>。其中<code>DocumentBuilder</code>建立一个遵循OpenAPI 标准的基础文档。它提供了不同的方法来配置类似标题、描述、版本等信息属性。</p>
+<p>（SwaggerModule#createDocument()方法返回)是一个遵循OpenAPI文档的序列化对象。除了HTTP，你也可以以JSON/YAML文件格式保存和使用它。</p>
+<blockquote>
+<p>SwaggerModule.setup(&lsquo;api&rsquo;, app, document);</p>
+</blockquote>
+<p>此行代码标记你的文档最终挂载的路径。</p>
+<h2 id="运行体验">运行体验</h2>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-12-16/20-41-35" alt="nestjs swagger"></p>
+<p>此时我们就可以看到熟悉的swagger界面啦。</p>
+<h2 id="类型和参数">类型和参数</h2>
+<p>如果我们想设置swagger对应的参数请求类型，那么也可以使用它的反射来创建响应模型。</p>
+<p>使用ts声明一个参数请求dto</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">ParamsDto</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">params?</span>: <span class="kt">string</span><span class="p">[];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="sb">```typescript
+</span></span></span><span class="line"><span class="cl"><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">接口上声明对应的入参
+</span></span></span><span class="line"><span class="cl"><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">```</span><span class="nx">typecript</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Body</span><span class="p">,</span> <span class="nx">Controller</span><span class="p">,</span> <span class="nx">Post</span><span class="p">,</span> <span class="nx">Query</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;@nestjs/common&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">SqlService</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;../service/sql.service&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">CodeDto</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;../entity/code.dto&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">ParamsDto</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;../entity/params.dto&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">PathDto</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;../entity/path.dto&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">@Controller</span><span class="p">(</span><span class="s2">&#34;api-collect&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">SqlController</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="kr">readonly</span> <span class="nx">sqlService</span>: <span class="kt">SqlService</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">@Post</span><span class="p">(</span><span class="s2">&#34;/execute-by-path&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">executeByPath</span><span class="p">(</span><span class="kd">@Query</span><span class="p">()</span> <span class="nx">pathDto</span>: <span class="kt">PathDto</span><span class="p">,</span> <span class="kd">@Body</span><span class="p">()</span> <span class="nx">paramsDto</span>: <span class="kt">ParamsDto</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">sqlService</span><span class="p">.</span><span class="nx">executeSqlByPath</span><span class="p">(</span><span class="nx">pathDto</span><span class="p">.</span><span class="nx">path</span><span class="p">,</span> <span class="nx">paramsDto</span><span class="p">.</span><span class="nx">params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">@Post</span><span class="p">(</span><span class="s2">&#34;/execute-by-code&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">executeByCode</span><span class="p">(</span><span class="kd">@Query</span><span class="p">()</span> <span class="nx">codeDto</span>: <span class="kt">CodeDto</span><span class="p">,</span> <span class="kd">@Body</span><span class="p">()</span> <span class="nx">paramsDto</span>: <span class="kt">ParamsDto</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">sqlService</span><span class="p">.</span><span class="nx">executeSqlByCode</span><span class="p">(</span><span class="nx">codeDto</span><span class="p">.</span><span class="nx">code</span><span class="p">,</span> <span class="nx">paramsDto</span><span class="p">.</span><span class="nx">params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>激活swagger ts类型扫描插件（Nestjs框架自带）</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-12-16/20-49-40" alt="swagger ts类型扫描"></p>
+<p>激活此插件后</p>
+<p>ts的枚举类型会作为swagger的入参枚举类型，可选变量也会生成对应的required字段</p>
+<p>插件会自动扫描[‘.dto.ts’, ‘.entity.ts’]后缀的类实体声明</p>
+<h2 id="效果预览">效果预览</h2>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-12-16/20-53-06" alt="Nest js swagger"></p>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-12-16/20-53-47" alt="Description"></p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/）本文首发于
+                        <a href="https://example.org/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/">指尖魔法屋-nestjs配置swagger教程</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>初探JavaFx | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    
+    <meta property="og:title" content="初探JavaFx">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/520_%E5%88%9D%E6%8E%A2javafx/">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>初探JavaFx</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-10-28">2019-10-28</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <h2 id="idea下开发javafx-application">IDEA下开发JavaFx Application</h2>
+<blockquote>
+<p>New &gt; project &gt; JavaFx Application</p>
+</blockquote>
+<h2 id="添加scenebuilder">添加SceneBuilder</h2>
+<blockquote>
+<ol>
+<li>下载SceneBuilder</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>file | setting &gt; JavaFx &gt; add path</li>
+</ol>
+</blockquote>
+<h2 id="设置自定义图标">设置自定义图标</h2>
+<blockquote>
+<p><code> primaryStage.getIcons().add(new Image(&quot;file:res/internet.png&quot;));</code></p>
+</blockquote>
+<h2 id="打包生成exe">打包生成exe</h2>
+<blockquote>
+<p>File | project structure &gt; Artifacts &gt; JavaFx &gt;(class | title | Navite Bundle)</p>
+</blockquote>
+<p>注意目录文件要能找到</p>
+<h2 id="事件绑定">事件绑定</h2>
+<p><code>fxml</code></p>
+<blockquote>
+<p><code>onAction add</code></p>
+</blockquote>
+<p><code>Java</code></p>
+<blockquote>
+<p>添加函数</p>
+</blockquote>
+<h2 id="fxid-对象属性修改">fx:id 对象属性修改</h2>
+<blockquote>
+<ol>
+<li>添加一个fxml成员变量</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>调用setText(&quot;&quot;);</li>
+</ol>
+</blockquote>
+<h2 id="我的代码">我的代码</h2>
+<p><code>MainApp.fxml</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?import javafx.geometry.Insets?&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?import javafx.scene.control.Button?&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?import javafx.scene.control.DialogPane?&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?import javafx.scene.control.Label?&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?import javafx.scene.control.TextArea?&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?import javafx.scene.control.TextField?&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?import javafx.scene.layout.FlowPane?&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?import javafx.scene.layout.Pane?&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?import javafx.scene.text.Font?&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;FlowPane</span> <span class="na">maxHeight=</span><span class="s">&#34;-Infinity&#34;</span> <span class="na">maxWidth=</span><span class="s">&#34;-Infinity&#34;</span> <span class="na">minHeight=</span><span class="s">&#34;-Infinity&#34;</span> <span class="na">minWidth=</span><span class="s">&#34;-Infinity&#34;</span> <span class="na">prefHeight=</span><span class="s">&#34;400.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;800.0&#34;</span> <span class="na">xmlns=</span><span class="s">&#34;http://javafx.com/javafx/8.0.121&#34;</span> <span class="na">xmlns:fx=</span><span class="s">&#34;http://javafx.com/fxml/1&#34;</span> <span class="na">fx:controller=</span><span class="s">&#34;cn.thinkmoon.CSMA_CD.MainApp&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;children&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Pane</span> <span class="na">prefHeight=</span><span class="s">&#34;400.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;800.0&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;children&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;Button</span> <span class="na">layoutX=</span><span class="s">&#34;154.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;206.0&#34;</span> <span class="na">mnemonicParsing=</span><span class="s">&#34;false&#34;</span> <span class="na">onAction=</span><span class="s">&#34;#handleSendDataPackage&#34;</span> <span class="na">text=</span><span class="s">&#34;发送数据包&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;font&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;Font</span> <span class="na">size=</span><span class="s">&#34;14.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/font&gt;&lt;/Button&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;Button</span> <span class="na">layoutX=</span><span class="s">&#34;283.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;206.0&#34;</span> <span class="na">mnemonicParsing=</span><span class="s">&#34;false&#34;</span> <span class="na">text=</span><span class="s">&#34;重置操作&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;font&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;Font</span> <span class="na">size=</span><span class="s">&#34;14.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/font&gt;&lt;/Button&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextArea</span> <span class="na">layoutX=</span><span class="s">&#34;500.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;51.0&#34;</span> <span class="na">prefHeight=</span><span class="s">&#34;299.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;277.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;Label</span> <span class="na">fx:id=</span><span class="s">&#34;host1SendNum&#34;</span> <span class="na">layoutX=</span><span class="s">&#34;43.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;70.0&#34;</span> <span class="na">text=</span><span class="s">&#34;主机1所需发送的数据包数：&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;font&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;Font</span> <span class="na">size=</span><span class="s">&#34;17.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/font&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/Label&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;Label</span> <span class="na">layoutX=</span><span class="s">&#34;43.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;130.0&#34;</span> <span class="na">text=</span><span class="s">&#34;主机2所需发送的数据包数：&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;font&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;Font</span> <span class="na">size=</span><span class="s">&#34;17.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/font&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/Label&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;Label</span> <span class="na">layoutX=</span><span class="s">&#34;52.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;291.0&#34;</span> <span class="na">text=</span><span class="s">&#34;主机1&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;font&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;Font</span> <span class="na">size=</span><span class="s">&#34;18.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/font&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/Label&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;Label</span> <span class="na">layoutX=</span><span class="s">&#34;410.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;291.0&#34;</span> <span class="na">text=</span><span class="s">&#34;主机2&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;font&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;Font</span> <span class="na">size=</span><span class="s">&#34;18.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/font&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/Label&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextField</span> <span class="na">layoutX=</span><span class="s">&#34;279.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;71.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextField</span> <span class="na">layoutX=</span><span class="s">&#34;279.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;130.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;Label</span> <span class="na">layoutX=</span><span class="s">&#34;292.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;14.0&#34;</span> <span class="na">text=</span><span class="s">&#34;模拟以太网发送过程&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;font&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;Font</span> <span class="na">size=</span><span class="s">&#34;17.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/font&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/Label&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;Label</span> <span class="na">layoutX=</span><span class="s">&#34;48.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;327.0&#34;</span> <span class="na">style=</span><span class="s">&#34;-fx-border-width: 1; -fx-border-color: #218ada;&#34;</span> <span class="na">styleClass=</span><span class="s">&#34;tip&#34;</span> <span class="na">text=</span><span class="s">&#34;信道空闲&#34;</span> <span class="na">textFill=</span><span class="s">&#34;#218ada&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;padding&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;Insets</span> <span class="na">bottom=</span><span class="s">&#34;2.0&#34;</span> <span class="na">left=</span><span class="s">&#34;2.0&#34;</span> <span class="na">right=</span><span class="s">&#34;2.0&#34;</span> <span class="na">top=</span><span class="s">&#34;1.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/padding&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/Label&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;Label</span> <span class="na">layoutX=</span><span class="s">&#34;406.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;327.0&#34;</span> <span class="na">style=</span><span class="s">&#34;-fx-border-width: 1; -fx-border-color: #218ada;&#34;</span> <span class="na">styleClass=</span><span class="s">&#34;tip&#34;</span> <span class="na">text=</span><span class="s">&#34;信道空闲&#34;</span> <span class="na">textFill=</span><span class="s">&#34;#218ada&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;padding&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;Insets</span> <span class="na">bottom=</span><span class="s">&#34;2.0&#34;</span> <span class="na">left=</span><span class="s">&#34;2.0&#34;</span> <span class="na">right=</span><span class="s">&#34;2.0&#34;</span> <span class="na">top=</span><span class="s">&#34;1.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/padding&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/Label&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextField</span> <span class="na">layoutX=</span><span class="s">&#34;114.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;292.0&#34;</span> <span class="na">prefHeight=</span><span class="s">&#34;23.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;19.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextField</span> <span class="na">layoutX=</span><span class="s">&#34;140.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;292.0&#34;</span> <span class="na">prefHeight=</span><span class="s">&#34;23.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;19.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextField</span> <span class="na">layoutX=</span><span class="s">&#34;170.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;292.0&#34;</span> <span class="na">prefHeight=</span><span class="s">&#34;23.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;19.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextField</span> <span class="na">layoutX=</span><span class="s">&#34;199.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;292.0&#34;</span> <span class="na">prefHeight=</span><span class="s">&#34;23.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;19.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextField</span> <span class="na">layoutX=</span><span class="s">&#34;226.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;292.0&#34;</span> <span class="na">prefHeight=</span><span class="s">&#34;23.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;19.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextField</span> <span class="na">layoutX=</span><span class="s">&#34;257.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;292.0&#34;</span> <span class="na">prefHeight=</span><span class="s">&#34;23.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;19.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextField</span> <span class="na">layoutX=</span><span class="s">&#34;283.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;292.0&#34;</span> <span class="na">prefHeight=</span><span class="s">&#34;23.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;19.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextField</span> <span class="na">layoutX=</span><span class="s">&#34;311.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;292.0&#34;</span> <span class="na">prefHeight=</span><span class="s">&#34;23.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;19.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextField</span> <span class="na">layoutX=</span><span class="s">&#34;340.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;292.0&#34;</span> <span class="na">prefHeight=</span><span class="s">&#34;23.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;19.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;TextField</span> <span class="na">layoutX=</span><span class="s">&#34;369.0&#34;</span> <span class="na">layoutY=</span><span class="s">&#34;292.0&#34;</span> <span class="na">prefHeight=</span><span class="s">&#34;23.0&#34;</span> <span class="na">prefWidth=</span><span class="s">&#34;19.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/children&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/Pane&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;DialogPane</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/children&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/FlowPane&gt;</span>
+</span></span></code></pre></div><p><code>MainApp.java</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">package</span><span class="w"> </span><span class="nn">cn.thinkmoon.CSMA_CD</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javafx.application.Application</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javafx.event.ActionEvent</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javafx.fxml.FXML</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javafx.fxml.FXMLLoader</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javafx.scene.Parent</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javafx.scene.Scene</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javafx.scene.control.Label</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javafx.scene.image.Image</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javafx.stage.Stage</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.IOException</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MainApp</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Application</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Stage</span><span class="w"> </span><span class="n">primaryStage</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@FXML</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Label</span><span class="w"> </span><span class="n">host1SendNum</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="n">Stage</span><span class="w"> </span><span class="n">primaryStage</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">primaryStage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">primaryStage</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">initRootLayout</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 初始化主界面布局
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initRootLayout</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Parent</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FXMLLoader</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">getClass</span><span class="p">().</span><span class="na">getResource</span><span class="p">(</span><span class="s">&#34;view/MainApp.fxml&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&#34;CSMA/CD协议仿真及演示&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">setScene</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Scene</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">800</span><span class="p">,</span><span class="w"> </span><span class="n">400</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">setResizable</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">getIcons</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Image</span><span class="p">(</span><span class="s">&#34;file:res/internet.png&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">show</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">launch</span><span class="p">(</span><span class="n">args</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@FXML</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">handleSendDataPackage</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div>
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/520_%E5%88%9D%E6%8E%A2javafx/）本文首发于
+                        <a href="https://example.org/post/520_%E5%88%9D%E6%8E%A2javafx/">指尖魔法屋-初探JavaFx</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

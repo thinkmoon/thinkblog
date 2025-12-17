@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>使用zsh让windows cmd变得性感又迷人 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="折腾">
+
+    
+    <meta property="og:title" content="使用zsh让windows cmd变得性感又迷人">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/229_%E4%BD%BF%E7%94%A8zsh%E8%AE%A9windows-cmd%E5%8F%98%E5%BE%97%E6%80%A7%E6%84%9F%E5%8F%88%E8%BF%B7%E4%BA%BA/">
+    
+    <meta property="og:image" content="https://www.thinkmoon.cn/usr/uploads/2019/03/3090454687.png">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>使用zsh让windows cmd变得性感又迷人</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-12-19">2019-12-19</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB">
+                            教程分享
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="https://example.org/tags/%E6%8A%98%E8%85%BE" class="tag">折腾</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <h2 id="引言">引言</h2>
+<blockquote>
+<p>首先看一张最终效果图</p>
+</blockquote>
+<p><img src="https://www.thinkmoon.cn/usr/uploads/2019/03/3090454687.png" alt="终端.PNG"></p>
+<h2 id="大致思路">大致思路</h2>
+<blockquote>
+<p>使用win10的linux子系统，安装zsh，默认切换zsh终端。（什么鬼，这和装虚拟机有什么不一样？放心，不一样的，慢慢看）</p>
+</blockquote>
+<h2 id="为什么要需要它">为什么要需要它？</h2>
+<ol>
+<li>
+<p>cmd太丑，cmder略慢，然后就是命令的不统一性。</p>
+</li>
+<li>
+<p>一个好看的终端可以让程序员变得开心又愉快。</p>
+</li>
+</ol>
+<blockquote>
+<p>如下</p>
+</blockquote>
+<p><img src="https://www.thinkmoon.cn/usr/uploads/2019/03/941670490.png" alt="截图.PNG"></p>
+<h2 id="准备工作">准备工作</h2>
+<ol>
+<li>
+<p>win10内部版本16215.0以上</p>
+</li>
+<li>
+<p>打开win10开发人员模式</p>
+</li>
+<li>
+<p>勾选控制面板&gt;程序&gt;启用windows功能&gt;linux子系统</p>
+</li>
+<li>
+<p>重启</p>
+</li>
+<li>
+<p>打开应用商店&gt;搜索linux, 选择你喜欢的linux发行版安装，我选的是ubuntu18.04，如果卸载了应用商店可以自行百度开启方式</p>
+</li>
+</ol>
+<p>&ndash; 至此：linux系统安装成功</p>
+<h2 id="在linux子系统中需要做的操作">在linux子系统中需要做的操作</h2>
+<h3 id="在开始栏运行ubuntu">在开始栏运行ubuntu</h3>
+<blockquote>
+<p>或者win+R，键入wsl运行。</p>
+</blockquote>
+<h3 id="安装zsh">安装zsh</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo apt-get install zsh
+</span></span></code></pre></div><h2 id="设置默认shell">设置默认shell</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">chsh -s /bin/zsh
+</span></span></code></pre></div><h3 id="安装oh-my-zsh">安装oh-my-zsh</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sh -c <span class="s2">&#34;</span><span class="k">$(</span>wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -<span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><h3 id="可选项修改主题">(可选项)修改主题</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nano ~/.zshrc
+</span></span></code></pre></div><blockquote>
+<p>我的修改如下</p>
+</blockquote>
+<p><img src="https://www.thinkmoon.cn/usr/uploads/2019/03/1635360079.png" alt="2019-03-12T07:02:46.png"></p>
+<h3 id="让bash每次打开自动执行zsh">让bash每次打开自动执行zsh</h3>
+<p>重新打开终端窗口，我们目前的效果是这样的。</p>
+<p><img src="https://www.thinkmoon.cn/usr/uploads/2019/03/1686441689.png" alt="ssh1.PNG"></p>
+<blockquote>
+<p>然后就会发现，这丫的，这怎么跟我的win10保持文件共享呢？</p>
+</blockquote>
+<h2 id="让linux子系统默认打开win10用户根目录">让linux子系统默认打开win10用户根目录</h2>
+<ol>
+<li>
+<p>首先找到<code>C\\windows\\system32\\wsl.exe</code>，复制到你的win10用户根目录。</p>
+</li>
+<li>
+<p>再为根目录的bash.exe创建快捷方式发送到桌面。</p>
+</li>
+<li>
+<p>运行</p>
+</li>
+</ol>
+<blockquote>
+<p>看，好神奇</p>
+</blockquote>
+<p><img src="https://www.thinkmoon.cn/usr/uploads/2019/03/1721161329.png" alt="2019-03-12T07:14:16.png"></p>
+<blockquote>
+<p>可是，，，难道每次我运行命令都要回到桌面启动？而且就不能像ubuntu那样ctrl + alt + T打开？</p>
+</blockquote>
+<h2 id="为适应win10的一些配置">为适应win10的一些配置</h2>
+<ol>
+<li>
+<p>右键点击桌面快捷方式，选择快捷键，同时按ctrl + alt + T设置快捷键。</p>
+</li>
+<li>
+<p>桌面右键&gt;选择查看&gt;取消勾选显示桌面图标</p>
+</li>
+</ol>
+<blockquote>
+<p>测试ctrl + alt + T，我可能是为数不多的秀win10桌面的程序员:) （好像还是没有linux的好看？）</p>
+</blockquote>
+<p><img src="https://www.thinkmoon.cn/usr/uploads/2019/03/360849061.png" alt="2019-03-12T07:23:44.png"></p>
+<blockquote>
+<p>在vs code里配置默认终端为wsl.exe。效果展示</p>
+</blockquote>
+<p><img src="https://www.thinkmoon.cn/usr/uploads/2019/03/813746774.png" alt="2019-03-12T07:27:41.png"></p>
+<h2 id="结束语">结束语</h2>
+<p>因为截图会变模糊，实际效果比这好看的多，嗯，又多了一个装逼的东西。</p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/229_%E4%BD%BF%E7%94%A8zsh%E8%AE%A9windows-cmd%E5%8F%98%E5%BE%97%E6%80%A7%E6%84%9F%E5%8F%88%E8%BF%B7%E4%BA%BA/）本文首发于
+                        <a href="https://example.org/post/229_%E4%BD%BF%E7%94%A8zsh%E8%AE%A9windows-cmd%E5%8F%98%E5%BE%97%E6%80%A7%E6%84%9F%E5%8F%88%E8%BF%B7%E4%BA%BA/">指尖魔法屋-使用zsh让windows cmd变得性感又迷人</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>

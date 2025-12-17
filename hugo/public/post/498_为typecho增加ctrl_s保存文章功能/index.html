@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>为typecho增加Ctrl&#43;S保存文章功能 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    
+    <meta property="og:title" content="为typecho增加Ctrl&#43;S保存文章功能">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/post/498_%E4%B8%BAtypecho%E5%A2%9E%E5%8A%A0ctrl_s%E4%BF%9D%E5%AD%98%E6%96%87%E7%AB%A0%E5%8A%9F%E8%83%BD/">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>为typecho增加Ctrl&#43;S保存文章功能</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-10-28">2019-10-28</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="https://example.org/categories/%E9%97%B2%E4%BD%99%E6%8A%98%E8%85%BE">
+                            闲余折腾
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <h2 id="前言">前言</h2>
+<p>本文使用jQuery修改typecho让其在文章编辑页内支持<code>CTRL + S</code>保存文章草稿，typecho的版本为1.2 (18.10.23).</p>
+<h2 id="为什么需要">为什么需要？</h2>
+<p>由于个人博客使用的typecho，在编辑文章的过程中经常习惯性的点击<code>CTRl + S</code>，然后就会非常不友好的提示了这个。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-10-28T06:59:58.png" alt="2019-10-28T06:59:58.png"></p>
+<p>这对追求优雅的本宅来说，简直无法容忍。难道我要因此弃用typecho?这也太夸张了。那就来发挥我modify的能力吧，毕竟闲余折腾是我的一大乐趣，而且自己动手，丰衣足食嘛！</p>
+<h2 id="心路历程">心路历程</h2>
+<ol>
+<li>
+<p>首先，我知道这个理论上绝对可行，因为我用过很多此类功能。</p>
+</li>
+<li>
+<p>经查阅资料，chrome的适配最好，当然我也没考虑别的浏览器，因为我眼中的浏览器只有两种，chrome和不是chrome。随便一提：不用chrome的程序员不是优雅的程序员。</p>
+</li>
+<li>
+<p>分析实现方法，大致分为两步，监听<code>ctrl+s</code>时间和模拟点击保存草稿按钮</p>
+</li>
+<li>
+<p>选型方面，由于typecho内置jquery，因此采用最快捷的办法</p>
+</li>
+</ol>
+<h2 id="实现过程">实现过程</h2>
+<h3 id="确认页面是否支持jquery">确认页面是否支持jQuery</h3>
+<p>为了避免重复引入，我们可在console中输入<code>$</code>，根据提示来确认是否已有jQuery</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-10-28T07:14:31.png" alt="确认是否已有jQuery"></p>
+<p>如图，则表示已有jQuery。</p>
+<h3 id="找到编辑文章的php页面">找到编辑文章的php页面</h3>
+<p>嗯，就是这个路径<code>typecho/admin/write-post.php</code></p>
+<h3 id="找个合适位置放script">找个合适位置放script</h3>
+<p>请在文件末尾插入一个script节点，以防止在jquery定义之前使用或者在<code>if</code>语句中未应用。</p>
+<h3 id="监听ctrl--s">监听<code>ctrl + S</code></h3>
+<p>在script节点中插入以下代码</p>
+<pre tabindex="0"><code>
+$(window).keydown(function(event) {
+
+        if (event.ctrlKey &amp;&amp; event.which == 83) {
+
+            alert(&#34;Ctrl+S pressed.&#34;);
+
+            return false;
+
+        } else {
+
+            return true;
+
+        }
+
+    });
+</code></pre><p>刷新编辑文章页，提示以下内容则监听成功。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-10-28T07:29:12.png" alt="好像暗黑背景有点看不清？"></p>
+<h2 id="模拟点击保存">模拟点击保存</h2>
+<p>通过源代码分析，我们可以发现，保存文章的按钮id为<code>btn-save</code>。现在我们修改代码里面的内容如下</p>
+<pre tabindex="0"><code>
+$(window).keydown(function(event) {
+
+        if (event.ctrlKey &amp;&amp; event.which == 83) {
+
+            $(&#34;#btn-save&#34;).click();
+
+            return false;
+
+        } else {
+
+            return true;
+
+        }
+
+    });
+</code></pre><h2 id="大功告成">大功告成</h2>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-10-28T07:33:26.png" alt="2019-10-28T07:33:26.png"></p>
+<h2 id="结语">结语</h2>
+<p>本文从技术层面上来说没什么亮点，这是我在尝试一种新的写作方式的练手篇。在原先只记录如何做的基础上，增加了了心路历程这一项，侧重于记录我在实际过程中一个想法到把它实现出来的整个过程，目的在于分享如何思考，从哪里开始，怎么实现的整个思维过程。大家且当抛砖引玉看看吧！</p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://www.cnblogs.com/freeweb/p/4797872.html">JavaScript或jQuery模拟点击超链接和按钮</a></p>
+<p><a href="https://blog.csdn.net/milaner337/article/details/49835555">javascript屏蔽Ctrl+s，F1，F3各浏览器兼容写法</a></p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （https://example.org/post/498_%E4%B8%BAtypecho%E5%A2%9E%E5%8A%A0ctrl_s%E4%BF%9D%E5%AD%98%E6%96%87%E7%AB%A0%E5%8A%9F%E8%83%BD/）本文首发于
+                        <a href="https://example.org/post/498_%E4%B8%BAtypecho%E5%A2%9E%E5%8A%A0ctrl_s%E4%BF%9D%E5%AD%98%E6%96%87%E7%AB%A0%E5%8A%9F%E8%83%BD/">指尖魔法屋-为typecho增加Ctrl&#43;S保存文章功能</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>
