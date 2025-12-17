@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tensorflow on 指尖魔法屋</title>
-    <link>https://blog.thinkmoon.cn/tags/tensorflow/</link>
+    <link>http://localhost:1313/tags/tensorflow/</link>
     <description>Recent content in Tensorflow on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Thu, 02 Jan 2020 15:46:08 +0000</lastBuildDate>
-    <atom:link href="https://blog.thinkmoon.cn/tags/tensorflow/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/tensorflow/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vscode无缝连接docker支持与主机文件同步</title>
-      <link>https://blog.thinkmoon.cn/post/692_vscode%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5docker%E6%94%AF%E6%8C%81%E4%B8%8E%E4%B8%BB%E6%9C%BA%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/</link>
+      <link>http://localhost:1313/post/692_vscode%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5docker%E6%94%AF%E6%8C%81%E4%B8%8E%E4%B8%BB%E6%9C%BA%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/</link>
       <pubDate>Thu, 02 Jan 2020 15:46:08 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/692_vscode%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5docker%E6%94%AF%E6%8C%81%E4%B8%8E%E4%B8%BB%E6%9C%BA%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/</guid>
+      <guid>http://localhost:1313/post/692_vscode%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5docker%E6%94%AF%E6%8C%81%E4%B8%8E%E4%B8%BB%E6%9C%BA%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/</guid>
       <description>为什么需要？ 我们在上一篇Ubuntu深度学习的相关配置中最后讲到，将工作目录下的文件装载到了容器之下，这样我们在主机中编写一个文件，如tf.py。在容器中执行，需要输入以下命令。&#xA;docker exec tf python &amp;#39;./tf.py&amp;#39; 这样每改一下文件，想要看效果的话，就需要输入以上命令。而且，还不方便调试。然后，我就在想能不能做到像我平常写代码那样，在VScode中，点一下就运行，而且可以调试呢？于是便有了本文。&#xA;准备工作 安装好VScode并且保证互联网连接正常。然后将工作目录装载到容器的/root/Project目录下，不然/tmp的文件实在是太乱七八糟了。 docker run --gpus all -itd --name tf --rm -v ~/Project:/root/Project tensorflow/tensorflow:latest-gpu-py3 操作流程 首先安装两个插件docker和Remote Development&#xA;上图中可以看到tensorflow的容器已经处于运行中了，然后再打开Remote Development&#xA;显示有一个容器待连接，然后选择它，打开容器中的Project文件夹&#xA;然后安装Python插件和调试工具，修改tf.py文件&#xA;import tensorflow as tf print(&amp;#34;hello tensorflow&amp;#34;) 点击右边的运行图标，成功输出。&#xA;打开主机文件&#xA;发现修改也已经同步，Over，现在可以愉快的写代码了。</description>
     </item>
   </channel>

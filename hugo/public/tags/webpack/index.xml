@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Webpack on 指尖魔法屋</title>
-    <link>https://blog.thinkmoon.cn/tags/webpack/</link>
+    <link>http://localhost:1313/tags/webpack/</link>
     <description>Recent content in Webpack on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Fri, 10 Jul 2020 09:12:17 +0000</lastBuildDate>
-    <atom:link href="https://blog.thinkmoon.cn/tags/webpack/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/webpack/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>微信小程序自定义tabBar在uni-app的适配</title>
-      <link>https://blog.thinkmoon.cn/post/375_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89tabbar%E5%9C%A8uni-app%E7%9A%84%E9%80%82%E9%85%8D/</link>
+      <link>http://localhost:1313/post/375_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89tabbar%E5%9C%A8uni-app%E7%9A%84%E9%80%82%E9%85%8D/</link>
       <pubDate>Fri, 10 Jul 2020 09:12:17 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/375_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89tabbar%E5%9C%A8uni-app%E7%9A%84%E9%80%82%E9%85%8D/</guid>
+      <guid>http://localhost:1313/post/375_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89tabbar%E5%9C%A8uni-app%E7%9A%84%E9%80%82%E9%85%8D/</guid>
       <description>引言：此方法可用作大部分微信小程序支持，但uni-app文档中却找不到相关说明的API&#xA;需求 需要在微信小程序中，实现一个中间图标突出显示的异形导航栏。&#xA;如下图 实现方法设计 要做这种异形的导航栏，用直接在配置文件里面写list的方法肯定做不到。那么，就有以下两种可替代方法。&#xA;在每一个页面都加载一个tabBar组件，与页面同时渲染。&#xA;设置自定义tabBar,修改tabBar的样式。&#xA;优缺点分析：方法1实现起来略为简单，但是会出现代码可重用率低，降低性能，已经界面跳动等问题。方法2则是微信官方提供的，自定义方式，相信在性能方面也会有很大的优势。故选择方法2。&#xA;1. 查看文档及官方Demo 官方文档&#xA;简要描述一下就是需要在根目录中加入一个custom-tab-bar目录，里面的文件结构与自定义组件的结构一致。然后再在小程序配置文件中修改tabbar为custom模式。&#xA;官方代码&#xA;主要重点为三个部分&#xA;配置文件 custom-tab-bar目录 页面生命周期中的设置索引方法 这段代码其实很容易理解，pageLifetimes就是监听组件所在页面的生命周期。上述代码就是监听页面显示。当页面显示后，获取到tabBar的对象，然后再设置tabBar中的index索引。&#xA;2. 迁移到uni-app框架 上面的方法是使用微信小程序的开发方式，而我使用的是uni-app框架开发微信小程序的。所以我们需要把它们移植到uni-app框架内。&#xA;配置文件的修改 uni-app中，page.json被编译为微信小程序的app.json。所以，我们直接修改page.json&#xA;custom-tab-bar目录的适配 我们知道，uni-app使用的是类Vue开发，将一个Vue文件编译为四个微信页面文件（wxml，wxss，json，js）。那么，是否可以直接写一个custom-tab-bar.vue的文件呢？刚开始我也是这么想的，后来发现uni-app只会编译page目录和component目录下的vue文件。而微信小程序要求custom-tab-bar必须在项目的根目录下。那么就只能在uni-app下创建一个custom-tab-bar目录，并老老实实写微信四件套了。&#xA;写完后，uni-app会将该目录完美的复制至微信小程序项目的根目录。&#xA;tab页面内的适配方法 这个在我实际开发中，是最令我头痛的了。因为微信小程序的this引用与uni-app的this引用并不相同。所以如果直接复制代码是会编译出错的。而另一个问题则是，uni-app并未提供pageLifetimes的事件监听。&#xA;在我经过一番摸索之后，发现将设置索引方法写在onShow事件里面，效果是等效的。接下来便只剩下this的问题了。&#xA;如果直接复制的话，会出现无任何效果的情况&#xA;因为uni-app的this引用不一样，所以它在判断getTabBar的时候，获取的是“undefined”所以不会执行下面的操作。如果你将判断去掉，则会直接报“undefined”错误。&#xA;难道实现不了？其实不然，万变不离其宗。uni-app也是编译到小程序的，所以绝对有迹可循。&#xA;我们首先看看uni-app里面this的内容。&#xA;我们可以很明显的看到里面有个$mp的对象，说明这应该是微信小程序专用的对象。接下来我们继续分析$mp。&#xA;这里面有一个隐藏很深的getTabBar方法，我们直接调用它，和在微信小程序里面调用this.getTabBar是等效的。&#xA;所以我们就可以把onShow里面的内容写成这样。&#xA;一些优雅点的封装 设置索引方法独立出来 在methods对象中，添加&#xA;setTabBarIndex(index){ if (typeof this.$mp.page.getTabBar === &amp;#39;function&amp;#39; &amp;amp;&amp;amp; this.$mp.page.getTabBar()) { this.$mp.page.getTabBar().setData({ selected:index }) } } 使用mixin避免重复书写复制 在main.js中，添加&#xA;Vue.mixin({ methods:{ setTabBarIndex(index){ if (typeof this.$mp.page.getTabBar === &amp;#39;function&amp;#39; &amp;amp;&amp;amp; this.$mp.page.getTabBar()) { this.$mp.page.getTabBar().setData({ selected:index }) } } } }) 混入后的使用 在页面文件中</description>
     </item>
     <item>
       <title>vue中使用typescript问题解决方案集锦</title>
-      <link>https://blog.thinkmoon.cn/post/876_vue%E4%B8%AD%E4%BD%BF%E7%94%A8typescript%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E9%9B%86%E9%94%A6/</link>
+      <link>http://localhost:1313/post/876_vue%E4%B8%AD%E4%BD%BF%E7%94%A8typescript%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E9%9B%86%E9%94%A6/</link>
       <pubDate>Tue, 23 Jun 2020 22:04:32 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/876_vue%E4%B8%AD%E4%BD%BF%E7%94%A8typescript%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E9%9B%86%E9%94%A6/</guid>
+      <guid>http://localhost:1313/post/876_vue%E4%B8%AD%E4%BD%BF%E7%94%A8typescript%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E9%9B%86%E9%94%A6/</guid>
       <description>本文环境 @vue/cli 4.3.1&#xA;typescript 3.9.5&#xA;相关配置文件 vue.config.js&#xA;tsconfig.json&#xA;shims-vue.d.ts&#xA;问题汇总 导入 vue 文件报错 错误信息：Cannot find module &amp;lsquo;./App.vue&amp;rsquo; or its corresponding type declarations&#xA;解决方案：修改shims-vue.d.ts&#xA;declare module &amp;#34;*.vue&amp;#34; { import Vue from &amp;#34;vue&amp;#34;; export default Vue; } Vscode 报错，编译不报错 解决方案：重启 Vscode&#xA;挂载原型$api 报错 解决方案：在src目录下新增vue-property.d.ts&#xA;import Vue from &amp;#39;vue&amp;#39; declare module &amp;#34;vue/types/vue&amp;#34; { interface Vue { $api: any; } } 无法使用@components别名 alias 路径 解决方案: 修改tsconfig.json&#xA;{ &amp;#34;compilerOptions&amp;#34;: { &amp;#34;target&amp;#34;: &amp;#34;esnext&amp;#34;, &amp;#34;module&amp;#34;: &amp;#34;esnext&amp;#34;, &amp;#34;strict&amp;#34;: true, &amp;#34;jsx&amp;#34;: &amp;#34;preserve&amp;#34;, &amp;#34;importHelpers&amp;#34;: true, &amp;#34;moduleResolution&amp;#34;: &amp;#34;node&amp;#34;, &amp;#34;experimentalDecorators&amp;#34;: true, &amp;#34;esModuleInterop&amp;#34;: true, &amp;#34;allowSyntheticDefaultImports&amp;#34;: true, &amp;#34;sourceMap&amp;#34;: true, &amp;#34;baseUrl&amp;#34;: &amp;#34;.</description>
     </item>
     <item>
       <title>uni-app编译时删除指定文件夹</title>
-      <link>https://blog.thinkmoon.cn/post/859_uni-app%E7%BC%96%E8%AF%91%E6%97%B6%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9/</link>
+      <link>http://localhost:1313/post/859_uni-app%E7%BC%96%E8%AF%91%E6%97%B6%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9/</link>
       <pubDate>Thu, 18 Jun 2020 11:25:31 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/859_uni-app%E7%BC%96%E8%AF%91%E6%97%B6%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9/</guid>
+      <guid>http://localhost:1313/post/859_uni-app%E7%BC%96%E8%AF%91%E6%97%B6%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9/</guid>
       <description>remove-files-webpack-plugin 原理就是在项目中添加一个webpack插件，然后配置插件&#xA;项目根目录新增vue.config.js&#xA;const path = require(&amp;#39;path&amp;#39;) const RemovePlugin = require(&amp;#39;remove-files-webpack-plugin&amp;#39;) module.exports = { configureWebpack: { plugins: [ new RemovePlugin({ after: { root: path.join(__dirname, &amp;#39;./unpackage&amp;#39;), include: [ path.join(__dirname, &amp;#39;unpackage/dist&amp;#39;, process.env.NODE_ENV === &amp;#39;production&amp;#39; ? &amp;#39;build&amp;#39; : &amp;#39;dev&amp;#39;, process.env .UNI_PLATFORM, &amp;#39;./mp-weixin/static/APPPIC&amp;#39;) ], trash: false } }) ] } } 部分webpack类似的webpack插件&#xA;copy-webpack-plugin&#xA;clean-webpack-plugin</description>
     </item>
   </channel>

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>软件分享 on 指尖魔法屋</title>
-    <link>https://blog.thinkmoon.cn/tags/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/</link>
+    <link>http://localhost:1313/tags/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/</link>
     <description>Recent content in 软件分享 on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Thu, 14 Nov 2019 19:21:14 +0000</lastBuildDate>
-    <atom:link href="https://blog.thinkmoon.cn/tags/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一些优秀的软件及网站推荐</title>
-      <link>https://blog.thinkmoon.cn/post/319_%E4%B8%80%E4%BA%9B%E4%BC%98%E7%A7%80%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8F%8A%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/</link>
+      <link>http://localhost:1313/post/319_%E4%B8%80%E4%BA%9B%E4%BC%98%E7%A7%80%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8F%8A%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/</link>
       <pubDate>Thu, 14 Nov 2019 19:21:14 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/319_%E4%B8%80%E4%BA%9B%E4%BC%98%E7%A7%80%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8F%8A%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/</guid>
+      <guid>http://localhost:1313/post/319_%E4%B8%80%E4%BA%9B%E4%BC%98%E7%A7%80%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8F%8A%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/</guid>
       <description> 分享一些个人常用的效率软件&#xA;navicat——功能强大的数据库连接软件 推荐理由：极具现代化又功能强大的数据库管理软件，远摔那些上古时代软件好几条街&#xA;frp——配置容易支持多方式(dns,ssh,http..)的内网穿透软件 推荐理由：配置只需几秒即可上线，而且支持多种协议，常备测试的好软件。不过需要自己有服务器，不过如果你没有的话。。。。那你还写什么代码？！&#xA;Xshell——优雅方便的远程ssh连接软件 推荐理由：Xshell自诩业界最强shh客户端，我觉得它一点也没有夸大，无论从美观还是功能性来看，它都能配上业界最强。&#xA;Xftp——同上，优雅的sftp连接软件 因为和xshell是一家，个人觉得也是个非常方便的软件。&#xA;360压缩——无广告的轻便的压缩软件 这个就不介绍了，除了给你右键加了很多菜单外（新版可以改成一个），应该是目前我用过的最舒服的压缩软件了。&#xA;typecho——轻量级的博客软件 别看官网极其简陋，但是性能确是极强，再给它换套皮肤，也是可以很好看的，我的博客就是typecho搭建的。&#xA;新媒体管家——全网平台文章同步软件(chrome插件) 看，一键全网发布，多爽&#xA;V2ray——隐藏身后的**软件（ws+tls+cdn) 这是个啥软件？我不知道。。。自行百度？&#xA;宝塔面板——小白都能轻松管理服务器的软件 AppNode——免费优雅的多服务器管理软件 WeGesture——windows下的一款鼠标手势快捷键 我一般用它来管理虚拟桌面，单显示器穷尽所能&#xA;小书匠——性感优雅的markdown编辑软件 VScode——好看且实用的代码编辑器 Hbuilderx——现在一般用来写微信小程序 用得最爽的代码提示，有种想我所知的感觉&#xA;光影魔术手 一个可以一键排版各种证件照的工具&#xA;ScreenToGif 录屏转gif&#xA;RaiDirver 挂载网盘变本地磁盘&#xA;附加一些常用网站&#xA;墨刀——原型图设计网站 稿定设计——海报设（piao）计（qie）软件 七牛云——国内优秀的内容存储平台 cloudFlare——保护并加速任何线上网站 justmysocks 3d66.com-破解软件集群 remove.bg——快速移除背景图片 </description>
     </item>
   </channel>

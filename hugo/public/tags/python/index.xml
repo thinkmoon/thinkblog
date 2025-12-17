@@ -2,116 +2,116 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on 指尖魔法屋</title>
-    <link>https://blog.thinkmoon.cn/tags/python/</link>
+    <link>http://localhost:1313/tags/python/</link>
     <description>Recent content in Python on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Tue, 16 Dec 2025 19:40:00 +0000</lastBuildDate>
-    <atom:link href="https://blog.thinkmoon.cn/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从零开始实现长语音转文本：从理论到实践</title>
-      <link>https://blog.thinkmoon.cn/post/990-%E4%BD%BF%E7%94%A8%E6%99%BA%E8%B0%B1api%E5%B0%86%E9%95%BF%E8%AF%AD%E9%9F%B3%E8%BD%AC%E6%96%87%E6%9C%AC/</link>
+      <link>http://localhost:1313/post/990-%E4%BD%BF%E7%94%A8%E6%99%BA%E8%B0%B1api%E5%B0%86%E9%95%BF%E8%AF%AD%E9%9F%B3%E8%BD%AC%E6%96%87%E6%9C%AC/</link>
       <pubDate>Tue, 16 Dec 2025 19:40:00 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/990-%E4%BD%BF%E7%94%A8%E6%99%BA%E8%B0%B1api%E5%B0%86%E9%95%BF%E8%AF%AD%E9%9F%B3%E8%BD%AC%E6%96%87%E6%9C%AC/</guid>
+      <guid>http://localhost:1313/post/990-%E4%BD%BF%E7%94%A8%E6%99%BA%E8%B0%B1api%E5%B0%86%E9%95%BF%E8%AF%AD%E9%9F%B3%E8%BD%AC%E6%96%87%E6%9C%AC/</guid>
       <description>智谱AI语音识别API在准确性和响应速度方面表现出色，但受限于单次请求最大30秒的音频长度限制。本文基于pyannote.audio的语音活动检测(VAD)技术，实现了智能音频分块策略：在语音段落间隙处精确切割，避免截断语义单元；通过批量异步调用API接口，实现对长音频文件的完整转写；最终拼接处理结果输出。从Conda环境配置到生产代码实现，提供完整的可复现解决方案。&#xA;一、长语音转文本的核心挑战 主要的挑战是目前的条件没有合适的API。正好智谱API有token和API，先拿来用了。但是智谱API只能支持25M以下以及30s以内的语音。所以我们需要语音文件先断句，再分块，接着调用智谱API，最后拼接成最终结果。&#xA;三、关键技术：实现智能音频分块 这是自建系统的核心技术，也是本实践的重点。目标是在静音处切分音频，避免截断单词。&#xA;3.1 核心思想 加载音频：读取长音频文件。 检测静音：遍历音频，识别出静音段（声音能量低于阈值）。 标记边界：以静音为边界，切分语音。 生成音频块：保存为独立的短音频文件。 添加保护垫：在切分点两边保留一小段音频作为缓冲，防止截断。 3.2 三种实现方案 方案 优点 缺点 推荐场景 pydub 极其简单，代码少 精度一般，噪音敏感 快速原型验证、干净录音 webrtcvad 精度高，轻量快速 API底层，代码复杂 对准确率有要求、生产环境 pyannote.audio 效果最好，功能强大（含说话人分离） 依赖重，资源消耗大 需要说话人分离、追求最佳效果 3.3 使用 pyannote.audio 进行分块（本实践选择） pyannote.audio 是一个基于 PyTorch 的开源神经语音工具包，效果最好，且能同时完成说话人分离。选型原则：条件允许范围内，选最好！&#xA;但是本实践没有进行说话人分离&#xA;四、完整实践：使用pyannote.audio切割并调用API转写 实现一个完整的流程：使用 pyannote.audio 切割音频，然后调用智谱AI的API进行转写。&#xA;4.1 环境准备 首先，为了避免系统环境冲突，强烈建议创建一个虚拟环境。&#xA;安装依赖 依赖文件&#xA;name: audio_env channels: - conda-forge - defaults - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/ dependencies: - _libgcc_mutex=0.1 - _openmp_mutex=5.1 - aom=3.9.1 - bzip2=1.</description>
     </item>
     <item>
       <title>探索 Python 的 Typing 库：增强代码健壮性</title>
-      <link>https://blog.thinkmoon.cn/post/988-%E6%8E%A2%E7%B4%A2-python-%E7%9A%84-typing-%E5%BA%93%E5%A2%9E%E5%BC%BA%E4%BB%A3%E7%A0%81%E5%81%A5%E5%A3%AE%E6%80%A7/</link>
+      <link>http://localhost:1313/post/988-%E6%8E%A2%E7%B4%A2-python-%E7%9A%84-typing-%E5%BA%93%E5%A2%9E%E5%BC%BA%E4%BB%A3%E7%A0%81%E5%81%A5%E5%A3%AE%E6%80%A7/</link>
       <pubDate>Mon, 29 Sep 2025 14:19:00 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/988-%E6%8E%A2%E7%B4%A2-python-%E7%9A%84-typing-%E5%BA%93%E5%A2%9E%E5%BC%BA%E4%BB%A3%E7%A0%81%E5%81%A5%E5%A3%AE%E6%80%A7/</guid>
+      <guid>http://localhost:1313/post/988-%E6%8E%A2%E7%B4%A2-python-%E7%9A%84-typing-%E5%BA%93%E5%A2%9E%E5%BC%BA%E4%BB%A3%E7%A0%81%E5%81%A5%E5%A3%AE%E6%80%A7/</guid>
       <description>探索 Python 的 Typing 库：增强代码健壮性 Python 的 typing 库自 Python 3.5 引入，为动态类型的 Python 带来了静态类型注解功能，使开发者能够编写更健壮、可维护的代码。本文将深入探讨 typing 模块的主要功能、优势以及实用示例。&#xA;为什么使用类型注解？ 类型注解通过明确声明变量、函数参数和返回值的预期类型，提升了代码的可读性、可维护性和可靠性。它们支持像 mypy 这样的静态类型检查工具，在运行前捕获潜在错误。此外，类型注解还能增强 IDE 对自动补全和重构的支持，提高开发效率。&#xA;开始使用 Typing 库 typing 模块提供了丰富的工具来定义类型注解。以下是一些常用功能的介绍。&#xA;基本类型注解 类型注解可用于变量、函数参数和返回值，语法简单直观。&#xA;from typing import List, Dict # 变量注解 name: str = &amp;#34;Alice&amp;#34; age: int = 30 # 带类型注解的函数 def greet(person: str) -&amp;gt; str: return f&amp;#34;你好，{person}！&amp;#34; 在此例中，name 声明为 str 类型，age 为 int 类型，greet 函数接受一个 str 参数并返回一个 str。使用 mypy 等静态类型检查工具可以确保类型使用正确。&#xA;集合类型的复杂注解 typing 模块支持对列表、字典和元组等集合类型的复杂注解。&#xA;from typing import List, Dict, Tuple # 整数列表 numbers: List[int] = [1, 2, 3, 4] # 字符串键和浮点值字典 scores: Dict[str, float] = {&amp;#34;Alice&amp;#34;: 95.</description>
     </item>
     <item>
       <title>Ta-Lib最轻松的安装方式</title>
-      <link>https://blog.thinkmoon.cn/post/986_ta-lib%E6%9C%80%E8%BD%BB%E6%9D%BE%E7%9A%84%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F/</link>
+      <link>http://localhost:1313/post/986_ta-lib%E6%9C%80%E8%BD%BB%E6%9D%BE%E7%9A%84%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F/</link>
       <pubDate>Tue, 15 Apr 2025 14:19:00 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/986_ta-lib%E6%9C%80%E8%BD%BB%E6%9D%BE%E7%9A%84%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F/</guid>
+      <guid>http://localhost:1313/post/986_ta-lib%E6%9C%80%E8%BD%BB%E6%9D%BE%E7%9A%84%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F/</guid>
       <description>Ta-Lib最轻松的安装方式 安装conda 初始化环境conda init 执行conda install -c conda-forge ta-lib </description>
     </item>
     <item>
       <title>在 Windows 下使用 Python virtualenv的教程</title>
-      <link>https://blog.thinkmoon.cn/post/982_%E5%9C%A8-windows-%E4%B8%8B%E4%BD%BF%E7%94%A8-python-virtualenv%E7%9A%84%E6%95%99%E7%A8%8B/</link>
+      <link>http://localhost:1313/post/982_%E5%9C%A8-windows-%E4%B8%8B%E4%BD%BF%E7%94%A8-python-virtualenv%E7%9A%84%E6%95%99%E7%A8%8B/</link>
       <pubDate>Fri, 07 Jun 2024 22:15:03 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/982_%E5%9C%A8-windows-%E4%B8%8B%E4%BD%BF%E7%94%A8-python-virtualenv%E7%9A%84%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/post/982_%E5%9C%A8-windows-%E4%B8%8B%E4%BD%BF%E7%94%A8-python-virtualenv%E7%9A%84%E6%95%99%E7%A8%8B/</guid>
       <description>在 Python 开发中，使用虚拟环境是一种常见的最佳实践。它可以帮助我们在同一台计算机上管理多个具有不同依赖关系的项目，避免依赖冲突和版本混乱。本文将介绍如何在 Windows 系统下使用 Python 的 virtualenv 工具创建和管理虚拟环境，并提供一些实用的技巧和建议。&#xA;什么是 virtualenv？ virtualenv 是一个用于创建隔离的 Python 环境的工具。它可以帮助你在同一台计算机上同时运行多个具有不同依赖关系的 Python 项目，而不会相互干扰。&#xA;安装 virtualenv 确保你已经安装了 Python。你可以从 Python 官方网站下载并安装适合你操作系统的版本。 打开命令提示符（CMD）或 PowerShell。 使用以下命令安装 virtualenv：&#xA;pip install virtualenv 创建虚拟环境并指定 Python 版本 在命令提示符或 PowerShell 中，导航到你想要创建虚拟环境的目录。 使用以下命令创建一个新的虚拟环境，并指定所需的 Python 版本：&#xA;virtualenv myenv --python=python3.8 在上述命令中，&amp;ndash;python=python3.8 指定了要使用的 Python 版本为 3.8。你可以根据需要将其替换为任何其他已安装的 Python 版本。&#xA;激活虚拟环境 创建虚拟环境后，你需要激活它才能在其中安装和使用包。 在命令提示符或 PowerShell 中，导航到虚拟环境的目录（在本例中为 myenv）。 输入以下命令激活虚拟环境： 对于 Windows CMD：&#xA;myenv\Scripts\activate.bat 对于 Windows PowerShell：&#xA;myenv\Scripts\Activate.ps1 激活虚拟环境后，你的命令提示符或 PowerShell 前缀将显示虚拟环境的名称，表明你现在正在虚拟环境中工作。&#xA;安装包 在激活的虚拟环境中，你可以使用 pip 安装所需的包。 例如，要安装 numpy 包，可以使用以下命令：</description>
     </item>
     <item>
       <title>Python venv：创建虚拟环境及生成 requirements.txt</title>
-      <link>https://blog.thinkmoon.cn/post/981_python-venv_%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%8F%8A%E7%94%9F%E6%88%90-requirements_txt/</link>
+      <link>http://localhost:1313/post/981_python-venv_%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%8F%8A%E7%94%9F%E6%88%90-requirements_txt/</link>
       <pubDate>Sun, 19 May 2024 18:29:53 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/981_python-venv_%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%8F%8A%E7%94%9F%E6%88%90-requirements_txt/</guid>
+      <guid>http://localhost:1313/post/981_python-venv_%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%8F%8A%E7%94%9F%E6%88%90-requirements_txt/</guid>
       <description>引言 在 Python 开发中，管理项目的依赖是一项重要的任务。为了避免不同项目之间的依赖冲突，我们通常会使用虚拟环境来隔离每个项目的依赖。Python 的 venv 模块就是一个用于创建虚拟环境的工具。在本文中，我们将介绍如何在 Windows 环境下使用 venv 模块创建虚拟环境，并生成 requirements.txt 文件来管理项目的依赖。&#xA;一、什么是 Python venv？ Python venv 是 Python 标准库中的一个模块，用于创建虚拟环境。虚拟环境是一个独立的 Python 运行环境，它包含了项目所需的 Python 解释器和所有依赖包。通过使用虚拟环境，我们可以在不同的项目中使用不同的依赖版本，从而避免依赖冲突。&#xA;二、如何创建 Python venv？ 在 Windows 环境下，我们可以使用以下命令创建 Python venv：&#xA;打开命令提示符（CMD）或 PowerShell。 进入项目目录。 运行以下命令创建虚拟环境： python -m venv venv 其中，venv 是虚拟环境的名称，你可以根据需要修改。&#xA;4. 激活虚拟环境： 在 CMD 中，运行以下命令激活虚拟环境：&#xA;venv\Scripts\activate 在 PowerShell 中，运行以下命令激活虚拟环境：&#xA;venv\Scripts\Activate.ps1 激活虚拟环境后，命令提示符或 PowerShell 前面会出现 (venv) 前缀，表示当前处于虚拟环境中。&#xA;三、如何安装依赖？ 在虚拟环境中，我们可以使用 pip 命令安装项目所需的依赖。例如，如果我们的项目需要安装 numpy 和 pandas 两个包，可以运行以下命令：&#xA;pip install numpy pandas 四、如何生成 requirements.</description>
     </item>
     <item>
       <title>在 Windows 系统中配置 pip 清华源</title>
-      <link>https://blog.thinkmoon.cn/post/980_%E5%9C%A8-windows-%E7%B3%BB%E7%BB%9F%E4%B8%AD%E9%85%8D%E7%BD%AE-pip-%E6%B8%85%E5%8D%8E%E6%BA%90/</link>
+      <link>http://localhost:1313/post/980_%E5%9C%A8-windows-%E7%B3%BB%E7%BB%9F%E4%B8%AD%E9%85%8D%E7%BD%AE-pip-%E6%B8%85%E5%8D%8E%E6%BA%90/</link>
       <pubDate>Wed, 15 May 2024 23:46:18 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/980_%E5%9C%A8-windows-%E7%B3%BB%E7%BB%9F%E4%B8%AD%E9%85%8D%E7%BD%AE-pip-%E6%B8%85%E5%8D%8E%E6%BA%90/</guid>
+      <guid>http://localhost:1313/post/980_%E5%9C%A8-windows-%E7%B3%BB%E7%BB%9F%E4%B8%AD%E9%85%8D%E7%BD%AE-pip-%E6%B8%85%E5%8D%8E%E6%BA%90/</guid>
       <description>在使用 Python 进行开发时，我们经常会用到 pip 来安装各种包。但有时默认的源下载速度可能较慢，这时候配置国内的镜像源就很有必要了。这里介绍如何在 Windows 系统中配置 pip 的清华源。&#xA;第一步：创建配置文件 在你的用户目录下（一般是 C:\Users\你的用户名），可以通过在资源管理器的地址栏输入 %appdata% 后回车快速打开 appdata 文件夹。创建一个名为 pip 的文件夹，然后在该文件夹内创建一个名为 pip.ini 的文件。&#xA;第二步：编辑配置文件 用文本编辑器打开 pip.ini 文件，在其中添加以下内容：&#xA;[global] index-url = https://pypi.tuna.tsinghua.edu.cn/simple 第三步：验证配置 打开命令提示符，输入 pip install 某个包，观察下载速度是否有所提升。如果配置成功，下载速度应该会比之前快很多。</description>
     </item>
     <item>
       <title>路由器openwrt安装python</title>
-      <link>https://blog.thinkmoon.cn/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/</link>
+      <link>http://localhost:1313/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/</link>
       <pubDate>Mon, 25 Dec 2023 21:10:14 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/</guid>
+      <guid>http://localhost:1313/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/</guid>
       <description>&#xA;使用u盘当路由器的系统盘，一不小心碰到它，路由器又挂了。决定把U盘作为挂载盘安装软件&#xA;挂载U盘 启用挂载的设备&#xA;opkg包配置安装目录 增加一个opkg安装路径&#xA;配置PATH路径 export PATH=$PATH:/mnt/sda/opkg/usr//bin echo &amp;#39;export PATH=$PATH:/mnt/sda/opkg/usr/bin&amp;#39; &amp;gt;&amp;gt; /etc/profile 指定路径安装okpg包 opkg update opkg -d usb install python3 opkg -d usb install python3-pip 请注意：-d usb为必需的，否则依旧会安装到根目录&#xA;打开对应目录可以看到，已经多了一个opkg目录&#xA;输出python3，测试是否安装成功&#xA;安装pip python -m pip install -U --force pip 安装python依赖 pip3 install requests 换国内源 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple 后记 现在换成挂载overlays了，直接在系统盘上面再套一层，避免u盘掉线后的系统启动不了的情况&#xA;参考文章 OPKG 软件包管理 </description>
     </item>
     <item>
       <title>Django启航篇</title>
-      <link>https://blog.thinkmoon.cn/post/269_django%E5%90%AF%E8%88%AA%E7%AF%87/</link>
+      <link>http://localhost:1313/post/269_django%E5%90%AF%E8%88%AA%E7%AF%87/</link>
       <pubDate>Tue, 30 Jun 2020 22:23:05 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/269_django%E5%90%AF%E8%88%AA%E7%AF%87/</guid>
+      <guid>http://localhost:1313/post/269_django%E5%90%AF%E8%88%AA%E7%AF%87/</guid>
       <description>安装pip3 sudo apt-get install python3-pip 安装Django sudo pip3 install django 验证安装 创建项目 django-admin startproject convert 运行 python3 manage.py runserver </description>
     </item>
     <item>
       <title>【leetcode】5. Longest Palindromic Substring最长回文子串</title>
-      <link>https://blog.thinkmoon.cn/post/730__leetcode_5_-longest-palindromic-substring%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</link>
+      <link>http://localhost:1313/post/730__leetcode_5_-longest-palindromic-substring%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</link>
       <pubDate>Thu, 06 Feb 2020 14:43:58 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/730__leetcode_5_-longest-palindromic-substring%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</guid>
+      <guid>http://localhost:1313/post/730__leetcode_5_-longest-palindromic-substring%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</guid>
       <description>解法1：中心拓展算法 思路 首先，我们知道回文串一定是对称的，所以我们可以选择一个对称中心，进行左右扩展，判断左右字符是否相等即可。&#xA;由于存在奇数的字符串和偶数的字符串，所以我们需要从一个字符开始扩展，或者从两个字符之间开始扩展，所以总共有 n+n-1 个中心。&#xA;实现代码 class Solution: def longestPalindrome(self, s: str) -&amp;gt; str: n = len(s) Max,sub = 0,s[0:1] for i in range(n): tmp = self.searchPalindrome(i-1,i+1,s) if len(tmp) &amp;gt; Max: Max = len(tmp) sub = tmp tmp = self.searchPalindrome(i-1,i,s) if len(tmp) &amp;gt; Max: Max = len(tmp) sub = tmp return sub def searchPalindrome(self, left: int, right: int, s: str) -&amp;gt; int: sub = &amp;#34;&amp;#34; while left != -1 and right !</description>
     </item>
     <item>
       <title>manacher（马拉车）算法讲解</title>
-      <link>https://blog.thinkmoon.cn/post/737_manacher_%E9%A9%AC%E6%8B%89%E8%BD%A6_%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3/</link>
+      <link>http://localhost:1313/post/737_manacher_%E9%A9%AC%E6%8B%89%E8%BD%A6_%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3/</link>
       <pubDate>Fri, 31 Jan 2020 19:11:29 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/737_manacher_%E9%A9%AC%E6%8B%89%E8%BD%A6_%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3/</guid>
+      <guid>http://localhost:1313/post/737_manacher_%E9%A9%AC%E6%8B%89%E8%BD%A6_%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3/</guid>
       <description></description>
     </item>
     <item>
       <title>【leetcode】4. Median of Two Sorted Arrays寻找两个有序数组的中位数</title>
-      <link>https://blog.thinkmoon.cn/post/726__leetcode_4_-median-of-two-sorted-arrays%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD/</link>
+      <link>http://localhost:1313/post/726__leetcode_4_-median-of-two-sorted-arrays%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD/</link>
       <pubDate>Wed, 22 Jan 2020 09:50:15 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/726__leetcode_4_-median-of-two-sorted-arrays%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD/</guid>
+      <guid>http://localhost:1313/post/726__leetcode_4_-median-of-two-sorted-arrays%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD/</guid>
       <description>我的初次实现 class Solution: def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -&amp;gt; float: newList = nums1 + nums2 newList.sort() result = 0 if(len(newList)%2 != 0) : result = newList[math.ceil(len(newList)/2-1)] else: index = int(len(newList)/2) result = (newList[index] + newList[index-1])/2 return result 成果 问题 但是我们仔细观察，可以发现这个的时间复杂度是不够的。</description>
     </item>
     <item>
       <title>【leetcode】2. Add Two Numbers两数相加</title>
-      <link>https://blog.thinkmoon.cn/post/714__leetcode_2_-add-two-numbers%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</link>
+      <link>http://localhost:1313/post/714__leetcode_2_-add-two-numbers%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</link>
       <pubDate>Thu, 16 Jan 2020 21:42:10 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/714__leetcode_2_-add-two-numbers%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</guid>
+      <guid>http://localhost:1313/post/714__leetcode_2_-add-two-numbers%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</guid>
       <description>描述 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。&#xA;如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。&#xA;您可以假设除了数字 0 之外，这两个数都不会以 0 开头。&#xA;示例：&#xA;输入：(2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4) 输出：7 -&amp;gt; 0 -&amp;gt; 8 原因：342 + 465 = 807 思路 我看到这个题的第一感觉就是用递归把数获取出来，然后再相加，之后再把得数结构化。问题就被细分为了两个方面：&#xA;加数的提取&#xA;得数的结构化&#xA;我的初次实现 class Solution: def getStr(self,node: ListNode) -&amp;gt; str: if node.next == None: return node.val else: last = self.getStr(node.next) return str(last) + str(node.val) def addTwoNumbers(self, l1: ListNode, l2: ListNode) -&amp;gt; ListNode: num1 = self.</description>
     </item>
     <item>
       <title>【leetcode】3. Longest Substring Without Repeating Characters无重复字符的最长子串</title>
-      <link>https://blog.thinkmoon.cn/post/721__leetcode_3_-longest-substring-without-repeating-c/</link>
+      <link>http://localhost:1313/post/721__leetcode_3_-longest-substring-without-repeating-c/</link>
       <pubDate>Thu, 16 Jan 2020 21:41:34 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/721__leetcode_3_-longest-substring-without-repeating-c/</guid>
+      <guid>http://localhost:1313/post/721__leetcode_3_-longest-substring-without-repeating-c/</guid>
       <description>思路 查找无重复的字符子串，然后滑动窗口&#xA;初次解 每次滑动一格窗口&#xA;class Solution: def isUnique(self, s: str) -&amp;gt; bool: for ch in s: if s.count(ch) &amp;gt; 1: return False else: continue return True def lengthOfLongestSubstring(self, s: str) -&amp;gt; int: i,j,Max=0,0,0 j+=1 while j &amp;lt;= len(s): if self.isUnique(s[i:j]): print(s[i:j],&amp;#34;is Unique&amp;#34;,i,j) Max=max(j-i,Max) j+=1 else: i+=1 return Max 成果 第一次优化 class Solution: def lengthOfLongestSubstring(self, s: str) -&amp;gt; int: if(len(s)==1): return 1 i,j,Max=0,0,0 while j &amp;lt;= len(s): st = s[i:j+1] if(j+1 &amp;lt; len(s)): index = st.</description>
     </item>
     <item>
       <title>pyenv——简单的python版本管理器</title>
-      <link>https://blog.thinkmoon.cn/post/96_pyenv__%E7%AE%80%E5%8D%95%E7%9A%84python%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/</link>
+      <link>http://localhost:1313/post/96_pyenv__%E7%AE%80%E5%8D%95%E7%9A%84python%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/</link>
       <pubDate>Tue, 03 Sep 2019 10:27:15 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/96_pyenv__%E7%AE%80%E5%8D%95%E7%9A%84python%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/</guid>
+      <guid>http://localhost:1313/post/96_pyenv__%E7%AE%80%E5%8D%95%E7%9A%84python%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/</guid>
       <description>简单的python版本管理器: pyenv pyenv可以让你轻松的在各版本的python环境中切换自如，它是一个简单而又不引人注目并遵循UNIX传统的专用工具。&#xA;这个项目是从rbenv和ruby-buildfork而来, 并且在配合Python的情况下做了适当的修改.&#xA;pyenv能做什么？ 让你在用户基础上改变全局Python版本.&#xA;支持为每一个项目设立一个Python版本.&#xA;允许您使用环境变量覆盖Python版本.&#xA;在多个python环境中搜索命令,这有助于在Python版本中进行测试 tox.&#xA;与pythonbrew和pythonz相比，pyenv不能做什么? 不依赖于Python本身。 pyenv是由纯shell脚本制作的。没有Python的引导问题。&#xA;**不需要加载到你的shell中。**相反，pyenv的shim方法的工作原理是在$ PATH中添加一个目录。&#xA;不能管理virtualenv 当然你可以自行创建virtualenv virtualenv或者使用pyenv-virtualenv去自动化构建&#xA;工作原理 在较高的层次上，pyenv使用shim拦截Python命令注入PATH的可执行文件, 确定哪个Python版本已由您的应用程序指定，并传递您的命令使用你想要的Python安装版本。&#xA;理解PATH(环境变量路径) 当你执行命令,如python或者pip, 你的操作系统会搜索目录列表以查找可执行文件的那个名字.此目录列表位于环境变量中称为PATH, 列表中的每个目录使用用冒号分隔.&#xA;PATH中的目录从左到右搜索，因此首先匹配在列表开头的目录中的可执行文件, 然后一次往右匹配。在这个例子中，首先搜索/usr/local/sbin目录，然后搜索/usr/local/bin，然后是/usr/sbin。&#xA;理解Shims(垫片) pyenv的工作原理是在你的PATH前面插入一个shims目录，这样一来系统在搜索Python的时候第一个找到的就是pyenv管理的Python环境。这个插到最前面的路径就叫做垫片（shims）&#xA;$(pyenv root)/shims:/usr/local/bin:/usr/bin:/bin 通过一个叫做为_rehashing_的进程, pyenv维护shims目录以匹配每个已安装版本的每个Python命令,比如python，pip等。&#xA;垫片是轻量级可执行文件，只是简单地传递命令到pyenv。所以只要安装了pyenv，当你运行时，比如说，pip，你的操作系统将执行以下操作：&#xA;在PATH中搜索名为pip的可执行文件&#xA;在PATH的开头找到名为pip的pyenv垫片&#xA;运行名为pip的垫片，然后将命令传递给属于pyenv的pip命令&#xA;选择Python版本 执行shims程序时，pyenv会确定要使用的Python版本,并按此以下资源顺序读取:&#xA;PYENV_VERSION环境变量（如果指定）. 你可以使用pyenv shell 去设置环境变量在你当前shell session.&#xA;当前特定于应用程序的.python-version文件目录（如果有）. 您可以使用 pyenv local修改当前目录.python-version文件.&#xA;通过搜索每个上层目录,找到第一个.python-version文件（如果有的话），直到到达文件系统的根目录&#xA;全局$(pyenv root)/version文件. 您可以使用pyenv global 修改这个文件. 如果是该全局文件不存在，pyenv假设您要使用“系统”Python。(换句话说，如果pyenv不在您的PATH中，那么任何版本都会运行.)&#xA;NOTE: 您可以同时激活多个版本，甚至包括Python2或Python3的任何版本. 这允许平行使用Python2和Python3，并且需要像tox这样的工具. 例如，要设置你的首次使用的系统Python和Python3的路径（在这个例子中设置为2.7.9和3.4.2），但也可以在你的PATH使用Python 3.3.6,3.2和2.5，首先是pyenv install缺少的版本，然后设置pyenv全局3.3.6 3.2 2.5.这时, 使用pyenv which应该能够找到每个可执行路径, 例如pyenv which python2.5（应该显示$（pyenv root/versions/2.5 /bin/python2.</description>
     </item>
     <item>
       <title>python3 &#43; Django &#43; uwsgi &#43; nginx 配置部署笔记</title>
-      <link>https://blog.thinkmoon.cn/post/11_python3-_-django-_-uwsgi-_-nginx-%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E7%AC%94%E8%AE%B0/</link>
+      <link>http://localhost:1313/post/11_python3-_-django-_-uwsgi-_-nginx-%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Wed, 16 Jan 2019 11:13:56 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/11_python3-_-django-_-uwsgi-_-nginx-%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E7%AC%94%E8%AE%B0/</guid>
+      <guid>http://localhost:1313/post/11_python3-_-django-_-uwsgi-_-nginx-%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E7%AC%94%E8%AE%B0/</guid>
       <description>本文环境&#xA;操作系统: Ubuntu 16.04.3&#xA;Python版本: 3.5.2&#xA;Django版本: 2.0.4&#xA;nginx版本: 1.10.3&#xA;本文平台为腾讯云1核1G系统&#xA;我的项目文件名为: dgutpsy&#xA;安装pip3(python3 的pip) sudo apt-get install python3-pip 安装成功后运行pip3将会出现&#xA;安装uwsgi pip install uwsgi 测试uwsgi运行状态 新建文件test.py&#xA;def application(env, start_response): start_response(&amp;#39;200 OK&amp;#39;, [(&amp;#39;Content-Type&amp;#39;,&amp;#39;text/html&amp;#39;)]) return [b&amp;#34;Hello World&amp;#34;] 有些教程说是 return &amp;quot;hello world&amp;quot;&#xA;但是这样其实会出现访问空白的情况, 我的是Python3的环境，需要对hello world进行编码.&#xA;而如果你是Python2的环境，你应该写return &amp;quot;hello world&amp;quot;&#xA;使用uwsgi运行该文件 uwsgi --http :8000 --wsgi-file test.py 此语句的意思是，使用uwsgi运行test.py文件， 采用http模式， 端口8000&#xA;访问页面 好啦,可以看到亲切的hello world 就说明uwsgi运行成功了&#xA;TIPS: 如果你访问不了,请先检查腾讯云安全组端口是否开放8000端口&#xA;安装Django pip3 install Django 如在python3里面import django没有报错则安装成功.&#xA;上传项目代码 现在我们开始上传项目代码&#xA;使用MobaXterm的sftp工具拖进来,[笑着哭]不要问我为什么不用ftp,这个方便.</description>
     </item>
   </channel>

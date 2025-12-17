@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>设计 on 指尖魔法屋</title>
-    <link>https://blog.thinkmoon.cn/tags/%E8%AE%BE%E8%AE%A1/</link>
+    <link>http://localhost:1313/tags/%E8%AE%BE%E8%AE%A1/</link>
     <description>Recent content in 设计 on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Sat, 14 Dec 2019 21:51:09 +0000</lastBuildDate>
-    <atom:link href="https://blog.thinkmoon.cn/tags/%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>旁门左道的个人设计准则</title>
-      <link>https://blog.thinkmoon.cn/post/214_%E6%97%81%E9%97%A8%E5%B7%A6%E9%81%93%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%BE%E8%AE%A1%E5%87%86%E5%88%99/</link>
+      <link>http://localhost:1313/post/214_%E6%97%81%E9%97%A8%E5%B7%A6%E9%81%93%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%BE%E8%AE%A1%E5%87%86%E5%88%99/</link>
       <pubDate>Sat, 14 Dec 2019 21:51:09 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/214_%E6%97%81%E9%97%A8%E5%B7%A6%E9%81%93%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%BE%E8%AE%A1%E5%87%86%E5%88%99/</guid>
+      <guid>http://localhost:1313/post/214_%E6%97%81%E9%97%A8%E5%B7%A6%E9%81%93%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%BE%E8%AE%A1%E5%87%86%E5%88%99/</guid>
       <description>能用组件的千万不要自己撸&#xA;选择图标一定要越轻越好&#xA;文字倘若不好看，那便无脑调小&#xA;还是不好看就换个字体&#xA;多抄一下别人的设计</description>
     </item>
   </channel>

@@ -2,67 +2,67 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Traffic-Network-Model on 指尖魔法屋</title>
-    <link>https://blog.thinkmoon.cn/tags/traffic-network-model/</link>
+    <link>http://localhost:1313/tags/traffic-network-model/</link>
     <description>Recent content in Traffic-Network-Model on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Fri, 22 Mar 2019 10:59:43 +0000</lastBuildDate>
-    <atom:link href="https://blog.thinkmoon.cn/tags/traffic-network-model/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/traffic-network-model/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>毕业设计对象类篇(一)交通灯类之路口状态</title>
-      <link>https://blog.thinkmoon.cn/post/197_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E5%AF%B9%E8%B1%A1%E7%B1%BB%E7%AF%87_%E4%B8%80_%E4%BA%A4%E9%80%9A%E7%81%AF%E7%B1%BB%E4%B9%8B%E8%B7%AF%E5%8F%A3%E7%8A%B6%E6%80%81/</link>
+      <link>http://localhost:1313/post/197_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E5%AF%B9%E8%B1%A1%E7%B1%BB%E7%AF%87_%E4%B8%80_%E4%BA%A4%E9%80%9A%E7%81%AF%E7%B1%BB%E4%B9%8B%E8%B7%AF%E5%8F%A3%E7%8A%B6%E6%80%81/</link>
       <pubDate>Fri, 22 Mar 2019 10:59:43 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/197_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E5%AF%B9%E8%B1%A1%E7%B1%BB%E7%AF%87_%E4%B8%80_%E4%BA%A4%E9%80%9A%E7%81%AF%E7%B1%BB%E4%B9%8B%E8%B7%AF%E5%8F%A3%E7%8A%B6%E6%80%81/</guid>
+      <guid>http://localhost:1313/post/197_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E5%AF%B9%E8%B1%A1%E7%B1%BB%E7%AF%87_%E4%B8%80_%E4%BA%A4%E9%80%9A%E7%81%AF%E7%B1%BB%E4%B9%8B%E8%B7%AF%E5%8F%A3%E7%8A%B6%E6%80%81/</guid>
       <description>所有的路口标号用int road[8]表示，&#xA;用bool status[8][8]表示道路可否通行。&#xA;T字路口 对于T字路口，将道路分为（左，右，下）三个流量出入口，存在的状态有：&#xA;0. 全红(特殊状态应对突发事故） for (int i = 0; i &amp;lt; 8; i++) { for (int j = 0; j &amp;lt; 8; j++) { status[i][j] = false; } } ×|0|1|2|3|4|5&#xA;:&amp;ndash;: | :&amp;ndash;: | :&amp;ndash;: | :&amp;ndash;: | :&amp;ndash;: | :&amp;ndash;: |&#xA;0|×|×|×|×|×|×&#xA;1|×|×|×|×|×|×&#xA;2|×|×|×|×|×|×&#xA;3|×|×|×|×|×|×&#xA;4|×|×|×|×|×|×&#xA;5|×|×|×|×|×|×&#xA;正常状态下考虑红灯可右转，同向变道不受交通灯控制，即永远可通行&#xA;status[2][1] = status[4][3] = true; status[0][1] = status[2][3] = status[4][5] = true; ×|0|1|2|3|4|5&#xA;:&amp;ndash;: | :&amp;ndash;: | :&amp;ndash;: | :&amp;ndash;: | :&amp;ndash;: | :&amp;ndash;: |</description>
     </item>
     <item>
       <title>毕业设计番外篇(一)之车辆路径的计算</title>
-      <link>https://blog.thinkmoon.cn/post/153_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E7%95%AA%E5%A4%96%E7%AF%87_%E4%B8%80_%E4%B9%8B%E8%BD%A6%E8%BE%86%E8%B7%AF%E5%BE%84%E7%9A%84%E8%AE%A1%E7%AE%97/</link>
+      <link>http://localhost:1313/post/153_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E7%95%AA%E5%A4%96%E7%AF%87_%E4%B8%80_%E4%B9%8B%E8%BD%A6%E8%BE%86%E8%B7%AF%E5%BE%84%E7%9A%84%E8%AE%A1%E7%AE%97/</link>
       <pubDate>Thu, 21 Mar 2019 15:38:04 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/153_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E7%95%AA%E5%A4%96%E7%AF%87_%E4%B8%80_%E4%B9%8B%E8%BD%A6%E8%BE%86%E8%B7%AF%E5%BE%84%E7%9A%84%E8%AE%A1%E7%AE%97/</guid>
+      <guid>http://localhost:1313/post/153_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E7%95%AA%E5%A4%96%E7%AF%87_%E4%B8%80_%E4%B9%8B%E8%BD%A6%E8%BE%86%E8%B7%AF%E5%BE%84%E7%9A%84%E8%AE%A1%E7%AE%97/</guid>
       <description>目前，我采用的是迪杰斯特拉算法计算所有点的最短路径（感觉弗洛伊德算法会更好些？）。迪杰斯特拉算法算的是单源（V_begin)到所有点的最短距离，也就是说需要遍历一次所有的点。&#xA;遍历V_begin for (int V_begin = 0; V_begin &amp;lt; G-&amp;gt;m_CrossRoad_v.size(); V_begin++) { } 下面是迪杰斯特拉算法的流程&#xA;1. 声明dist数组 vector&amp;lt;double&amp;gt; Determined_dist(G-&amp;gt;m_CrossRoad_v.size(), 0.0); 2. 初始化顶点集 void calcShortestPath(Graph *G) { int currentPointSite,nextPointSite; ofstream PointPathFile(DIR_RES&amp;#34;PointPath.txt&amp;#34;),RoadPathFile(DIR_RES&amp;#34;RoadPath.txt&amp;#34;); //对点进行的一级遍历 for (int V_begin = 0; V_begin &amp;lt; G-&amp;gt;m_CrossRoad_v.size(); V_begin++) { // =================== 迪杰斯特拉算法开始 =============================== vector&amp;lt;bool&amp;gt; S(G-&amp;gt;m_CrossRoad_v.size(), false); //判断是否选中 vector&amp;lt;double&amp;gt; dist(G-&amp;gt;m_CrossRoad_v.size(), DBL_MAX/2);// dist vector&amp;lt;double&amp;gt; compare_dist(G-&amp;gt;m_CrossRoad_v.size(), DBL_MAX/2);// 辅助dist用来取最短距离点 vector&amp;lt;int&amp;gt; path(G-&amp;gt;m_CrossRoad_v.size(),-2); // path S[V_begin] = true; path[V_begin] = -1; for(auto crossroad : G-&amp;gt;m_CrossRoad_v[V_begin].</description>
     </item>
     <item>
       <title>毕业设计思路篇(一)之交通图的构建</title>
-      <link>https://blog.thinkmoon.cn/post/70_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%B8%80_%E4%B9%8B%E4%BA%A4%E9%80%9A%E5%9B%BE%E7%9A%84%E6%9E%84%E5%BB%BA/</link>
+      <link>http://localhost:1313/post/70_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%B8%80_%E4%B9%8B%E4%BA%A4%E9%80%9A%E5%9B%BE%E7%9A%84%E6%9E%84%E5%BB%BA/</link>
       <pubDate>Sun, 17 Feb 2019 23:22:33 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/70_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%B8%80_%E4%B9%8B%E4%BA%A4%E9%80%9A%E5%9B%BE%E7%9A%84%E6%9E%84%E5%BB%BA/</guid>
+      <guid>http://localhost:1313/post/70_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%B8%80_%E4%B9%8B%E4%BA%A4%E9%80%9A%E5%9B%BE%E7%9A%84%E6%9E%84%E5%BB%BA/</guid>
       <description>1. 导入道路地图 道路地图来自网络数据,已预处理为xml格式。&#xA;&amp;lt;?xml version=&amp;#39;1.0&amp;#39; encoding=&amp;#39;UTF-8&amp;#39;?&amp;gt; &amp;lt;Roads&amp;gt; &amp;lt;road m_ID=&amp;#34;71283896--1&amp;#34; len=&amp;#34;620.98&amp;#34;&amp;gt; &amp;lt;from lon=&amp;#34;113.9205606&amp;#34; lat=&amp;#34;22.9317667&amp;#34; id=&amp;#34;848388981&amp;#34;/&amp;gt; &amp;lt;to lon=&amp;#34;113.9260573&amp;#34; lat=&amp;#34;22.9341232&amp;#34; id=&amp;#34;2522072722&amp;#34;/&amp;gt; &amp;lt;/road&amp;gt; &amp;lt;road m_ID=&amp;#34;553852656--2&amp;#34; len=&amp;#34;322.34&amp;#34;&amp;gt; &amp;lt;from lon=&amp;#34;113.9529339&amp;#34; lat=&amp;#34;22.9448978&amp;#34; id=&amp;#34;5345735265&amp;#34;/&amp;gt; &amp;lt;to lon=&amp;#34;113.9516926&amp;#34; lat=&amp;#34;22.9475618&amp;#34; id=&amp;#34;5345735267&amp;#34;/&amp;gt; &amp;lt;/road&amp;gt; &amp;lt;/Roads&amp;gt; 解析：一个road节点代表一条道路，len代表道路抽象长度，from，to子节点分别表示道路两端端点。&#xA;2. 解析道路数据 a. 构建交通图 赋值道路端点.&#xA;/** * 路口类，记录着该路口的点坐标，以及其相连的方向道路节点组 * | | * | | | * | 1 2 | * | | | * -------- -------- * 3 5 * - - - - - - - - * 4 6 * -------- -------- * | | | * | 7 8 | * | | | * | | * 如上图(1,2), (3,4), (5,6), (7,8)在同一个方向,我将其称为四组方向道路节点Node.</description>
     </item>
     <item>
       <title>毕业设计思路篇(四)之生成车辆</title>
-      <link>https://blog.thinkmoon.cn/post/140_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E5%9B%9B_%E4%B9%8B%E7%94%9F%E6%88%90%E8%BD%A6%E8%BE%86/</link>
+      <link>http://localhost:1313/post/140_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E5%9B%9B_%E4%B9%8B%E7%94%9F%E6%88%90%E8%BD%A6%E8%BE%86/</link>
       <pubDate>Sun, 17 Feb 2019 15:38:47 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/140_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E5%9B%9B_%E4%B9%8B%E7%94%9F%E6%88%90%E8%BD%A6%E8%BE%86/</guid>
+      <guid>http://localhost:1313/post/140_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E5%9B%9B_%E4%B9%8B%E7%94%9F%E6%88%90%E8%BD%A6%E8%BE%86/</guid>
       <description> generateVehicle(Map_Graph); 1. 随机车辆总数 此处未随机，待完善 std::random_device rd; std::mt19937 mt(rd()); 2. 遍历车辆，为车辆设立起点和路线 a. 在道路向量中随机选一条路径 -[ ] 此处未随机，待完善&#xA;auto route = v_Route[3]; b. 以该路径的首序列为起点 Vehicle car(n_VehicleNum, route, 0, 0, route.front()); G.m_Road_v[route.front()].m_queVehicle.push_back(car); </description>
     </item>
     <item>
       <title>毕业设计汇总篇</title>
-      <link>https://blog.thinkmoon.cn/post/113_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%B1%87%E6%80%BB%E7%AF%87/</link>
+      <link>http://localhost:1313/post/113_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%B1%87%E6%80%BB%E7%AF%87/</link>
       <pubDate>Tue, 12 Feb 2019 20:45:28 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/113_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%B1%87%E6%80%BB%E7%AF%87/</guid>
+      <guid>http://localhost:1313/post/113_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%B1%87%E6%80%BB%E7%AF%87/</guid>
       <description>&#xA;思路篇 思路篇主要记录程序流程思路&#xA;毕业设计思路篇(一)之道路数据的抽象 毕业设计思路篇(二)之交通灯的初始化 毕业设计思路篇(三)之预加载车辆路线 毕业设计思路篇(四)之生成车辆 毕业设计思路篇(五)之交通流量模拟 番外篇 番外篇主要记录非主要流程（即并非每次运行都会执行的模块，比如预处理等）。每个模块可单独修改或维护，而不影响主流程。&#xA;毕业设计番外篇(一)之车辆路径的构建 </description>
     </item>
     <item>
       <title>毕业设计思路篇(五)之交通流量模拟</title>
-      <link>https://blog.thinkmoon.cn/post/145_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%BA%94_%E4%B9%8B%E4%BA%A4%E9%80%9A%E6%B5%81%E9%87%8F%E6%A8%A1%E6%8B%9F/</link>
+      <link>http://localhost:1313/post/145_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%BA%94_%E4%B9%8B%E4%BA%A4%E9%80%9A%E6%B5%81%E9%87%8F%E6%A8%A1%E6%8B%9F/</link>
       <pubDate>Mon, 11 Feb 2019 22:11:44 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/145_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%BA%94_%E4%B9%8B%E4%BA%A4%E9%80%9A%E6%B5%81%E9%87%8F%E6%A8%A1%E6%8B%9F/</guid>
+      <guid>http://localhost:1313/post/145_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%BA%94_%E4%B9%8B%E4%BA%A4%E9%80%9A%E6%B5%81%E9%87%8F%E6%A8%A1%E6%8B%9F/</guid>
       <description>runSimulation(Graph &amp;amp;G) 1. 遍历每条道路 2. 遍历该道路的车辆 a. 计算特定时间间隔后的位置 b. 若应行驶至其他道路 进入对应的路口缓冲区，根据路口类的红绿灯对象判断是否能通行。&#xA;若能通行，则填至目标道路&#xA;若不能，则继续停留在路口缓冲区&#xA;c. 若仍停留在原道路 改变该车在当前道路的位置。&#xA;for (auto &amp;amp;road:G.m_Road_v) { auto src = road.m_queVehicle; decltype(road.m_queVehicle) obj; //路内车的遍历 while (!src.empty()) { //弹出一辆车 auto it = src.front(); src.pop_front(); // 当车的时间戳小于实际时间时，才模拟运行 if (it.time &amp;lt; SYSTEM_TIME) { it.fSpec = (100 - road.get_Congestion() - 20) / 3.6; dist = it.dDistance + it.fSpec * 10; it.time++; it.showself(); //如果车十秒后不在此路 if (dist &amp;gt;= road.m_dLength) { //路径擦除 auto route = it.</description>
     </item>
     <item>
       <title>毕业设计思路篇(三)之预加载车辆路线</title>
-      <link>https://blog.thinkmoon.cn/post/129_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%B8%89_%E4%B9%8B%E9%A2%84%E5%8A%A0%E8%BD%BD%E8%BD%A6%E8%BE%86%E8%B7%AF%E7%BA%BF/</link>
+      <link>http://localhost:1313/post/129_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%B8%89_%E4%B9%8B%E9%A2%84%E5%8A%A0%E8%BD%BD%E8%BD%A6%E8%BE%86%E8%B7%AF%E7%BA%BF/</link>
       <pubDate>Sat, 09 Feb 2019 18:47:51 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/129_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%B8%89_%E4%B9%8B%E9%A2%84%E5%8A%A0%E8%BD%BD%E8%BD%A6%E8%BE%86%E8%B7%AF%E7%BA%BF/</guid>
+      <guid>http://localhost:1313/post/129_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%B8%89_%E4%B9%8B%E9%A2%84%E5%8A%A0%E8%BD%BD%E8%BD%A6%E8%BE%86%E8%B7%AF%E7%BA%BF/</guid>
       <description>1. 从文件(route.txt)中读取路径 形如以下格式&#xA;0 1 0 1 2 0 1 2 3 0 1 2 3 4 0 1 2 3 4 5 0 1 2 3 4 5 6 0 1 2 3 4 5 6 7 其中，一行表示一条可完全畅通的道路编号序列。将所有道路存入v_Route&#xA;vector&amp;lt;queue&amp;lt;int&amp;gt;&amp;gt; v_Route; /** * load route from route file * @param Map_graph */ void loadRoute(Graph &amp;amp;Map_graph) { string str_Path; ifstream fin_Route(DIR_RES&amp;#34;route.txt&amp;#34;); while (getline(fin_Route, str_Path)) { stringstream ss_Temp(str_Path); queue&amp;lt;int&amp;gt; q_Path_Temp; int n_Temp; while (ss_Temp &amp;gt;&amp;gt; n_Temp) { q_Path_Temp.</description>
     </item>
     <item>
       <title>毕业设计思路篇(二)之交通灯的初始化</title>
-      <link>https://blog.thinkmoon.cn/post/121_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%BA%8C_%E4%B9%8B%E4%BA%A4%E9%80%9A%E7%81%AF%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
+      <link>http://localhost:1313/post/121_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%BA%8C_%E4%B9%8B%E4%BA%A4%E9%80%9A%E7%81%AF%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
       <pubDate>Sat, 26 Jan 2019 17:36:41 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/121_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%BA%8C_%E4%B9%8B%E4%BA%A4%E9%80%9A%E7%81%AF%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
+      <guid>http://localhost:1313/post/121_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%BA%8C_%E4%B9%8B%E4%BA%A4%E9%80%9A%E7%81%AF%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
       <description>道路类型的设置 it-&amp;gt;m_CTrafficLight_Light.setType(it-&amp;gt;JunctionRoad.size()); 根据路口道路条数, 设置路灯类型(是T字路口还是+字路口)&#xA;/** * 交通灯类 */ class TrafficLight { public: TrafficLight() { for (int i = 0; i &amp;lt; 8; i++) { roadID[i] = -1; } }; void changeStatus(); void clock(int time); void setAllRed(); void setAllGreen(); bool getStatus(int from, int to); /** * 设置灯的类型, 是T字路口还是+字路口 * @param type */ void setType(int type) { this-&amp;gt;type = type; }; //路口标号 // nLeftIn,nLeftOut,nDownIn,nDownOut,nRightIn,nRightOut,nUpIn,nUpOut; int roadID[8]; //路口是否能走通 bool status[4][4] = {false}; int type; //表示可通过的方向（目标方向） //AllRED = 0,LeftGreen = 1,DownGreen = 2,RightGreen = 3,UpGreen = 4,UpDownGreen = 5,LeftRightGreen = 6,cross1 = 7,cross2 = 8 int emStatus = 0; long long int time = 0; }; 对接各路口</description>
     </item>
   </channel>

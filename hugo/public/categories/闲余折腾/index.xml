@@ -2,151 +2,151 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>闲余折腾 on 指尖魔法屋</title>
-    <link>https://blog.thinkmoon.cn/categories/%E9%97%B2%E4%BD%99%E6%8A%98%E8%85%BE/</link>
+    <link>http://localhost:1313/categories/%E9%97%B2%E4%BD%99%E6%8A%98%E8%85%BE/</link>
     <description>Recent content in 闲余折腾 on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Mon, 25 Dec 2023 21:10:14 +0000</lastBuildDate>
-    <atom:link href="https://blog.thinkmoon.cn/categories/%E9%97%B2%E4%BD%99%E6%8A%98%E8%85%BE/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/%E9%97%B2%E4%BD%99%E6%8A%98%E8%85%BE/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>路由器openwrt安装python</title>
-      <link>https://blog.thinkmoon.cn/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/</link>
+      <link>http://localhost:1313/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/</link>
       <pubDate>Mon, 25 Dec 2023 21:10:14 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/</guid>
+      <guid>http://localhost:1313/post/979_%E8%B7%AF%E7%94%B1%E5%99%A8openwrt%E5%AE%89%E8%A3%85python/</guid>
       <description>&#xA;使用u盘当路由器的系统盘，一不小心碰到它，路由器又挂了。决定把U盘作为挂载盘安装软件&#xA;挂载U盘 启用挂载的设备&#xA;opkg包配置安装目录 增加一个opkg安装路径&#xA;配置PATH路径 export PATH=$PATH:/mnt/sda/opkg/usr//bin echo &amp;#39;export PATH=$PATH:/mnt/sda/opkg/usr/bin&amp;#39; &amp;gt;&amp;gt; /etc/profile 指定路径安装okpg包 opkg update opkg -d usb install python3 opkg -d usb install python3-pip 请注意：-d usb为必需的，否则依旧会安装到根目录&#xA;打开对应目录可以看到，已经多了一个opkg目录&#xA;输出python3，测试是否安装成功&#xA;安装pip python -m pip install -U --force pip 安装python依赖 pip3 install requests 换国内源 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple 后记 现在换成挂载overlays了，直接在系统盘上面再套一层，避免u盘掉线后的系统启动不了的情况&#xA;参考文章 OPKG 软件包管理 </description>
     </item>
     <item>
       <title>在Colab上运行DeepfaceLab训练模型</title>
-      <link>https://blog.thinkmoon.cn/post/949_%E5%9C%A8colab%E4%B8%8A%E8%BF%90%E8%A1%8Cdeepfacelab%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/</link>
+      <link>http://localhost:1313/post/949_%E5%9C%A8colab%E4%B8%8A%E8%BF%90%E8%A1%8Cdeepfacelab%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/</link>
       <pubDate>Tue, 14 Jun 2022 23:59:41 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/949_%E5%9C%A8colab%E4%B8%8A%E8%BF%90%E8%A1%8Cdeepfacelab%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/</guid>
+      <guid>http://localhost:1313/post/949_%E5%9C%A8colab%E4%B8%8A%E8%BF%90%E8%A1%8Cdeepfacelab%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/</guid>
       <description>环境 Colab：https://colab.research.google.com/ 利用开源的DeepFaceLab_Colab 地址DeepFaceLab_Colab&#xA;打开最新版本V5 DeepFaceLab_Colab_V5.ipynb&#xA;操作步骤 1. 挂载谷歌云盘 运行第一步挂载云盘命令，会弹出谷歌云盘授权窗口，点击允许。&#xA;2. 初始化项目 该命令会在你的谷歌云盘上创建一个DeepFaceLab的文件夹，如果你使用的tensorflow 1还会安装cuda 10&#xA;3. 准备素材 该命令会从demo仓库下载一份示例数据。同时你可以指定上传文件，覆盖对应的素材。&#xA;4. 安装软件 我这里安装的是最新版本，静候安装完成。&#xA;然后我第一次安装失败了。莫慌，这里只需要重新点一下“重启运行时”重新运行即可。&#xA;重启时这里会发生变化&#xA;重新执行初始化项目,安装软件这两个命令操作&#xA;提取源面部和目标面部 开始训练 注意事项 colab上面使用的是linux平台，linux平台拥有更好的合成效果&#xA;训练时，可以直接在谷歌云盘workspace/model中查看最新的训练预览效果。&#xA;如果挂载的云盘上面已经安装了deepface的时候，可以修改初始化代码，如下：&#xA;一键训练&#xA;! /opt/bin/nvidia-smi from google.colab import drive drive.mount(&amp;#39;/content/drive&amp;#39;) import os root = &amp;#34;/content/drive/MyDrive/&amp;#34; #@param {type:&amp;#34;string&amp;#34;} %cd $root deepfacelab=os.path.join(root,&amp;#34;DeepFaceLab&amp;#34;) workspace=os.path.join(deepfacelab,&amp;#34;workspace&amp;#34;) deepfacelab_cloab=os.path.join(deepfacelab,&amp;#34;DeepFaceLab_Colab&amp;#34;) #@title 训练模型 Model = &amp;#34;SAEHD&amp;#34; #@param [&amp;#34;SAEHD&amp;#34;,&amp;#34;AMP&amp;#34;,&amp;#34;Quick96&amp;#34;,&amp;#34;XSeg&amp;#34;] %cd $deepfacelab_cloab !pip install -r requirements-colab.txt cmd = &amp;#34;main.py train --training-data-src-dir ../workspace/data_src/aligned --training-data-dst-dir .</description>
     </item>
     <item>
       <title>使用github Action自动部署博客</title>
-      <link>https://blog.thinkmoon.cn/post/950_%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/</link>
+      <link>http://localhost:1313/post/950_%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Tue, 14 Jun 2022 23:59:09 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/950_%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>http://localhost:1313/post/950_%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/</guid>
       <description>背景提要 为什么需要它？最开始我使用的是本地编译，然后手动上传的方式，后来发现过于麻烦。尤其是nuxt编译后，产生一大堆ouput文件，手动上传耗时费力。&#xA;再后来我在服务器上，设置了一个定时任务。每晚从github拉取最新的代码，然后在服务器上编译。实行了一段时间，感觉还行。但是，随着服务上的服务越来越多，资源占有越来越大，我发现偶尔会出现编译nuxt时内存溢出的情况（请原谅我1核2G的服务，它已经尽力了）。&#xA;然后便产生了，使用githu action编译目标产物ouput文件，通知服务器自动拉取的想法。那么，说干就干，试试吧！&#xA;创建GitHub Action 使用node.js模板，该模板会自动使用预装node.js的环境。模板中有三种node.js版本，如果保持预留配置，则会三个环境都执行一次。这里我只使用16.x版本（因为跟我服务器版本一致）&#xA;大致流程可分为&#xA;拉取代码 安装依赖 编译output 归档到特定分支（gh-pages） web-hook通知服务器 服务接收事件，拉取编译后的文件，并重启 拉取代码 该步骤由github完成，只需声明使用的分支名称即可&#xA;安装依赖 编译output - run: yarn run build 归档到特定分支（gh-page） 我这儿随便在maket place选一个开源Action（GitHub Pages v3），配置对应的参数，如下：&#xA;- name: GitHub Pages v3 uses: peaceiris/actions-github-pages@v3.1.12 with: personal_token: ${{ secrets.ACCESS_TOKEN }} publish_dir: .output 请注意：关于这个personal_token，github有个坑。我也是折腾了两个多小时才总结出来的。生成的personal_token是不能明文存储在yaml文件中的，必须使用变量传递。否则一旦提交的时候，github出于安全考虑会自动静默删除对应person_token。&#xA;完整配置 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node # For more information see: https://help.</description>
     </item>
     <item>
       <title>deepfacelab体验记录</title>
-      <link>https://blog.thinkmoon.cn/post/932_deepfacelab%E4%BD%93%E9%AA%8C%E8%AE%B0%E5%BD%95/</link>
+      <link>http://localhost:1313/post/932_deepfacelab%E4%BD%93%E9%AA%8C%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Sun, 25 Oct 2020 20:47:43 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/932_deepfacelab%E4%BD%93%E9%AA%8C%E8%AE%B0%E5%BD%95/</guid>
+      <guid>http://localhost:1313/post/932_deepfacelab%E4%BD%93%E9%AA%8C%E8%AE%B0%E5%BD%95/</guid>
       <description>前言：最近在网络上发现了几位跟我使用同一头像的朋友，更加刺激了我想要制作一个专属头像的想法。然后我就想到了使用一些业界知名开源软件来制作一个属于我的专属头像的想法。&#xA;介绍 一款视频换脸的开源软件&#xA;deepfacelab下载 源代码地址deepfacelab,可在项目的readme页面下载window环境的执行文件，最让人舒服的是，它帮我们解决了环境问题。我唯一需要解决的环境问题，就是安装显卡驱动（如果有显卡的话）&#xA;安装 安装文件是个exe文件，双击运行会进行解压。解压后文件大致如下，根目录是一些批处理命令。workspace是工作区，放一些源文件和目标文件视频，而_internal则存放着一些环境相关文件，如Vs code，cuda， python等，所谓贴心至极，莫过于此。&#xA;使用 如它贴心的环境依赖一般的容易使用，你甚至只需要点击几个文件文件，再敲几个回车，就可以完成AI换脸的全过程。大致可分为五个过程&#xA;视频抽帧&#xA;人脸提取&#xA;训练模型&#xA;合成模型&#xA;生成视频&#xA;效果展示 贴心小技巧 一定要记得把aligned里面的质量差的人脸在训练前删除&#xA;由于dst是全帧抽取，而视频合成则是以60帧每秒合成，如果原dst没有60帧，则会出现音画不同步的情况&#xA;换脸后适当提高图片锐度，会极高的提高换脸清晰度&#xA;建议将mask_blur_modifier调至150左右以提升换脸真实性</description>
     </item>
     <item>
       <title>为什么NaN不等于NaN?</title>
-      <link>https://blog.thinkmoon.cn/post/903_%E4%B8%BA%E4%BB%80%E4%B9%88nan%E4%B8%8D%E7%AD%89%E4%BA%8Enan_/</link>
+      <link>http://localhost:1313/post/903_%E4%B8%BA%E4%BB%80%E4%B9%88nan%E4%B8%8D%E7%AD%89%E4%BA%8Enan_/</link>
       <pubDate>Tue, 04 Aug 2020 19:13:33 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/903_%E4%B8%BA%E4%BB%80%E4%B9%88nan%E4%B8%8D%E7%AD%89%E4%BA%8Enan_/</guid>
+      <guid>http://localhost:1313/post/903_%E4%B8%BA%E4%BB%80%E4%B9%88nan%E4%B8%8D%E7%AD%89%E4%BA%8Enan_/</guid>
       <description>猪不是人，猴子不是人，那么猪会等于猴子吗？</description>
     </item>
     <item>
       <title>VScode常用技巧</title>
-      <link>https://blog.thinkmoon.cn/post/210_vscode%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7/</link>
+      <link>http://localhost:1313/post/210_vscode%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7/</link>
       <pubDate>Wed, 08 Jul 2020 15:40:11 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/210_vscode%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7/</guid>
+      <guid>http://localhost:1313/post/210_vscode%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7/</guid>
       <description>Vscode 格式化vue Template代码段 1.安装 vetur&#xA;2.在User Setting中增加设置:&#xA;&amp;ldquo;vetur.format.defaultFormatter.html&amp;rdquo;: &amp;ldquo;js-beautify-html&amp;rdquo;&#xA;2020.07.08留：我现在已经使用prettier来格式化代码了&#xA;Vs code 添加 wepy template 代码 打开File &amp;gt; preference &amp;gt; user snippets, 选择vue&#xA;编辑vue.json&#xA;{ &amp;#34;Print to console&amp;#34;: { &amp;#34;prefix&amp;#34;: &amp;#34;vue&amp;#34;, &amp;#34;body&amp;#34;: [ &amp;#34;&amp;lt;!-- $0 --&amp;gt;&amp;#34;, &amp;#34;&amp;lt;template&amp;gt;&amp;#34;, &amp;#34; &amp;lt;view class=&amp;#39;page&amp;#39;&amp;gt; &amp;lt;/view&amp;gt;&amp;#34;, &amp;#34;&amp;lt;/template&amp;gt;&amp;#34;, &amp;#34;&amp;#34;, &amp;#34;&amp;lt;script&amp;gt;&amp;#34;, &amp;#34;import wepy from &amp;#39;wepy&amp;#39;&amp;#34;, &amp;#34;export default class Index extends wepy.page {&amp;#34;, &amp;#34;config = {&amp;#34;, &amp;#34; navigationBarTitleText: &amp;#39;场馆预订&amp;#39;,&amp;#34;, &amp;#34; usingComponents: {}&amp;#34;, &amp;#34;};&amp;#34;, &amp;#34;&amp;#34;, &amp;#34;components = {};&amp;#34;, &amp;#34;&amp;#34;, &amp;#34;mixins = [];&amp;#34;, &amp;#34;&amp;#34;, &amp;#34;data = {};&amp;#34;, &amp;#34;&amp;#34;, &amp;#34;computed = {};&amp;#34;, &amp;#34;&amp;#34;, &amp;#34;methods = {};&amp;#34;, &amp;#34;&amp;#34;, &amp;#34;events = {};&amp;#34;, &amp;#34;&amp;#34;, &amp;#34;onLoad() {}&amp;#34;, &amp;#34;}&amp;#34;, &amp;#34;&amp;lt;/script&amp;gt;&amp;#34;, &amp;#34;&amp;lt;style lang=&amp;#39;less&amp;#39;&amp;gt;&amp;#34;, &amp;#34;&amp;lt;/style&amp;gt;&amp;#34; ], &amp;#34;description&amp;#34;: &amp;#34;Log output to console&amp;#34; } } 使用emmet自动代码补全 打开File &amp;gt; preference &amp;gt; setting, 搜索emmet.</description>
     </item>
     <item>
       <title>typecho插件开发坑</title>
-      <link>https://blog.thinkmoon.cn/post/253_typecho%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%9D%91/</link>
+      <link>http://localhost:1313/post/253_typecho%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%9D%91/</link>
       <pubDate>Sat, 14 Dec 2019 21:53:00 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/253_typecho%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%9D%91/</guid>
+      <guid>http://localhost:1313/post/253_typecho%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%9D%91/</guid>
       <description>类名必须以_Plugin结尾&#xA;更新时先禁用插件</description>
     </item>
     <item>
       <title>小书匠图床及云资源的配置</title>
-      <link>https://blog.thinkmoon.cn/post/162_%E5%B0%8F%E4%B9%A6%E5%8C%A0%E5%9B%BE%E5%BA%8A%E5%8F%8A%E4%BA%91%E8%B5%84%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE/</link>
+      <link>http://localhost:1313/post/162_%E5%B0%8F%E4%B9%A6%E5%8C%A0%E5%9B%BE%E5%BA%8A%E5%8F%8A%E4%BA%91%E8%B5%84%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Sat, 07 Dec 2019 22:11:26 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/162_%E5%B0%8F%E4%B9%A6%E5%8C%A0%E5%9B%BE%E5%BA%8A%E5%8F%8A%E4%BA%91%E8%B5%84%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE/</guid>
+      <guid>http://localhost:1313/post/162_%E5%B0%8F%E4%B9%A6%E5%8C%A0%E5%9B%BE%E5%BA%8A%E5%8F%8A%E4%BA%91%E8%B5%84%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE/</guid>
       <description>欢迎使用 {小书匠}(xiaoshujiang)编辑器，您可以通过==设置==里的修改模板来改变新建文章的内容。&#xA;首先，在这里我已经默认你知道了什么是markdown文件，并且已经知道了它的优势。&#xA;不懂请点这儿&amp;lt;&amp;gt;&#xA;那么平常，你用什么写md文档呢？sublime？notepad？为知笔记？有道云笔记? MarkDownPad2?&#xA;其实都可以，你喜欢就好。我个人比较喜欢用小书匠&#xA;推荐理由 1.可以使用xlmrpc同步文章到我的博客(有道，为知会改变代码格式)&#xA;2.可以在预览复制到公众号&#xA;3.可以同步文章到我的github page&#xA;4.支持跨平台(windows，mac，包括linux),同时还有网页版&#xA;5.国产(一般有什么比较好用的国产软件，我都非常支持的)&#xA;更多介绍访问官网&#xA;本来想把文章名叫《推荐一个markdown软件(神器级的)》，后来还是怕被吐槽，你这小子怎么整天推荐软件的。&#xA;不过，说真，这个软件是我用过最好的markdown编辑器了，而且还免费，还能同步为知，有道，码云。&#xA;不要觉得我用的软件少，其实那些我都用过，还开过会员，最后还是选择了小书匠。&#xA;小书匠官网(http://soft.xiaoshujiang.com/) 下载地址(https://github.com/suziwen/markdownxiaoshujiang/releases/tag/v5.1.0) 不要问我为啥是在github上面下载，我也不知道，但这个链接下载的绝对是正版）&#xA;软件界面 巨多的主题 我大约目测了一下有20-30个主题&#xA;部分主题截图 优雅紫&#xA;土豪金&#xA;淡雅蓝&#xA;性冷淡(我起的)&#xA;可爱粉&#xA;这么多的主题有一个极大的好处，就是，无论你是科技宅，萝莉控，痴汉，性冷淡，低调的沙皇玩家，还是傲娇的小公举，总能找到你想要的配色主题。&#xA;小书匠图床配置 点击左上小书匠&amp;gt;绑定&amp;gt;图床&#xA;1.七牛云图床配置 登录七牛云存储&#xA;新建存储空间blog&#xA;新建密钥&#xA;打开，小书匠&amp;gt;绑定&amp;gt;图床服务&amp;gt;七牛云存储，填入对应的信息&#xA;这儿有两个地方需要注意&#xA;1，==上传入口一定要选你新建存储空间的入口 #ff5555==。&#xA;2，==图片URL前缀可以在存储空间里面查看到 #ff5555==&#xA;成功界面&#xA;配置github数据存储 打开绑定&amp;gt;数据存储&amp;gt;选择github&#xA;点击申请tokens&amp;gt;登录你的github账号&#xA;然后创建一个repository，&#xA;==记得一定要勾选Initialize 这个选项 #ff5555==&#xA;选择==Generate token==&#xA;==一定要勾选public_repo权限 #ff5555==&#xA;将生成的token复制&#xA;回到刚刚的小书匠界面，填入信息&#xA;然后勾选对应的选项就OK了&#xA;配置github图床服务 如上，图片路径选择默认即可，&#xA;==而其实就算你不配置，点击另存为github上，还是可以同步的，所以这个配不配置都无所谓 #ff5555==&#xA;我为了加快访问速度，所以把图片放在七牛云上。&#xA;last but not least 祝大家平安夜，圣诞节快乐</description>
     </item>
     <item>
       <title>醉月老哥的微信助手</title>
-      <link>https://blog.thinkmoon.cn/post/533_%E9%86%89%E6%9C%88%E8%80%81%E5%93%A5%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%8A%A9%E6%89%8B/</link>
+      <link>http://localhost:1313/post/533_%E9%86%89%E6%9C%88%E8%80%81%E5%93%A5%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%8A%A9%E6%89%8B/</link>
       <pubDate>Mon, 28 Oct 2019 17:41:17 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/533_%E9%86%89%E6%9C%88%E8%80%81%E5%93%A5%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%8A%A9%E6%89%8B/</guid>
+      <guid>http://localhost:1313/post/533_%E9%86%89%E6%9C%88%E8%80%81%E5%93%A5%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%8A%A9%E6%89%8B/</guid>
       <description>前言 醉月老哥的微信助手:&#xA;不要问我为什么起这个名字，我也不知道!&#xA;这两天天气冷，在脑海里构想这个，之后便开始着手做了。&#xA;开始日期:2017年12月15日 13时47分25秒&#xA;功能定位 立志做一个对接全网内容的助手,其内容包括但不限于:糗事百科，今日头条，简书，MSDN，php.net，百度翻译，搜索引擎。争取做到微信在手，天下我有！有好的想法或者建议欢迎联系我！&#xA;特别感谢: @Goff, @Annabel&#xA;现有功能介绍 1. 糗事百科 使用说明 公众号回复&amp;quot;糗事百科&amp;quot;&#xA;效果展示 ：TODO 虽然看似基本功能完成了，但是会有一个小问题：&#xA;当爬取的内容为，图片分享时，并不能展示其对应的图片&#xA;2. 今日头条 今日头条-使用说明 公众号回复“今日头条&amp;quot;&#xA;今日头条-效果展示 今日头条-:TODO 我怎么感觉这个娱乐新闻偏多呢？（是头条热点的问题?)&#xA;1.将内容集中与政治，社会，科技&#xA;3. 醉月老哥的微信助手 醉月老哥的微信助手-使用说明 公众号回复&amp;quot;醉月老哥的微信助手&amp;quot;&#xA;醉月老哥的微信助手-效果展示 4.搜索新闻 搜索新闻-使用说明 回复&amp;rsquo;news(关键词)&amp;lsquo;搜索新闻，例如news(江歌),搜索关于江歌的新闻&#xA;搜索新闻-效果展示 搜索新闻-：TODO 让新闻来源可指向&#xA;公众号二维码 源代码地址 醉月老哥的微信助手&#xA;更新说明 更新说明</description>
     </item>
     <item>
       <title>&amp;lt;运动世界校园&amp;gt;外挂</title>
-      <link>https://blog.thinkmoon.cn/post/532__lt_%E8%BF%90%E5%8A%A8%E4%B8%96%E7%95%8C%E6%A0%A1%E5%9B%AD_gt_%E5%A4%96%E6%8C%82/</link>
+      <link>http://localhost:1313/post/532__lt_%E8%BF%90%E5%8A%A8%E4%B8%96%E7%95%8C%E6%A0%A1%E5%9B%AD_gt_%E5%A4%96%E6%8C%82/</link>
       <pubDate>Mon, 28 Oct 2019 17:40:39 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/532__lt_%E8%BF%90%E5%8A%A8%E4%B8%96%E7%95%8C%E6%A0%A1%E5%9B%AD_gt_%E5%A4%96%E6%8C%82/</guid>
+      <guid>http://localhost:1313/post/532__lt_%E8%BF%90%E5%8A%A8%E4%B8%96%E7%95%8C%E6%A0%A1%E5%9B%AD_gt_%E5%A4%96%E6%8C%82/</guid>
       <description>所需条件 安卓手机（模拟器我没试过）&#xA;已获ROOT或已安装Virtual Xposed&#xA;Xposed框架能安装成功&#xA;所需软件 xposed install（安装xposed 框架）&#xA;lataclysm（模拟运动位置）&#xA;SoDo Hide（对应用隐藏xposed框架）&#xA;运动模拟器（模拟计步传感器）&#xA;准备工作 安装上述软件&#xA;在xposed install里面将模块激活&#xA;重启手机&#xA;未完待续，心情好了再续</description>
     </item>
     <item>
       <title>给你的网站加一个2.5D悬浮小人</title>
-      <link>https://blog.thinkmoon.cn/post/528_%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%80%E4%B8%AA2_5d%E6%82%AC%E6%B5%AE%E5%B0%8F%E4%BA%BA/</link>
+      <link>http://localhost:1313/post/528_%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%80%E4%B8%AA2_5d%E6%82%AC%E6%B5%AE%E5%B0%8F%E4%BA%BA/</link>
       <pubDate>Mon, 28 Oct 2019 17:37:40 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/528_%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%80%E4%B8%AA2_5d%E6%82%AC%E6%B5%AE%E5%B0%8F%E4%BA%BA/</guid>
+      <guid>http://localhost:1313/post/528_%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%80%E4%B8%AA2_5d%E6%82%AC%E6%B5%AE%E5%B0%8F%E4%BA%BA/</guid>
       <description>我们平常访问某些网站的时候,会发现在网站上总是悬浮者一个可爱的小人.而且还可以跟用户进行各种互动(说话?).&#xA;一般这种小人都是通过js加载出来的, 搜索关键词网上有教程. 不过我今天在这里记录的是,如何添加2.5D互动小人&#xA;平台: hexo + hexo-plugins(live2d-widget-models)&#xA;同时也支持jekyll, wordpress, etc.&#xA;安装 sudo npm install --save hexo-helper-live2d 项目github地址 https://github.com/xiazeyu/live2d-widget-models&#xA;然后在_config.yml(hexo或者主题的都行)中添加 live2d: enable: true scriptFrom: local model: use: live2d-widget-model-wanko //使用的模型名,下面会详细讲 display: //如果觉得默认定位不满意可在此微调,bottom position: right width: 150 height: 300 bottom:-30 mobile: show: true 自定义模型的使用点我 hexo下现有模型的安装 npm install {packagename} 安装示例&#xA;sudo npm install live2d-widget-model-chitose 最新版现有模型测试与预览 OK, 这是重点[哭笑不得],&#xA;现实效果是会动的, 由于截gif过于麻烦, 我就只好截屏了. 现实效果绝对比这帅.&#xA;live2d-widget-model-chitose 唔, 这是一个美少年. 比较适合女生. 我就不用这个了.&#xA;live2d-widget-model-epsilon2_1 一个夏装妹子, 比较适合宅男&#xA;live2d-widget-model-gf 一个卡通人物(废话), 很炫酷</description>
     </item>
     <item>
       <title>pm2的相关操作记录</title>
-      <link>https://blog.thinkmoon.cn/post/514_pm2%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</link>
+      <link>http://localhost:1313/post/514_pm2%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Mon, 28 Oct 2019 17:21:53 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/514_pm2%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</guid>
+      <guid>http://localhost:1313/post/514_pm2%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</guid>
       <description> pm2: Advanced, production process manager for Node.js&#xA;//run.js const { exec } = require(&amp;#39;child_process&amp;#39;) exec(&amp;#39;hexo s&amp;#39;,(error, stdout, stderr) =&amp;gt; { if(error){ console.log(`exec error: ${error}`) return } console.log(`stdout: ${stdout}`); console.log(`stderr: ${stderr}`); }) pm2 delete all&#xA;删除所有进程&#xA;pm2 start run.js&#xA;启动run.js fork模式&#xA;pm2 start run.js -i 2&#xA;启动run.js 创建两个进程&#xA;待续 </description>
     </item>
     <item>
       <title>hexo配置笔记</title>
-      <link>https://blog.thinkmoon.cn/post/512_hexo%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/</link>
+      <link>http://localhost:1313/post/512_hexo%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Mon, 28 Oct 2019 17:20:14 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/512_hexo%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/</guid>
+      <guid>http://localhost:1313/post/512_hexo%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/</guid>
       <description>hexo 配置的一些相关问题笔记&#xA;发布时间不对的问题 细心的小伙伴会发现我的博客有些文章居然发布日期比更新日期还要晚，这是因为我的时区没有配置好的原因。&#xA;修改 _confing.yml下的timezone&#xA;timezone: Asia/Shanghai</description>
     </item>
     <item>
       <title>cn版elementaryOS的UEFI安装尝试</title>
-      <link>https://blog.thinkmoon.cn/post/511_cn%E7%89%88elementaryos%E7%9A%84uefi%E5%AE%89%E8%A3%85%E5%B0%9D%E8%AF%95/</link>
+      <link>http://localhost:1313/post/511_cn%E7%89%88elementaryos%E7%9A%84uefi%E5%AE%89%E8%A3%85%E5%B0%9D%E8%AF%95/</link>
       <pubDate>Mon, 28 Oct 2019 17:18:51 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/511_cn%E7%89%88elementaryos%E7%9A%84uefi%E5%AE%89%E8%A3%85%E5%B0%9D%E8%AF%95/</guid>
+      <guid>http://localhost:1313/post/511_cn%E7%89%88elementaryos%E7%9A%84uefi%E5%AE%89%E8%A3%85%E5%B0%9D%E8%AF%95/</guid>
       <description>首先下载UEFI版 下载链接在官方QQ群里面&#xA;TIPS: 直接在群文件里面下载可能会因为各种原因中断下载，建议登录QQ群空间里面，再使用迅雷下载。&#xA;接下来为转载的操作 mount挂载 mount {{根挂载点}} /mnt 第一次尝试（2018.9.21 9：05） 自动清除磁盘安装，未找到/分区，手动分区尝试中。&#xA;手动分区，发现格式好奇怪，看不懂，格式化尝试中。&#xA;更新: 好像是开启了LVM的原因，尝试不开启LVM。清除整个磁盘安装&#xA;第二次尝试清除整个磁盘安装 （2018.9.21 9：15） 磁盘情况，分区情况如下，但是无法进入系统&#xA;好像联网安装就成功了？？？？</description>
     </item>
     <item>
       <title>chrome无痕模式下使用插件</title>
-      <link>https://blog.thinkmoon.cn/post/510_chrome%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F%E4%B8%8B%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6/</link>
+      <link>http://localhost:1313/post/510_chrome%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F%E4%B8%8B%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6/</link>
       <pubDate>Mon, 28 Oct 2019 17:17:48 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/510_chrome%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F%E4%B8%8B%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6/</guid>
+      <guid>http://localhost:1313/post/510_chrome%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F%E4%B8%8B%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6/</guid>
       <description>设置-&amp;gt;更多工具-&amp;gt;拓展程序-&amp;gt;选择插件-&amp;gt;勾选隐身模式下使用</description>
     </item>
     <item>
       <title>为typecho增加Ctrl&#43;S保存文章功能</title>
-      <link>https://blog.thinkmoon.cn/post/498_%E4%B8%BAtypecho%E5%A2%9E%E5%8A%A0ctrl_s%E4%BF%9D%E5%AD%98%E6%96%87%E7%AB%A0%E5%8A%9F%E8%83%BD/</link>
+      <link>http://localhost:1313/post/498_%E4%B8%BAtypecho%E5%A2%9E%E5%8A%A0ctrl_s%E4%BF%9D%E5%AD%98%E6%96%87%E7%AB%A0%E5%8A%9F%E8%83%BD/</link>
       <pubDate>Mon, 28 Oct 2019 15:45:32 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/498_%E4%B8%BAtypecho%E5%A2%9E%E5%8A%A0ctrl_s%E4%BF%9D%E5%AD%98%E6%96%87%E7%AB%A0%E5%8A%9F%E8%83%BD/</guid>
+      <guid>http://localhost:1313/post/498_%E4%B8%BAtypecho%E5%A2%9E%E5%8A%A0ctrl_s%E4%BF%9D%E5%AD%98%E6%96%87%E7%AB%A0%E5%8A%9F%E8%83%BD/</guid>
       <description>前言 本文使用jQuery修改typecho让其在文章编辑页内支持CTRL + S保存文章草稿，typecho的版本为1.2 (18.10.23).&#xA;为什么需要？ 由于个人博客使用的typecho，在编辑文章的过程中经常习惯性的点击CTRl + S，然后就会非常不友好的提示了这个。&#xA;这对追求优雅的本宅来说，简直无法容忍。难道我要因此弃用typecho?这也太夸张了。那就来发挥我modify的能力吧，毕竟闲余折腾是我的一大乐趣，而且自己动手，丰衣足食嘛！&#xA;心路历程 首先，我知道这个理论上绝对可行，因为我用过很多此类功能。&#xA;经查阅资料，chrome的适配最好，当然我也没考虑别的浏览器，因为我眼中的浏览器只有两种，chrome和不是chrome。随便一提：不用chrome的程序员不是优雅的程序员。&#xA;分析实现方法，大致分为两步，监听ctrl+s时间和模拟点击保存草稿按钮&#xA;选型方面，由于typecho内置jquery，因此采用最快捷的办法&#xA;实现过程 确认页面是否支持jQuery 为了避免重复引入，我们可在console中输入$，根据提示来确认是否已有jQuery&#xA;如图，则表示已有jQuery。&#xA;找到编辑文章的php页面 嗯，就是这个路径typecho/admin/write-post.php&#xA;找个合适位置放script 请在文件末尾插入一个script节点，以防止在jquery定义之前使用或者在if语句中未应用。&#xA;监听ctrl + S 在script节点中插入以下代码&#xA;$(window).keydown(function(event) { if (event.ctrlKey &amp;amp;&amp;amp; event.which == 83) { alert(&amp;#34;Ctrl+S pressed.&amp;#34;); return false; } else { return true; } }); 刷新编辑文章页，提示以下内容则监听成功。&#xA;模拟点击保存 通过源代码分析，我们可以发现，保存文章的按钮id为btn-save。现在我们修改代码里面的内容如下&#xA;$(window).keydown(function(event) { if (event.ctrlKey &amp;amp;&amp;amp; event.which == 83) { $(&amp;#34;#btn-save&amp;#34;).click(); return false; } else { return true; } }); 大功告成 结语 本文从技术层面上来说没什么亮点，这是我在尝试一种新的写作方式的练手篇。在原先只记录如何做的基础上，增加了了心路历程这一项，侧重于记录我在实际过程中一个想法到把它实现出来的整个过程，目的在于分享如何思考，从哪里开始，怎么实现的整个思维过程。大家且当抛砖引玉看看吧！</description>
     </item>
     <item>
       <title>win10添加Ubuntu子系统右键打开项</title>
-      <link>https://blog.thinkmoon.cn/post/261_win10%E6%B7%BB%E5%8A%A0ubuntu%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%8F%B3%E9%94%AE%E6%89%93%E5%BC%80%E9%A1%B9/</link>
+      <link>http://localhost:1313/post/261_win10%E6%B7%BB%E5%8A%A0ubuntu%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%8F%B3%E9%94%AE%E6%89%93%E5%BC%80%E9%A1%B9/</link>
       <pubDate>Fri, 29 Mar 2019 10:31:17 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/261_win10%E6%B7%BB%E5%8A%A0ubuntu%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%8F%B3%E9%94%AE%E6%89%93%E5%BC%80%E9%A1%B9/</guid>
+      <guid>http://localhost:1313/post/261_win10%E6%B7%BB%E5%8A%A0ubuntu%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%8F%B3%E9%94%AE%E6%89%93%E5%BC%80%E9%A1%B9/</guid>
       <description>大致思路 注册表新建目录右键项&#xA;填写WSL命令行&#xA;如果你觉得添加起来过于麻烦，你可以双击执行下列注册表文件&#xA;wsl.reg&#xA;一些简介 注册表百科 注册表（Registry，繁体中文版Windows操作系统称之为登录档）是Microsoft Windows中的一个重要的数据库，用于存储系统和应用程序的设置信息。早在Windows 3.0推出OLE技术的时候，注册表就已经出现。随后推出的Windows NT是第一个从系统级别广泛使用注册表的操作系统。但是，从Microsoft Windows 95操作系统开始，注册表才真正成为Windows用户经常接触的内容，并在其后的操作系统中继续沿用至今。&#xA;打开方式 Win + R键入regedit 操作流程 目录导航输入HKEY_CLASSES_ROOT\Directory\shell&#xA;新建项ubuntu&#xA;选择ubuntu项，新建字符串值：名称为默认，值为WSL&#xA;如图：&#xA;在ubuntu项内添加command项&#xA;字符串名称为默认，值为wsl.exe --cd &amp;quot;%V&amp;quot;&#xA;如图：&#xA;截至目前，存在的问题 就是只有在选择一个目录时才会出现这个东西，右键空白处啥都不会发生&#xA;解决方法 在HKEY_CLASSES_ROOT\Directory\Background\shell也同样操作一波&#xA;效果预览 我去，我不知道怎么截右键这个状态。</description>
     </item>
     <item>
       <title>我决定三天不上微信</title>
-      <link>https://blog.thinkmoon.cn/post/164_%E6%88%91%E5%86%B3%E5%AE%9A%E4%B8%89%E5%A4%A9%E4%B8%8D%E4%B8%8A%E5%BE%AE%E4%BF%A1/</link>
+      <link>http://localhost:1313/post/164_%E6%88%91%E5%86%B3%E5%AE%9A%E4%B8%89%E5%A4%A9%E4%B8%8D%E4%B8%8A%E5%BE%AE%E4%BF%A1/</link>
       <pubDate>Mon, 18 Feb 2019 20:37:45 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/164_%E6%88%91%E5%86%B3%E5%AE%9A%E4%B8%89%E5%A4%A9%E4%B8%8D%E4%B8%8A%E5%BE%AE%E4%BF%A1/</guid>
+      <guid>http://localhost:1313/post/164_%E6%88%91%E5%86%B3%E5%AE%9A%E4%B8%89%E5%A4%A9%E4%B8%8D%E4%B8%8A%E5%BE%AE%E4%BF%A1/</guid>
       <description>每天花大把时间在微信上，但其实有没有什么重要的事情。仔细统计了一下，如果我一天不看微信，每天至少可以多出1-3h。每次都高估了自己被世界需要的可能性。没看手机时，以为全世界都在找我，看手机时发现没人关注我。&#xA;预备，晚上 今晚会不会有人发现我不在了？一想到要坚持三天就感觉有点困难。&#xA;第一天 正常&#xA;第二天 由于不可抗力，该计划被迫终止。</description>
     </item>
     <item>
       <title>醉月老哥的微信助手</title>
-      <link>https://blog.thinkmoon.cn/post/3_%E9%86%89%E6%9C%88%E8%80%81%E5%93%A5%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%8A%A9%E6%89%8B/</link>
+      <link>http://localhost:1313/post/3_%E9%86%89%E6%9C%88%E8%80%81%E5%93%A5%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%8A%A9%E6%89%8B/</link>
       <pubDate>Wed, 16 Jan 2019 11:12:02 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/3_%E9%86%89%E6%9C%88%E8%80%81%E5%93%A5%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%8A%A9%E6%89%8B/</guid>
+      <guid>http://localhost:1313/post/3_%E9%86%89%E6%9C%88%E8%80%81%E5%93%A5%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%8A%A9%E6%89%8B/</guid>
       <description>前言 醉月老哥的微信助手:&#xA;不要问我为什么起这个名字，我也不知道!&#xA;这两天天气冷，在脑海里构想这个，之后便开始着手做了。&#xA;开始日期:2017年12月15日 13时47分25秒&#xA;功能定位 立志做一个对接全网内容的助手,其内容包括但不限于:糗事百科，今日头条，简书，MSDN，php.net，百度翻译，搜索引擎。争取做到微信在手，天下我有！有好的想法或者建议欢迎联系我！&#xA;特别感谢: @Goff, @Annabel&#xA;现有功能介绍 1. 糗事百科 使用说明 公众号回复&amp;quot;糗事百科&amp;quot;&#xA;效果展示 ：TODO 虽然看似基本功能完成了，但是会有一个小问题：&#xA;当爬取的内容为，图片分享时，并不能展示其对应的图片&#xA;2. 今日头条 今日头条-使用说明 公众号回复“今日头条&amp;quot;&#xA;今日头条-效果展示 今日头条-:TODO 我怎么感觉这个娱乐新闻偏多呢？（是头条热点的问题?)&#xA;1.将内容集中与政治，社会，科技&#xA;3. 醉月老哥的微信助手 醉月老哥的微信助手-使用说明 公众号回复&amp;quot;醉月老哥的微信助手&amp;quot;&#xA;醉月老哥的微信助手-效果展示 4.搜索新闻 搜索新闻-使用说明 回复&amp;rsquo;news(关键词)&amp;lsquo;搜索新闻，例如news(江歌),搜索关于江歌的新闻&#xA;搜索新闻-效果展示 搜索新闻-：TODO 让新闻来源可指向&#xA;公众号二维码 源代码地址 醉月老哥的微信助手&#xA;更新说明 更新说明</description>
     </item>
     <item>
       <title>如何从实验室唤醒在宿舍的关机状态下的电脑</title>
-      <link>https://blog.thinkmoon.cn/post/161_%E5%A6%82%E4%BD%95%E4%BB%8E%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%94%A4%E9%86%92%E5%9C%A8%E5%AE%BF%E8%88%8D%E7%9A%84%E5%85%B3%E6%9C%BA%E7%8A%B6%E6%80%81%E4%B8%8B%E7%9A%84%E7%94%B5%E8%84%91/</link>
+      <link>http://localhost:1313/post/161_%E5%A6%82%E4%BD%95%E4%BB%8E%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%94%A4%E9%86%92%E5%9C%A8%E5%AE%BF%E8%88%8D%E7%9A%84%E5%85%B3%E6%9C%BA%E7%8A%B6%E6%80%81%E4%B8%8B%E7%9A%84%E7%94%B5%E8%84%91/</link>
       <pubDate>Sat, 02 Jun 2018 10:33:44 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/161_%E5%A6%82%E4%BD%95%E4%BB%8E%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%94%A4%E9%86%92%E5%9C%A8%E5%AE%BF%E8%88%8D%E7%9A%84%E5%85%B3%E6%9C%BA%E7%8A%B6%E6%80%81%E4%B8%8B%E7%9A%84%E7%94%B5%E8%84%91/</guid>
+      <guid>http://localhost:1313/post/161_%E5%A6%82%E4%BD%95%E4%BB%8E%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%94%A4%E9%86%92%E5%9C%A8%E5%AE%BF%E8%88%8D%E7%9A%84%E5%85%B3%E6%9C%BA%E7%8A%B6%E6%80%81%E4%B8%8B%E7%9A%84%E7%94%B5%E8%84%91/</guid>
       <description>如果你要常去实验室，机房。而又嫌带着笔记本麻烦。亦或者是台式电脑，不方便携带。你可能会想到远程桌面是吧？那么如果你的电脑处于关机状态呢？那么我想你可能会喜欢这篇文章。&#xA;如何从实验室唤醒在宿舍的关机状态下的电脑 本文适合有一定基础的同学阅读，如果你感觉看不懂或者有些名词不理解，可以先收藏起来，待到日后理解之时再来阅读。&#xA;首先我们来了解一下WOL Wake-on-LAN (WoL) 网络唤醒（WoL）是以太网或令牌环 计算机网络标准，允许计算机通过网络消息打开或唤醒。&#xA;消息通常通过在连接到相同局域网（诸如智能电话）的设备上执行的程序发送到目标计算机。也可以通过使用子网定向广播或WOL网关服务来从另一个网络发起消息。等效术语包括在网络唤醒，远程唤醒，电源通过LAN，通过LAN上电，通过LAN恢复，恢复局域网和唤醒局域网。如果正在唤醒的电脑正在通过Wi-Fi进行通信，则称为补充标准必须使用无线LAN唤醒（WoWLAN）。&#xA;通俗点，就是利用这门技术，你再局域网内，可以通过一台设备来唤醒一台处于关机状态的设备。&#xA;硬件支持 在计算机的主板和网络接口（固件）上实现了局域网唤醒支持，因此不依赖于在硬件上运行的操作系统。某些操作系统可以通过NIC驱动程序来控制LAN唤醒行为。对于较旧的主板，如果网络接口是插卡而不是集成到主板上，则可能需要通过附加电缆将该卡连接到主板。支持LAN唤醒的嵌入式以太网控制器的主板不需要电缆。电源必须符合ATX 2.01规范。&#xA;额，说人话就是现在的大部分设备都是支持网络唤醒的，而且与你使用的是什么操作系统无关，不过与你的驱动程序却有关，这点很难解释。&#xA;工作原理 以太网连接，包括家庭和工作网络，无线数据网络和互联网本身，都是基于计算机之间发送的帧。网络唤醒（“WOL”）使用专门设计的称为魔术包的框架实现，该框架发送到网络中的所有计算机，其中包括要唤醒的计算机。魔术包包含目标计算机的MAC地址，每个网络接口卡中内置的识别号码（“NIC”）或计算机中的其他以太网设备，使其能够在网络上被唯一地识别和寻址。关闭或关闭能够启用LAN唤醒功能的计算机将包含能够在系统关闭电源时以低功耗模式“收听”传入数据包的网络设备。如果接收到指向设备的MAC地址的魔术包，则NIC会通知计算机的电源或主板以启动系统唤醒，其方式与按下电源按钮的方式相同。&#xA;魔术包在数据链路层（OSI模型中的第2层）上发送，并且在发送时，使用网络广播地址广播给给定网络上的所有连接的设备; IP地址（OSI模型中的第3层）不被使用。&#xA;这是一个常见的误解，因为Wake-on-LAN建立在广播技术上，它只能在当前的网络子网内使用。虽然这是一般情况，但有一些例外，网络唤醒可以在实际中运行在任何网络上，适当的配置和硬件，包括跨Internet的远程唤醒。&#xA;为了使局域网唤醒工作，网络接口的部分需要保持打开状态。这消耗了少量的待机功率，远低于正常工作电源。链路速度通常降低到尽可能低的速度，以免浪费电力（例如，千兆以太网网卡只保留10 Mbit / s链路）。在不需要时禁用LAN唤醒功能，可以在关闭但仍插入电源插座的计算机上轻松降低功耗。&#xA;说人话就是，你在打开了主机的远程唤醒功能后，对主机按下电源键关机的时候，他会让网卡设备仍处于供电状态，这会比不开网络唤醒要耗电些，实际上当你关机后再断电，如果你没有再开机，你的设备就不能被网络唤醒。而它唤醒的目标是根据mac地址来区分的，当这台设备收到唤醒数据包时，网卡设备会通知电源，主板开始工作，然后就等同与开机了。&#xA;筛选重点 硬件：主板，电源，网卡设备。 软件：网卡驱动 刚需：供电，接入网络（并不需要具备有网的状态）。 唤醒：唤醒数据包 好啦，我们筛选出重点之后，接下来就知道怎么入手啦，那就让我们开始吧！&#xA;1.对于主板 主板的操作是，我们需要设置主板能够被网卡设备所唤醒，这样才能正常地进入操作系统。要设置主板，那当然是要bios啦。&#xA;进入BIOS设置，打开电脑主板的网络唤醒功能，一般情况是WAKE，LAN之类的，然后设置其值为enable；（需主板支持，现在大部分的主板都是支持的） 2.对于网卡和电源 打开系统设置，设备管理器&amp;gt;网络适配器&amp;gt;找到你的网卡设备，双击&amp;gt;进入电源管理 设备管理器 取消勾选&amp;lt;允许计算机关闭此设备以节约电源&amp;gt;的作用就是，让你的电脑关机之后网卡设备仍处于供电状态。 勾选&amp;lt;允许此设备唤醒计算机&amp;gt;的目的就是，让你的网卡收到数据包后可以激活电源供电。 3.对于供电和接入网络 这个。。。。。插好电源，插好网线即可&#xA;4.对于网络唤醒数据包 其实网络唤醒用啥方式并不重要，因为实际上都是对特定mac设备发送网络唤醒包&#xA;下载一个网络唤醒的软件， 使用路由器发网络唤醒包（我就是用这个） 5.对于网卡驱动 win7，win8都是直接默认网卡驱动就可以了的，但是win10却是需要自己下载一个驱动安装的。&#xA;对于win7，win8，网上好多人说要关闭快速启动，但是在我看来，这两点貌似毫无干系啊。不过我没试过win7，也不好发表意见，既然他们都说要关闭快速启动，那就说一下如何关闭快速启动吧。 控制面板&amp;gt;硬件和声音&amp;gt;电源选项&amp;gt;选择电源按钮功能&#xA;选择电源按钮 更改当前不可用的设置&amp;gt;取消勾选快速启动&#xA;取消勾选快速启动 对于win10，我的台式机就是win10的，但是搞这个网络唤醒折腾了好久。不过好在发现了这个帖子。原文链接https://www.reddit.com/r/Windows10/comments/3f73sz/psaif_windows_10_killed_your_wol_functionality_or/&#xA;原文是英文的，如果不想看英文，我大致翻译一下。楼主说，他遇到win10无法网络唤醒的问题，然后他研究了一下驱动和网卡底层方面的逻辑，然后得出来，是驱动的问题，然后他把驱动用技巧装回了win7的，成功唤醒。不过大部分人采用的是一楼的回复解决方案。&#xA;原文截图： 解决方案 他说的是realtek官方已经更新了驱动，如果你在这个链接，下载win10的网卡驱动，就可以网络唤醒了http://www.realtek.com.tw/Downloads/downloadsView.aspx?Langid=1&amp;amp;PNid=13&amp;amp;PFid=5&amp;amp;Level=5&amp;amp;Conn=4&amp;amp;DownTypeID=3&amp;amp;GetDown=false#1&#xA;end：我的唤醒流程 被唤醒主机：宿舍win10 台式&#xA;唤醒设备：海蜘蛛路由器&#xA;操作主机：实验室win7 台式&#xA;1.在实验室，先连上宿舍我的路由器局域网下的路由器（额，我是用路由器搭了一个vpn服务器的，其实可以跳过这步）&#xA;2.登入我的路由器管理员网站，然后打开网络工具&amp;gt;网络唤醒&#xA;网络唤醒 3.唤醒之后，刷新列表就会发现，多了一台设备在连接局域网了，然后使用mstsc远程桌面，就可以控制宿舍的电脑了。有没有感觉高大上？&#xA;没有截图 路由器，和vpn都是非必需的，你也可以直接在局域网内用客户端唤醒的，还有就是如果你有域名，然后能成功访问也是可以广域网唤醒的。</description>
     </item>
   </channel>

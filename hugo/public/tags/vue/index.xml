@@ -2,67 +2,67 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vue on 指尖魔法屋</title>
-    <link>https://blog.thinkmoon.cn/tags/vue/</link>
+    <link>http://localhost:1313/tags/vue/</link>
     <description>Recent content in Vue on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Mon, 12 Dec 2022 22:11:09 +0000</lastBuildDate>
-    <atom:link href="https://blog.thinkmoon.cn/tags/vue/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/vue/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vue3使用customRef()主动触发响应更新</title>
-      <link>https://blog.thinkmoon.cn/post/975_vue3%E4%BD%BF%E7%94%A8customref__%E4%B8%BB%E5%8A%A8%E8%A7%A6%E5%8F%91%E5%93%8D%E5%BA%94%E6%9B%B4%E6%96%B0/</link>
+      <link>http://localhost:1313/post/975_vue3%E4%BD%BF%E7%94%A8customref__%E4%B8%BB%E5%8A%A8%E8%A7%A6%E5%8F%91%E5%93%8D%E5%BA%94%E6%9B%B4%E6%96%B0/</link>
       <pubDate>Mon, 12 Dec 2022 22:11:09 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/975_vue3%E4%BD%BF%E7%94%A8customref__%E4%B8%BB%E5%8A%A8%E8%A7%A6%E5%8F%91%E5%93%8D%E5%BA%94%E6%9B%B4%E6%96%B0/</guid>
+      <guid>http://localhost:1313/post/975_vue3%E4%BD%BF%E7%94%A8customref__%E4%B8%BB%E5%8A%A8%E8%A7%A6%E5%8F%91%E5%93%8D%E5%BA%94%E6%9B%B4%E6%96%B0/</guid>
       <description>前言 在vue3中（尤其是setup语法）vue框架会自动处理事件响应。但是假设有个场景，我们实现了一个数据结构，只要触发对应操作时，就刷新视图。这个问题在选项式API有个公共API，提供强制刷新能力，那就是$forceUpdate()。$forceUpdate()会全量刷新，而且组合式API不支持该方法，这个时候如果我们想主动触发视图更新，可以使用Vue3提供的customRef()自定义一个ref。&#xA;介绍 customRef()，创建一个自定义的 ref，显式声明对其依赖追踪和更新触发的控制方式。&#xA;形如&#xA;function customRef&amp;lt;T&amp;gt;(factory: CustomRefFactory&amp;lt;T&amp;gt;): Ref&amp;lt;T&amp;gt; type CustomRefFactory&amp;lt;T&amp;gt; = ( track: () =&amp;gt; void, trigger: () =&amp;gt; void ) =&amp;gt; { get: () =&amp;gt; T set: (value: T) =&amp;gt; void } 其中，track函数告诉框架这是一个需要追踪变更的变量，一般在get里面调用。trigger则是数据变化时调用，用以通知框架，该变量已发生变化触发视图更新。&#xA;示例 实现一个日志展示功能，当日志增加时，触发视图更新&#xA;这是一个简陋的日志系统，永远展示最后十条日志(截图少了个.slice(-10))。而且我在程序最后加了个定时器，每隔一秒定时增加一条日志。&#xA;从图中的结果可以发现，对应的数据变化并未相应的渲染在视图上。这个使用我们就需要customRef实现一个自定义的ref，当日志增加时主动触发trigger通知视图更新&#xA;使用customRef改造 总结 使用customRef的好处就是可以把trigger暴露到外部，直接触发trigger就会触发刷新，实现按需加载的效果。</description>
     </item>
     <item>
       <title>vue中使用typescript问题解决方案集锦</title>
-      <link>https://blog.thinkmoon.cn/post/876_vue%E4%B8%AD%E4%BD%BF%E7%94%A8typescript%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E9%9B%86%E9%94%A6/</link>
+      <link>http://localhost:1313/post/876_vue%E4%B8%AD%E4%BD%BF%E7%94%A8typescript%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E9%9B%86%E9%94%A6/</link>
       <pubDate>Tue, 23 Jun 2020 22:04:32 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/876_vue%E4%B8%AD%E4%BD%BF%E7%94%A8typescript%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E9%9B%86%E9%94%A6/</guid>
+      <guid>http://localhost:1313/post/876_vue%E4%B8%AD%E4%BD%BF%E7%94%A8typescript%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E9%9B%86%E9%94%A6/</guid>
       <description>本文环境 @vue/cli 4.3.1&#xA;typescript 3.9.5&#xA;相关配置文件 vue.config.js&#xA;tsconfig.json&#xA;shims-vue.d.ts&#xA;问题汇总 导入 vue 文件报错 错误信息：Cannot find module &amp;lsquo;./App.vue&amp;rsquo; or its corresponding type declarations&#xA;解决方案：修改shims-vue.d.ts&#xA;declare module &amp;#34;*.vue&amp;#34; { import Vue from &amp;#34;vue&amp;#34;; export default Vue; } Vscode 报错，编译不报错 解决方案：重启 Vscode&#xA;挂载原型$api 报错 解决方案：在src目录下新增vue-property.d.ts&#xA;import Vue from &amp;#39;vue&amp;#39; declare module &amp;#34;vue/types/vue&amp;#34; { interface Vue { $api: any; } } 无法使用@components别名 alias 路径 解决方案: 修改tsconfig.json&#xA;{ &amp;#34;compilerOptions&amp;#34;: { &amp;#34;target&amp;#34;: &amp;#34;esnext&amp;#34;, &amp;#34;module&amp;#34;: &amp;#34;esnext&amp;#34;, &amp;#34;strict&amp;#34;: true, &amp;#34;jsx&amp;#34;: &amp;#34;preserve&amp;#34;, &amp;#34;importHelpers&amp;#34;: true, &amp;#34;moduleResolution&amp;#34;: &amp;#34;node&amp;#34;, &amp;#34;experimentalDecorators&amp;#34;: true, &amp;#34;esModuleInterop&amp;#34;: true, &amp;#34;allowSyntheticDefaultImports&amp;#34;: true, &amp;#34;sourceMap&amp;#34;: true, &amp;#34;baseUrl&amp;#34;: &amp;#34;.</description>
     </item>
     <item>
       <title>初探vue3.0笔记</title>
-      <link>https://blog.thinkmoon.cn/post/881_%E5%88%9D%E6%8E%A2vue3_0%E7%AC%94%E8%AE%B0/</link>
+      <link>http://localhost:1313/post/881_%E5%88%9D%E6%8E%A2vue3_0%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Tue, 23 Jun 2020 22:03:02 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/881_%E5%88%9D%E6%8E%A2vue3_0%E7%AC%94%E8%AE%B0/</guid>
+      <guid>http://localhost:1313/post/881_%E5%88%9D%E6%8E%A2vue3_0%E7%AC%94%E8%AE%B0/</guid>
       <description>&#xA;tips: 请注意区分vue3.0和vue cli 3.x/4.x&#xA;创建项目 vue create -r https://registry.npm.taobao.org vue-next-test 选择你喜欢的配置即可，创建成功后，从Demo来看，跟vue2.0的typescript写法差别看起来不大的样子。。。&#xA;未完待续 </description>
     </item>
     <item>
       <title> Vue按需引入element ui笔记</title>
-      <link>https://blog.thinkmoon.cn/post/843_vue%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5element-ui%E7%AC%94%E8%AE%B0/</link>
+      <link>http://localhost:1313/post/843_vue%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5element-ui%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Tue, 23 Jun 2020 09:00:34 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/843_vue%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5element-ui%E7%AC%94%E8%AE%B0/</guid>
+      <guid>http://localhost:1313/post/843_vue%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5element-ui%E7%AC%94%E8%AE%B0/</guid>
       <description>按官网文档一键配置按需引入总是无法生效，目测可能是激进式预设没有选babel的原因。故写此文详细记录折腾过程，望有效！&#xA;vue ui创建新项目 选择预设，bable，eslint，vuex，vue-router(历史模式)&#xA;vue ui安装element插件 选择配置&#xA;改动的内容 自动创建了bable.config.js,并添加了内容。&#xA;创建了`@/src/plugins/element.js,设置了按需引入&#xA;改写了app.vue,添加了element按钮组件&#xA;运行测试 加载成功&#xA;Q&amp;amp;A 为什么需要bable来支持按需加载 如果不使用bable转码，那你按需引入会找不到该组件。这是由于bable在将组件库转码的过程中把element整个组件库编译成了各种独立的组件模块，进而实现按需加载的功能&#xA;如何添加需要的组件 使用vue ui添加后的组件会在plugins目录下创建element.js文件，然后在main.js中引入该文件。文件内容如下：&#xA;import Vue from &amp;#34;vue&amp;#34;; import { Button } from &amp;#34;element-ui&amp;#34;; Vue.use(Button); 这就是只引入Button的方法，如果要按需添加，只需要依葫芦画瓢即可！</description>
     </item>
     <item>
       <title>Vue cli 笔记</title>
-      <link>https://blog.thinkmoon.cn/post/834_vue-cli-%E7%AC%94%E8%AE%B0/</link>
+      <link>http://localhost:1313/post/834_vue-cli-%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Tue, 23 Jun 2020 08:59:51 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/834_vue-cli-%E7%AC%94%E8%AE%B0/</guid>
+      <guid>http://localhost:1313/post/834_vue-cli-%E7%AC%94%E8%AE%B0/</guid>
       <description>安装 全局安装@vue/cli&#xA;yarn global add @vue/cli 检查是否安装成功(需重启更新环境变量)&#xA;vue --version 快速原型开发 新版本Vue中增加了该功能，方便快速进行单个Vue文件开发，需要先额外安装一个全局的扩展。&#xA;yarn global add @vue/cli-service-global 入手尝鲜&#xA;新建index.vue文件 &amp;lt;template&amp;gt; &amp;lt;div&amp;gt;Hello Vue&amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; 运行服务 vue serve index.vue 效果 创建项目 略&#xA;vue.config.js 在vue cli 3.x/4.x 中，使用vue.cofig.js来进行一些包括webpack的配置。比如我们可以想要一个控制台输出编译时间的配置，可以在如下设置&#xA;const moment = require(&amp;#39;moment&amp;#39;) module.exports = { chainWebpack: config =&amp;gt; { config .plugin(&amp;#39;html&amp;#39;) .tap(args =&amp;gt; { args[0].title = &amp;#39;三只蜜桔后台管理系统·商户版&amp;#39;, args[0].buildTime = moment().format(&amp;#39;YYYY.MM.DD.HH.mm&amp;#39;) return args }) } } 亦或者，我们想要在生产环境禁用console.log&#xA;const moment = require(&amp;#39;moment&amp;#39;) module.exports = { chainWebpack: config =&amp;gt; { config .</description>
     </item>
     <item>
       <title>el-upload视频上传支持回显和预览的一种异教徒解决方案</title>
-      <link>https://blog.thinkmoon.cn/post/861_el-upload%E8%A7%86%E9%A2%91%E4%B8%8A%E4%BC%A0%E6%94%AF%E6%8C%81%E5%9B%9E%E6%98%BE%E5%92%8C%E9%A2%84%E8%A7%88%E7%9A%84%E4%B8%80%E7%A7%8D%E5%BC%82%E6%95%99%E5%BE%92%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+      <link>http://localhost:1313/post/861_el-upload%E8%A7%86%E9%A2%91%E4%B8%8A%E4%BC%A0%E6%94%AF%E6%8C%81%E5%9B%9E%E6%98%BE%E5%92%8C%E9%A2%84%E8%A7%88%E7%9A%84%E4%B8%80%E7%A7%8D%E5%BC%82%E6%95%99%E5%BE%92%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
       <pubDate>Thu, 18 Jun 2020 11:28:57 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/861_el-upload%E8%A7%86%E9%A2%91%E4%B8%8A%E4%BC%A0%E6%94%AF%E6%8C%81%E5%9B%9E%E6%98%BE%E5%92%8C%E9%A2%84%E8%A7%88%E7%9A%84%E4%B8%80%E7%A7%8D%E5%BC%82%E6%95%99%E5%BE%92%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+      <guid>http://localhost:1313/post/861_el-upload%E8%A7%86%E9%A2%91%E4%B8%8A%E4%BC%A0%E6%94%AF%E6%8C%81%E5%9B%9E%E6%98%BE%E5%92%8C%E9%A2%84%E8%A7%88%E7%9A%84%E4%B8%80%E7%A7%8D%E5%BC%82%E6%95%99%E5%BE%92%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
       <description>该文章为异教徒解决方案，各位看官看下即可，切勿模仿！！！&#xA;问题描述 原生的el-upload只支持上传图片时候的预览和回显，这是因为只针对img标签做了适配，如下图。&#xA;而如果我们上传视频，则会出现一个白方框，用户体验不佳。&#xA;解决思路 其实正确的解决思路应该是&#xA;将show-file-list属性设置为false。然后再自己循环显示file-list，以及追加对应的预览，删除按钮及功能。&#xA;设置自定义模板内容(推荐使用)&#xA;但是我觉得这样太麻烦了(时间问题）。&#xA;于是我突发奇想，如果我将img标签改成video标签呢？如下图&#xA;发现居然完美契合，毫无违和感。&#xA;预览的实现 在做到把img改为video标签之前，还需要解决的另一个问题就是，如何让视频也支持预览。老规矩，我们先来看看官方Demo怎么实现预览的。&#xA;官方的做法是增加一个dialog，然后在点击预览图片时将文件url传给dialog。我们先来实现一下改写一下dialog&#xA;&amp;lt;el-dialog :visible.sync=&amp;#34;dialogVisible&amp;#34; :modal-append-to-body=&amp;#34;true&amp;#34;&amp;gt; &amp;lt;video width=&amp;#34;100%&amp;#34; muted autoplay=&amp;#34;autoplay&amp;#34; loop=&amp;#34;loop&amp;#34; v-if=&amp;#34;dialogImageUrl[dialogImageUrl.length - 1] == 4&amp;#34; :src=&amp;#34;dialogImageUrl&amp;#34;&amp;gt;&amp;lt;/video&amp;gt; &amp;lt;img width=&amp;#34;100%&amp;#34; v-else :src=&amp;#34;dialogImageUrl&amp;#34; alt /&amp;gt; &amp;lt;/el-dialog&amp;gt; tips: 我这种判断MP4格式的方式实属异端，不建议模仿。&#xA;替换img标签 一到标签节点的操作，我第一想到的就是document操作（异端+1），直接上代码。&#xA;changeVideoTag(){ let videoTag = document.querySelector(&amp;#39;.video img&amp;#39;) console.log(&amp;#39;检测到应为video的img标签&amp;#39;, videoTag) if(videoTag){ let parentNode = videoTag.parentNode let newElement = document.createElement(&amp;#39;video&amp;#39;) newElement.setAttribute(&amp;#39;class&amp;#39;, videoTag.getAttribute(&amp;#39;class&amp;#39;)) newElement.setAttribute(&amp;#39;src&amp;#39;, videoTag.getAttribute(&amp;#39;src&amp;#39;)) parentNode.insertBefore(newElement, videoTag) } }, 该函数负责寻找video类下的img标签，然后在img标签之前，添加一个同样的videos元素节点，此处你可以选择是否移除原img标签。&#xA;最终实现效果 最后的话 这种方法非常不推荐使用，强烈建议使用自定义模板缩略图&#xA;这种方法非常不推荐使用，强烈建议使用自定义模板缩略图</description>
     </item>
     <item>
       <title>微信小程序通过uni-app实现v-html渲染视图</title>
-      <link>https://blog.thinkmoon.cn/post/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/</link>
+      <link>http://localhost:1313/post/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/</link>
       <pubDate>Tue, 02 Jul 2019 11:44:51 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/</guid>
+      <guid>http://localhost:1313/post/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/</guid>
       <description>v-html介绍 如果不使用v-html而是直接将html标签加入视图层会出现html标签不解析的情况，如果我们想实现解析的效果。vue中提供了v-html指令。使用 v-html 指令，你可以将html标签解析渲染到视图层。&#xA;微信小程序如何使用？ 由于微信小程序只是类vue的，与vue存在着很多不同点。但是为了秉承将vue进行到底的宗旨，很多微信小程序开发框架如雨后春笋。在我使用的过程中，感觉uni-app与vue最为贴近，而且适配了很多vue的特性，如：v-model，filters，v-html等。官网是这样介绍的。&#xA;其中，他们是通过微信小程序rich-text的属性来实现v-html的效果的。所以，我们想知道支持什么标签，就得移步至rich-text | 微信开发文档&#xA;开始实现Demo demo 中的需求是一个赛事报名list，其中赛事状态有，预报名，报名成功，正在进行，已结束等。&#xA;预实现方法：由于微信小程序的rich-text组件会禁用所有的节点事件，所以想通过@click绑定v-html节点事件，filter渲染界面。但是在实现过程中发现不支持在v-html中使用filter, 故后来采用methods的返回值来实现视图层的渲染。&#xA;效果如下：至此效果，v-html解析成功&#xA;添加状态判断</description>
     </item>
     <item>
       <title>uni-app使用v-model</title>
-      <link>https://blog.thinkmoon.cn/post/313_uni-app%E4%BD%BF%E7%94%A8v-model/</link>
+      <link>http://localhost:1313/post/313_uni-app%E4%BD%BF%E7%94%A8v-model/</link>
       <pubDate>Mon, 27 May 2019 16:42:46 +0000</pubDate>
-      <guid>https://blog.thinkmoon.cn/post/313_uni-app%E4%BD%BF%E7%94%A8v-model/</guid>
+      <guid>http://localhost:1313/post/313_uni-app%E4%BD%BF%E7%94%A8v-model/</guid>
       <description>v-model 介绍 首先明确一点，v-model仅仅是语法糖。&#xA;&amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;something&amp;#34;&amp;gt; 等价于&#xA;&amp;lt;input type=&amp;#34;text&amp;#34; v-bind:value=&amp;#34;something&amp;#34; v-on:input=&amp;#34;something = $event.target.value&amp;#34;&amp;gt; 它将一个较复杂的input双向数据绑定简化了他的书写方式。&#xA;微信小程序绑定input 最开始我是使用微信推荐的写法&#xA;&amp;lt;input bindtap=&amp;#34;input&amp;#34; /&amp;gt; 然后在js里面解析event，然后再setData&#xA;uni-app下v-model的写法 本文采用uni-app自定义组件模式&#xA;wxml&#xA;... &amp;lt;form @submit=&amp;#34;formSubmit&amp;#34; @reset=&amp;#34;formReset&amp;#34; :model=&amp;#34;formItem&amp;#34; class=&amp;#34;tm-every-center padding bg-white&amp;#34;&amp;gt; &amp;lt;view class=&amp;#34;section flex align-center&amp;#34;&amp;gt; &amp;lt;view class=&amp;#34;section__title&amp;#34;&amp;gt;姓名：&amp;lt;/view&amp;gt; &amp;lt;input name=&amp;#34;name&amp;#34; placeholder=&amp;#34;请填写您的姓名&amp;#34; class=&amp;#34;bg-gray&amp;#34; v-model=&amp;#34;formItem.name&amp;#34; /&amp;gt; &amp;lt;/view&amp;gt; &amp;lt;view class=&amp;#34;section flex align-center&amp;#34;&amp;gt; &amp;lt;view class=&amp;#34;section__title&amp;#34;&amp;gt;手机：&amp;lt;/view&amp;gt; &amp;lt;input name=&amp;#34;name&amp;#34; placeholder=&amp;#34;请填写您的姓名&amp;#34; class=&amp;#34;bg-gray&amp;#34; v-model=&amp;#34;formItem.phone&amp;#34; /&amp;gt; &amp;lt;/view&amp;gt; &amp;lt;view class=&amp;#34;section flex align-center&amp;#34;&amp;gt; &amp;lt;view class=&amp;#34;section__title&amp;#34;&amp;gt;赛点：&amp;lt;/view&amp;gt; &amp;lt;input name=&amp;#34;name&amp;#34; placeholder=&amp;#34;请填写您的姓名&amp;#34; class=&amp;#34;bg-gray&amp;#34; v-model=&amp;#34;formItem.competition&amp;#34; /&amp;gt; &amp;lt;/view&amp;gt; &amp;lt;view class=&amp;#34;btn-area margin-top&amp;#34;&amp;gt;&amp;lt;button formType=&amp;#34;submit&amp;#34; class=&amp;#34;cu-btn&amp;#34;&amp;gt;提交&amp;lt;/button&amp;gt;&amp;lt;/view&amp;gt; &amp;lt;/form&amp;gt; .</description>
     </item>
   </channel>
