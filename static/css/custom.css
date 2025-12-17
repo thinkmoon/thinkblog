@@ -105,6 +105,26 @@ header {
     font-weight: 600;
 }
 
+.top-menu .menu a.search-icon {
+    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.top-menu .menu a.search-icon:hover {
+    background-color: rgba(0, 122, 204, 0.1);
+    transform: scale(1.1);
+}
+
+.top-menu .menu li.active a.search-icon {
+    background-color: rgba(0, 122, 204, 0.15);
+}
+
 .top-menu .right .admin-link {
     color: #007acc;
     text-decoration: none;
