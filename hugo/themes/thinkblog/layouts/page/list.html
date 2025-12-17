@@ -36,7 +36,7 @@
                         {{ if .Params.tags }}
                         <div class="post-entry-categories">
                             {{ range .Params.tags }}
-                            <a href="{{ "/tags/" | absURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
+                            <a href="/tags/{{ . | urlize }}" class="post-tag">{{ . }}</a>
                             {{ end }}
                         </div>
                         {{ end }}
@@ -67,7 +67,7 @@
 
                                 <div class="ico-warp">
                                     <span class="icon">📁</span>
-                                    <a href="{{ "/categories/" | absURL }}{{ (index (.Params.categories | default (slice "未分类")) 0) | urlize }}">
+                                    <a href="/categories/{{ (index (.Params.categories | default (slice "未分类")) 0) | urlize }}">
                                         {{ index (.Params.categories | default (slice "未分类")) 0 }}
                                     </a>
                                 </div>

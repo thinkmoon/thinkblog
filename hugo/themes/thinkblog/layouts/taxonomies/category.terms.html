@@ -23,7 +23,7 @@
                         {{ if .Params.tags }}
                         <div class="post-entry-categories">
                             {{ range .Params.tags }}
-                            <a href="{{ "/tags/" | absURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
+                            <a href="/tags/{{ . | urlize }}" class="post-tag">{{ . }}</a>
                             {{ end }}
                         </div>
                         {{ end }}

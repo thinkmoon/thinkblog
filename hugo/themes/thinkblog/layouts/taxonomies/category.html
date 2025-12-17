@@ -9,7 +9,7 @@
         <div class="categories-list">
             {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
             <div class="category-item">
-                <a href="{{ "/categories/" | absURL }}{{ $name | urlize }}" class="category-link">
+                <a href="/categories/{{ $name | urlize }}" class="category-link">
                     <span class="category-name">{{ $name }}</span>
                     <span class="category-count">({{ len $taxonomy }})</span>
                 </a>

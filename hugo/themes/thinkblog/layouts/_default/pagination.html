@@ -25,7 +25,7 @@
                         {{ if .Params.tags }}
                         <div class="post-entry-categories">
                             {{ range .Params.tags }}
-                            <a href="{{ "/tags/" | absURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
+                            <a href="/tags/{{ . | urlize }}" class="post-tag">{{ . }}</a>
                             {{ end }}
                         </div>
                         {{ end }}
@@ -56,7 +56,7 @@
 
                                 <div class="ico-warp">
                                     <span class="icon">📁</span>
-                                    <a href="{{ "/categories/" | absURL }}{{ (index (.Params.categories | default (slice "未分类")) 0) | urlize }}">
+                                    <a href="/categories/{{ (index (.Params.categories | default (slice "未分类")) 0) | urlize }}">
                                         {{ index (.Params.categories | default (slice "未分类")) 0 }}
                                     </a>
                                 </div>
@@ -89,14 +89,14 @@
                 {{ if le $totalPages $maxVisible }}
                     <!-- 如果总页数小于等于最大显示数，显示所有页码 -->
                     {{ range $i := (seq 1 $totalPages) }}
-                    <a href="{{ printf "/page/%d" $i | absURL }}"
+                    <a href="{{ printf "/page/%d" $i }}"
                        class="pagination-item {{ if eq $i $currentPage }}is-active{{ end }}">
                         {{ $i }}
                     </a>
                     {{ end }}
                 {{ else }}
                     <!-- 始终显示第一页 -->
-                    <a href="{{ "/page/1" | absURL }}" class="pagination-item {{ if eq $currentPage 1 }}is-active{{ end }}">
+                    <a href="{{ "/page/1" }}" class="pagination-item {{ if eq $currentPage 1 }}is-active{{ end }}">
                         1
                     </a>
 
@@ -124,7 +124,7 @@
 
                     <!-- 添加中间页码 -->
                     {{ range $i := (seq $start $end) }}
-                    <a href="{{ printf "/page/%d" $i | absURL }}"
+                    <a href="{{ printf "/page/%d" $i }}"
                        class="pagination-item {{ if eq $i $currentPage }}is-active{{ end }}">
                         {{ $i }}
                     </a>
