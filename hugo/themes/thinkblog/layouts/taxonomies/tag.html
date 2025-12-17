@@ -8,12 +8,10 @@
 
         <div class="tags-list">
             {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-            <div class="tag-item">
-                <a href="/tags/{{ $name | urlize }}" class="tag-link">
-                    <span class="tag-name">{{ $name }}</span>
-                    <span class="tag-count">({{ len $taxonomy }})</span>
-                </a>
-            </div>
+            <a href="/tags/{{ $name | urlize }}" class="tag-link">
+                <span class="tag-name">{{ $name }}</span>
+                <span class="tag-count">{{ len $taxonomy }}</span>
+            </a>
             {{ end }}
         </div>
     </div>

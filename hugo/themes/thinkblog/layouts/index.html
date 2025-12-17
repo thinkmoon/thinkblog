@@ -154,10 +154,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const starArr = [];
     for (let i = 0; i < 6000; i++) {
       let star = new THREE.Vector3(
-        Math.random() * 600 - 300,
-        Math.random() * 600 - 300,
-        Math.random() * 600 - 300
-      );
+            Math.random() * 600 - 300,
+            Math.random() * 600 - 300,
+            Math.random() * 600 - 300
+        );
       starArr.push(star);
     }
     starGeo.setFromPoints(starArr);
@@ -175,41 +175,41 @@ document.addEventListener('DOMContentLoaded', function() {
       if (speedTimer) {
         clearInterval(speedTimer);
       }
-      speedTimer = setInterval(() => {
-        speed += 0.05;
+        speedTimer = setInterval(() => {
+            speed += 0.05;
         if (speed > 5) {
           speed = 5;
         }
-      }, 100);
+        }, 100);
     }
 
     function slowdown() {
       if (speedTimer) {
         clearInterval(speedTimer);
       }
-      speed = 0.5;
+        speed = 0.5;
     }
 
     const startButton = document.querySelector('.start-button');
     if (startButton) {
-      startButton.addEventListener('mouseover', accelerate);
-      startButton.addEventListener('mouseleave', slowdown);
+        startButton.addEventListener('mouseover', accelerate);
+        startButton.addEventListener('mouseleave', slowdown);
     }
 
     function animate() {
       const positions = starGeo.attributes.position.array;
-      for (let i = 0; i < positions.length; i += 3) {
-        positions[i + 1] -= speed;
-        if (positions[i + 1] <= -300) {
-          positions[i + 1] = 300;
+        for (let i = 0; i < positions.length; i += 3) {
+            positions[i + 1] -= speed;
+            if (positions[i + 1] <= -300) {
+                positions[i + 1] = 300;
+            }
         }
-      }
       starGeo.attributes.position.needsUpdate = true;
 
-      line.rotation.y += 0.005;
+        line.rotation.y += 0.005;
 
       controls.update();
-      renderer.render(scene, camera);
+        renderer.render(scene, camera);
       requestAnimationFrame(animate);
     }
 

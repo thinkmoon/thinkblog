@@ -1,16 +1,34 @@
 {{ define "main" }}
 <div class="article-content">
-    <div class="markdown-body">
-        {{ .Content }}
+    <div class="post-header">
+        <h1>{{ .Title }}</h1>
+        {{ if .Params.tags }}
+        <div class="post-tags">
+            {{ range .Params.tags }}
+            <a href="/tags/{{ . | urlize }}" class="tag">{{ . }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+        <div class="post-meta">
+            <span class="author">作者: 醉月思</span>
+            <span class="date">发布日期: {{ .Date.Format "2006-01-02" }}</span>
+            {{ if .Params.categories }}
+            <span class="category">分类: {{ index (.Params.categories | default (slice "未分类")) 0 }}</span>
+            {{ end }}
+        </div>
     </div>
 
-    <!-- Google Ads -->
-    <ins class="adsbygoogle"
-         style="display:block; text-align:center;width: 100%"
-         data-ad-client="ca-pub-3208634444966567"
-         data-ad-format="fluid"
-         data-ad-layout="in-article"
-         data-ad-slot="2621880404">
-    </ins>
+    <div class="markdown-body">
+                {{ .Content }}
+            </div>
+
+            <!-- Google Ads -->
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
 </div>
 {{ end }}
