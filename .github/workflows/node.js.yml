@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Hugo CI
 
 on:
   push:
@@ -18,56 +18,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4 # 官方代码检出动作
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
       with:
-        node-version: 22
+        hugo-version: 'latest'
+        extended: true
 
-    # 方法一：推荐使用 corepack（Node.js 16+ 内置）
-    - name: Enable corepack (for pnpm)
-      run: corepack enable
-
-    # 安装构建工具和依赖
-    - name: Install build dependencies
+    - name: Build Hugo site
       run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential python3 python3-dev
-        # 安装Node.js原生模块编译所需的工具
-        sudo apt-get install -y libc6-dev
-
-    - name: Install dependencies
-      run: pnpm install --no-frozen-lockfile        # 使用 pnpm 安装依赖，允许更新锁文件
-
-    - name: Rebuild all native modules
-      run: |
-        # 设置环境变量强制编译
-        export npm_config_build_from_source=true
-        export npm_config_cache=false
-        export npm_config_target_arch=x64
-        export npm_config_target_platform=linux
-        # 允许pnpm运行构建脚本
-        pnpm config set enable-pre-post-scripts true
-        # 检查better-sqlite3是否存在
-        echo "Checking better-sqlite3 installation..."
-        find node_modules -name "better-sqlite3" -type d
-        # 强制重新安装better-sqlite3并允许构建脚本
-        pnpm add better-sqlite3@^12.4.1 --force --ignore-scripts=false
-        # 手动运行better-sqlite3的构建脚本
-        cd node_modules/.pnpm/better-sqlite3@12.4.1/node_modules/better-sqlite3
-        npm run build-release || npm run build
-        cd ../../../../..
-        # 验证better-sqlite3是否正确安装
-        node -e "console.log('Testing better-sqlite3...'); try { const sqlite3 = require('better-sqlite3'); console.log('✅ better-sqlite3 loaded successfully'); } catch(e) { console.log('❌ better-sqlite3 failed:', e.message); process.exit(1); }"
-
-    - name: Generate static site
-      run: pnpm run generate   # 生成静态站点
-      env:
-        NODE_ENV: production
-        # 设置构建环境变量确保原生模块正确编译
-        npm_config_build_from_source: true
-        npm_config_target_arch: x64
-        npm_config_target_platform: linux
-        npm_config_cache: false
+        cd hugo
+        hugo --minify
 
     # 使用 Cloudflare 官方 Action 处理 API Token 认证
     - name: Deploy with Wrangler (API Token)
@@ -75,5 +35,5 @@ jobs:
       with:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-        command: pages deploy .output/public/ --project-name=blog
+        command: pages deploy hugo/public/ --project-name=blog
       
