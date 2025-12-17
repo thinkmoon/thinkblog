@@ -704,38 +704,6 @@
     <loc>https://example.org/tags/%E8%BF%9C%E7%A8%8B%E5%94%A4%E9%86%92/</loc>
     <lastmod>2018-06-02T10:33:44+00:00</lastmod>
   </url><url>
-    <loc>https://example.org/page/1/</loc>
-  </url><url>
-    <loc>https://example.org/page/10/</loc>
-  </url><url>
-    <loc>https://example.org/page/11/</loc>
-  </url><url>
-    <loc>https://example.org/page/12/</loc>
-  </url><url>
-    <loc>https://example.org/page/13/</loc>
-  </url><url>
-    <loc>https://example.org/page/14/</loc>
-  </url><url>
-    <loc>https://example.org/page/15/</loc>
-  </url><url>
-    <loc>https://example.org/page/16/</loc>
-  </url><url>
-    <loc>https://example.org/page/1/</loc>
-  </url><url>
-    <loc>https://example.org/page/2/</loc>
-  </url><url>
-    <loc>https://example.org/page/3/</loc>
-  </url><url>
-    <loc>https://example.org/page/4/</loc>
-  </url><url>
-    <loc>https://example.org/page/5/</loc>
-  </url><url>
-    <loc>https://example.org/page/6/</loc>
-  </url><url>
-    <loc>https://example.org/page/7/</loc>
-  </url><url>
-    <loc>https://example.org/page/8/</loc>
-  </url><url>
-    <loc>https://example.org/page/9/</loc>
+    <loc>https://example.org/page/</loc>
   </url>
 </urlset>

@@ -3,6 +3,7 @@ import os
 import re
 import glob
 import yaml
+import math
 
 def convert_frontmatter(content_dir):
     """Convert frontmatter from original format to Hugo format"""
@@ -71,7 +72,51 @@ def convert_frontmatter(content_dir):
         except Exception as e:
             print(f"Error processing {file_path}: {e}")
 
+def generate_pagination(content_dir, posts_per_page=10):
+    """Generate pagination aliases for Hugo built-in pagination"""
+
+    # Count posts in the post directory
+    post_dir = os.path.join(content_dir, "post")
+    if not os.path.exists(post_dir):
+        print(f"Post directory {post_dir} does not exist")
+        return
+
+    md_files = glob.glob(os.path.join(post_dir, "*.md"))
+    total_posts = len(md_files)
+    total_pages = math.ceil(total_posts / posts_per_page)
+
+    print(f"Found {total_posts} posts, will create aliases for {total_pages} pages")
+
+    # Create page directory if it doesn't exist
+    page_dir = os.path.join(content_dir, "page")
+    os.makedirs(page_dir, exist_ok=True)
+
+    # Generate aliases for pagination
+    aliases = ['/page/']  # /page/ redirects to first page
+    for page_num in range(2, total_pages + 1):  # Start from page 2
+        aliases.append(f'/page/{page_num}/')
+
+    # Update the main page _index.md with all aliases
+    main_page_index = os.path.join(page_dir, "_index.md")
+    aliases_yaml = '\n'.join(f'  - "{alias}"' for alias in aliases)
+
+    main_index_content = f"""---
+title: "文章列表"
+description: "所有文章的完整列表，按时间倒序排列"
+type: "page"
+layout: "list"
+paginate: 10
+aliases:
+{aliases_yaml}
+---
+"""
+    with open(main_page_index, 'w', encoding='utf-8') as f:
+        f.write(main_index_content)
+
+    print(f"Updated main page index with {len(aliases)} aliases for pagination")
+
 if __name__ == "__main__":
     content_dir = "content"
     convert_frontmatter(content_dir)
-    print("Frontmatter conversion completed!")
+    generate_pagination(content_dir)
+    print("Frontmatter conversion and pagination setup completed!")
