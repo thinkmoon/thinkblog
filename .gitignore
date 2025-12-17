@@ -24,3 +24,6 @@ logs
 !.env.example
 nuxtContent文档
 migrate.py
+
+# Hugo generated files
+hugo/public/
