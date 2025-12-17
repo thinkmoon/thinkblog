@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>【leetcode】4. Median of Two Sorted Arrays寻找两个有序数组的中位数 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="leetcode, python">
+
+    
+    <meta property="og:title" content="【leetcode】4. Median of Two Sorted Arrays寻找两个有序数组的中位数">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/726__leetcode_4_-median-of-two-sorted-arrays%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/blog/typecho/2020-01-16T13:39:09.png">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>【leetcode】4. Median of Two Sorted Arrays寻找两个有序数组的中位数</h1>
+
+                <div class="post-meta">
+                    <time datetime="2020-01-22">2020-01-22</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/leetcode" class="tag">leetcode</a>
+                    
+                    <a href="http://localhost:1313/tags/python" class="tag">python</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2020-01-16T13:39:09.png" alt="【leetcode】4. Median of Two Sorted Arrays寻找两个有序数组的中位数"></p>
+<h2 id="我的初次实现">我的初次实现</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">findMedianSortedArrays</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">nums2</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">newList</span> <span class="o">=</span> <span class="n">nums1</span> <span class="o">+</span> <span class="n">nums2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">newList</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">newList</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">result</span> <span class="o">=</span> <span class="n">newList</span><span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">newList</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">newList</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">newList</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="n">newList</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span>
+</span></span></code></pre></div><h2 id="成果">成果</h2>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2020-01-16T13:40:45.png" alt="2020-01-16T13:40:45.png"></p>
+<h2 id="问题">问题</h2>
+<p>但是我们仔细观察，可以发现这个的时间复杂度是不够的。</p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/726__leetcode_4_-median-of-two-sorted-arrays%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD/）本文首发于
+                        <a href="http://localhost:1313/726__leetcode_4_-median-of-two-sorted-arrays%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD/">指尖魔法屋-【leetcode】4. Median of Two Sorted Arrays寻找两个有序数组的中位数</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

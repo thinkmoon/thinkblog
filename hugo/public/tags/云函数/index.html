@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>云函数 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    
+    <meta property="og:title" content="云函数">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/tags/%E4%BA%91%E5%87%BD%E6%95%B0/">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="active">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <div class="page-header">
+            <h1>云函数</h1>
+            
+        </div>
+
+        <div class="blog-posts">
+            
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/466_uni-app%E5%AF%B9%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%91%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%82%E9%85%8D/" title="uni-app对微信小程序云函数的适配">
+                        <div class="overlay"></div>
+                        <img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-10-22T01:28:39.png" alt="uni-app对微信小程序云函数的适配" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/uni-app" class="post-tag">uni-app</a>
+                            
+                            <a href="http://localhost:1313/tags/%E4%BA%91%E5%87%BD%E6%95%B0" class="post-tag">云函数</a>
+                            
+                            <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="post-tag">微信小程序</a>
+                            
+                        </div>
+                        
+
+                        <a href="/466_uni-app%E5%AF%B9%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%91%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%82%E9%85%8D/" class="post-title">
+                            uni-app对微信小程序云函数的适配
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                引言 熟悉uni-app的人应该都知道，uni-app并未对微信小程序云函数（本文统称云函数）进行相应的适配。但是，如果我们在某些业务场景的下需要使用云函数呢？我们知道，云函数可以复制到微信开发者工具，这样的话我们不得不每次编译一次就手动复制一次，不得不说麻烦至极。本文就问题做出以下解决方案。
+本文环境 Hbuilder X 微信开发者工具 创建云函数目录 首先，我们需要在uni-app项目文件夹下，创建一个云函数目录，路径随意，我这里是functions。然后先随便在里面放一些文件，这里以new_file.css为例。
+修改manifest.json 在uni-app根目录下，修改manifest.json中的微信小程序项，结构如下
+&#34;mp-weixin&#34; : { /* 小程序特有相关 */ &#34;appid&#34; : &#34;wxd7de467f6e6cf741&#34;, &#34;cloudfunctionRoot&#34;: &#34;./functions/&#34;, // 这一行就是标记云函数目录的字段 &#34;setting&#34; : { &#34;urlCheck&#34; : false }, &#34;usingComponents&#34; : true } 编写vue.config.js 我们在项目根目录创建vue.config.js文件
+写入以下内容（如路径不一样请做相应适配）
+const path = require(&#39;path&#39;) const CopyWebpackPlugin = require(&#39;copy-webpack-plugin&#39;) module.exports = { configureWebpack: { plugins: [ new CopyWebpackPlugin([{ from: path.join(__dirname, &#39;cloudFunctions&#39;), to: path.join(__dirname, &#39;unpackage/dist&#39;, process.env.NODE_ENV === &#39;production&#39; ? &#39;build&#39; : &#39;dev&#39;, process.env .UNI_PLATFORM, &#39;cloudFunctions&#39;) }]) ] } } 编译运行 发现提示如下内容
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB">
+                                        教程分享
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2021-05-16</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+        </div>
+
+        
+        <div class="pagination-container">
+            
+
+            
+            <a href="/tags/%E4%BA%91%E5%87%BD%E6%95%B0/" class="pagination-link ">1</a>
+            
+
+            
+        </div>
+        
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

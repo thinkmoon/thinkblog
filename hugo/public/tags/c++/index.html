@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C&#43;&#43; | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    
+    <meta property="og:title" content="C&#43;&#43;">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/tags/c&#43;&#43;/">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="active">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <div class="page-header">
+            <h1>C&#43;&#43;</h1>
+            
+        </div>
+
+        <div class="blog-posts">
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/c&#43;&#43;" class="post-tag">C&#43;&#43;</a>
+                            
+                        </div>
+                        
+
+                        <a href="/77_c__11%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8Bauto%E7%9A%84%E5%A6%99%E7%94%A8/" class="post-title">
+                            C&#43;&#43;11新特性之auto的妙用
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                C++11引入了auto和decltype关键字实现类型推导，通过这两个关键字不仅能方便地获得复杂的类型，还能简化书写，提高编码效率。下面说一下C++中的auto
+旧标准 auto其实并不是一个新的关键字，在旧的标准C++98/03中，它代表着“具有自动存储周期的局部变量”。啥意思呢？就是我们平常所说的变量，他与static相对。就是说所有非static类型的都是“具有自动存储期的”。也就是说在旧的标准下。
+autoint i =3;//等价于int i=3; 新标准 在C++11中，auto作为一个新的类型指示符（如int，double）来指示编译器的，但是auto申明的变量的类型必须由编译器在编译时期推导出来，也称类型推导。这种类型推导不是C++所独有的，还有很多具备这种能力的语言（如Python，Javascript）。我们先来看一段Python代码
+name =&#34;thinkmoon&#34;print&#34;hello,&#34;+ name 在这里的name是不需要定义类型的，因为这个类型很容易被推导为字符串性，如过要想在C++中实现这种效果，我们可以这样。
+#include&lt;iostream&gt; int main(){ auto name =&#34;thinkmoon&#34;; std::cout &lt;&lt;&#34;hello,&#34;&lt;&lt; name &lt;&lt; std::endl; return0; } 效果是一样的，是不是觉得写起来特别的方便呢？
+但是需要注意的是，在C++中这种静态类型推导是发生在编译期间的。而像Python这种动态类型推导却是发生在运行期间的。
+auto的基本用法 #include&lt;iostream&gt; usingnamespace std; int main(){ auto x =5; cout &lt;&lt; x &lt;&lt; endl;//x被推导为intauto p =newauto(1); cout &lt;&lt;&#34;*&#34;&lt;&lt; p &lt;&lt;&#34;=&#34;&lt;&lt;*p &lt;&lt; endl;//p被推导为 int *constauto*v =&amp;x, u =6; cout &lt;&lt;&#34;*&#34;&lt;&lt; v &lt;&lt;&#34;=&#34;&lt;&lt;*v &lt;&lt;&#34;\n u=&#34;&lt;&lt; u &lt;&lt; endl;//v被推导为const int *，u被推导const int } 对于最后一个类型推导有几个需要注意
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-01-16</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+        </div>
+
+        
+        <div class="pagination-container">
+            
+
+            
+            <a href="/tags/c&#43;&#43;/" class="pagination-link ">1</a>
+            
+
+            
+        </div>
+        
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>scss/sass实现列表顺序加载动画 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="scss">
+
+    
+    <meta property="og:title" content="scss/sass实现列表顺序加载动画">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/606_scss_sass%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E9%A1%BA%E5%BA%8F%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-04T04:02:50.png">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>scss/sass实现列表顺序加载动画</h1>
+
+                <div class="post-meta">
+                    <time datetime="2020-06-23">2020-06-23</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB">
+                            教程分享
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/scss" class="tag">scss</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <h2 id="效果展示">效果展示</h2>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/list.gif" alt="列表顺序加载动画"></p>
+<p>本文会讲述如何使用scss/sass在微信小程序中实现列表顺序加载的动画。</p>
+<h2 id="所用的css特性">所用的css特性</h2>
+<h3 id="css-animations">CSS animations</h3>
+<blockquote>
+<p>CSS animations 使得可以将从一个CSS样式配置转换到另一个CSS样式配置。动画包括两个部分:描述动画的样式规则和用于指定动画开始、结束以及中间点样式的关键帧。</p>
+</blockquote>
+<p>相较于传统的脚本实现动画技术，使用CSS动画有三个主要优点：</p>
+<ol>
+<li>
+<p>能够非常容易地创建简单动画，你甚至不需要了解JavaScript就能创建动画。</p>
+</li>
+<li>
+<p>动画运行效果良好，甚至在低性能的系统上。渲染引擎会使用跳帧或者其他技术以保证动画表现尽可能的流畅。而使用JavaScript实现的动画通常表现不佳（除非经过很好的设计）。</p>
+</li>
+<li>
+<p>让浏览器控制动画序列，允许浏览器优化性能和效果，如降低位于隐藏选项卡中的动画更新频率。</p>
+</li>
+</ol>
+<p><code>css animations</code>的属性和子属性见<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Animations/Using_CSS_animations#%E9%85%8D%E7%BD%AE%E5%8A%A8%E7%94%BB">https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Animations/Using_CSS_animations#%E9%85%8D%E7%BD%AE%E5%8A%A8%E7%94%BB</a></p>
+<p>可主要分为两大部分，动画的实现形式和动画的属性规则。</p>
+<p>以下仅列出本文所用的属性。</p>
+<h3 id="animation-timing-function">animation-timing-function</h3>
+<p>animation-timing-function 规定动画的速度曲线。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-04T03:58:02.png" alt="速度曲线"></p>
+<h3 id="animation-delay">animation-delay</h3>
+<p>顾名思义，设置动画的持续时间，单位秒</p>
+<h3 id="animation-fill-mode">animation-fill-mode</h3>
+<blockquote>
+<p>animation-fill-mode 属性规定动画在播放之前或之后，其动画效果是否可见。</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-04T04:02:50.png" alt="animation-fill-mode"></p>
+<h3 id="使用keyframes定义动画序列">使用keyframes定义动画序列</h3>
+<p>keyframes就是一个描述关键帧的属性，通过使用@keyframes建立两个或两个以上关键帧来实现。每一个关键帧都描述了动画元素在给定的时间点上应该如何渲染。</p>
+<blockquote>
+<p>因为动画的时间设置是通过CSS样式定义的，关键帧使用percentage来指定动画发生的时间点。0%表示动画的第一时刻，100%表示动画的最终时刻。因为这两个时间点十分重要，所以还有特殊的别名：from和to。这两个都是可选的，若from/0%或to/100%未指定，则浏览器使用计算值开始或结束动画。</p>
+</blockquote>
+<h3 id="示例">示例</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">keyframes</span> <span class="nt">list</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">0</span><span class="o">%</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">100</span><span class="o">%</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></div><p>如上代码所示，定义了一个@keyframe名字叫list，在动画开始时使用缩放0%，结束时缩放100%。那么它在整个动画的过程中，便会根据浏览器的性能展示一个从0%-100%渐变的动画。是不是根据有点意思？当然，你也可包含设置任何额外可选的关键帧，描述动画开始和结束之间的状态，比如45%。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/animation.gif" alt="animation.gif"></p>
+<p>至此我们已经实现了组件显示时逐渐放大的效果</p>
+<h2 id="所用的scss特性">所用的scss特性</h2>
+<p>以下为简介，详细内容请转至官方文档</p>
+<h3 id="嵌套规则-nested-rules">嵌套规则 (Nested Rules)</h3>
+<blockquote>
+<p>scss/Sass允许将一个 CSS 样式嵌套进另一个样式中，内层样式仅适用于外层样式的选择器范围内。</p>
+</blockquote>
+<h3 id="引用父选择器">引用父选择器:&amp;</h3>
+<blockquote>
+<p>你可以 &amp; 字符来明确地表示插入指定父选择器。</p>
+</blockquote>
+<h3 id="变量-variables--">变量: $（Variables: $ ）</h3>
+<p>以美元符开头，可当变量使用。</p>
+<h3 id="mixin混入指令-mixin-directives">@mixin混入指令 (Mixin Directives)</h3>
+<blockquote>
+<p>混入(mixin)允许您定义可以在整个样式表中重复使用的样式，而避免了使用无语意的类（class），比如 .float-left。混入(mixin)还可以包含所有的CSS规则，以及任何其他在Sass文档中被允许使用的东西。</p>
+</blockquote>
+<p>他们甚至可以带arguments，引入变量，只需少量的混入(mixin)代码就能输出多样化的样式。</p>
+<h3 id="插值interpolation-">插值：#{}（Interpolation: #{}）</h3>
+<blockquote>
+<p>你可以通过 #{} 插值语法在选择器和属性名中使用 SassScript 变量：</p>
+</blockquote>
+<h3 id="for">@for</h3>
+<p>顾名思义，循环，要留意一下<code>to</code>和<code>through</code>的区别</p>
+<h3 id="引用混合样式include-including-a-mixin-include">引用混合样式:@include （Including a Mixin: @include）</h3>
+<h2 id="实现方式">实现方式</h2>
+<p>wxml文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;view</span> <span class="na">class=</span><span class="s">&#34;list__item&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;view&gt;</span>...<span class="nt">&lt;/view&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/view&gt;</span>
+</span></span></code></pre></div><p>编译前的scss/sass</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="nc">list</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="err">&amp;__item</span> <span class="err">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">animation</span><span class="p">:</span> <span class="n">list</span> <span class="mi">1</span><span class="kt">s</span> <span class="kc">ease</span> <span class="kc">both</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="err">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">@</span><span class="k">keyframes</span> <span class="nt">list</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">0</span><span class="o">%</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">100</span><span class="o">%</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">@</span><span class="k">mixin</span> <span class="nt">item</span><span class="o">($</span><span class="nt">num</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="o">$</span><span class="nt">waitTime</span><span class="o">:</span> <span class="o">($</span><span class="nt">num</span><span class="o">)*</span><span class="nt">0</span><span class="p">.</span><span class="nc">2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">animation-delay</span><span class="o">:</span> <span class="err">#</span><span class="p">{</span><span class="err">$waitTime</span><span class="p">}</span><span class="nt">s</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">@</span><span class="k">for</span> <span class="o">$</span><span class="nt">i</span> <span class="nt">from</span> <span class="nt">1</span> <span class="nt">through</span> <span class="nt">7</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">.</span><span class="nc">list__item</span><span class="p">:</span><span class="nd">nth-child</span><span class="o">(</span><span class="err">#</span><span class="p">{</span><span class="err">$i</span><span class="p">}</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="err">@include</span> <span class="err">item($i)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></div><p>less版</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="nt">list动画</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="nc">list__item</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">animation</span><span class="p">:</span> <span class="n">list</span> <span class="mf">.8</span><span class="kt">s</span> <span class="kc">ease</span> <span class="kc">both</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">@</span><span class="k">keyframes</span> <span class="nt">list</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">0</span><span class="o">%</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">100</span><span class="o">%</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="nc">generate-columns</span><span class="o">(</span><span class="nt">7</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="nc">generate-columns</span><span class="o">(</span><span class="p">@</span><span class="k">n</span><span class="o">,</span> <span class="p">@</span><span class="k">i</span><span class="o">:</span> <span class="nt">1</span><span class="o">)</span> <span class="nt">when</span> <span class="o">(</span><span class="p">@</span><span class="k">i</span> <span class="o">=&lt;</span> <span class="p">@</span><span class="k">n</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">.</span><span class="nc">list__item</span><span class="p">:</span><span class="nd">nth-child</span><span class="o">(@</span><span class="p">{</span><span class="err">i</span><span class="p">}</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">animation-delay</span><span class="p">:</span> <span class="o">@</span><span class="n">i</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">.</span><span class="nc">generate-columns</span><span class="o">(</span><span class="p">@</span><span class="k">n</span><span class="o">,</span> <span class="o">(</span><span class="p">@</span><span class="k">i</span> <span class="o">+</span> <span class="nt">1</span><span class="o">))</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="err">}</span>
+</span></span></code></pre></div><p>编译后的css</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">list__item</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kp">-webkit-</span><span class="k">animation</span><span class="p">:</span> <span class="n">list</span> <span class="mi">1</span><span class="kt">s</span> <span class="kc">ease</span> <span class="kc">both</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="k">animation</span><span class="p">:</span> <span class="n">list</span> <span class="mi">1</span><span class="kt">s</span> <span class="kc">ease</span> <span class="kc">both</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">-webkit-keyframes</span> <span class="nt">list</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">0</span><span class="o">%</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">100</span><span class="o">%</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">keyframes</span> <span class="nt">list</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">0</span><span class="o">%</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">100</span><span class="o">%</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">list__item</span><span class="p">:</span><span class="nd">nth-child</span><span class="o">(</span><span class="nt">1</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kp">-webkit-</span><span class="k">animation-delay</span><span class="p">:</span> <span class="mf">0.2</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="k">animation-delay</span><span class="p">:</span> <span class="mf">0.2</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">list__item</span><span class="p">:</span><span class="nd">nth-child</span><span class="o">(</span><span class="nt">2</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kp">-webkit-</span><span class="k">animation-delay</span><span class="p">:</span> <span class="mf">0.4</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="k">animation-delay</span><span class="p">:</span> <span class="mf">0.4</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">list__item</span><span class="p">:</span><span class="nd">nth-child</span><span class="o">(</span><span class="nt">3</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kp">-webkit-</span><span class="k">animation-delay</span><span class="p">:</span> <span class="mf">0.6</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="k">animation-delay</span><span class="p">:</span> <span class="mf">0.6</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">list__item</span><span class="p">:</span><span class="nd">nth-child</span><span class="o">(</span><span class="nt">4</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kp">-webkit-</span><span class="k">animation-delay</span><span class="p">:</span> <span class="mf">0.8</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="k">animation-delay</span><span class="p">:</span> <span class="mf">0.8</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">list__item</span><span class="p">:</span><span class="nd">nth-child</span><span class="o">(</span><span class="nt">5</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kp">-webkit-</span><span class="k">animation-delay</span><span class="p">:</span> <span class="mi">1</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="k">animation-delay</span><span class="p">:</span> <span class="mi">1</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">list__item</span><span class="p">:</span><span class="nd">nth-child</span><span class="o">(</span><span class="nt">6</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kp">-webkit-</span><span class="k">animation-delay</span><span class="p">:</span> <span class="mf">1.2</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="k">animation-delay</span><span class="p">:</span> <span class="mf">1.2</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">list__item</span><span class="p">:</span><span class="nd">nth-child</span><span class="o">(</span><span class="nt">7</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kp">-webkit-</span><span class="k">animation-delay</span><span class="p">:</span> <span class="mf">1.4</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="k">animation-delay</span><span class="p">:</span> <span class="mf">1.4</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/list.gif" alt="列表顺序加载动画效果展示"></p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Animations/Using_CSS_animations">使用CSS动画</a></p>
+<p><a href="https://www.w3school.com.cn/cssref/pr_animation-timing-function.asp">CSS3 animation-timing-function 属性</a></p>
+<p><a href="https://www.sasscss.com/docs/">sass中文文档</a></p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/606_scss_sass%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E9%A1%BA%E5%BA%8F%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/）本文首发于
+                        <a href="http://localhost:1313/606_scss_sass%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E9%A1%BA%E5%BA%8F%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/">指尖魔法屋-scss/sass实现列表顺序加载动画</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

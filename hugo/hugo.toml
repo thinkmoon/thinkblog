@@ -1,0 +1,87 @@
+baseURL = 'https://example.org/'
+languageCode = 'zh-cn'
+title = '指尖魔法屋'
+author = '醉月老哥'
+copyright = '© 2025 ThinkBlog. All rights reserved.'
+
+# 主题配置
+theme = 'thinkblog'
+
+# 内容配置
+uglyURLs = false
+enableEmoji = true
+summaryLength = 70
+
+# 语法高亮
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+# 菜单配置
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "首页"
+    url = "/"
+    weight = 10
+
+  [[menu.main]]
+    identifier = "categories"
+    name = "分类"
+    url = "/categories/"
+    weight = 20
+
+  [[menu.main]]
+    identifier = "tags"
+    name = "标签"
+    url = "/tags/"
+    weight = 30
+
+# 分类和标签配置
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+# 相关内容配置
+[related]
+  threshold = 80
+  includeNewer = true
+  toLower = false
+  [[related.indices]]
+    name = "keywords"
+    weight = 100
+  [[related.indices]]
+    name = "tags"
+    weight = 80
+
+# Markdown配置
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # 允许HTML标签
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "github"
+    tabWidth = 4
+
+# 分页配置
+paginate = 10
+
+# 参数配置
+[params]
+  description = "醉月老哥的技术博客"
+  favicon = "favicon.ico"
+  custom_css = ["css/github-markdown.css", "css/custom.css"]
+  dateFormat = "2006-01-02"
+
+  [params.author]
+    name = "醉月老哥"
+
+  [params.social]
+    github = "thinkmoon"
+    email = ""

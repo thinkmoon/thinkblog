@@ -1,0 +1,30 @@
+{{ define "main" }}
+<div class="list">
+    <header class="page-header">
+        <h1>{{ .Title }}</h1>
+        {{ if .Description }}
+        <p>{{ .Description }}</p>
+        {{ end }}
+    </header>
+
+    <div class="posts">
+        {{ range .Pages }}
+        <article class="post-summary">
+            <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            <div class="post-meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+                {{ if .Params.categories }}
+                <span>分类: {{ range .Params.categories }}{{ . }}{{ end }}</span>
+                {{ end }}
+            </div>
+            {{ if .Params.description }}
+            <p>{{ .Params.description }}</p>
+            {{ else if .Summary }}
+            <p>{{ .Summary }}</p>
+            {{ end }}
+            <a href="{{ .RelPermalink }}" class="read-more">阅读更多</a>
+        </article>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gitlab on 指尖魔法屋</title>
+    <link>http://localhost:1313/tags/gitlab/</link>
+    <description>Recent content in Gitlab on 指尖魔法屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
+    <lastBuildDate>Tue, 23 Jun 2020 19:34:48 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gitlab中vue前端项目CI/CD部署笔记</title>
+      <link>http://localhost:1313/849_gitlab%E4%B8%ADvue%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AEci_cd%E9%83%A8%E7%BD%B2%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 23 Jun 2020 19:34:48 +0000</pubDate>
+      <guid>http://localhost:1313/849_gitlab%E4%B8%ADvue%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AEci_cd%E9%83%A8%E7%BD%B2%E7%AC%94%E8%AE%B0/</guid>
+      <description>持续集成 略&#xA;Gitlab的持续集成 我们可以将整个运行机制，看作一个赏金猎人接任务，执行任务，并完成任务的过程。&#xA;GitLab-CI 简单来说，这就是一个任务发布平台。运行在gitlab服务器，监听代码状态变化，并发布对应的任务。&#xA;GitLab-Runner 而每个runner就是一位赏金猎人，是任务的执行者。&#xA;.gitlab-ci.yml 任务的发布者，规定什么时候触发任务，任务的具体内容。&#xA;配置流程 经过前面的解释，整个思路就很清晰了。我们需要做的有三件事。&#xA;编写.gitlab-ci.yml文件，设置对应的任务&#xA;部署Runner，激活赏金猎人&#xA;配置ci，邀请赏金猎人加入系统&#xA;部署Runner 这一步需要一个服务器，能run起来赏金猎人。&#xA;安装 请务必安装最新版，不然会出现很多未知的问题&#xA;下载二进制文件 # Linux x86-64 sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64 # Linux x86 sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-386 # Linux arm sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-arm # Linux arm64 sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-arm64 授予执行权限 sudo chmod +x /usr/local/bin/gitlab-runner Create a GitLab CI user: sudo useradd --comment &amp;#39;GitLab Runner&amp;#39; --create-home gitlab-runner --shell /bin/bash Install and run as service: sudo gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner sudo gitlab-runner start 加入任务系统 注册</description>
+    </item>
+  </channel>
+</rss>

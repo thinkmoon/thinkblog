@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vue cli 笔记 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="vue">
+
+    
+    <meta property="og:title" content="Vue cli 笔记">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/834_vue-cli-%E7%AC%94%E8%AE%B0/">
+    
+    <meta property="og:image" content="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-04-19T02:47:53.png">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>Vue cli 笔记</h1>
+
+                <div class="post-meta">
+                    <time datetime="2020-06-23">2020-06-23</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/vue" class="tag">vue</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-04-19T02:47:53.png" alt="2020-04-19T02:47:53.png"></p>
+<h2 id="安装">安装</h2>
+<p>全局安装<code>@vue/cli</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">yarn global add @vue/cli
+</span></span></code></pre></div><p>检查是否安装成功(需重启更新环境变量)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vue --version
+</span></span></code></pre></div><p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-04-19T02:36:37.png" alt="2020-04-19T02:36:37.png"></p>
+<h2 id="快速原型开发">快速原型开发</h2>
+<p>新版本Vue中增加了该功能，方便快速进行单个Vue文件开发，需要先额外安装一个全局的扩展。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">yarn global add @vue/cli-service-global
+</span></span></code></pre></div><p>入手尝鲜</p>
+<h3 id="新建indexvue文件">新建index.vue文件</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Hello Vue<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h3 id="运行服务">运行服务</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vue serve index.vue
+</span></span></code></pre></div><h3 id="效果">效果</h3>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-04-19T02:47:22.png" alt="2020-04-19T02:47:22.png"></p>
+<h2 id="创建项目">创建项目</h2>
+<p>略</p>
+<h2 id="vueconfigjs">vue.config.js</h2>
+<p>在vue cli 3.x/4.x 中，使用vue.cofig.js来进行一些包括webpack的配置。比如我们可以想要一个控制台输出编译时间的配置，可以在如下设置</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;moment&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">chainWebpack</span><span class="o">:</span> <span class="nx">config</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">config</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">plugin</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">tap</span><span class="p">(</span><span class="nx">args</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">title</span> <span class="o">=</span> <span class="s1">&#39;三只蜜桔后台管理系统·商户版&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">buildTime</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">().</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;YYYY.MM.DD.HH.mm&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">args</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>亦或者，我们想要在生产环境禁用console.log</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;moment&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">chainWebpack</span><span class="o">:</span> <span class="nx">config</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">config</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">plugin</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">tap</span><span class="p">(</span><span class="nx">args</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">title</span> <span class="o">=</span> <span class="s1">&#39;三只蜜桔后台管理系统·商户版&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">buildTime</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">().</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;YYYY.MM.DD.HH.mm&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">args</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">config</span><span class="p">.</span><span class="nx">optimization</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">minimizer</span><span class="p">(</span><span class="s1">&#39;terser&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">tap</span><span class="p">(</span><span class="nx">args</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">terserOptions</span><span class="p">.</span><span class="nx">compress</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="nx">pure_funcs</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;console.log&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">args</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">productionSourceMap</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">configureWebpack</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">filename</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="nx">moment</span><span class="p">().</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;YYYY.MM.DD.HH.mm&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">.</span><span class="si">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span><span class="si">}</span><span class="sb">.[name].js`</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">chunkFilename</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="nx">moment</span><span class="p">().</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;YYYY.MM.DD.HH.mm&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">.</span><span class="si">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span><span class="si">}</span><span class="sb">.[name].js`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/834_vue-cli-%E7%AC%94%E8%AE%B0/）本文首发于
+                        <a href="http://localhost:1313/834_vue-cli-%E7%AC%94%E8%AE%B0/">指尖魔法屋-Vue cli 笔记</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

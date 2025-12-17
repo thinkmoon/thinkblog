@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VScode常用技巧 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="本文记录着一些在使用vscode时的一些常用小技巧，不定期更新">
+    <meta name="keywords" content="vscode">
+
+    
+    <meta property="og:title" content="VScode常用技巧">
+    <meta property="og:description" content="本文记录着一些在使用vscode时的一些常用小技巧，不定期更新">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/210_vscode%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7/">
+    
+    <meta property="og:image" content="http://blog.cdn.thinkmoon.cn/blog/typecho/20629e8034bd3d3f64b721249131dd52.jpg">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>VScode常用技巧</h1>
+
+                <div class="post-meta">
+                    <time datetime="2020-07-08">2020-07-08</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E9%97%B2%E4%BD%99%E6%8A%98%E8%85%BE">
+                            闲余折腾
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/vscode" class="tag">vscode</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/20629e8034bd3d3f64b721249131dd52.jpg" alt="vscode"></p>
+<h2 id="vscode-格式化vue-template代码段">Vscode 格式化vue Template代码段</h2>
+<p>1.安装 vetur</p>
+<p>2.在User Setting中增加设置:</p>
+<p>&ldquo;vetur.format.defaultFormatter.html&rdquo;: &ldquo;js-beautify-html&rdquo;</p>
+<blockquote>
+<p>2020.07.08留：我现在已经使用<code>prettier</code>来格式化代码了</p>
+</blockquote>
+<h2 id="vs-code-添加-wepy-template-代码">Vs code 添加 wepy template 代码</h2>
+<ol>
+<li>
+<p>打开File &gt; preference &gt; user snippets, 选择vue</p>
+</li>
+<li>
+<p>编辑vue.json</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;Print to console&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&#34;prefix&#34;</span><span class="p">:</span> <span class="s2">&#34;vue&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&#34;body&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&lt;!-- $0 --&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&lt;template&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;  &lt;view class=&#39;page&#39;&gt; &lt;/view&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&lt;/template&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&lt;script&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;import wepy from &#39;wepy&#39;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;export default class Index extends wepy.page {&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;config = {&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;    navigationBarTitleText: &#39;场馆预订&#39;,&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;    usingComponents: {}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;};&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;components = {};&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;mixins = [];&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;data = {};&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;computed = {};&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;methods = {};&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;events = {};&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;onLoad() {}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&lt;/script&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&lt;style lang=&#39;less&#39;&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="s2">&#34;&lt;/style&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">],</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Log output to console&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="使用emmet自动代码补全">使用emmet自动代码补全</h2>
+<ol>
+<li>
+<p>打开File &gt; preference &gt; setting, 搜索emmet.triggerExpansionOnTab</p>
+</li>
+<li>
+<p>设置为true</p>
+</li>
+</ol>
+<h2 id="自动读取eslint文件并进行修复">自动读取eslint文件并进行修复</h2>
+<ol>
+<li>
+<p>先安装eslint</p>
+</li>
+<li>
+<p>设置中添加以下内容</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;eslint.autoFixOnSave&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//  启用保存时自动修复,默认只支持.js文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;eslint.validate&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;javascript&#34;</span><span class="p">,</span> <span class="c1">//  用eslint的规则检测js文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;vue&#34;</span><span class="p">,</span> <span class="c1">// 检测vue文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;autoFix&#34;</span><span class="p">:</span> <span class="kc">true</span> <span class="c1">//  为vue文件开启保存自动修复的功能
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;html&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;autoFix&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p>2020.07.08留：这个配置已经过时了</p>
+</blockquote>
+<h2 id="正则删除html标签">正则删除HTML标签</h2>
+<p><code>Ctrl + H</code> 正则匹配 <code>&lt;[^&gt;]+&gt;</code> 替换为空</p>
+<h2 id="正则替换换行">正则替换换行</h2>
+<p><code>Ctrl + H</code> 正则匹配 <code>\n</code> 替换为你想要的</p>
+<h2 id="tab无法缩进代码">tab无法缩进代码</h2>
+<p>按<code>Ctrl + M</code>试试</p>
+<h2 id="多光标操作">多光标操作</h2>
+<p>1、按住alt，用鼠标左键点击，可以出现多个光标，输入的代码可以在光标处同时增加。</p>
+<p>2、按住Ctrl + Alt，再按键盘上向上或者向下的键，可以使一列上出现多个光标。</p>
+<p>3、选中一段文字，按shift+alt+i，可以在每行末尾出现光标</p>
+<p>4、按shift+alt，再使用鼠标拖动，也可以出现竖直的列光标，同时可以选中多列。</p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/210_vscode%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7/）本文首发于
+                        <a href="http://localhost:1313/210_vscode%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7/">指尖魔法屋-VScode常用技巧</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

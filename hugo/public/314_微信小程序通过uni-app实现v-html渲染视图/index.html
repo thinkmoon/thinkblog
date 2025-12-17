@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>微信小程序通过uni-app实现v-html渲染视图 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="uni-app, vue, 微信小程序">
+
+    
+    <meta property="og:title" content="微信小程序通过uni-app实现v-html渲染视图">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/小书匠/2019/5/1559181160577.png">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>微信小程序通过uni-app实现v-html渲染视图</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-07-02">2019-07-02</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/uni-app" class="tag">uni-app</a>
+                    
+                    <a href="http://localhost:1313/tags/vue" class="tag">vue</a>
+                    
+                    <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="tag">微信小程序</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <h2 id="v-html介绍">v-html介绍</h2>
+<p>如果不使用v-html而是直接将html标签加入视图层会出现html标签不解析的情况，如果我们想实现解析的效果。vue中提供了v-html指令。使用 v-html 指令，你可以将html标签解析渲染到视图层。</p>
+<h2 id="微信小程序如何使用">微信小程序如何使用？</h2>
+<p>由于微信小程序只是类vue的，与vue存在着很多不同点。但是为了秉承将vue进行到底的宗旨，很多微信小程序开发框架如雨后春笋。在我使用的过程中，感觉uni-app与vue最为贴近，而且适配了很多vue的特性，如：v-model，filters，v-html等。官网是这样介绍的。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2019/5/1559181160577.png" alt="uni-app支持的vue特性"></p>
+<p>其中，他们是通过微信小程序rich-text的属性来实现v-html的效果的。所以，我们想知道支持什么标签，就得移步至<a href="https://developers.weixin.qq.com/miniprogram/dev/component/rich-text.html">rich-text | 微信开发文档</a></p>
+<h2 id="开始实现demo">开始实现Demo</h2>
+<blockquote>
+<p>demo 中的需求是一个赛事报名list，其中赛事状态有，预报名，报名成功，正在进行，已结束等。</p>
+</blockquote>
+<p>预实现方法：由于微信小程序的rich-text组件会禁用所有的节点事件，所以想通过@click绑定v-html节点事件，filter渲染界面。但是在实现过程中发现不支持在v-html中使用filter, 故后来采用methods的返回值来实现视图层的渲染。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2019/5/1559181971369.png" alt="methods实现v-html渲染"></p>
+<p>效果如下：至此效果，v-html解析成功</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2019/5/1559182060169.png" alt="v-html 渲染效果"></p>
+<p>添加状态判断</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/%E5%B0%8F%E4%B9%A6%E5%8C%A0/2019/5/1559186150310.png" alt="最终效果"></p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/）本文首发于
+                        <a href="http://localhost:1313/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/">指尖魔法屋-微信小程序通过uni-app实现v-html渲染视图</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

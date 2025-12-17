@@ -1,0 +1,225 @@
+{{ block "nav" . }}{{ end }}
+
+{{ block "main" . }}
+<style>
+/* Reset styles for home page */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Override main container styles for home page */
+main {
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh !important;
+  width: 100% !important;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<style>
+.app-container {
+  background-position: center;
+  height: 100vh;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+}
+
+.app-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -999;
+}
+
+.shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.center-read {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 48px;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.read {
+  margin-top: 24px;
+}
+
+.start-button {
+  font-weight: 500;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 14px 28px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+.start-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+</style>
+<div class="app-container">
+    <div class="shadow center-read">
+        <div class="title">
+            {{ .Site.Title }}
+        </div>
+        <div class="read">
+            <a href="/page/" class="start-button">
+                开始阅读
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('3D scene initialization started');
+    const container = document.querySelector('.app-container');
+    console.log('Container found:', container);
+
+    // Create scene using similar approach to ThreeLayerUtil
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.lookAt(0, 0, 0);
+    camera.position.y = -20;
+
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(new THREE.Color('#181818'));
+    container.appendChild(renderer.domElement);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    //设置相机距离原点的最远距离
+    controls.minDistance = 200;
+    //设置相机距离原点的最远距离
+    controls.maxDistance = 600;
+    //是否开启右键拖拽
+    controls.enablePan = true;
+    console.log('Canvas element added to container:', renderer.domElement);
+
+    const x = 0, y = 0;
+
+    const heartShape = new THREE.Shape();
+
+    heartShape.moveTo( x + 5, y + 5 );
+    heartShape.bezierCurveTo( x + 5, y + 5, x + 4, y, x, y );
+    heartShape.bezierCurveTo( x - 6, y, x - 6, y + 7,x - 6, y + 7 );
+    heartShape.bezierCurveTo( x - 6, y + 11, x - 3, y + 15.4, x + 5, y + 19 );
+    heartShape.bezierCurveTo( x + 12, y + 15.4, x + 16, y + 11, x + 16, y + 7 );
+    heartShape.bezierCurveTo( x + 16, y + 7, x + 16, y, x + 10, y );
+    heartShape.bezierCurveTo( x + 7, y, x + 5, y + 5, x + 5, y + 5 );
+
+    const geometry = new THREE.ShapeGeometry( heartShape ,1);
+
+    const wireframe = new THREE.WireframeGeometry( geometry );
+
+    const line = new THREE.LineSegments( wireframe );
+    line.position.x -= 5;
+    line.position.y -= 5;
+    line.position.z -= 30;
+
+    scene.add( line );
+
+    const starGeo = new THREE.BufferGeometry();
+    const starArr = [];
+    for (let i = 0; i < 6000; i++) {
+      let star = new THREE.Vector3(
+        Math.random() * 600 - 300,
+        Math.random() * 600 - 300,
+        Math.random() * 600 - 300
+      );
+      starArr.push(star);
+    }
+    starGeo.setFromPoints(starArr);
+    let starMaterial = new THREE.PointsMaterial({
+      color: 0xffffff,
+      size: 0.7
+    });
+    const stars = new THREE.Points(starGeo, starMaterial);
+    scene.add(stars);
+
+    let speed = 0.5;
+    let speedTimer = null;
+
+    function accelerate() {
+      if (speedTimer) {
+        clearInterval(speedTimer);
+      }
+      speedTimer = setInterval(() => {
+        speed += 0.05;
+        if (speed > 5) {
+          speed = 5;
+        }
+      }, 100);
+    }
+
+    function slowdown() {
+      if (speedTimer) {
+        clearInterval(speedTimer);
+      }
+      speed = 0.5;
+    }
+
+    const startButton = document.querySelector('.start-button');
+    if (startButton) {
+      startButton.addEventListener('mouseover', accelerate);
+      startButton.addEventListener('mouseleave', slowdown);
+    }
+
+    function animate() {
+      const positions = starGeo.attributes.position.array;
+      for (let i = 0; i < positions.length; i += 3) {
+        positions[i + 1] -= speed;
+        if (positions[i + 1] <= -300) {
+          positions[i + 1] = 300;
+        }
+      }
+      starGeo.attributes.position.needsUpdate = true;
+
+      line.rotation.y += 0.005;
+
+      controls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', function() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    animate();
+});
+</script>
+{{ end }}

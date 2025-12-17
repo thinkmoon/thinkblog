@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>浏览器机制之js事件循环 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="总所周知，js是单线程的。单线程意味着，js代码在执行的任何时候，都只有一个主线程来处理所有的任务（为了避免多线程可能产生的诸多问题，直接阉割多线程的可能性）。然而.....">
+    <meta name="keywords" content="浏览器机制, js基础">
+
+    
+    <meta property="og:title" content="浏览器机制之js事件循环">
+    <meta property="og:description" content="总所周知，js是单线程的。单线程意味着，js代码在执行的任何时候，都只有一个主线程来处理所有的任务（为了避免多线程可能产生的诸多问题，直接阉割多线程的可能性）。然而.....">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/907_%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%BA%E5%88%B6%E4%B9%8Bjs%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+    
+    <meta property="og:image" content="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-08-24T14:58:17.png">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>浏览器机制之js事件循环</h1>
+
+                <div class="post-meta">
+                    <time datetime="2020-08-28">2020-08-28</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%BA%E5%88%B6" class="tag">浏览器机制</a>
+                    
+                    <a href="http://localhost:1313/tags/js%E5%9F%BA%E7%A1%80" class="tag">js基础</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-08-24T14:58:17.png" alt="2020-08-24T14:58:17.png"></p>
+<h2 id="引言">引言</h2>
+<p>总所周知，js是单线程的。单线程意味着，js代码在执行的任何时候，都只有一个主线程来处理所有的任务（为了避免多线程可能产生的诸多问题，直接阉割多线程的可能性）。然而，随着硬件设备的快速发展，网页要做的事情会变得越来越多。人们慢慢意识到，不能让单线程限制了js的效率，然后web worker便应运而生。</p>
+<h2 id="栈堆队列">栈，堆，队列</h2>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-08-24T14:58:35.png" alt="2020-08-24T14:58:35.png"></p>
+<p>基本数据结构知识略过~</p>
+<p>讲讲它们在js语言层面的应用。</p>
+<p>执行栈：函数调用形成了一个由若干帧（执行上下文）组成的栈。</p>
+<p>消息队列：一个待处理消息的消息队列。每一个消息都关联着一个用以处理这个消息的回调函数。</p>
+<blockquote>
+<p>在 事件循环 期间的某个时刻，运行时会从最先进入队列的消息开始处理队列中的消息。被处理的消息会被移出队列，并作为输入参数来调用与之关联的函数。正如前面所提到的，调用一个函数总是会为其创造一个新的栈帧。</p>
+</blockquote>
+<blockquote>
+<p>函数的处理会一直进行到执行栈再次为空为止；然后事件循环将会处理队列中的下一个消息（如果还有的话）。</p>
+</blockquote>
+<h2 id="任务队列">任务队列</h2>
+<p>在js事件循环机制中，存在多种任务队列，它们可分为宏任务（macro-task）和微任务（micro-task）两种。</p>
+<ul>
+<li>
+<p>宏任务包括：setTimeout、setInterval、I/O、UI rendering</p>
+</li>
+<li>
+<p>微任务包括：process.nextTick、Promise、Object.observe（已废弃）、MutationObserver（html5新特性）</p>
+</li>
+</ul>
+<h2 id="事件循环">事件循环</h2>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-08-24T14:58:17.png" alt="2020-08-24T14:58:17.png"></p>
+<p>如上图所示，事件循环就是在主线程清空执行上下文栈后空闲之时，先去微任务队列中读取待执行程序，并装载到主线程中。如果没有内容（各类微任务队列都清空），则将去宏任务队列中寻找。如此往复，周而复始，直至结束。</p>
+<h2 id="参考文档">参考文档</h2>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop">并发模型与事件循环-MDN</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/33058983">详解JavaScript中的Event Loop（事件循环）机制-知乎</a></p>
+<p><a href="https://juejin.im/post/6844903638238756878">JS事件循环机制（event loop）之宏任务/微任务-掘金</a></p>
+<p><a href="https://juejin.im/post/6844903634816204813">JavaScript 事件循环机制-掘金</a></p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/907_%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%BA%E5%88%B6%E4%B9%8Bjs%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/）本文首发于
+                        <a href="http://localhost:1313/907_%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%BA%E5%88%B6%E4%B9%8Bjs%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">指尖魔法屋-浏览器机制之js事件循环</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

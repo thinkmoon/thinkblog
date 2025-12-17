@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>codeigniter的一些笔记 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="codeigniter">
+
+    
+    <meta property="og:title" content="codeigniter的一些笔记">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/159_codeigniter%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>codeigniter的一些笔记</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-02-16">2019-02-16</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/codeigniter" class="tag">codeigniter</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <hr>
+<p>title: codeigniter | codeigniter的一些笔记</p>
+<p>tags: codeigniter</p>
+<p>categories: 笔记</p>
+<p>abbrlink: 15d8</p>
+<p>date: 2018-04-02 13:15:42</p>
+<p>thumbnail:</p>
+<hr>
+<h2 id="codeigniter-部署坑">codeigniter 部署坑</h2>
+<!-- more -->
+<h2 id="session-文件路径问题">session 文件路径问题</h2>
+<ul>
+<li><img src="https://blog.cdn.thinkmoon.cn//2018-04-03-11-25-11.png" alt=""></li>
+</ul>
+<h3 id="解决方法">解决方法</h3>
+<blockquote>
+<p>在application/config/config.php 中最后一行, 加入</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;sess_save_path&#39;</span><span class="p">]</span> <span class="o">=</span><span class="nx">BASEPATH</span><span class="o">.</span><span class="s1">&#39;../&#39;</span><span class="o">.</span><span class="s1">&#39;session_file&#39;</span><span class="p">;</span>
+</span></span></code></pre></div><p><img src="https://blog.cdn.thinkmoon.cn//2018-04-03-11-36-47.png" alt=""></p>
+<h3 id="原因">原因</h3>
+<blockquote>
+<p>未设置ssesion文件路径,会默认使用php.ini的文件路径,可能会出现无路径访问权限的问题</p>
+</blockquote>
+<h2 id="baseurl-修改">baseurl 修改</h2>
+<blockquote>
+<p>要记得修改baseurl的值,以免出现访问不成功的情况</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;base_url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;https://www.farminbackyard.com&#39;</span><span class="p">;</span>
+</span></span></code></pre></div><blockquote>
+<p>pasue;</p>
+</blockquote>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/159_codeigniter%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/）本文首发于
+                        <a href="http://localhost:1313/159_codeigniter%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/">指尖魔法屋-codeigniter的一些笔记</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

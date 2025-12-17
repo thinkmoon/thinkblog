@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>使用github Action自动部署博客 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="为什么需要它？最开始我使用的是本地编译，然后手动上传的方式，后来发现过于麻烦。尤其是nuxt编译后，产生一大堆ouput文件，手动上传耗时费力。">
+    <meta name="keywords" content="折腾">
+
+    
+    <meta property="og:title" content="使用github Action自动部署博客">
+    <meta property="og:description" content="为什么需要它？最开始我使用的是本地编译，然后手动上传的方式，后来发现过于麻烦。尤其是nuxt编译后，产生一大堆ouput文件，手动上传耗时费力。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/950_%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/2022-04-11/23-48-31">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>使用github Action自动部署博客</h1>
+
+                <div class="post-meta">
+                    <time datetime="2022-06-14">2022-06-14</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E9%97%B2%E4%BD%99%E6%8A%98%E8%85%BE">
+                            闲余折腾
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/%E6%8A%98%E8%85%BE" class="tag">折腾</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <h2 id="背景提要">背景提要</h2>
+<p>为什么需要它？最开始我使用的是本地编译，然后手动上传的方式，后来发现过于麻烦。尤其是nuxt编译后，产生一大堆ouput文件，手动上传耗时费力。</p>
+<p>再后来我在服务器上，设置了一个定时任务。每晚从github拉取最新的代码，然后在服务器上编译。实行了一段时间，感觉还行。但是，随着服务上的服务越来越多，资源占有越来越大，我发现偶尔会出现编译nuxt时内存溢出的情况（请原谅我1核2G的服务，它已经尽力了）。</p>
+<p>然后便产生了，使用githu action编译目标产物ouput文件，通知服务器自动拉取的想法。那么，说干就干，试试吧！</p>
+<h2 id="创建github-action">创建GitHub Action</h2>
+<p>使用node.js模板，该模板会自动使用预装node.js的环境。模板中有三种node.js版本，如果保持预留配置，则会三个环境都执行一次。这里我只使用16.x版本（因为跟我服务器版本一致）</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-04-10/23-08-15" alt="创建GitHub Action"></p>
+<p>大致流程可分为</p>
+<ol>
+<li>拉取代码</li>
+<li>安装依赖</li>
+<li>编译output</li>
+<li>归档到特定分支（gh-pages）</li>
+<li>web-hook通知服务器</li>
+<li>服务接收事件，拉取编译后的文件，并重启</li>
+</ol>
+<h2 id="拉取代码">拉取代码</h2>
+<p>该步骤由github完成，只需声明使用的分支名称即可</p>
+<h2 id="安装依赖">安装依赖</h2>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-04-10/23-15-32" alt="GitHub Action 安装依赖"></p>
+<h2 id="编译output">编译output</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w"> </span>- <span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">yarn run build</span><span class="w">
+</span></span></span></code></pre></div><h2 id="归档到特定分支gh-page">归档到特定分支（gh-page）</h2>
+<p>我这儿随便在maket place选一个开源Action（GitHub Pages v3），配置对应的参数，如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">GitHub Pages v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-github-pages@v3.1.12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">personal_token</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.ACCESS_TOKEN }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l">.output</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>请注意：关于这个personal_token，github有个坑。我也是折腾了两个多小时才总结出来的。生成的personal_token是不能明文存储在yaml文件中的，必须使用变量传递。否则一旦提交的时候，github出于安全考虑会自动静默删除对应person_token。</p>
+</blockquote>
+<h2 id="完整配置">完整配置</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Node.js CI</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="l">main ]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="l">main ]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="nt">strategy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">matrix</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="m">16.</span><span class="l">x]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c"># See supported Node.js release schedule at https://nodejs.org/en/about/releases/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Use Node.js ${{ matrix.node-version }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/setup-node@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">yarn</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">yarn run build</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">GitHub Pages v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-github-pages@v3.1.12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">personal_token</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.ACCESS_TOKEN }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l">.output</span><span class="w">
+</span></span></span></code></pre></div><h2 id="触发action">触发Action</h2>
+<p>提交代码，等待流水线执行。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-04-11/23-45-08" alt="Github Action执行效果"></p>
+<h2 id="webhook推送归档成功事件">webhook推送归档成功事件</h2>
+<p>绑定对应的webhook，监听gh-pages部署事件。</p>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-04-11/23-48-31" alt="webhook推送归档成功事件"></p>
+<h2 id="服务器拉取代码并执行重启">服务器拉取代码并执行重启</h2>
+<blockquote>
+<p>这里为了方便起见，我使用的是宝塔面板的webhook插件</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-04-11/23-50-12" alt="宝塔面板的webhook插件"></p>
+<p>执行的脚本如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;[</span><span class="k">$(</span>date <span class="s2">&#34;+%Y-%m-%d %H:%M:%S&#34;</span><span class="k">)</span><span class="s2">]: 开始同步&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /www/wwwroot/www.thinkmoon.cn/.output
+</span></span><span class="line"><span class="cl">git pull
+</span></span><span class="line"><span class="cl"><span class="nb">kill</span> -9 <span class="k">$(</span>lsof -i:3000 <span class="p">|</span>awk <span class="s1">&#39;{print $2}&#39;</span> <span class="p">|</span> tail -n 1<span class="k">)</span>
+</span></span><span class="line"><span class="cl">bash /www/server/nodejs/vhost/scripts/blogSSR.sh
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;[</span><span class="k">$(</span>date <span class="s2">&#34;+%Y-%m-%d %H:%M:%S&#34;</span><span class="k">)</span><span class="s2">]: 同步完成&#34;</span>
+</span></span></code></pre></div><h2 id="各步骤成功截图">各步骤成功截图</h2>
+<blockquote>
+<p>Action执行效果</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-04-11/23-51-51" alt="Action执行效果"></p>
+<blockquote>
+<p>webhook通知记录</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-04-11/23-52-54" alt="webhook通知记录"></p>
+<blockquote>
+<p>宝塔面板执行日志</p>
+</blockquote>
+<p><img src="https://blog.cdn.thinkmoon.cn/2022-04-11/23-53-45" alt="宝塔面板执行日志"></p>
+<p>搞定收工！大功告成。</p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/950_%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/）本文首发于
+                        <a href="http://localhost:1313/950_%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/">指尖魔法屋-使用github Action自动部署博客</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

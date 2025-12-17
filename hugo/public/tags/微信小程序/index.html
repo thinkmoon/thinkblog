@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>微信小程序 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    
+    <meta property="og:title" content="微信小程序">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="active">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <div class="page-header">
+            <h1>微信小程序</h1>
+            
+        </div>
+
+        <div class="blog-posts">
+            
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/466_uni-app%E5%AF%B9%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%91%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%82%E9%85%8D/" title="uni-app对微信小程序云函数的适配">
+                        <div class="overlay"></div>
+                        <img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-10-22T01:28:39.png" alt="uni-app对微信小程序云函数的适配" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/uni-app" class="post-tag">uni-app</a>
+                            
+                            <a href="http://localhost:1313/tags/%E4%BA%91%E5%87%BD%E6%95%B0" class="post-tag">云函数</a>
+                            
+                            <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="post-tag">微信小程序</a>
+                            
+                        </div>
+                        
+
+                        <a href="/466_uni-app%E5%AF%B9%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%91%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%82%E9%85%8D/" class="post-title">
+                            uni-app对微信小程序云函数的适配
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                引言 熟悉uni-app的人应该都知道，uni-app并未对微信小程序云函数（本文统称云函数）进行相应的适配。但是，如果我们在某些业务场景的下需要使用云函数呢？我们知道，云函数可以复制到微信开发者工具，这样的话我们不得不每次编译一次就手动复制一次，不得不说麻烦至极。本文就问题做出以下解决方案。
+本文环境 Hbuilder X 微信开发者工具 创建云函数目录 首先，我们需要在uni-app项目文件夹下，创建一个云函数目录，路径随意，我这里是functions。然后先随便在里面放一些文件，这里以new_file.css为例。
+修改manifest.json 在uni-app根目录下，修改manifest.json中的微信小程序项，结构如下
+&#34;mp-weixin&#34; : { /* 小程序特有相关 */ &#34;appid&#34; : &#34;wxd7de467f6e6cf741&#34;, &#34;cloudfunctionRoot&#34;: &#34;./functions/&#34;, // 这一行就是标记云函数目录的字段 &#34;setting&#34; : { &#34;urlCheck&#34; : false }, &#34;usingComponents&#34; : true } 编写vue.config.js 我们在项目根目录创建vue.config.js文件
+写入以下内容（如路径不一样请做相应适配）
+const path = require(&#39;path&#39;) const CopyWebpackPlugin = require(&#39;copy-webpack-plugin&#39;) module.exports = { configureWebpack: { plugins: [ new CopyWebpackPlugin([{ from: path.join(__dirname, &#39;cloudFunctions&#39;), to: path.join(__dirname, &#39;unpackage/dist&#39;, process.env.NODE_ENV === &#39;production&#39; ? &#39;build&#39; : &#39;dev&#39;, process.env .UNI_PLATFORM, &#39;cloudFunctions&#39;) }]) ] } } 编译运行 发现提示如下内容
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB">
+                                        教程分享
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2021-05-16</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/900_js%E4%BD%BF%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E5%89%8D%E4%BA%8C%E6%AC%A1%E7%A1%AE%E8%AE%A4%E8%AF%A2%E9%97%AE/" title="js使用装饰器实现操作前二次确认询问">
+                        <div class="overlay"></div>
+                        <img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-08-03T08:01:10.png" alt="js使用装饰器实现操作前二次确认询问" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/uni-app" class="post-tag">uni-app</a>
+                            
+                            <a href="http://localhost:1313/tags/vuejs" class="post-tag">vuejs</a>
+                            
+                            <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="post-tag">微信小程序</a>
+                            
+                            <a href="http://localhost:1313/tags/%E5%89%8D%E7%AB%AF" class="post-tag">前端</a>
+                            
+                            <a href="http://localhost:1313/tags/javascript" class="post-tag">javascript</a>
+                            
+                        </div>
+                        
+
+                        <a href="/900_js%E4%BD%BF%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E5%89%8D%E4%BA%8C%E6%AC%A1%E7%A1%AE%E8%AE%A4%E8%AF%A2%E9%97%AE/" class="post-title">
+                            js使用装饰器实现操作前二次确认询问
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                装饰器是对类、函数、属性之类的一种装饰，可以针对其添加一些额外的行为。本文介绍的是，如何js方法装饰器，封装二次确认弹框操作，增加小伙伴的开发效率。
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB">
+                                        教程分享
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2020-09-20</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/webpack" class="post-tag">webpack</a>
+                            
+                            <a href="http://localhost:1313/tags/uni-app" class="post-tag">uni-app</a>
+                            
+                            <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="post-tag">微信小程序</a>
+                            
+                        </div>
+                        
+
+                        <a href="/375_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89tabbar%E5%9C%A8uni-app%E7%9A%84%E9%80%82%E9%85%8D/" class="post-title">
+                            微信小程序自定义tabBar在uni-app的适配
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                引言：此方法可用作大部分微信小程序支持，但uni-app文档中却找不到相关说明的API
+需求 需要在微信小程序中，实现一个中间图标突出显示的异形导航栏。
+如下图 实现方法设计 要做这种异形的导航栏，用直接在配置文件里面写list的方法肯定做不到。那么，就有以下两种可替代方法。
+在每一个页面都加载一个tabBar组件，与页面同时渲染。
+设置自定义tabBar,修改tabBar的样式。
+优缺点分析：方法1实现起来略为简单，但是会出现代码可重用率低，降低性能，已经界面跳动等问题。方法2则是微信官方提供的，自定义方式，相信在性能方面也会有很大的优势。故选择方法2。
+1. 查看文档及官方Demo 官方文档
+简要描述一下就是需要在根目录中加入一个custom-tab-bar目录，里面的文件结构与自定义组件的结构一致。然后再在小程序配置文件中修改tabbar为custom模式。
+官方代码
+主要重点为三个部分
+配置文件 custom-tab-bar目录 页面生命周期中的设置索引方法 这段代码其实很容易理解，pageLifetimes就是监听组件所在页面的生命周期。上述代码就是监听页面显示。当页面显示后，获取到tabBar的对象，然后再设置tabBar中的index索引。
+2. 迁移到uni-app框架 上面的方法是使用微信小程序的开发方式，而我使用的是uni-app框架开发微信小程序的。所以我们需要把它们移植到uni-app框架内。
+配置文件的修改 uni-app中，page.json被编译为微信小程序的app.json。所以，我们直接修改page.json
+custom-tab-bar目录的适配 我们知道，uni-app使用的是类Vue开发，将一个Vue文件编译为四个微信页面文件（wxml，wxss，json，js）。那么，是否可以直接写一个custom-tab-bar.vue的文件呢？刚开始我也是这么想的，后来发现uni-app只会编译page目录和component目录下的vue文件。而微信小程序要求custom-tab-bar必须在项目的根目录下。那么就只能在uni-app下创建一个custom-tab-bar目录，并老老实实写微信四件套了。
+写完后，uni-app会将该目录完美的复制至微信小程序项目的根目录。
+tab页面内的适配方法 这个在我实际开发中，是最令我头痛的了。因为微信小程序的this引用与uni-app的this引用并不相同。所以如果直接复制代码是会编译出错的。而另一个问题则是，uni-app并未提供pageLifetimes的事件监听。
+在我经过一番摸索之后，发现将设置索引方法写在onShow事件里面，效果是等效的。接下来便只剩下this的问题了。
+如果直接复制的话，会出现无任何效果的情况
+因为uni-app的this引用不一样，所以它在判断getTabBar的时候，获取的是“undefined”所以不会执行下面的操作。如果你将判断去掉，则会直接报“undefined”错误。
+难道实现不了？其实不然，万变不离其宗。uni-app也是编译到小程序的，所以绝对有迹可循。
+我们首先看看uni-app里面this的内容。
+我们可以很明显的看到里面有个$mp的对象，说明这应该是微信小程序专用的对象。接下来我们继续分析$mp。
+这里面有一个隐藏很深的getTabBar方法，我们直接调用它，和在微信小程序里面调用this.getTabBar是等效的。
+所以我们就可以把onShow里面的内容写成这样。
+一些优雅点的封装 设置索引方法独立出来 在methods对象中，添加
+setTabBarIndex(index){ if (typeof this.$mp.page.getTabBar === &#39;function&#39; &amp;&amp; this.$mp.page.getTabBar()) { this.$mp.page.getTabBar().setData({ selected:index }) } } 使用mixin避免重复书写复制 在main.js中，添加
+Vue.mixin({ methods:{ setTabBarIndex(index){ if (typeof this.$mp.page.getTabBar === &#39;function&#39; &amp;&amp; this.$mp.page.getTabBar()) { this.$mp.page.getTabBar().setData({ selected:index }) } } } }) 混入后的使用 在页面文件中
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2020-07-10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/uni-app" class="post-tag">uni-app</a>
+                            
+                            <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="post-tag">微信小程序</a>
+                            
+                        </div>
+                        
+
+                        <a href="/847_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E6%94%B9%E5%86%99%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B/" class="post-title">
+                            微信小程序页面改写组件教程
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                为什么需要？ 微信小程序里面页面与自定义组件的区别较大，而页面的可复用程度太低了。要么就是跳转页面，要么就是copy代码。如果我们要增加代码的可复用性，就可以借用Vue组件的思想，将页面改写为自定义组件。
+结构对比 两者的视图文件，样式文件没有什么区别。主要区别最大的就是js文件，我们首先来看一下两者的结构。
+page.js page({ // 数据内容 data:{}, // 生命周期函数 onLoad(){}, // 一些自定义函数 someMethods(){} }) componet.js componet({ // 预设属性 properties: {}, // 数据内容 data: {}, //组件所在页面生命周期 pageLifetimes: {}, // 生命周期函数-挂载 attached: function() { // 在组件实例进入页面节点树时执行 }, // 生命周期函数-卸载 detached: function() { // 在组件实例被从页面节点树移除时执行 }, // 自定义函数写结构里面 methods:{ someMethods(){} } }) 我们可以看到，两者的基本相似，大同小异。所以改写起来就特别方便啦~
+将page改为componet
+适配生命周期函数，例如将页面onLoad()函数改写为组件的attached()函数
+将自定义函数someMethods()写到Componet的methods里面
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB">
+                                        教程分享
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2020-05-01</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="post-tag">微信小程序</a>
+                            
+                        </div>
+                        
+
+                        <a href="/225_%E8%AE%A9%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%BB%98%E8%AE%A4%E6%94%AF%E6%8C%81%E5%88%86%E4%BA%AB%E5%8F%8A%E8%BF%94%E5%9B%9E%E6%93%8D%E4%BD%9C/" class="post-title">
+                            让微信小程序页面默认支持分享及返回操作
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                为啥需要这个？ 有时候我们写微信小程序，写好了。在手机上运行感觉效果还不错，正想分享给别人。突然发现没有分享选项，纳尼？原来是忘记写onShareAppMessage()了。有得加上，再编译。不得不说，麻烦的一匹。
+应运而生 然后我就想，要是可以让默认支持分享就好了。
+wepy实现方法 大致思路 import wepy from &#39;wepy&#39;; export default class Page extends wepy.page { } 分析代码，发现所有的page都继承于wepy.page, 而wepy.page又继承于wepy.component. 这感情好。也就意味着我只需要构建一个超类继承wepy.page就可以了
+实践 新建page.js文件，内容如下
+import wepy from &#39;wepy&#39;; export default class Page extends wepy.page { onShareAppMessage() { } } 然后再调整一下页面继承
+import Page from &#39;../page&#39;; export default class Index extends Page { } 编译运行，果然如此！
+如果要自定义分享内容怎么办？ 在子page里面重构onShareAppMessage就可以啦。
+tips: 现使用uni-app后发现已经默认支持分享了
+后续： uni-app说这是个BUG，已经修复了。。 后备方案——使用mixin全局混入 在main.js中添加以下内容。 import qs from &#39;query-string&#39; Vue.mixin({ onShareAppMessage() { console.log(&#39;分享路径&#39;, &#39;/pages/index?route=&#39; + this.
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-11-25</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/" title="微信小程序通过uni-app实现v-html渲染视图">
+                        <div class="overlay"></div>
+                        <img src="https://blog.cdn.thinkmoon.cn/%e5%b0%8f%e4%b9%a6%e5%8c%a0/2019/5/1559181160577.png" alt="微信小程序通过uni-app实现v-html渲染视图" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/uni-app" class="post-tag">uni-app</a>
+                            
+                            <a href="http://localhost:1313/tags/vue" class="post-tag">vue</a>
+                            
+                            <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="post-tag">微信小程序</a>
+                            
+                        </div>
+                        
+
+                        <a href="/314_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87uni-app%E5%AE%9E%E7%8E%B0v-html%E6%B8%B2%E6%9F%93%E8%A7%86%E5%9B%BE/" class="post-title">
+                            微信小程序通过uni-app实现v-html渲染视图
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                v-html介绍 如果不使用v-html而是直接将html标签加入视图层会出现html标签不解析的情况，如果我们想实现解析的效果。vue中提供了v-html指令。使用 v-html 指令，你可以将html标签解析渲染到视图层。
+微信小程序如何使用？ 由于微信小程序只是类vue的，与vue存在着很多不同点。但是为了秉承将vue进行到底的宗旨，很多微信小程序开发框架如雨后春笋。在我使用的过程中，感觉uni-app与vue最为贴近，而且适配了很多vue的特性，如：v-model，filters，v-html等。官网是这样介绍的。
+其中，他们是通过微信小程序rich-text的属性来实现v-html的效果的。所以，我们想知道支持什么标签，就得移步至rich-text | 微信开发文档
+开始实现Demo demo 中的需求是一个赛事报名list，其中赛事状态有，预报名，报名成功，正在进行，已结束等。
+预实现方法：由于微信小程序的rich-text组件会禁用所有的节点事件，所以想通过@click绑定v-html节点事件，filter渲染界面。但是在实现过程中发现不支持在v-html中使用filter, 故后来采用methods的返回值来实现视图层的渲染。
+效果如下：至此效果，v-html解析成功
+添加状态判断
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-07-02</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="post-tag">微信小程序</a>
+                            
+                        </div>
+                        
+
+                        <a href="/209_%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" class="post-title">
+                            微信小程序开发笔记
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                rpx单位 rpx（responsive pixel）: 可以根据屏幕宽度进行自适应。规定屏幕宽为750rpx。要实现4:3的展示则可以
+image{ width:750rpx; height:563rpx; } 使用组件库，写的css样式优先级太低 不管三七二十一，加!important
+.findButton { width:300px !important; height:35px !important; } 样式各种飘，不居中怎么办? &lt;view class=&#34;nickName&#34;&gt; &lt;view&gt;{{userInfo.nickName}}&lt;/view&gt; &lt;/view&gt; .nickName { width: 100%; display: flex; align-items: center; justify-content: center; height: 44px; } selectedColor无效 selectedColor 和 list 是同级别的。写在list数组外面就可以了。
+背景虚化 blur中的参数是虚化比例
+filter: blur(1px); scroll-view设置`scroll-x&quot;也不会横向滚动 要给scroll-view加上white-space: nowrap; ，给scroll-view的子元素box加上display:inline-block;
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-07-02</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/uni-app" class="post-tag">uni-app</a>
+                            
+                            <a href="http://localhost:1313/tags/vue" class="post-tag">vue</a>
+                            
+                            <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="post-tag">微信小程序</a>
+                            
+                        </div>
+                        
+
+                        <a href="/313_uni-app%E4%BD%BF%E7%94%A8v-model/" class="post-title">
+                            uni-app使用v-model
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                v-model 介绍 首先明确一点，v-model仅仅是语法糖。
+&lt;input type=&#34;text&#34; v-model=&#34;something&#34;&gt; 等价于
+&lt;input type=&#34;text&#34; v-bind:value=&#34;something&#34; v-on:input=&#34;something = $event.target.value&#34;&gt; 它将一个较复杂的input双向数据绑定简化了他的书写方式。
+微信小程序绑定input 最开始我是使用微信推荐的写法
+&lt;input bindtap=&#34;input&#34; /&gt; 然后在js里面解析event，然后再setData
+uni-app下v-model的写法 本文采用uni-app自定义组件模式
+wxml
+... &lt;form @submit=&#34;formSubmit&#34; @reset=&#34;formReset&#34; :model=&#34;formItem&#34; class=&#34;tm-every-center padding bg-white&#34;&gt; &lt;view class=&#34;section flex align-center&#34;&gt; &lt;view class=&#34;section__title&#34;&gt;姓名：&lt;/view&gt; &lt;input name=&#34;name&#34; placeholder=&#34;请填写您的姓名&#34; class=&#34;bg-gray&#34; v-model=&#34;formItem.name&#34; /&gt; &lt;/view&gt; &lt;view class=&#34;section flex align-center&#34;&gt; &lt;view class=&#34;section__title&#34;&gt;手机：&lt;/view&gt; &lt;input name=&#34;name&#34; placeholder=&#34;请填写您的姓名&#34; class=&#34;bg-gray&#34; v-model=&#34;formItem.phone&#34; /&gt; &lt;/view&gt; &lt;view class=&#34;section flex align-center&#34;&gt; &lt;view class=&#34;section__title&#34;&gt;赛点：&lt;/view&gt; &lt;input name=&#34;name&#34; placeholder=&#34;请填写您的姓名&#34; class=&#34;bg-gray&#34; v-model=&#34;formItem.competition&#34; /&gt; &lt;/view&gt; &lt;view class=&#34;btn-area margin-top&#34;&gt;&lt;button formType=&#34;submit&#34; class=&#34;cu-btn&#34;&gt;提交&lt;/button&gt;&lt;/view&gt; &lt;/form&gt; .
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-05-27</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="post-tag">微信小程序</a>
+                            
+                        </div>
+                        
+
+                        <a href="/219_%E5%9C%A8%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%87%8C%E4%BD%BF%E7%94%A8async_await%E5%BC%82%E6%AD%A5api%E5%8F%8A%E6%B5%85%E8%B0%88%E5%90%84%E7%A7%8D%E5%BC%82%E6%AD%A5/" class="post-title">
+                            在微信小程序里使用async/await异步API及浅谈各种异步
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                想达到本文效果，需使用wepy框架。不了解wepy？转https://tencent.github.io/wepy/index.html
+什么是async/await? 在最新的ES7（ES2017）中提出的前端异步特性：async、await。
+async顾名思义是“异步”的意思，async用于声明一个函数是异步的。而await从字面意思上是“等待”的意思，就是用于等待异步完成。也就是我们平常所说的异步等待。不过需注意await只能在async函数中使用。
+为什么需要async/await? 在async/await之前，我们有三种方式写异步代码
+1. 嵌套回调 其中思想就是,a函数执行完了得到的结果后在执行b。
+形如
+wx.getSetting({ success(res) { console.log(res.authSetting[&#39;scope.userLocation&#39;]); if (!res.authSetting[&#39;scope.userLocation&#39;]) { wx.authorize({ scope: &#39;scope.userLocation&#39;, fail(res) { Toast(&#39;无法获取位置,采用默认排序&#39;); } }); } else { wx.getLocation({ type: &#39;wgs84&#39;, success(res) { _this.setData({ location: res }); console.log(&#39;您的位置信息:&#39;, res); }, fail() { Toast(&#39;无法获取位置,采用默认排序&#39;); } }); } } }); 上面的代码你不用看，就会感觉。这啥东西？乱七八糟的。这就是嵌套回调。很不巧，原生微信小程序开发就是这样的。
+2. 以Promise为主的链式回调 所谓Promise，简单来说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。形如
+var p1 = new Promise((resolve, reject) =&gt; { setTimeout(resolve, 1000, &#39;done&#39;); }) p1.then(data=&gt;{ console.log(data); // done }) 如果你的函数够多的话，那么就会一直then()下去。
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB">
+                                        教程分享
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-03-06</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="post-tag">微信小程序</a>
+                            
+                        </div>
+                        
+
+                        <a href="/134_tmweblog--%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%89%88wetypecho%E7%9A%84%E9%AD%94%E6%94%B9%E7%89%88%E6%9C%AC/" class="post-title">
+                            TmWeBlog--微信小程序版WeTypecho的魔改版本
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                介绍 TmWeBlog&ndash;微信小程序版WeTypecho魔改版
+原项目介绍
+众所周知，现在由于移动互联网的普及，网站访问量下降，导致个人站长非常难混。
+WeTypecho则能帮您快速搭建微信小程序，将Typecho博客的内容映射到微信小程序。
+帮助您在一定程度上获取更多来自微信的流量。WeTypecho的安非常简单，只需三分钟，就能搭建。
+原项目自定义的修改版
+项目地址 原项目地址
+当前项目地址
+功能 目前支持的基本功能如下：
+首页预览置顶文章 评论，回复，点赞 转发，分享到朋友圈 图片视频显示 支持markdown,html解析 扫码预览 ToDoList 留言回复通知
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E6%BA%90%E7%A0%81%E8%A7%A3%E5%89%96">
+                                        源码解剖
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-01-26</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+        </div>
+
+        
+        <div class="pagination-container">
+            
+
+            
+            <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" class="pagination-link ">1</a>
+            
+
+            
+        </div>
+        
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+{{ define "main" }}
+<div class="page-container">
+    <div class="container">
+        <div class="page-header">
+            <h1>{{ if .Paginator.PageNumber }}{{ printf "第%d页" .Paginator.PageNumber }}{{ else }}最新文章{{ end }}</h1>
+            {{ if .Description }}
+            <p class="page-description">{{ .Description }}</p>
+            {{ end }}
+        </div>
+
+        <div class="blog-posts">
+            {{ range .Paginator.Pages }}
+            <article class="content-box">
+                {{ if .Params.featured_image }}
+                <div class="posts-default-img">
+                    <a href="{{ .RelPermalink }}" title="{{ .Title }}">
+                        <div class="overlay"></div>
+                        <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" loading="lazy">
+                    </a>
+                </div>
+                {{ end }}
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        {{ if .Params.tags }}
+                        <div class="post-entry-categories">
+                            {{ range .Params.tags }}
+                            <a href="{{ "/tags/" | absURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+
+                        <a href="{{ .RelPermalink }}" class="post-title">
+                            {{ .Title }}
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            {{ if .Description }}
+                                {{ .Description }}
+                            {{ else if .Summary }}
+                                {{ .Summary }}
+                            {{ else }}
+                                {{ .Content | plainify | truncate 150 }}
+                            {{ end }}
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                     alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="{{ "/categories/" | absURL }}{{ (index (.Params.categories | default (slice "未分类")) 0) | urlize }}">
+                                        {{ index (.Params.categories | default (slice "未分类")) 0 }}
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>{{ .Date.Format "2006-01-02" }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+
+        {{ if .Paginator }}
+        <div class="pagination-div">
+            <div class="pagination-container">
+                {{ if .Paginator.HasPrev }}
+                <a href="{{ .Paginator.Prev.URL }}" class="pagination-item">
+                    上一页
+                </a>
+                {{ end }}
+
+                {{ $currentPage := .Paginator.PageNumber }}
+                {{ $totalPages := .Paginator.TotalPages }}
+                {{ $maxVisible := 5 }}
+
+                {{ if le $totalPages $maxVisible }}
+                    <!-- 如果总页数小于等于最大显示数，显示所有页码 -->
+                    {{ range $i := (seq 1 $totalPages) }}
+                    <a href="{{ printf "/page/%d" $i | absURL }}"
+                       class="pagination-item {{ if eq $i $currentPage }}is-active{{ end }}">
+                        {{ $i }}
+                    </a>
+                    {{ end }}
+                {{ else }}
+                    <!-- 始终显示第一页 -->
+                    <a href="{{ "/page/1" | absURL }}" class="pagination-item {{ if eq $currentPage 1 }}is-active{{ end }}">
+                        1
+                    </a>
+
+                    {{ $start := sub $currentPage 1 }}
+                    {{ if lt $start 2 }}
+                        {{ $start = 2 }}
+                    {{ end }}
+                    {{ $end := add $currentPage 1 }}
+                    {{ if gt $end (sub $totalPages 1) }}
+                        {{ $end = sub $totalPages 1 }}
+                    {{ end }}
+
+                    {{ if lt $currentPage 4 }}
+                        {{ $start = 2 }}
+                        {{ $end = 4 }}
+                    {{ else if gt $currentPage (sub $totalPages 3) }}
+                        {{ $start = sub $totalPages 3 }}
+                        {{ $end = sub $totalPages 1 }}
+                    {{ end }}
+
+                    <!-- 添加省略号 -->
+                    {{ if gt $start 2 }}
+                    <span class="pagination-item is-disabled">...</span>
+                    {{ end }}
+
+                    <!-- 添加中间页码 -->
+                    {{ range $i := (seq $start $end) }}
+                    <a href="{{ printf "/page/%d" $i | absURL }}"
+                       class="pagination-item {{ if eq $i $currentPage }}is-active{{ end }}">
+                        {{ $i }}
+                    </a>
+                    {{ end }}
+
+                    <!-- 添加省略号 -->
+                    {{ if lt $end (sub $totalPages 1) }}
+                    <span class="pagination-item is-disabled">...</span>
+                    {{ end }}
+
+                    <!-- 始终显示最后一页 -->
+                    <a href="{{ printf "/page/%d" $totalPages | absURL }}"
+                       class="pagination-item {{ if eq $currentPage $totalPages }}is-active{{ end }}">
+                        {{ $totalPages }}
+                    </a>
+                {{ end }}
+
+                {{ if .Paginator.HasNext }}
+                <a href="{{ .Paginator.Next.URL }}" class="pagination-item">
+                    下一页
+                </a>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

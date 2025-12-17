@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>在微信小程序里使用async/await异步API及浅谈各种异步 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="微信小程序">
+
+    
+    <meta property="og:title" content="在微信小程序里使用async/await异步API及浅谈各种异步">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/219_%E5%9C%A8%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%87%8C%E4%BD%BF%E7%94%A8async_await%E5%BC%82%E6%AD%A5api%E5%8F%8A%E6%B5%85%E8%B0%88%E5%90%84%E7%A7%8D%E5%BC%82%E6%AD%A5/">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>在微信小程序里使用async/await异步API及浅谈各种异步</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-03-06">2019-03-06</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB">
+                            教程分享
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="tag">微信小程序</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <blockquote>
+<p>想达到本文效果，需使用wepy框架。不了解wepy？转<a href="https://tencent.github.io/wepy/index.html">https://tencent.github.io/wepy/index.html</a></p>
+</blockquote>
+<h2 id="什么是asyncawait">什么是async/await?</h2>
+<blockquote>
+<p>在最新的ES7（ES2017）中提出的前端异步特性：async、await。</p>
+</blockquote>
+<p>async顾名思义是“异步”的意思，async用于声明一个函数是异步的。而await从字面意思上是“等待”的意思，就是用于等待异步完成。也就是我们平常所说的异步等待。不过需注意<code>await只能在async函数中使用</code>。</p>
+<h2 id="为什么需要asyncawait">为什么需要async/await?</h2>
+<p>在async/await之前，我们有三种方式写异步代码</p>
+<h3 id="1-嵌套回调">1. 嵌套回调</h3>
+<p>其中思想就是,a函数执行完了得到的结果后在执行b。</p>
+<p>形如</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">wx</span><span class="p">.</span><span class="nx">getSetting</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">success</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">authSetting</span><span class="p">[</span><span class="s1">&#39;scope.userLocation&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">authSetting</span><span class="p">[</span><span class="s1">&#39;scope.userLocation&#39;</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="nx">wx</span><span class="p">.</span><span class="nx">authorize</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nx">scope</span><span class="o">:</span> <span class="s1">&#39;scope.userLocation&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nx">fail</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">              <span class="nx">Toast</span><span class="p">(</span><span class="s1">&#39;无法获取位置,采用默认排序&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="nx">wx</span><span class="p">.</span><span class="nx">getLocation</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;wgs84&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nx">success</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">              <span class="nx">_this</span><span class="p">.</span><span class="nx">setData</span><span class="p">({</span> <span class="nx">location</span><span class="o">:</span> <span class="nx">res</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">              <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;您的位置信息:&#39;</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nx">fail</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">              <span class="nx">Toast</span><span class="p">(</span><span class="s1">&#39;无法获取位置,采用默认排序&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span></code></pre></div><blockquote>
+<p>上面的代码你不用看，就会感觉。这啥东西？乱七八糟的。这就是嵌套回调。很不巧，原生微信小程序开发就是这样的。</p>
+</blockquote>
+<h3 id="2-以promise为主的链式回调">2. 以Promise为主的链式回调</h3>
+<blockquote>
+<p>所谓Promise，简单来说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。形如</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;done&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">p1</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="p">=&gt;{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// done
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><p>如果你的函数够多的话，那么就会一直then()下去。</p>
+<blockquote>
+<p>为了优雅，Promise提供了一个方法<code>Promise.all([p1,p2,p3])</code> ，用于将多个Promise实例，包装成一个新的Promise实例。接收的参数是一个数组,p1、p2、p3都是Promise对象</p>
+</blockquote>
+<p>分两种情况：</p>
+<ol>
+<li>
+<p>p1、p2、p3的状态都是resolve的时候，Promise.all的状态才会变成resolve；</p>
+</li>
+<li>
+<p>只要p1、p2、p3中有一个的状态为reject，那么Promise.all的状态就会变成reject；</p>
+</li>
+</ol>
+<p>所以我们可以用Promise.all()来解决多个异步依赖调用。</p>
+<h3 id="3-使用generators">3. 使用Generators</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="o">*</span><span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="k">yield</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="k">yield</span> <span class="nx">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">z</span> <span class="o">=</span> <span class="k">yield</span> <span class="p">(</span><span class="nx">y</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p>上面代码中的每一条语句都会按顺序一个一个地执行。Yield关键字标明了代码中被阻塞的点（只能被generator函数自己阻塞，外部代码不能阻塞generator函数的执行），但是不会改变*main()函数中代码的执行顺序。这段代码很简单！</p>
+</blockquote>
+<p>但是，这三种写起来都还是不够优雅，ES7做了优化改进，async/await应运而生，async/await相比较Promise 对象then 函数的嵌套，与 Generator 执行的繁琐(需要借助co才能自动执行，否则得手动调用next())， Async/Await 可以让你轻松写出同步风格的代码同时又拥有异步机制，更加简洁，逻辑更加清晰。</p>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">async</span> <span class="nx">a</span><span class="p">(){};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">a</span><span class="p">();</span>
+</span></span></code></pre></div><h2 id="这样做的好处">这样做的好处？</h2>
+<blockquote>
+<p>唔，你不觉得一个优雅的代码就该是这样吗？好吧，其实这样更容易符合我们平常的思维逻辑</p>
+</blockquote>
+<h2 id="回到本文的题目">回到本文的题目</h2>
+<blockquote>
+<p>在wepy1.4.1以后的版本（之前的版本都是默认开启的），默认不支持async/await，需要用户手动加入，方法如下：</p>
+</blockquote>
+<h3 id="进入项目根目录安装runtime包">进入项目根目录，安装runtime包</h3>
+<pre tabindex="0"><code>
+npm install wepy-async-function --save
+</code></pre><h3 id="修改wepyconfigjs加入runtime配置">修改wepy.config.js加入runtime配置</h3>
+<pre tabindex="0"><code>
+        babel: {
+
+            &#34;presets&#34;: [
+
+                &#34;env&#34;
+
+            ],
+
+            &#34;plugins&#34;: [
+
+                &#34;transform-export-extensions&#34;,
+
+                &#34;syntax-export-extensions&#34;
+
+            ]
+
+        }
+</code></pre><h3 id="在appwpy中引入引入runtime包">在app.wpy中引入引入runtime包</h3>
+<pre tabindex="0"><code>
+import &#39;wepy-async-function&#39;; 
+</code></pre><h3 id="在appwpy中使api-promise化">在app.wpy中使API promise化</h3>
+<blockquote>
+<p>重写构造函数，使其支持async/await。</p>
+</blockquote>
+<pre tabindex="0"><code>
+export default class extends wepy.app {
+
+    constructor () {
+
+        super();
+
+        this.use(&#39;promisify&#39;);
+
+    }
+
+}
+</code></pre><h3 id="重启编译">重启编译</h3>
+<pre tabindex="0"><code>
+wepy build --no-cache
+</code></pre><h2 id="使用示例">使用示例</h2>
+<blockquote>
+<p>在wepy框架官方文档中已说明，对所有的微信小程序都支持async/await操作。只需将形如<code>wx.getuserInfo</code>改写为<code>wepy.getuserInfo</code>即可</p>
+</blockquote>
+<pre tabindex="0"><code>
+async userInfoAsync() {
+
+    const _this = this;
+
+    const data = await wepy.getSetting(); //获取设置数据
+
+    if (data.authSetting[&#39;scope.userInfo&#39;]) { //判断是否有获取用户信息的权限
+
+      await wepy.login(); //登录
+
+      let data = await wepy.getUserInfo();//获取用户信息
+
+      _this.userInfo = data.userInfo;//采用wepy框架修改过后的功能，支持直接赋值数据绑定
+
+      _this.$apply(); //在async的函数中，必须主动执行`$apply()`来进行脏数据检查
+
+    }
+
+  }
+
+async onShow() {
+
+    this.userInfoAsync(); //调用async函数
+
+  }
+</code></pre><blockquote>
+<p>以上代码实现了异步同步用户userInfo的功能</p>
+</blockquote>
+<p>参考文献:</p>
+<ol>
+<li>
+<p><a href="https://www.jb51.net/article/103068.htm">使用Promise链式调用解决多个异步回调的问题</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/samt007/article/details/54647361">关于js的callback回调函数以及嵌套回调函数的执行过程理解</a></p>
+</li>
+<li>
+<p><a href="https://www.cnblogs.com/jaxu/p/6592210.html">ES6 Generators并发</a></p>
+</li>
+<li>
+<p><a href="https://www.cnblogs.com/leungUwah/p/7932912.html">ES7前端异步玩法：async/await理解</a></p>
+</li>
+<li>
+<p><a href="https://segmentfault.com/a/1190000007535316?utm_source=tag-newest">理解 JavaScript 的 async/await</a></p>
+</li>
+<li>
+<p><a href="https://segmentfault.com/a/1190000013292562?utm_source=channel-newest">Async/await学习</a></p>
+</li>
+<li>
+<p><a href="https://www.jianshu.com/p/1e75bd387aa0">浅谈async/await</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Tencent/wepy/wiki/wepy%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8async-await">wepy项目中使用async await</a></p>
+</li>
+</ol>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/219_%E5%9C%A8%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%87%8C%E4%BD%BF%E7%94%A8async_await%E5%BC%82%E6%AD%A5api%E5%8F%8A%E6%B5%85%E8%B0%88%E5%90%84%E7%A7%8D%E5%BC%82%E6%AD%A5/）本文首发于
+                        <a href="http://localhost:1313/219_%E5%9C%A8%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%87%8C%E4%BD%BF%E7%94%A8async_await%E5%BC%82%E6%AD%A5api%E5%8F%8A%E6%B5%85%E8%B0%88%E5%90%84%E7%A7%8D%E5%BC%82%E6%AD%A5/">指尖魔法屋-在微信小程序里使用async/await异步API及浅谈各种异步</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

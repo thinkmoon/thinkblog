@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>响应式布局 on 指尖魔法屋</title>
+    <link>http://localhost:1313/tags/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</link>
+    <description>Recent content in 响应式布局 on 指尖魔法屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 19 Apr 2020 11:04:43 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>H5自适应页面的一种可行性方案</title>
+      <link>http://localhost:1313/830_h5%E8%87%AA%E9%80%82%E5%BA%94%E9%A1%B5%E9%9D%A2%E7%9A%84%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%A1%8C%E6%80%A7%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Sun, 19 Apr 2020 11:04:43 +0000</pubDate>
+      <guid>http://localhost:1313/830_h5%E8%87%AA%E9%80%82%E5%BA%94%E9%A1%B5%E9%9D%A2%E7%9A%84%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%A1%8C%E6%80%A7%E6%96%B9%E6%A1%88/</guid>
+      <description>前言 由于各种终端屏幕风格，大小迥异，由此而生衍生出了自适应页面设计。如果我们需要在各种机型上显示的风格比例一致，而解决屏幕大小不同显示内容不同的问题的话，我们需要对各种屏幕比例做适配。本文就该问题分享一种可行性方案。&#xA;由于以前做的移动端页面大部分为小程序页面，小程序采用相对像素(rpx)实现响应式适配。故本文也采用类似思想(rem)。&#xA;1. rem是什么 在W3C官网上是这样描述rem的——“font size of the root element”&#xA;即相对根节点（html)的字体大小,那么解决方案的思路就立马来了。根据不同的屏幕大小，设置不同的html字体大小，这样其他使用rem单位的元素即会随之自适应的改变大小。&#xA;2. 计算根节点(html)字体大小 2.1 JS方案 思路就是使用js获取窗口宽度，然后根据宽度计算对应的font-size。根据一般常识，js为了不影响页面体验，应在文档末尾添加。但此处为了避免HTML渲染完成后，使用JS动态修改字体而造成的页面抖动问题。我们应该将该JS元素节点放置于header底部，并内联到html文档里面。例如&#xA;在Vue中直接修改template.html即可&#xA;&amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; (function (doc, win) { var docEl = doc.documentElement, resizeEvt = &amp;#39;orientationchange&amp;#39; in window ? &amp;#39;orientationchange&amp;#39; : &amp;#39;resize&amp;#39;, recalc = function () { var clientWidth = docEl.clientWidth; docEl.style.fontSize = 100 * (clientWidth / 750) + &amp;#39;px&amp;#39;; }; if (!doc.addEventListener) { return; } win.addEventListener(resizeEvt, recalc, false); doc.addEventListener(&amp;#39;DOMContentLoaded&amp;#39;, recalc, false); recalc() })(document, window) &amp;lt;/script&amp;gt; 该代码段监听页面尺寸改变事件，根据对应窗口大小(clientWidth)除以一个基准(750),进而调整html的font-size。在本例下，375的屏幕中1rem=50px。</description>
+    </item>
+  </channel>
+</rss>

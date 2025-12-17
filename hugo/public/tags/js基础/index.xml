@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Js基础 on 指尖魔法屋</title>
+    <link>http://localhost:1313/tags/js%E5%9F%BA%E7%A1%80/</link>
+    <description>Recent content in Js基础 on 指尖魔法屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 09 Dec 2022 21:35:49 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/js%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何理解Promise</title>
+      <link>http://localhost:1313/956_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3promise/</link>
+      <pubDate>Fri, 09 Dec 2022 21:35:49 +0000</pubDate>
+      <guid>http://localhost:1313/956_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3promise/</guid>
+      <description>Promise是啥？异步函数？对象？怎么用才更自信？如何理解更好的理解Promise？本文将分享本人对于Promise的一些经验与想法。&#xA;背景知识 此段将介绍一些理解本文的背景知识，你可以很轻松愉快的阅读此段。&#xA;函数是一等公民 总所周知，在JavaScript里面，函数是一等公民。你可以用来赋值，传参，回调，包装，作为函数返回值return。&#xA;以下内容援引于JavaScript 为什么说函数是一等公民？&#xA;函数与数字一样可以存储到变量中 var fortyTwo = 42 var fortyOne = function() { return 41; } 函数与数字一样可以存储为数组的一个元素 var nums = [42, function() { return 41 }] 函数与数字一样可以在使用时直接创建出来 42 + (fuction() { return 41 })(); // 83 函数与数字一样可以被传递给另一个函数 function weirdAdd( n, fun) { return n + fun()} weirdAdd(42, function() { return 41 }) 函数与数字一样可以被另一个函数返回 function add() { var num1 = 42; return function(num2) { return num1 + num2 } } fun = add(); fun(41); // 83 函数就是变量，变量可以存放函数。就是玩~</description>
+    </item>
+    <item>
+      <title>浏览器机制之js事件循环</title>
+      <link>http://localhost:1313/907_%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%BA%E5%88%B6%E4%B9%8Bjs%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</link>
+      <pubDate>Fri, 28 Aug 2020 20:32:26 +0000</pubDate>
+      <guid>http://localhost:1313/907_%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%BA%E5%88%B6%E4%B9%8Bjs%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</guid>
+      <description>引言 总所周知，js是单线程的。单线程意味着，js代码在执行的任何时候，都只有一个主线程来处理所有的任务（为了避免多线程可能产生的诸多问题，直接阉割多线程的可能性）。然而，随着硬件设备的快速发展，网页要做的事情会变得越来越多。人们慢慢意识到，不能让单线程限制了js的效率，然后web worker便应运而生。&#xA;栈，堆，队列 基本数据结构知识略过~&#xA;讲讲它们在js语言层面的应用。&#xA;执行栈：函数调用形成了一个由若干帧（执行上下文）组成的栈。&#xA;消息队列：一个待处理消息的消息队列。每一个消息都关联着一个用以处理这个消息的回调函数。&#xA;在 事件循环 期间的某个时刻，运行时会从最先进入队列的消息开始处理队列中的消息。被处理的消息会被移出队列，并作为输入参数来调用与之关联的函数。正如前面所提到的，调用一个函数总是会为其创造一个新的栈帧。&#xA;函数的处理会一直进行到执行栈再次为空为止；然后事件循环将会处理队列中的下一个消息（如果还有的话）。&#xA;任务队列 在js事件循环机制中，存在多种任务队列，它们可分为宏任务（macro-task）和微任务（micro-task）两种。&#xA;宏任务包括：setTimeout、setInterval、I/O、UI rendering&#xA;微任务包括：process.nextTick、Promise、Object.observe（已废弃）、MutationObserver（html5新特性）&#xA;事件循环 如上图所示，事件循环就是在主线程清空执行上下文栈后空闲之时，先去微任务队列中读取待执行程序，并装载到主线程中。如果没有内容（各类微任务队列都清空），则将去宏任务队列中寻找。如此往复，周而复始，直至结束。&#xA;参考文档 并发模型与事件循环-MDN&#xA;详解JavaScript中的Event Loop（事件循环）机制-知乎&#xA;JS事件循环机制（event loop）之宏任务/微任务-掘金&#xA;JavaScript 事件循环机制-掘金</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vue环境变量和模式 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="你可以通过传递 --mode 选项参数为命令行覆写默认的模式。例如，如果你想要在构建命令中使用开发环境变量">
+    <meta name="keywords" content="前端, vuejs">
+
+    
+    <meta property="og:title" content="Vue环境变量和模式">
+    <meta property="og:description" content="你可以通过传递 --mode 选项参数为命令行覆写默认的模式。例如，如果你想要在构建命令中使用开发环境变量">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/894_vue%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%92%8C%E6%A8%A1%E5%BC%8F/">
+    
+    <meta property="og:image" content="http://blog.cdn.thinkmoon.cn/blog/typecho/image-20200710134543169.png">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>Vue环境变量和模式</h1>
+
+                <div class="post-meta">
+                    <time datetime="2020-08-12">2020-08-12</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/%E5%89%8D%E7%AB%AF" class="tag">前端</a>
+                    
+                    <a href="http://localhost:1313/tags/vuejs" class="tag">vuejs</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <h1 id="vue环境变量和模式">Vue环境变量和模式</h1>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/image-20200710134543169.png" alt="Vue环境变量和模式"></p>
+<p>我最开始使用vue的判断环境的方法是</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">BASE_URL</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">==</span> <span class="s2">&#34;development&#34;</span> <span class="o">?</span> <span class="s2">&#34;http:/localhost&#34;</span> <span class="o">:</span> <span class="s2">&#34;xxx&#34;</span>
+</span></span></code></pre></div><p>在这种情况下，需要先判断它的编译环境，进而根据环境适用对应的值。如果只有一个地方的变量跟环境有关，情况还好。但是若有多个，则需要复制多个判断或者封装成一个方法。但也只能使用于两个环境，如果存在多个环境，诸如开发，测试，预发布，正式等环境，这个方法就捉襟见肘了。所以，我们需要设置Vue环境变量和模式，好像webpack也可以实现？（好吧，这不是重点）</p>
+<h2 id="实现方式">实现方式</h2>
+<p>vue允许你在项目根目录下添加.env.[mode]的文件来指定环境变量。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nx">env</span>                <span class="err">#</span> <span class="nx">在所有的环境中被载入</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">local</span>          <span class="err">#</span> <span class="nx">在所有的环境中被载入</span><span class="err">，</span><span class="nx">但会被</span> <span class="nx">git</span> <span class="nx">忽略</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nx">env</span><span class="p">.[</span><span class="nx">mode</span><span class="p">]</span>         <span class="err">#</span> <span class="nx">只在指定的模式中被载入</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nx">env</span><span class="p">.[</span><span class="nx">mode</span><span class="p">].</span><span class="nx">local</span>   <span class="err">#</span> <span class="nx">只在指定的模式中被载入</span><span class="err">，</span><span class="nx">但会被</span> <span class="nx">git</span> <span class="nx">忽略</span>
+</span></span></code></pre></div><p>比如我，我添加了<code>.env.local</code>,<code>.env.development</code>,<code>.env.test</code>,<code>.env.production</code>等文件，.env.local文件内容如下。</p>
+<blockquote>
+<p>.env.local</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">VUE_APP_BUILD_MODE</span> <span class="o">=</span> <span class="s1">&#39;development&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">VUE_APP_BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;http://172.16.6.132:8002/threemiju/&#39;</span>
+</span></span></code></pre></div><p>对应<code>package.json</code>的script如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;serve&#34;</span><span class="p">:</span> <span class="s2">&#34;vue-cli-service serve --mode&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;serve:test&#34;</span><span class="p">:</span> <span class="s2">&#34;vue-cli-service serve --mode test&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;build:test&#34;</span><span class="p">:</span> <span class="s2">&#34;vue-cli-service build --mode test&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;build:production&#34;</span><span class="p">:</span> <span class="s2">&#34;vue-cli-service build --mode production&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;deploy:test&#34;</span><span class="p">:</span> <span class="s2">&#34;git push &amp;&amp; git push gitlab dev &amp;&amp; vue-cli-service build --mode test&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span><span class="err">,</span>
+</span></span></code></pre></div><blockquote>
+<p>请注意，此处有一个坑。当你使用<code>yarn run build:test</code>的时候，你会发现，假如你使用了异步组件，却会神奇的发现，它并没有把把代码切割，只编译成了一个app.js文件，这是由于你使用了<code>--mode test</code>, 导致它认为你并不是prodution环境。所以，你需要对<code>.env.test</code>做以下修改</p>
+</blockquote>
+<ul>
+<li>.env.test</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">NODE_ENV</span> <span class="o">=</span> <span class="s1">&#39;production&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">VUE_APP_BUILD_MODE</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">VUE_APP_BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://m.gileey.cn/threemiju/&#39;</span>
+</span></span></code></pre></div><p>主动设置NODE_ENV即可。</p>
+<h2 id="环境变量的使用场景">环境变量的使用场景</h2>
+<ol>
+<li>BASE_URL</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">baseURL</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">VUE_APP_BASE_URL</span><span class="p">;</span>
+</span></span></code></pre></div><ol start="2">
+<li>BUILD_MODE</li>
+</ol>
+<p>在显示版本号时同时显示编译环境</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="err">:</span><span class="na">title</span><span class="o">=</span><span class="s">&#34;mode&#34;</span><span class="p">&gt;{{</span> <span class="nx">version</span> <span class="p">}}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">data</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="p">{</span><span class="nx">mode</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">VUE_APP_BUILD_MODE</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="本地变量local的一些应用场景">本地变量(*.local)的一些应用场景</h2>
+<ol>
+<li>
+<p>BASE_URL: 在不同的开发机器下，请求不同内网地址</p>
+</li>
+<li>
+<p>APP_SECRET: 该字段不宜出现在共有仓库</p>
+</li>
+</ol>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/894_vue%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%92%8C%E6%A8%A1%E5%BC%8F/）本文首发于
+                        <a href="http://localhost:1313/894_vue%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%92%8C%E6%A8%A1%E5%BC%8F/">指尖魔法屋-Vue环境变量和模式</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

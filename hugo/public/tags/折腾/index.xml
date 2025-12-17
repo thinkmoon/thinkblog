@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>折腾 on 指尖魔法屋</title>
+    <link>http://localhost:1313/tags/%E6%8A%98%E8%85%BE/</link>
+    <description>Recent content in 折腾 on 指尖魔法屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
+    <lastBuildDate>Tue, 14 Jun 2022 23:59:09 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E6%8A%98%E8%85%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用github Action自动部署博客</title>
+      <link>http://localhost:1313/950_%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Tue, 14 Jun 2022 23:59:09 +0000</pubDate>
+      <guid>http://localhost:1313/950_%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/</guid>
+      <description>背景提要 为什么需要它？最开始我使用的是本地编译，然后手动上传的方式，后来发现过于麻烦。尤其是nuxt编译后，产生一大堆ouput文件，手动上传耗时费力。&#xA;再后来我在服务器上，设置了一个定时任务。每晚从github拉取最新的代码，然后在服务器上编译。实行了一段时间，感觉还行。但是，随着服务上的服务越来越多，资源占有越来越大，我发现偶尔会出现编译nuxt时内存溢出的情况（请原谅我1核2G的服务，它已经尽力了）。&#xA;然后便产生了，使用githu action编译目标产物ouput文件，通知服务器自动拉取的想法。那么，说干就干，试试吧！&#xA;创建GitHub Action 使用node.js模板，该模板会自动使用预装node.js的环境。模板中有三种node.js版本，如果保持预留配置，则会三个环境都执行一次。这里我只使用16.x版本（因为跟我服务器版本一致）&#xA;大致流程可分为&#xA;拉取代码 安装依赖 编译output 归档到特定分支（gh-pages） web-hook通知服务器 服务接收事件，拉取编译后的文件，并重启 拉取代码 该步骤由github完成，只需声明使用的分支名称即可&#xA;安装依赖 编译output - run: yarn run build 归档到特定分支（gh-page） 我这儿随便在maket place选一个开源Action（GitHub Pages v3），配置对应的参数，如下：&#xA;- name: GitHub Pages v3 uses: peaceiris/actions-github-pages@v3.1.12 with: personal_token: ${{ secrets.ACCESS_TOKEN }} publish_dir: .output 请注意：关于这个personal_token，github有个坑。我也是折腾了两个多小时才总结出来的。生成的personal_token是不能明文存储在yaml文件中的，必须使用变量传递。否则一旦提交的时候，github出于安全考虑会自动静默删除对应person_token。&#xA;完整配置 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node # For more information see: https://help.</description>
+    </item>
+    <item>
+      <title>windows环境git（github) 使用代理ssh/http</title>
+      <link>http://localhost:1313/954_windows%E7%8E%AF%E5%A2%83git_github_-%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86ssh_http/</link>
+      <pubDate>Sat, 23 Apr 2022 17:16:51 +0000</pubDate>
+      <guid>http://localhost:1313/954_windows%E7%8E%AF%E5%A2%83git_github_-%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86ssh_http/</guid>
+      <description>修改或增加~/.ssh/config&#xA;ProxyCommand connect -S 127.0.0.1:10808 %h %p 其中-S代表使用socks代理。如果是http模式，则为-H 后接代理地址，如127.0.0.1:10808&#xA;如果你只想修改特定的情况做配置，可以增加如下内容&#xA;Host github.com User git Port 22 Hostname github.com 参考链接 Getting git to work through a proxy server (in Windows)</description>
+    </item>
+    <item>
+      <title>使用zsh让windows cmd变得性感又迷人</title>
+      <link>http://localhost:1313/229_%E4%BD%BF%E7%94%A8zsh%E8%AE%A9windows-cmd%E5%8F%98%E5%BE%97%E6%80%A7%E6%84%9F%E5%8F%88%E8%BF%B7%E4%BA%BA/</link>
+      <pubDate>Thu, 19 Dec 2019 15:41:33 +0000</pubDate>
+      <guid>http://localhost:1313/229_%E4%BD%BF%E7%94%A8zsh%E8%AE%A9windows-cmd%E5%8F%98%E5%BE%97%E6%80%A7%E6%84%9F%E5%8F%88%E8%BF%B7%E4%BA%BA/</guid>
+      <description>引言 首先看一张最终效果图&#xA;大致思路 使用win10的linux子系统，安装zsh，默认切换zsh终端。（什么鬼，这和装虚拟机有什么不一样？放心，不一样的，慢慢看）&#xA;为什么要需要它？ cmd太丑，cmder略慢，然后就是命令的不统一性。&#xA;一个好看的终端可以让程序员变得开心又愉快。&#xA;如下&#xA;准备工作 win10内部版本16215.0以上&#xA;打开win10开发人员模式&#xA;勾选控制面板&amp;gt;程序&amp;gt;启用windows功能&amp;gt;linux子系统&#xA;重启&#xA;打开应用商店&amp;gt;搜索linux, 选择你喜欢的linux发行版安装，我选的是ubuntu18.04，如果卸载了应用商店可以自行百度开启方式&#xA;&amp;ndash; 至此：linux系统安装成功&#xA;在linux子系统中需要做的操作 在开始栏运行ubuntu 或者win+R，键入wsl运行。&#xA;安装zsh sudo apt-get install zsh 设置默认shell chsh -s /bin/zsh 安装oh-my-zsh sh -c &amp;#34;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&amp;#34; (可选项)修改主题 nano ~/.zshrc 我的修改如下&#xA;让bash每次打开自动执行zsh 重新打开终端窗口，我们目前的效果是这样的。&#xA;然后就会发现，这丫的，这怎么跟我的win10保持文件共享呢？&#xA;让linux子系统默认打开win10用户根目录 首先找到C\\windows\\system32\\wsl.exe，复制到你的win10用户根目录。&#xA;再为根目录的bash.exe创建快捷方式发送到桌面。&#xA;运行&#xA;看，好神奇&#xA;可是，，，难道每次我运行命令都要回到桌面启动？而且就不能像ubuntu那样ctrl + alt + T打开？&#xA;为适应win10的一些配置 右键点击桌面快捷方式，选择快捷键，同时按ctrl + alt + T设置快捷键。&#xA;桌面右键&amp;gt;选择查看&amp;gt;取消勾选显示桌面图标&#xA;测试ctrl + alt + T，我可能是为数不多的秀win10桌面的程序员:) （好像还是没有linux的好看？）&#xA;在vs code里配置默认终端为wsl.exe。效果展示&#xA;结束语 因为截图会变模糊，实际效果比这好看的多，嗯，又多了一个装逼的东西。</description>
+    </item>
+  </channel>
+</rss>

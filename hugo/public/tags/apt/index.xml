@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apt on 指尖魔法屋</title>
+    <link>http://localhost:1313/tags/apt/</link>
+    <description>Recent content in Apt on 指尖魔法屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 20 Dec 2019 19:52:13 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/apt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubutnu使用问题记录贴</title>
+      <link>http://localhost:1313/650_ubutnu%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E8%B4%B4/</link>
+      <pubDate>Fri, 20 Dec 2019 19:52:13 +0000</pubDate>
+      <guid>http://localhost:1313/650_ubutnu%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E8%B4%B4/</guid>
+      <description>安装软件未满足依赖关系 安装软件curl时提示以下内容&#xA;下列软件包有未满足的依赖关系： curl : 依赖: libcurl4 (= 7.64.0-2ubuntu1.2) 但是 7.65.3-1ubuntu3 正要被安装 E: 无法修正错误，因为您要求某些软件包保持现状，就是它们破坏了软件包间的依赖关系。 这是由于版本不符的导致的，可能是以前卸载的时候未卸载干净。所以我们需要使用purge选项来重新卸载一次。&#xA;sudo apt-get purge libcurl4 然后重新安装，解决问题！！&#xA;执行bash命令提示bash: /dev/fd/63: 没有那个文件或目录 原因：&amp;lt;（…）运算符称为进程替换，是运行命令的一种方式，其输出进入匿名管道。这就是/dev/fd/63。其思想是允许外部命令（这里是bash）将另一个命令输出视为一个文件。通常形式是使用&amp;lt;将伪文件对象重定向到bash的输入流中。&#xA;解决方案，使用两个&amp;lt;&#xA;用户不在sudo列表 别问为什么出现这个问题，，，&#xA;解决方法 重启进恢复模式&#xA;选择root用户&#xA;添加用户至sudo组&#xA;adduser username sudo 系统没有设置图标 天哪，为啥我的电脑老是出现些奇怪的问题。&#xA;解决方法 -sudo apt update-&#xA;sudo apt install gnome-control-center</description>
+    </item>
+  </channel>
+</rss>

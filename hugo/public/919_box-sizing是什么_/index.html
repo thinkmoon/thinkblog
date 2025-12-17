@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>box-sizing是什么？ | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="笔者初学前端时，遇到一些具有padding/border的子元素铺满父元素时，常常采用人工计算width的方式来实现效果。知道后来了解到box-sizing，才知道那种实现方式是多么的尴尬！">
+    <meta name="keywords" content="html, css">
+
+    
+    <meta property="og:title" content="box-sizing是什么？">
+    <meta property="og:description" content="笔者初学前端时，遇到一些具有padding/border的子元素铺满父元素时，常常采用人工计算width的方式来实现效果。知道后来了解到box-sizing，才知道那种实现方式是多么的尴尬！">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/919_box-sizing%E6%98%AF%E4%BB%80%E4%B9%88_/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/blog/typecho/2020-09-20T09:55:28.png">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>box-sizing是什么？</h1>
+
+                <div class="post-meta">
+                    <time datetime="2020-09-20">2020-09-20</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/html" class="tag">html</a>
+                    
+                    <a href="http://localhost:1313/tags/css" class="tag">css</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <p>笔者初学前端时，遇到一些具有padding/border的子元素铺满父元素时，常常采用人工计算width的方式来实现效果。知道后来了解到box-sizing，才知道那种实现方式是多么的尴尬！</p>
+<h2 id="box-sizing">box-sizing</h2>
+<blockquote>
+<p>box-sizing 属性允许你以某种方式定义某些元素，以适应指定区域。</p>
+</blockquote>
+<p>box-sizing具有三个值</p>
+<ol>
+<li>
+<p>content-box，默认值，指定盒模型为 W3C 标准模型，设置 border、padding 会增加元素 width与 height 的尺寸。</p>
+</li>
+<li>
+<p>border-box，指定盒模型为 IE模型（怪异模式），设置 border、padding 不会影响元素 width 与 height 的尺寸。</p>
+</li>
+<li>
+<p>inherit，继承</p>
+</li>
+</ol>
+<h2 id="举个例子">举个例子</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">block</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;parent&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;child&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">block</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;HelloWorld&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">msg</span><span class="o">:</span> <span class="nb">String</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- Add &#34;scoped&#34; attribute to limit CSS to this component only --&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span> <span class="na">scoped</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">div</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">padding</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">border-width</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">margin</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">parent</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">box-sizing</span><span class="p">:</span> <span class="kc">content-box</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">.</span><span class="nc">child</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">box-sizing</span><span class="p">:</span> <span class="kc">border-box</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h2 id="效果展示">效果展示</h2>
+<blockquote>
+<p>parent</p>
+</blockquote>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-09-20T14:40:14.png" alt="2020-09-20T14:40:14.png"></p>
+<p>上图我们可以看到，content-box下，width的宽度只是content的宽度，元素的实际宽度等于width+border+padding</p>
+<blockquote>
+<p>child</p>
+</blockquote>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-09-20T14:42:40.png" alt="2020-09-20T14:42:40.png"></p>
+<p>而在border-box，width的宽度指的是边框盒子的宽度，元素的实际宽度就等于width</p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/919_box-sizing%E6%98%AF%E4%BB%80%E4%B9%88_/）本文首发于
+                        <a href="http://localhost:1313/919_box-sizing%E6%98%AF%E4%BB%80%E4%B9%88_/">指尖魔法屋-box-sizing是什么？</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

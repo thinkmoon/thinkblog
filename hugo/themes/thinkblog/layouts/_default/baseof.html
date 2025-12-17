@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}">
+    <meta name="keywords" content="{{ if .Params.tags }}{{ delimit .Params.tags ", " }}{{ else }}{{ .Site.Params.keywords }}{{ end }}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+    <meta property="og:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}">
+    <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    {{ if .Params.featured_image }}
+    <meta property="og:image" content="{{ .Params.featured_image | absURL }}">
+    {{ end }}
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ "favicon.ico" | absURL }}">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ "css/reset.css" | absURL }}">
+    <link rel="stylesheet" href="{{ "css/github-markdown.css" | absURL }}">
+    <link rel="stylesheet" href="{{ "css/custom.css" | absURL }}">
+</head>
+<body>
+    <!-- Navigation -->
+    {{ block "nav" . }}
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="{{ .Site.BaseURL }}">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="{{ if .IsHome }}active{{ end }}">
+                    <a href="{{ .Site.BaseURL }}">首页</a>
+                </li>
+                <li class="{{ if strings.HasPrefix .RelPermalink "/categories" }}active{{ end }}">
+                    <a href="{{ "categories/" | absURL }}">分类</a>
+                </li>
+                <li class="{{ if strings.HasPrefix .RelPermalink "/tags" }}active{{ end }}">
+                    <a href="{{ "tags/" | absURL }}">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    {{ end }}
+
+    <!-- Main Content -->
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-{{ now.Format "2006" }} 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v{{ .Site.Params.version | default "1.0.0" }}</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ "js/thinkblog.js" | absURL }}"></script>
+</body>
+</html>

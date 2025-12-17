@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="page-container">
+    <div class="container">
+        <div class="page-header">
+            <h1>所有分类</h1>
+            <p>浏览所有文章分类</p>
+        </div>
+
+        <div class="categories-list">
+            {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+            <div class="category-item">
+                <a href="{{ "/categories/" | absURL }}{{ $name | urlize }}" class="category-link">
+                    <span class="category-name">{{ $name }}</span>
+                    <span class="category-count">({{ len $taxonomy }})</span>
+                </a>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

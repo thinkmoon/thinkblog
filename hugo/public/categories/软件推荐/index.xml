@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>软件推荐 on 指尖魔法屋</title>
+    <link>http://localhost:1313/categories/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/</link>
+    <description>Recent content in 软件推荐 on 指尖魔法屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 12 Dec 2022 20:54:51 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Google Adsence广告拦截收入挽回</title>
+      <link>http://localhost:1313/970_google-adsence%E5%B9%BF%E5%91%8A%E6%8B%A6%E6%88%AA%E6%94%B6%E5%85%A5%E6%8C%BD%E5%9B%9E/</link>
+      <pubDate>Mon, 12 Dec 2022 20:54:51 +0000</pubDate>
+      <guid>http://localhost:1313/970_google-adsence%E5%B9%BF%E5%91%8A%E6%8B%A6%E6%88%AA%E6%94%B6%E5%85%A5%E6%8C%BD%E5%9B%9E/</guid>
+      <description>前言：很久未关注Google Adsence了，发现谷歌出了个《Google Adsence广告拦截收入挽回》功能。该功能通过提醒用户允许在您的网站上展示广告，挽回您可能会因用户启用了广告拦截器而损失的收入。这边主要介绍该功能的配置流程和使用效果。&#xA;自研到放弃 本站最开始的博客系统，使用的是自研的防广告拦截功能。当遇到广告被拦截时，直接跳转至特定的页面，阻断用户访问。具体技术细节见《让你的网站防广告屏蔽》。但该方案对用户侵入性过强，且有绑架用户的嫌疑。后在权衡再三的情况之下，便将其放弃。&#xA;Google Adsence广告拦截收入挽回 开通流程 进入隐私权和消息菜单 选择广告拦截收入挽回 创建一个新的挽回消息 设置文本和样式 展示效果 再来看看开启广告拦截后的显示效果&#xA;这里用户可以进行两个操作&#xA;叉掉弹窗，继续访问（无影响） 点击允许广告，若用户使用的chrome广告插件adblock等，则会自动开启广告 tips: 自动开启广告需要进行如下设置&#xA;总结 Google Adsence广告拦截收入挽回功能，是一种非破坏的，友好挽回方式。如果用户实在不愿意接受广告，则可关闭弹窗继续访问。但若经过挽回后，用户愿意接受广告，则广告收入将会获得一定的提高，是一个两全其美的办法。</description>
+    </item>
+  </channel>
+</rss>

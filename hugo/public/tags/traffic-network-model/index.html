@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Traffic-Network-Model | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    
+    <meta property="og:title" content="Traffic-Network-Model">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/tags/traffic-network-model/">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="active">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <div class="page-header">
+            <h1>Traffic-Network-Model</h1>
+            
+        </div>
+
+        <div class="blog-posts">
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/traffic-network-model" class="post-tag">Traffic-Network-Model</a>
+                            
+                        </div>
+                        
+
+                        <a href="/197_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E5%AF%B9%E8%B1%A1%E7%B1%BB%E7%AF%87_%E4%B8%80_%E4%BA%A4%E9%80%9A%E7%81%AF%E7%B1%BB%E4%B9%8B%E8%B7%AF%E5%8F%A3%E7%8A%B6%E6%80%81/" class="post-title">
+                            毕业设计对象类篇(一)交通灯类之路口状态
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                所有的路口标号用int road[8]表示，
+用bool status[8][8]表示道路可否通行。
+T字路口 对于T字路口，将道路分为（左，右，下）三个流量出入口，存在的状态有：
+0. 全红(特殊状态应对突发事故） for (int i = 0; i &lt; 8; i++) { for (int j = 0; j &lt; 8; j++) { status[i][j] = false; } } ×|0|1|2|3|4|5
+:&ndash;: | :&ndash;: | :&ndash;: | :&ndash;: | :&ndash;: | :&ndash;: |
+0|×|×|×|×|×|×
+1|×|×|×|×|×|×
+2|×|×|×|×|×|×
+3|×|×|×|×|×|×
+4|×|×|×|×|×|×
+5|×|×|×|×|×|×
+正常状态下考虑红灯可右转，同向变道不受交通灯控制，即永远可通行
+status[2][1] = status[4][3] = true; status[0][1] = status[2][3] = status[4][5] = true; ×|0|1|2|3|4|5
+:&ndash;: | :&ndash;: | :&ndash;: | :&ndash;: | :&ndash;: | :&ndash;: |
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-03-22</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/traffic-network-model" class="post-tag">Traffic-Network-Model</a>
+                            
+                        </div>
+                        
+
+                        <a href="/153_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E7%95%AA%E5%A4%96%E7%AF%87_%E4%B8%80_%E4%B9%8B%E8%BD%A6%E8%BE%86%E8%B7%AF%E5%BE%84%E7%9A%84%E8%AE%A1%E7%AE%97/" class="post-title">
+                            毕业设计番外篇(一)之车辆路径的计算
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                目前，我采用的是迪杰斯特拉算法计算所有点的最短路径（感觉弗洛伊德算法会更好些？）。迪杰斯特拉算法算的是单源（V_begin)到所有点的最短距离，也就是说需要遍历一次所有的点。
+遍历V_begin for (int V_begin = 0; V_begin &lt; G-&gt;m_CrossRoad_v.size(); V_begin++) { } 下面是迪杰斯特拉算法的流程
+1. 声明dist数组 vector&lt;double&gt; Determined_dist(G-&gt;m_CrossRoad_v.size(), 0.0); 2. 初始化顶点集 void calcShortestPath(Graph *G) { int currentPointSite,nextPointSite; ofstream PointPathFile(DIR_RES&#34;PointPath.txt&#34;),RoadPathFile(DIR_RES&#34;RoadPath.txt&#34;); //对点进行的一级遍历 for (int V_begin = 0; V_begin &lt; G-&gt;m_CrossRoad_v.size(); V_begin++) { // =================== 迪杰斯特拉算法开始 =============================== vector&lt;bool&gt; S(G-&gt;m_CrossRoad_v.size(), false); //判断是否选中 vector&lt;double&gt; dist(G-&gt;m_CrossRoad_v.size(), DBL_MAX/2);// dist vector&lt;double&gt; compare_dist(G-&gt;m_CrossRoad_v.size(), DBL_MAX/2);// 辅助dist用来取最短距离点 vector&lt;int&gt; path(G-&gt;m_CrossRoad_v.size(),-2); // path S[V_begin] = true; path[V_begin] = -1; for(auto crossroad : G-&gt;m_CrossRoad_v[V_begin].
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-03-21</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/70_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%B8%80_%E4%B9%8B%E4%BA%A4%E9%80%9A%E5%9B%BE%E7%9A%84%E6%9E%84%E5%BB%BA/" title="毕业设计思路篇(一)之交通图的构建">
+                        <div class="overlay"></div>
+                        <img src="https://www.thinkmoon.cn/usr/uploads/2019/01/1381127992.png" alt="毕业设计思路篇(一)之交通图的构建" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/traffic-network-model" class="post-tag">Traffic-Network-Model</a>
+                            
+                        </div>
+                        
+
+                        <a href="/70_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%B8%80_%E4%B9%8B%E4%BA%A4%E9%80%9A%E5%9B%BE%E7%9A%84%E6%9E%84%E5%BB%BA/" class="post-title">
+                            毕业设计思路篇(一)之交通图的构建
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                1. 导入道路地图 道路地图来自网络数据,已预处理为xml格式。
+&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt; &lt;Roads&gt; &lt;road m_ID=&#34;71283896--1&#34; len=&#34;620.98&#34;&gt; &lt;from lon=&#34;113.9205606&#34; lat=&#34;22.9317667&#34; id=&#34;848388981&#34;/&gt; &lt;to lon=&#34;113.9260573&#34; lat=&#34;22.9341232&#34; id=&#34;2522072722&#34;/&gt; &lt;/road&gt; &lt;road m_ID=&#34;553852656--2&#34; len=&#34;322.34&#34;&gt; &lt;from lon=&#34;113.9529339&#34; lat=&#34;22.9448978&#34; id=&#34;5345735265&#34;/&gt; &lt;to lon=&#34;113.9516926&#34; lat=&#34;22.9475618&#34; id=&#34;5345735267&#34;/&gt; &lt;/road&gt; &lt;/Roads&gt; 解析：一个road节点代表一条道路，len代表道路抽象长度，from，to子节点分别表示道路两端端点。
+2. 解析道路数据 a. 构建交通图 赋值道路端点.
+/** * 路口类，记录着该路口的点坐标，以及其相连的方向道路节点组 * | | * | | | * | 1 2 | * | | | * -------- -------- * 3 5 * - - - - - - - - * 4 6 * -------- -------- * | | | * | 7 8 | * | | | * | | * 如上图(1,2), (3,4), (5,6), (7,8)在同一个方向,我将其称为四组方向道路节点Node.
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-02-17</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/traffic-network-model" class="post-tag">Traffic-Network-Model</a>
+                            
+                        </div>
+                        
+
+                        <a href="/140_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E5%9B%9B_%E4%B9%8B%E7%94%9F%E6%88%90%E8%BD%A6%E8%BE%86/" class="post-title">
+                            毕业设计思路篇(四)之生成车辆
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                 generateVehicle(Map_Graph); 1. 随机车辆总数 此处未随机，待完善 std::random_device rd; std::mt19937 mt(rd()); 2. 遍历车辆，为车辆设立起点和路线 a. 在道路向量中随机选一条路径 -[ ] 此处未随机，待完善
+auto route = v_Route[3]; b. 以该路径的首序列为起点 Vehicle car(n_VehicleNum, route, 0, 0, route.front()); G.m_Road_v[route.front()].m_queVehicle.push_back(car); 
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-02-17</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/113_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%B1%87%E6%80%BB%E7%AF%87/" title="毕业设计汇总篇">
+                        <div class="overlay"></div>
+                        <img src="https://www.thinkmoon.cn/usr/uploads/2019/02/4186514149.png" alt="毕业设计汇总篇" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/traffic-network-model" class="post-tag">Traffic-Network-Model</a>
+                            
+                        </div>
+                        
+
+                        <a href="/113_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%B1%87%E6%80%BB%E7%AF%87/" class="post-title">
+                            毕业设计汇总篇
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                
+思路篇 思路篇主要记录程序流程思路
+毕业设计思路篇(一)之道路数据的抽象 毕业设计思路篇(二)之交通灯的初始化 毕业设计思路篇(三)之预加载车辆路线 毕业设计思路篇(四)之生成车辆 毕业设计思路篇(五)之交通流量模拟 番外篇 番外篇主要记录非主要流程（即并非每次运行都会执行的模块，比如预处理等）。每个模块可单独修改或维护，而不影响主流程。
+毕业设计番外篇(一)之车辆路径的构建 
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-02-12</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/traffic-network-model" class="post-tag">Traffic-Network-Model</a>
+                            
+                        </div>
+                        
+
+                        <a href="/145_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%BA%94_%E4%B9%8B%E4%BA%A4%E9%80%9A%E6%B5%81%E9%87%8F%E6%A8%A1%E6%8B%9F/" class="post-title">
+                            毕业设计思路篇(五)之交通流量模拟
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                runSimulation(Graph &amp;G) 1. 遍历每条道路 2. 遍历该道路的车辆 a. 计算特定时间间隔后的位置 b. 若应行驶至其他道路 进入对应的路口缓冲区，根据路口类的红绿灯对象判断是否能通行。
+若能通行，则填至目标道路
+若不能，则继续停留在路口缓冲区
+c. 若仍停留在原道路 改变该车在当前道路的位置。
+for (auto &amp;road:G.m_Road_v) { auto src = road.m_queVehicle; decltype(road.m_queVehicle) obj; //路内车的遍历 while (!src.empty()) { //弹出一辆车 auto it = src.front(); src.pop_front(); // 当车的时间戳小于实际时间时，才模拟运行 if (it.time &lt; SYSTEM_TIME) { it.fSpec = (100 - road.get_Congestion() - 20) / 3.6; dist = it.dDistance + it.fSpec * 10; it.time++; it.showself(); //如果车十秒后不在此路 if (dist &gt;= road.m_dLength) { //路径擦除 auto route = it.
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-02-11</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/traffic-network-model" class="post-tag">Traffic-Network-Model</a>
+                            
+                        </div>
+                        
+
+                        <a href="/129_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%B8%89_%E4%B9%8B%E9%A2%84%E5%8A%A0%E8%BD%BD%E8%BD%A6%E8%BE%86%E8%B7%AF%E7%BA%BF/" class="post-title">
+                            毕业设计思路篇(三)之预加载车辆路线
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                1. 从文件(route.txt)中读取路径 形如以下格式
+0 1 0 1 2 0 1 2 3 0 1 2 3 4 0 1 2 3 4 5 0 1 2 3 4 5 6 0 1 2 3 4 5 6 7 其中，一行表示一条可完全畅通的道路编号序列。将所有道路存入v_Route
+vector&lt;queue&lt;int&gt;&gt; v_Route; /** * load route from route file * @param Map_graph */ void loadRoute(Graph &amp;Map_graph) { string str_Path; ifstream fin_Route(DIR_RES&#34;route.txt&#34;); while (getline(fin_Route, str_Path)) { stringstream ss_Temp(str_Path); queue&lt;int&gt; q_Path_Temp; int n_Temp; while (ss_Temp &gt;&gt; n_Temp) { q_Path_Temp.
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-02-09</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="http://localhost:1313/tags/traffic-network-model" class="post-tag">Traffic-Network-Model</a>
+                            
+                        </div>
+                        
+
+                        <a href="/121_%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E7%AF%87_%E4%BA%8C_%E4%B9%8B%E4%BA%A4%E9%80%9A%E7%81%AF%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/" class="post-title">
+                            毕业设计思路篇(二)之交通灯的初始化
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                道路类型的设置 it-&gt;m_CTrafficLight_Light.setType(it-&gt;JunctionRoad.size()); 根据路口道路条数, 设置路灯类型(是T字路口还是+字路口)
+/** * 交通灯类 */ class TrafficLight { public: TrafficLight() { for (int i = 0; i &lt; 8; i++) { roadID[i] = -1; } }; void changeStatus(); void clock(int time); void setAllRed(); void setAllGreen(); bool getStatus(int from, int to); /** * 设置灯的类型, 是T字路口还是+字路口 * @param type */ void setType(int type) { this-&gt;type = type; }; //路口标号 // nLeftIn,nLeftOut,nDownIn,nDownOut,nRightIn,nRightOut,nUpIn,nUpOut; int roadID[8]; //路口是否能走通 bool status[4][4] = {false}; int type; //表示可通过的方向（目标方向） //AllRED = 0,LeftGreen = 1,DownGreen = 2,RightGreen = 3,UpGreen = 4,UpDownGreen = 5,LeftRightGreen = 6,cross1 = 7,cross2 = 8 int emStatus = 0; long long int time = 0; }; 对接各路口
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-01-26</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+        </div>
+
+        
+        <div class="pagination-container">
+            
+
+            
+            <a href="/tags/traffic-network-model/" class="pagination-link ">1</a>
+            
+
+            
+        </div>
+        
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

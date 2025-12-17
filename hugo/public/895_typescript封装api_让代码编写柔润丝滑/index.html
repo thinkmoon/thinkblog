@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TypeScript封装API，让代码编写柔润丝滑 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="干前端工作，大致离不开三大任务：切图，对接口，写页面逻辑。说到对接口，那肯定是离不开网络请求API的封装的。我将网络请求的封装模式大致分为三个派系：">
+    <meta name="keywords" content="typescript, vuejs">
+
+    
+    <meta property="og:title" content="TypeScript封装API，让代码编写柔润丝滑">
+    <meta property="og:description" content="干前端工作，大致离不开三大任务：切图，对接口，写页面逻辑。说到对接口，那肯定是离不开网络请求API的封装的。我将网络请求的封装模式大致分为三个派系：">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/895_typescript%E5%B0%81%E8%A3%85api_%E8%AE%A9%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E6%9F%94%E6%B6%A6%E4%B8%9D%E6%BB%91/">
+    
+    <meta property="og:image" content="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-07-17T08:19:34.png">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>TypeScript封装API，让代码编写柔润丝滑</h1>
+
+                <div class="post-meta">
+                    <time datetime="2020-07-21">2020-07-21</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB">
+                            教程分享
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/typescript" class="tag">typescript</a>
+                    
+                    <a href="http://localhost:1313/tags/vuejs" class="tag">vuejs</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/2020-07-17T08:19:34.png" alt="2020-07-17T08:19:34.png"></p>
+<h2 id="引言">引言</h2>
+<p>干前端工作，大致离不开三大任务：切图，对接口，写页面逻辑。说到对接口，那肯定是离不开网络请求API的封装的。我将网络请求的封装模式大致分为三个派系：</p>
+<ol>
+<li>
+<p>无拘无束派 （只封装请求根地址，想咋请求就咋请求，最强的封装就是不封装）</p>
+</li>
+<li>
+<p>拦截请求派 （使用一个拦截器配置请求行为和一些错误的拦截处理）</p>
+</li>
+<li>
+<p>接口集成派（使用一个或多个文件，统一管理所有请求，约定不允许使用文件中未定义的接口）。</p>
+</li>
+</ol>
+<p>我属于第三个派系，首先介绍一下各派的风格</p>
+<h2 id="各派风格">各派风格</h2>
+<p>无拘无束派在快速成型方面略有优势，自由度也相对较高，但是维护起来并不容易，遇到接口改版的时候一部小心就会遗漏。</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1594979834976&amp;di=28e83b987d0093019b168e1b3cfe69e5&amp;imgtype=0&amp;src=http%3A%2F%2Fpic.yupoo.com%2Fniuguozhu_v%2FGpjU9ut9%2FTtozu.jpg" alt="img"></p>
+<p>拦截请求派属于较优雅的一个派系，没有太多多余的内容，剩下的内容都是为解决问题而生。一般使用一个第三方请求库（如axios，flyio等）完成封装。大致像是这样</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">FlyError</span><span class="p">,</span> <span class="nx">FlyResponse</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;flyio&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">Fly</span> <span class="o">=</span> <span class="kr">require</span><span class="p">(</span><span class="s2">&#34;flyio/dist/npm/wx&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">fly</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fly</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 配置请求根地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">fly</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">baseURL</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">VUE_APP_BASE_URL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 配置响应拦截器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">fly</span><span class="p">.</span><span class="nx">interceptors</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1">// 如果请求成功,即请求状态码2xx
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nx">response</span>: <span class="kt">FlyResponse</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 并且操作成功
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="c1">// 返回响应数据体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 请求成功，但是操作失败，提示后端返回的msg，并抛出错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">      <span class="nx">uni</span><span class="p">.</span><span class="nx">showToast</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">icon</span><span class="o">:</span> <span class="s2">&#34;none&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span>: <span class="kt">response.data.msg</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 如果请求失败，即状态非2xx
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nx">err</span>: <span class="kt">FlyError</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 状态码为401，即跳转登录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">401</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">uni</span><span class="p">.</span><span class="nx">reLaunch</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">url</span><span class="o">:</span> <span class="s2">&#34;/pages/login&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 其他错误状态码，就先弹个框吧
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nx">uni</span><span class="p">.</span><span class="nx">showModal</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">title</span>: <span class="kt">err</span><span class="o">!</span><span class="p">.</span><span class="nx">request</span><span class="o">!</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span> <span class="s2">&#34;接口状态&#34;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">.</span><span class="nx">status</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">content</span><span class="o">:</span> <span class="s2">&#34;错误原因:&#34;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">.</span><span class="nx">engine</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">msg</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></div><p>然后使用的时候就直接采用第三方的请求，如<code>fly.get()</code>,<code>fly.post</code></p>
+<p>现在来介绍我所属的派系，我比上面更极端一点，除了封装请求拦截器暴露POST，GET外，还将所有的接口集中到一个API文件（太多了就按类型拆分，如user，shop，setting）</p>
+<h2 id="我的实现">我的实现</h2>
+<p>基本请求文件http.ts，已引入上文提及的拦截器</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">GET</span><span class="p">(</span><span class="nx">url</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{})</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">ApiResponse</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">Authorization</span>: <span class="kt">store.state.token</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">fly</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">params</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">POST</span><span class="p">(</span><span class="nx">url</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{})</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">ApiResponse</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">Authorization</span>: <span class="kt">store.state.token</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">fly</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">params</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="p">{</span> <span class="nx">GET</span><span class="p">,</span> <span class="nx">POST</span> <span class="p">};</span>
+</span></span></code></pre></div><p>api.ts，负责集成Api</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">GET</span><span class="p">,</span> <span class="nx">POST</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;./http&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">Api</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * 登录接口
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param params phone,password
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">login</span><span class="p">(</span><span class="nx">params</span>: <span class="kt">object</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">POST</span><span class="p">(</span><span class="s2">&#34;/user/login&#34;</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * 获取账户下所有店铺
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">getShop() {</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">POST</span><span class="p">(</span><span class="s2">&#34;/shop/getShopListByUserId&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * 获取首页数据总览
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param params {shopId}
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">getOverview</span><span class="p">(</span><span class="nx">params</span><span class="o">:</span> <span class="p">{})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">POST</span><span class="p">(</span><span class="s2">&#34;/user/homepage/statistics&#34;</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * 根据店铺Id获取二级分类
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param params {shopId}
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">getCommodityType</span><span class="p">(</span><span class="nx">params</span><span class="o">:</span> <span class="p">{})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">POST</span><span class="p">(</span><span class="s2">&#34;/cnccommodity/commodity_type/by_shop&#34;</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * 分页获取商品列表
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">getCommodityList</span><span class="p">(</span><span class="nx">params</span><span class="o">:</span> <span class="p">{})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">POST</span><span class="p">(</span><span class="s2">&#34;/cnccommodity/commodity_by_page&#34;</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>然后将Api文件，挂载到Vue的原型链。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">API</span> <span class="nx">from</span> <span class="s2">&#34;./plugins/fly/api&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Vue</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">API</span><span class="p">();</span>
+</span></span></code></pre></div><p>在组件中使用</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="k">this</span><span class="p">.</span><span class="nx">$api</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">loginForm</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">})</span>
+</span></span></code></pre></div><p>这样高度封装的好处是，任何一个接口要改内容，或者自定义功能，都可以只维护Api文件就行了。假设有一需求，要在获取商品之后提示用户”恭喜发财“，而这个接口又在多个页面中使用，我可以只做如下修改即可。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * 分页获取商品列表
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">getCommodityList</span><span class="p">(</span><span class="nx">params</span><span class="o">:</span> <span class="p">{})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">showToast</span><span class="p">(</span><span class="s2">&#34;恭喜发财&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">POST</span><span class="p">(</span><span class="s2">&#34;/cnccommodity/commodity_by_page&#34;</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span></code></pre></div><p>这是一个荒诞的需求，但是如果需求是部分请求超过1s就显示加载中呢？或者部分接口需要显示后端返回的msg呢？我可以这样做。</p>
+<p>api.ts</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">updatePw</span><span class="p">(</span><span class="nx">params</span>: <span class="kt">object</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">Post</span><span class="p">(</span><span class="s2">&#34;/adminmanage/updatePassWard&#34;</span><span class="p">,</span> <span class="nx">params</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">},</span>
+</span></span></code></pre></div><p>http.ts</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">async</span> <span class="kd">function</span> <span class="nx">Post</span><span class="p">(</span><span class="nx">api</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{},</span> <span class="nx">needToast</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">success</span> <span class="o">&amp;&amp;</span> <span class="nx">needToast</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">Message</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">msg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>为了应对频繁更改的需求，我真是煞费苦心。</p>
+<h2 id="typescript的加持">Typescript的加持</h2>
+<p>上面一直在说接口封装的事情，好像对Typescript只字未提。虽然上面都使用了typescript但是都只是铺垫，真正让代码编写柔润丝滑的是声明文件。</p>
+<h3 id="原型api的声明">原型Api的声明</h3>
+<p>上面我们已经将api挂载到vue的原型，但是typescript的作用并未完全发挥。typescript有两个强大的作用，1. 减少代码出错率 2. 提高代码书写效率。要启用ts强大的语法提示功能，我们需要先写一个d.t文件。</p>
+<p>vue-property.d.ts</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">Vue</span> <span class="kr">from</span> <span class="s2">&#34;vue&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">Api</span> <span class="kr">from</span> <span class="s2">&#34;./plugins/fly/api&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">declare</span> <span class="nx">module</span> <span class="s2">&#34;vue/types/vue&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">interface</span> <span class="nx">Vue</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">$api</span>: <span class="kt">Api</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>该文件的作用就是将Vue原型链上的$api类型设置为Api Class, 接下来我们来一起看看它的效果。</p>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/typescript%E6%8E%A8%E5%AF%BCapi.gif" alt="typescript推导api"></p>
+<p>Vs code贴心的语法提示，从注释提示到参数。无与伦比的代码护航能力几乎能让你无脑写请求。</p>
+<h3 id="响应结构体的声明">响应结构体的声明</h3>
+<p>人不能满足现状，光有请求推导可还不够。我们还要让它推导响应结构体。假设项目后端返回的响应结构如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;success&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;msg&#34;</span><span class="p">:</span> <span class="s2">&#34;操作成功&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>我们再创建一个响应的d.ts文件</p>
+<p>index.d.ts</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">interface</span> <span class="nx">ApiResponse</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * code: 响应状态码
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">code</span>: <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * success: 操作是否成功标准
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">success</span>: <span class="kt">boolean</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * msg： 请求的附带信息
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">msg</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * result: 请求返回结果
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">result</span>: <span class="kt">Object</span> <span class="o">|</span> <span class="kt">any</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>同时声明接口请求返回为ApiResponse</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">GET</span><span class="p">(</span><span class="nx">url</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{})</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">ApiResponse</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">Authorization</span>: <span class="kt">store.state.token</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">fly</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">params</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">POST</span><span class="p">(</span><span class="nx">url</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{})</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">ApiResponse</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">Authorization</span>: <span class="kt">store.state.token</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">fly</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">params</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="p">{</span> <span class="nx">GET</span><span class="p">,</span> <span class="nx">POST</span> <span class="p">};</span>
+</span></span></code></pre></div><p>看看语法提示效果</p>
+<p><img src="http://blog.cdn.thinkmoon.cn/blog/typecho/ts%E6%8E%A8%E5%AF%BC%E5%93%8D%E5%BA%94%E4%BD%93.gif" alt="ts推导响应体"></p>
+<p>同时如果有分页，还可以声明分页的结构体。总之，声明文件写得好，效率提高绝对少不了。</p>
+<h2 id="后记">后记</h2>
+<p>ts给我一种以前写C++的感觉，需要先写声明文件<code>.h</code>然后在写<code>.cpp</code>，这样做的好处是约束你的代码，让你的代码更规范。不过，缺点就是声明文件有种给自己找事的感觉，不过我依旧强烈建议在前端项目下使用ts。这在后期的维护是绝对有利的，而且也并非所有文件都需要写声明文件，要不要写声明文件，取决于你的实现方式。比如本文中的Api文件就没写声明文件，照样可以类型推导，语法提示。祝我早日实现无脑编码~</p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/895_typescript%E5%B0%81%E8%A3%85api_%E8%AE%A9%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E6%9F%94%E6%B6%A6%E4%B8%9D%E6%BB%91/）本文首发于
+                        <a href="http://localhost:1313/895_typescript%E5%B0%81%E8%A3%85api_%E8%AE%A9%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E6%9F%94%E6%B6%A6%E4%B8%9D%E6%BB%91/">指尖魔法屋-TypeScript封装API，让代码编写柔润丝滑</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

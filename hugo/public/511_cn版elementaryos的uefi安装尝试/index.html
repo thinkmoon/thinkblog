@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>cn版elementaryOS的UEFI安装尝试 | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="linux">
+
+    
+    <meta property="og:title" content="cn版elementaryOS的UEFI安装尝试">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/511_cn%E7%89%88elementaryos%E7%9A%84uefi%E5%AE%89%E8%A3%85%E5%B0%9D%E8%AF%95/">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>cn版elementaryOS的UEFI安装尝试</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-10-28">2019-10-28</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E9%97%B2%E4%BD%99%E6%8A%98%E8%85%BE">
+                            闲余折腾
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/linux" class="tag">linux</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <h3 id="首先下载uefi版">首先下载UEFI版</h3>
+<blockquote>
+<p>下载链接在官方QQ群里面</p>
+</blockquote>
+<blockquote>
+<p>TIPS: 直接在群文件里面下载可能会因为各种原因中断下载，建议登录<a href="http://qun.qzone.qq.com">QQ群空间</a>里面，再使用迅雷下载。</p>
+</blockquote>
+<h3 id="接下来为转载的操作">接下来为转载的操作</h3>
+<p><img src="https://thinkmoon.cn/images/1537491020573.png" alt="image"></p>
+<h4 id="mount挂载">mount挂载</h4>
+<pre tabindex="0"><code>
+mount {{根挂载点}} /mnt
+</code></pre><h3 id="第一次尝试2018921-905">第一次尝试（2018.9.21 9：05）</h3>
+<blockquote>
+<p>自动清除磁盘安装，未找到<code>/</code>分区，手动分区尝试中。</p>
+</blockquote>
+<blockquote>
+<p>手动分区，发现格式好奇怪，看不懂，格式化尝试中。</p>
+</blockquote>
+<blockquote>
+<p>更新: 好像是开启了LVM的原因，尝试不开启LVM。清除整个磁盘安装</p>
+</blockquote>
+<h3 id="第二次尝试清除整个磁盘安装-2018921-915">第二次尝试<code>清除整个磁盘安装</code> （2018.9.21 9：15）</h3>
+<blockquote>
+<p>磁盘情况，分区情况如下，但是无法进入系统</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>好像联网安装就成功了？？？？</p>
+</blockquote>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/511_cn%E7%89%88elementaryos%E7%9A%84uefi%E5%AE%89%E8%A3%85%E5%B0%9D%E8%AF%95/）本文首发于
+                        <a href="http://localhost:1313/511_cn%E7%89%88elementaryos%E7%9A%84uefi%E5%AE%89%E8%A3%85%E5%B0%9D%E8%AF%95/">指尖魔法屋-cn版elementaryOS的UEFI安装尝试</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>

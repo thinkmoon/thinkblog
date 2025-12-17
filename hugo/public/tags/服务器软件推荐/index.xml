@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>服务器软件推荐 on 指尖魔法屋</title>
+    <link>http://localhost:1313/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/</link>
+    <description>Recent content in 服务器软件推荐 on 指尖魔法屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
+    <lastBuildDate>Sat, 16 Feb 2019 23:07:31 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>推荐一个（神器级）服务器软件</title>
+      <link>http://localhost:1313/169_%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA_%E7%A5%9E%E5%99%A8%E7%BA%A7_%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BD%AF%E4%BB%B6/</link>
+      <pubDate>Sat, 16 Feb 2019 23:07:31 +0000</pubDate>
+      <guid>http://localhost:1313/169_%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA_%E7%A5%9E%E5%99%A8%E7%BA%A7_%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BD%AF%E4%BB%B6/</guid>
+      <description>layout: post&#xA;title: 推荐一个（神器级）服务器软件&#xA;tags:&#xA;服务器软件推荐&#xA;宝塔linux面板&#xA;服务器管理工具&#xA;categories:&#xA;软件推荐 abbrlink: f4f7&#xA;date: 2017-12-15 18:41:56&#xA;简单好用的 Linux/Windows 面板&#xA;前言:首先要说的是，它在我看来就是一件神器！&#xA;何为神器？ 那就是以后遇到必装 ，而且在没有遇到更神的神器之前，将会一直使用下去。&#xA;如果你是新手：使用它：你可以不再为配置ftp，apache，mysql，ssl，等操作而发愁了，因为，所有的操作，在此神器的帮助下，都可以在你的点点戳戳之间实现，不得不拍案叫绝！&#xA;如果你是大佬：使用它，你可以不用自己配环境，找配置文件，对着黑框框，一对一下午了（当然如果对黑框框有特殊情怀的除外)&#xA;它的名字叫——“宝塔”&#xA;它是什么 它是一个，服务器面板控制端软件&#xA;它能干什么 它可以让你把一些基本的服务器操作转移到网站上的可视化操作,例如站点管理，服务管理，子网站管理，端口管理，服务器监控等&#xA;我们该如何使用它 咳咳，这是我想说的重点，接下来我将使用它傻瓜式的搭建一个支持https，支持ftp的站点。&#xA;使用环境: 服务器提供商-腾讯云&#xA;服务器系统: Centos 6.6(64位纯净版)&#xA;操作客户端：win 10企业版（1709）&#xA;SSH连接软件：MobaXterm Personal Edition（也是一大神器）&#xA;日期时间：2017年12月15日&#xA;1.ssh连接服务器 2.安装宝塔软件 yum install -y wget &amp;amp;&amp;amp; wget -O install.sh http://download.bt.cn/install/install.sh &amp;amp;&amp;amp; sh install.sh 仅支持32位系统&#xA;安装成功后是这样的 在这儿它说&#xA;控制面板链接为：http://119.28.73.46:8888&#xA;用户： admin&#xA;密码：5bbdeb4c&#xA;3.登陆控制面板 输入账号和密码登录&#xA;登录成功之后是这样子的 选择一个你喜欢的环境安装就好啦&#xA;我在这儿选择LNMP安装包 静候安装就好了</description>
+    </item>
+  </channel>
+</rss>

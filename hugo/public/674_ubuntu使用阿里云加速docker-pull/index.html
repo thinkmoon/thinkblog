@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ubuntu使用阿里云加速docker pull | 指尖魔法屋</title>
+
+    
+    <meta name="description" content="">
+    <meta name="keywords" content="docker">
+
+    
+    <meta property="og:title" content="Ubuntu使用阿里云加速docker pull">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/674_ubuntu%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%8A%A0%E9%80%9Fdocker-pull/">
+    
+    <meta property="og:image" content="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-19T09:13:04.png">
+    
+
+    
+    <link rel="icon" href="http://localhost:1313/favicon.ico">
+
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/reset.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/github-markdown.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="http://localhost:1313/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="http://localhost:1313/">首页</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="http://localhost:1313/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1>Ubuntu使用阿里云加速docker pull</h1>
+
+                <div class="post-meta">
+                    <time datetime="2019-12-19">2019-12-19</time>
+                    
+
+                    
+                    <span class="category">
+                        <a href="http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                </div>
+
+                
+                <div class="post-tags">
+                    标签:
+                    
+                    <a href="http://localhost:1313/tags/docker" class="tag">docker</a>
+                    
+                </div>
+                
+            </header>
+
+            <div class="post-content markdown-body">
+                <blockquote>
+<p>使用 Docker 时需要首先下载一个官方镜像，例如 mysql、wordpress。然而由于网络原因，下载一个 Docker 官方镜像可能会需要很长的时间，甚至下载失败。为此，阿里云容器镜像服务提供了官方的镜像站点，从而加速官方镜像的下载。</p>
+</blockquote>
+<h2 id="登陆阿里云容器镜像服务">登陆阿里云容器镜像服务</h2>
+<p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-19T09:13:04.png" alt="阿里云容器镜像服务"></p>
+<p>由上图可以看到，阿里给我们分配的专享加速域名。</p>
+<h2 id="配置docker源">配置docker源</h2>
+<blockquote>
+<p>针对Docker客户端版本大于 1.10.0 的用户</p>
+</blockquote>
+<p>可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器</p>
+<p>不过默认没有这个文件的，所以我们需要新建一个</p>
+<h2 id="新建daemonjson">新建daemon.json</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo mkdir -p /etc/docker
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo touch /etc/docker/daemon.json
+</span></span></code></pre></div><h2 id="设置源地址">设置源地址</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;registry-mirrors&#34;</span>: <span class="o">[</span><span class="s2">&#34;&lt;your accelerate address&gt;&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>            
+</span></span></code></pre></div><h2 id="重启生效">重启生效</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo systemctl restart docker            
+</span></span></code></pre></div><p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-19T09:18:44.png" alt="Ubuntu使用阿里云加速docker pull"></p>
+<p>大功吿成！！</p>
+
+            </div>
+
+            
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;width: 100%"
+                 data-ad-client="ca-pub-3208634444966567"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-slot="2621880404">
+            </ins>
+
+            
+            <div class="copyright-notice">
+                <blockquote>
+                    <p>版权声明: （http://localhost:1313/674_ubuntu%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%8A%A0%E9%80%9Fdocker-pull/）本文首发于
+                        <a href="http://localhost:1313/674_ubuntu%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%8A%A0%E9%80%9Fdocker-pull/">指尖魔法屋-Ubuntu使用阿里云加速docker pull</a>
+                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                    </p>
+                </blockquote>
+            </div>
+        </article>
+    </div>
+</div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://localhost:1313/js/thinkblog.js"></script>
+</body>
+</html>
