@@ -40,6 +40,9 @@
                 <li class="{{ if .IsHome }}active{{ end }}">
                     <a href="/">首页</a>
                 </li>
+                <li class="{{ if or (strings.HasPrefix .RelPermalink "/page") (eq .Section "post") }}active{{ end }}">
+                    <a href="/page/">文章</a>
+                </li>
                 <li class="{{ if strings.HasPrefix .RelPermalink "/categories" }}active{{ end }}">
                     <a href="/categories/">分类</a>
                 </li>

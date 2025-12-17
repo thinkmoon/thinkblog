@@ -124,11 +124,8 @@ document.addEventListener('DOMContentLoaded', function() {
     container.appendChild(renderer.domElement);
 
     const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    //设置相机距离原点的最远距离
     controls.minDistance = 200;
-    //设置相机距离原点的最远距离
     controls.maxDistance = 600;
-    //是否开启右键拖拽
     controls.enablePan = true;
     console.log('Canvas element added to container:', renderer.domElement);
 
@@ -229,3 +226,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
