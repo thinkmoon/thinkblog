@@ -2,16 +2,72 @@
 <div class="page-container">
     <div class="container">
         <div class="page-header">
-            <h1>所有分类</h1>
-            <p>浏览所有文章分类</p>
+            <h1>分类: {{ .Title }}</h1>
+            <p class="page-description">共 {{ len .Pages }} 篇文章</p>
         </div>
 
-        <div class="categories-list">
-            {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
-            <a href="/categories/{{ $name | urlize }}" class="category-link">
-                <span class="category-name">{{ $name }}</span>
-                <span class="category-count">{{ len $taxonomy }}</span>
-            </a>
+        <div class="blog-posts">
+            {{ range .Pages }}
+            <article class="content-box">
+                {{ if .Params.featured_image }}
+                <div class="posts-default-img">
+                    <a href="{{ .RelPermalink }}" title="{{ .Title }}">
+                        <div class="overlay"></div>
+                        <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" loading="lazy">
+                    </a>
+                </div>
+                {{ end }}
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        {{ if .Params.tags }}
+                        <div class="post-entry-categories">
+                            {{ range .Params.tags }}
+                            <a href="/tags/{{ . | urlize }}" class="post-tag">{{ . }}</a>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+
+                        <a href="{{ .RelPermalink }}" class="post-title">
+                            {{ .Title }}
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            {{ if .Description }}
+                                {{ .Description }}
+                            {{ else if .Summary }}
+                                {{ .Summary }}
+                            {{ else }}
+                                {{ .Content | plainify | truncate 150 }}
+                            {{ end }}
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="/categories/{{ (index (.Params.categories | default (slice "未分类")) 0) | urlize }}">
+                                        {{ index (.Params.categories | default (slice "未分类")) 0 }}
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>{{ .Date.Format "2006-01-02" }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
             {{ end }}
         </div>
     </div>
