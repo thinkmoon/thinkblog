@@ -190,15 +190,8 @@ body.home-page main {
     color: #005999;
 }
 
-/* Single post */
-.post {
-    background: white;
-    padding: 3rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.post-content .markdown-body {
+/* Article content - matching original Vue version */
+.article-content .markdown-body {
     box-sizing: border-box;
     min-width: 200px;
     max-width: 980px;
@@ -207,7 +200,7 @@ body.home-page main {
 }
 
 @media (max-width: 767px) {
-    .post-content .markdown-body {
+    .article-content .markdown-body {
         padding: 15px;
     }
 }

@@ -20,9 +20,9 @@
     <link rel="icon" href="https://example.org/favicon.ico">
 
     
-    <link rel="stylesheet" href="https://example.org/css/reset.css">
-    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
-    <link rel="stylesheet" href="https://example.org/css/custom.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/github-markdown.css">
+    <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
     
@@ -55,30 +55,9 @@
     
     <main>
         
-<div class="page-container">
-    <div class="container">
-        <article class="post">
-            <header class="post-header">
-                <h1>vue事件修饰符（转vue官方文档）</h1>
-
-                <div class="post-meta">
-                    <time datetime="2019-06-05">2019-06-05</time>
-                    
-
-                    
-                    <span class="category">
-                        <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
-                            学习笔记
-                        </a>
-                    </span>
-                    
-                </div>
-
-                
-            </header>
-
-            <div class="post-content markdown-body">
-                <p>在事件处理程序中调用 event.preventDefault() 或 event.stopPropagation() 是非常常见的需求。尽管我们可以在方法中轻松实现这点，但更好的方式是：方法只有纯粹的数据逻辑，而不是去处理 DOM 事件细节。</p>
+<div class="article-content">
+    <div class="markdown-body">
+        <p>在事件处理程序中调用 event.preventDefault() 或 event.stopPropagation() 是非常常见的需求。尽管我们可以在方法中轻松实现这点，但更好的方式是：方法只有纯粹的数据逻辑，而不是去处理 DOM 事件细节。</p>
 <p>为了解决这个问题，Vue.js 为 v-on 提供了事件修饰符。之前提过，修饰符是由点开头的指令后缀来表示的。</p>
 <p><code>.stop</code></p>
 <p><code>.prevent</code></p>
@@ -152,28 +131,16 @@
 <p>不要把 .passive 和 .prevent 一起使用，因为 .prevent 将会被忽略，同时浏览器可能会向你展示一个警告。请记住，.passive 会告诉浏览器你不想阻止事件的默认行为。</p>
 </blockquote>
 
-            </div>
-
-            
-            <ins class="adsbygoogle"
-                 style="display:block; text-align:center;width: 100%"
-                 data-ad-client="ca-pub-3208634444966567"
-                 data-ad-format="fluid"
-                 data-ad-layout="in-article"
-                 data-ad-slot="2621880404">
-            </ins>
-
-            
-            <div class="copyright-notice">
-                <blockquote>
-                    <p>版权声明: （https://example.org/post/317_vue%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6_%E8%BD%ACvue%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3_/）本文首发于
-                        <a href="https://example.org/post/317_vue%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6_%E8%BD%ACvue%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3_/">指尖魔法屋-vue事件修饰符（转vue官方文档）</a>
-                        转载或引用必须申明原指尖魔法屋来源及源地址！
-                    </p>
-                </blockquote>
-            </div>
-        </article>
     </div>
+
+    
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;width: 100%"
+         data-ad-client="ca-pub-3208634444966567"
+         data-ad-format="fluid"
+         data-ad-layout="in-article"
+         data-ad-slot="2621880404">
+    </ins>
 </div>
 
     </main>

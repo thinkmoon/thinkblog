@@ -22,9 +22,9 @@
     <link rel="icon" href="https://example.org/favicon.ico">
 
     
-    <link rel="stylesheet" href="https://example.org/css/reset.css">
-    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
-    <link rel="stylesheet" href="https://example.org/css/custom.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/github-markdown.css">
+    <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
     
@@ -57,41 +57,9 @@
     
     <main>
         
-<div class="page-container">
-    <div class="container">
-        <article class="post">
-            <header class="post-header">
-                <h1>Vue3使用customRef()主动触发响应更新</h1>
-
-                <div class="post-meta">
-                    <time datetime="2022-12-12">2022-12-12</time>
-                    
-
-                    
-                    <span class="category">
-                        <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
-                            学习笔记
-                        </a>
-                    </span>
-                    
-                </div>
-
-                
-                <div class="post-tags">
-                    标签:
-                    
-                    <a href="https://example.org/tags/%E5%89%8D%E7%AB%AF" class="tag">前端</a>
-                    
-                    <a href="https://example.org/tags/vuejs" class="tag">vuejs</a>
-                    
-                    <a href="https://example.org/tags/vue" class="tag">vue</a>
-                    
-                </div>
-                
-            </header>
-
-            <div class="post-content markdown-body">
-                <p><img src="https://blog.cdn.thinkmoon.cn/2022-12-12/21-07-40" alt="customRef()"></p>
+<div class="article-content">
+    <div class="markdown-body">
+        <p><img src="https://blog.cdn.thinkmoon.cn/2022-12-12/21-07-40" alt="customRef()"></p>
 <h2 id="前言">前言</h2>
 <p>在vue3中（尤其是setup语法）vue框架会自动处理事件响应。但是假设有个场景，我们实现了一个数据结构，只要触发对应操作时，就刷新视图。这个问题在选项式API有个公共API，提供强制刷新能力，那就是<code>$forceUpdate()</code>。<code>$forceUpdate()</code>会全量刷新，而且组合式API不支持该方法，这个时候如果我们想主动触发视图更新，可以使用Vue3提供的<code>customRef()</code>自定义一个ref。</p>
 <h2 id="介绍">介绍</h2>
@@ -119,28 +87,16 @@
 <h2 id="总结">总结</h2>
 <p>使用customRef的好处就是可以把trigger暴露到外部，直接触发trigger就会触发刷新，实现按需加载的效果。</p>
 
-            </div>
-
-            
-            <ins class="adsbygoogle"
-                 style="display:block; text-align:center;width: 100%"
-                 data-ad-client="ca-pub-3208634444966567"
-                 data-ad-format="fluid"
-                 data-ad-layout="in-article"
-                 data-ad-slot="2621880404">
-            </ins>
-
-            
-            <div class="copyright-notice">
-                <blockquote>
-                    <p>版权声明: （https://example.org/post/975_vue3%E4%BD%BF%E7%94%A8customref__%E4%B8%BB%E5%8A%A8%E8%A7%A6%E5%8F%91%E5%93%8D%E5%BA%94%E6%9B%B4%E6%96%B0/）本文首发于
-                        <a href="https://example.org/post/975_vue3%E4%BD%BF%E7%94%A8customref__%E4%B8%BB%E5%8A%A8%E8%A7%A6%E5%8F%91%E5%93%8D%E5%BA%94%E6%9B%B4%E6%96%B0/">指尖魔法屋-Vue3使用customRef()主动触发响应更新</a>
-                        转载或引用必须申明原指尖魔法屋来源及源地址！
-                    </p>
-                </blockquote>
-            </div>
-        </article>
     </div>
+
+    
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;width: 100%"
+         data-ad-client="ca-pub-3208634444966567"
+         data-ad-format="fluid"
+         data-ad-layout="in-article"
+         data-ad-slot="2621880404">
+    </ins>
 </div>
 
     </main>

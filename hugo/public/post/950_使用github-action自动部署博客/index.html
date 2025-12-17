@@ -22,9 +22,9 @@
     <link rel="icon" href="https://example.org/favicon.ico">
 
     
-    <link rel="stylesheet" href="https://example.org/css/reset.css">
-    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
-    <link rel="stylesheet" href="https://example.org/css/custom.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/github-markdown.css">
+    <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
     
@@ -57,37 +57,9 @@
     
     <main>
         
-<div class="page-container">
-    <div class="container">
-        <article class="post">
-            <header class="post-header">
-                <h1>使用github Action自动部署博客</h1>
-
-                <div class="post-meta">
-                    <time datetime="2022-06-14">2022-06-14</time>
-                    
-
-                    
-                    <span class="category">
-                        <a href="https://example.org/categories/%E9%97%B2%E4%BD%99%E6%8A%98%E8%85%BE">
-                            闲余折腾
-                        </a>
-                    </span>
-                    
-                </div>
-
-                
-                <div class="post-tags">
-                    标签:
-                    
-                    <a href="https://example.org/tags/%E6%8A%98%E8%85%BE" class="tag">折腾</a>
-                    
-                </div>
-                
-            </header>
-
-            <div class="post-content markdown-body">
-                <h2 id="背景提要">背景提要</h2>
+<div class="article-content">
+    <div class="markdown-body">
+        <h2 id="背景提要">背景提要</h2>
 <p>为什么需要它？最开始我使用的是本地编译，然后手动上传的方式，后来发现过于麻烦。尤其是nuxt编译后，产生一大堆ouput文件，手动上传耗时费力。</p>
 <p>再后来我在服务器上，设置了一个定时任务。每晚从github拉取最新的代码，然后在服务器上编译。实行了一段时间，感觉还行。但是，随着服务上的服务越来越多，资源占有越来越大，我发现偶尔会出现编译nuxt时内存溢出的情况（请原谅我1核2G的服务，它已经尽力了）。</p>
 <p>然后便产生了，使用githu action编译目标产物ouput文件，通知服务器自动拉取的想法。那么，说干就干，试试吧！</p>
@@ -185,28 +157,16 @@
 <p><img src="https://blog.cdn.thinkmoon.cn/2022-04-11/23-53-45" alt="宝塔面板执行日志"></p>
 <p>搞定收工！大功告成。</p>
 
-            </div>
-
-            
-            <ins class="adsbygoogle"
-                 style="display:block; text-align:center;width: 100%"
-                 data-ad-client="ca-pub-3208634444966567"
-                 data-ad-format="fluid"
-                 data-ad-layout="in-article"
-                 data-ad-slot="2621880404">
-            </ins>
-
-            
-            <div class="copyright-notice">
-                <blockquote>
-                    <p>版权声明: （https://example.org/post/950_%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/）本文首发于
-                        <a href="https://example.org/post/950_%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/">指尖魔法屋-使用github Action自动部署博客</a>
-                        转载或引用必须申明原指尖魔法屋来源及源地址！
-                    </p>
-                </blockquote>
-            </div>
-        </article>
     </div>
+
+    
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;width: 100%"
+         data-ad-client="ca-pub-3208634444966567"
+         data-ad-format="fluid"
+         data-ad-layout="in-article"
+         data-ad-slot="2621880404">
+    </ins>
 </div>
 
     </main>

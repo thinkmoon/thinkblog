@@ -22,9 +22,9 @@
     <link rel="icon" href="https://example.org/favicon.ico">
 
     
-    <link rel="stylesheet" href="https://example.org/css/reset.css">
-    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
-    <link rel="stylesheet" href="https://example.org/css/custom.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/github-markdown.css">
+    <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
     
@@ -57,39 +57,9 @@
     
     <main>
         
-<div class="page-container">
-    <div class="container">
-        <article class="post">
-            <header class="post-header">
-                <h1>vue3.x简单实现wx.showModal()</h1>
-
-                <div class="post-meta">
-                    <time datetime="2020-11-30">2020-11-30</time>
-                    
-
-                    
-                    <span class="category">
-                        <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
-                            学习笔记
-                        </a>
-                    </span>
-                    
-                </div>
-
-                
-                <div class="post-tags">
-                    标签:
-                    
-                    <a href="https://example.org/tags/tm-ui" class="tag">tm-ui</a>
-                    
-                    <a href="https://example.org/tags/vue3" class="tag">Vue3</a>
-                    
-                </div>
-                
-            </header>
-
-            <div class="post-content markdown-body">
-                <p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2020-11-30T13:14:59.png" alt="2020-11-30T13:14:59.png"></p>
+<div class="article-content">
+    <div class="markdown-body">
+        <p><img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2020-11-30T13:14:59.png" alt="2020-11-30T13:14:59.png"></p>
 <h2 id="引言">引言</h2>
 <p>开发过微信小程序的同学想必都对wx.showModal不陌生。用起来还是比较方便的，以api的形式挂载在全局对象wx上，只需调用一下这个api即可显示一个弹窗，还可以根据设置的参数做一些定制。一些知名的组件库，也实现了此类功能。比如element的$message。所以，我也来分享一个简单实现方式，以此来加深对Vue的理解。</p>
 <h2 id="代码结构">代码结构</h2>
@@ -301,28 +271,16 @@
 <h2 id="后记">后记</h2>
 <p>相比于Vue2.x，vue3.x的设计理念更偏向于函数式编程，比如不在默认导出Vue对象，而是使用createApp的方式创建一个实例。而这个showModal的实现虽然达到了效果，但用起来依旧缺少了函数式编程的美感。相比于微信小程序showModal的对象函数回调写法。我个人更偏向于element的messag实现。返回一个Promise对象，确认操作在then()调用里面，取消操作在catch()异常处理。感觉这样会更具有与Vue3统一的编程式美感。</p>
 
-            </div>
-
-            
-            <ins class="adsbygoogle"
-                 style="display:block; text-align:center;width: 100%"
-                 data-ad-client="ca-pub-3208634444966567"
-                 data-ad-format="fluid"
-                 data-ad-layout="in-article"
-                 data-ad-slot="2621880404">
-            </ins>
-
-            
-            <div class="copyright-notice">
-                <blockquote>
-                    <p>版权声明: （https://example.org/post/936_vue3_x%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0wx_showmodal__/）本文首发于
-                        <a href="https://example.org/post/936_vue3_x%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0wx_showmodal__/">指尖魔法屋-vue3.x简单实现wx.showModal()</a>
-                        转载或引用必须申明原指尖魔法屋来源及源地址！
-                    </p>
-                </blockquote>
-            </div>
-        </article>
     </div>
+
+    
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;width: 100%"
+         data-ad-client="ca-pub-3208634444966567"
+         data-ad-format="fluid"
+         data-ad-layout="in-article"
+         data-ad-slot="2621880404">
+    </ins>
 </div>
 
     </main>
