@@ -10,7 +10,7 @@
         </div>
         {{ end }}
         <div class="post-meta">
-            <span class="author">作者: 醉月思</span>
+            <span class="author">作者: {{ .Site.Params.author.name }}</span>
             <span class="date">发布日期: {{ .Date.Format "2006-01-02" }}</span>
             {{ if .Params.categories }}
             <span class="category">分类: {{ index (.Params.categories | default (slice "未分类")) 0 }}</span>

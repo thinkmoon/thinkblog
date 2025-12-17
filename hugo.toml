@@ -80,7 +80,9 @@ paginate = 10
   dateFormat = "2006-01-02"
 
   [params.author]
-    name = "醉月老哥"
+    name = "醉月思"
+    avatar = "https://cdn.jsdelivr.net/gh/thinkmoon/pic@master/images/a9d07ccd7addab9881154d948e55842e.jpg"
+    url = "https://www.thinkmoon.cn"
 
   [params.social]
     github = "thinkmoon"
