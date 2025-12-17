@@ -12,6 +12,21 @@ uglyURLs = false
 enableEmoji = true
 summaryLength = 70
 
+# 输出格式配置
+[outputs]
+  home = ["HTML", "RSS"]
+  page = ["HTML", "JSON"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML"]
+
+[outputFormats]
+  [outputFormats.JSON]
+    mediaType = "application/json"
+    baseName = "index"
+    isPlainText = true
+    notAlternative = true
+
 # 语法高亮
 pygmentsCodeFences = true
 pygmentsUseClasses = false

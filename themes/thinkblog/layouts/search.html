@@ -1,0 +1,215 @@
+{{ define "main" }}
+<div class="page-container">
+    <div class="container">
+        <div class="page-header">
+            <h1>搜索</h1>
+            <p class="page-description">搜索博客文章</p>
+        </div>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="输入关键词搜索..." autocomplete="off">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.search-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.search-box {
+    position: relative;
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.search-results {
+    margin-top: 20px;
+}
+
+.search-result-item {
+    padding: 16px;
+    margin-bottom: 12px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border-left: 3px solid #007bff;
+}
+
+.search-result-item:hover {
+    background: #e9ecef;
+}
+
+.search-result-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.search-result-title a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.search-result-title a:hover {
+    text-decoration: underline;
+}
+
+.search-result-meta {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.search-result-content {
+    color: #555;
+    line-height: 1.6;
+}
+
+.search-result-highlight {
+    background: #ffeb3b;
+    padding: 2px 4px;
+    font-weight: bold;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+</style>
+
+<script>
+(function() {
+    let searchIndex = [];
+    
+    // 从 RSS feed 加载文章数据作为搜索索引
+    fetch('/index.xml')
+        .then(response => response.text())
+        .then(xml => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(xml, 'text/xml');
+            const items = doc.querySelectorAll('item');
+            
+            searchIndex = Array.from(items).map(item => {
+                const title = item.querySelector('title')?.textContent || '';
+                const link = item.querySelector('link')?.textContent || '';
+                const description = item.querySelector('description')?.textContent || '';
+                const pubDate = item.querySelector('pubDate')?.textContent || '';
+                const date = pubDate ? new Date(pubDate).toISOString().split('T')[0] : '';
+                
+                // 提取标签和分类
+                const categories = Array.from(item.querySelectorAll('category')).map(cat => cat.textContent);
+                
+                return {
+                    title: title,
+                    content: description.replace(/<[^>]*>/g, '').substring(0, 200),
+                    permalink: link,
+                    date: date,
+                    tags: categories.filter(cat => !cat.includes('/')),
+                    categories: categories.filter(cat => cat.includes('/')),
+                    description: description.replace(/<[^>]*>/g, '').substring(0, 100)
+                };
+            });
+        })
+        .catch(err => {
+            console.error('加载搜索索引失败:', err);
+        });
+
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+
+    function highlightText(text, query) {
+        if (!query) return text;
+        const regex = new RegExp(`(${query})`, 'gi');
+        return text.replace(regex, '<span class="search-result-highlight">$1</span>');
+    }
+
+    function search(query) {
+        if (!query || query.trim().length < 2) {
+            searchResults.innerHTML = '';
+            return;
+        }
+
+        const queryLower = query.toLowerCase();
+        const results = searchIndex
+            .map(item => {
+                const title = item.title || '';
+                const content = item.content || '';
+                const description = item.description || '';
+                const tags = (item.tags || []).join(' ');
+                const categories = (item.categories || []).join(' ');
+                
+                const searchableText = `${title} ${content} ${description} ${tags} ${categories}`.toLowerCase();
+                
+                if (searchableText.includes(queryLower)) {
+                    const titleIndex = title.toLowerCase().indexOf(queryLower);
+                    const contentIndex = content.toLowerCase().indexOf(queryLower);
+                    
+                    let score = 0;
+                    if (titleIndex !== -1) score += 10;
+                    if (contentIndex !== -1) score += 5;
+                    if (tags.toLowerCase().includes(queryLower)) score += 3;
+                    if (categories.toLowerCase().includes(queryLower)) score += 2;
+                    
+                    return {
+                        ...item,
+                        score,
+                        matchedContent: contentIndex !== -1 ? content.substring(Math.max(0, contentIndex - 50), Math.min(content.length, contentIndex + 100)) : content.substring(0, 150)
+                    };
+                }
+                return null;
+            })
+            .filter(item => item !== null)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 10);
+
+        if (results.length === 0) {
+            searchResults.innerHTML = '<div class="no-results">未找到相关文章</div>';
+            return;
+        }
+
+        searchResults.innerHTML = results.map(item => `
+            <div class="search-result-item">
+                <div class="search-result-title">
+                    <a href="${item.permalink}">${highlightText(item.title, query)}</a>
+                </div>
+                <div class="search-result-meta">
+                    ${item.date || ''} 
+                    ${item.tags && item.tags.length > 0 ? '· ' + item.tags.join(', ') : ''}
+                    ${item.categories && item.categories.length > 0 ? '· ' + item.categories.join(', ') : ''}
+                </div>
+                <div class="search-result-content">
+                    ${highlightText(item.matchedContent, query)}...
+                </div>
+            </div>
+        `).join('');
+    }
+
+    let searchTimeout;
+    searchInput.addEventListener('input', function(e) {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            search(e.target.value);
+        }, 300);
+    });
+})();
+</script>
+{{ end }}
+

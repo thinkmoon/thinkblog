@@ -49,6 +49,9 @@
                 <li class="{{ if strings.HasPrefix .RelPermalink "/tags" }}active{{ end }}">
                     <a href="/tags/">标签</a>
                 </li>
+                <li class="{{ if strings.HasPrefix .RelPermalink "/search" }}active{{ end }}">
+                    <a href="/search/">搜索</a>
+                </li>
             </ul>
         </div>
     </nav>
