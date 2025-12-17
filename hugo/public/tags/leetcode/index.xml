@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Leetcode on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/leetcode/</link>
+    <link>https://blog.thinkmoon.cn/tags/leetcode/</link>
     <description>Recent content in Leetcode on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Thu, 06 Feb 2020 14:43:58 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【leetcode】5. Longest Palindromic Substring最长回文子串</title>
-      <link>http://localhost:1313/post/730__leetcode_5_-longest-palindromic-substring%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</link>
+      <link>https://blog.thinkmoon.cn/post/730__leetcode_5_-longest-palindromic-substring%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</link>
       <pubDate>Thu, 06 Feb 2020 14:43:58 +0000</pubDate>
-      <guid>http://localhost:1313/post/730__leetcode_5_-longest-palindromic-substring%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</guid>
+      <guid>https://blog.thinkmoon.cn/post/730__leetcode_5_-longest-palindromic-substring%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</guid>
       <description>解法1：中心拓展算法 思路 首先，我们知道回文串一定是对称的，所以我们可以选择一个对称中心，进行左右扩展，判断左右字符是否相等即可。&#xA;由于存在奇数的字符串和偶数的字符串，所以我们需要从一个字符开始扩展，或者从两个字符之间开始扩展，所以总共有 n+n-1 个中心。&#xA;实现代码 class Solution: def longestPalindrome(self, s: str) -&amp;gt; str: n = len(s) Max,sub = 0,s[0:1] for i in range(n): tmp = self.searchPalindrome(i-1,i+1,s) if len(tmp) &amp;gt; Max: Max = len(tmp) sub = tmp tmp = self.searchPalindrome(i-1,i,s) if len(tmp) &amp;gt; Max: Max = len(tmp) sub = tmp return sub def searchPalindrome(self, left: int, right: int, s: str) -&amp;gt; int: sub = &amp;#34;&amp;#34; while left != -1 and right !</description>
     </item>
     <item>
       <title>manacher（马拉车）算法讲解</title>
-      <link>http://localhost:1313/post/737_manacher_%E9%A9%AC%E6%8B%89%E8%BD%A6_%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3/</link>
+      <link>https://blog.thinkmoon.cn/post/737_manacher_%E9%A9%AC%E6%8B%89%E8%BD%A6_%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3/</link>
       <pubDate>Fri, 31 Jan 2020 19:11:29 +0000</pubDate>
-      <guid>http://localhost:1313/post/737_manacher_%E9%A9%AC%E6%8B%89%E8%BD%A6_%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3/</guid>
+      <guid>https://blog.thinkmoon.cn/post/737_manacher_%E9%A9%AC%E6%8B%89%E8%BD%A6_%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3/</guid>
       <description></description>
     </item>
     <item>
       <title>【leetcode】4. Median of Two Sorted Arrays寻找两个有序数组的中位数</title>
-      <link>http://localhost:1313/post/726__leetcode_4_-median-of-two-sorted-arrays%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD/</link>
+      <link>https://blog.thinkmoon.cn/post/726__leetcode_4_-median-of-two-sorted-arrays%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD/</link>
       <pubDate>Wed, 22 Jan 2020 09:50:15 +0000</pubDate>
-      <guid>http://localhost:1313/post/726__leetcode_4_-median-of-two-sorted-arrays%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD/</guid>
+      <guid>https://blog.thinkmoon.cn/post/726__leetcode_4_-median-of-two-sorted-arrays%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD/</guid>
       <description>我的初次实现 class Solution: def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -&amp;gt; float: newList = nums1 + nums2 newList.sort() result = 0 if(len(newList)%2 != 0) : result = newList[math.ceil(len(newList)/2-1)] else: index = int(len(newList)/2) result = (newList[index] + newList[index-1])/2 return result 成果 问题 但是我们仔细观察，可以发现这个的时间复杂度是不够的。</description>
     </item>
     <item>
       <title>【leetcode】2. Add Two Numbers两数相加</title>
-      <link>http://localhost:1313/post/714__leetcode_2_-add-two-numbers%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</link>
+      <link>https://blog.thinkmoon.cn/post/714__leetcode_2_-add-two-numbers%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</link>
       <pubDate>Thu, 16 Jan 2020 21:42:10 +0000</pubDate>
-      <guid>http://localhost:1313/post/714__leetcode_2_-add-two-numbers%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</guid>
+      <guid>https://blog.thinkmoon.cn/post/714__leetcode_2_-add-two-numbers%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</guid>
       <description>描述 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。&#xA;如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。&#xA;您可以假设除了数字 0 之外，这两个数都不会以 0 开头。&#xA;示例：&#xA;输入：(2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4) 输出：7 -&amp;gt; 0 -&amp;gt; 8 原因：342 + 465 = 807 思路 我看到这个题的第一感觉就是用递归把数获取出来，然后再相加，之后再把得数结构化。问题就被细分为了两个方面：&#xA;加数的提取&#xA;得数的结构化&#xA;我的初次实现 class Solution: def getStr(self,node: ListNode) -&amp;gt; str: if node.next == None: return node.val else: last = self.getStr(node.next) return str(last) + str(node.val) def addTwoNumbers(self, l1: ListNode, l2: ListNode) -&amp;gt; ListNode: num1 = self.</description>
     </item>
     <item>
       <title>【leetcode】3. Longest Substring Without Repeating Characters无重复字符的最长子串</title>
-      <link>http://localhost:1313/post/721__leetcode_3_-longest-substring-without-repeating-c/</link>
+      <link>https://blog.thinkmoon.cn/post/721__leetcode_3_-longest-substring-without-repeating-c/</link>
       <pubDate>Thu, 16 Jan 2020 21:41:34 +0000</pubDate>
-      <guid>http://localhost:1313/post/721__leetcode_3_-longest-substring-without-repeating-c/</guid>
+      <guid>https://blog.thinkmoon.cn/post/721__leetcode_3_-longest-substring-without-repeating-c/</guid>
       <description>思路 查找无重复的字符子串，然后滑动窗口&#xA;初次解 每次滑动一格窗口&#xA;class Solution: def isUnique(self, s: str) -&amp;gt; bool: for ch in s: if s.count(ch) &amp;gt; 1: return False else: continue return True def lengthOfLongestSubstring(self, s: str) -&amp;gt; int: i,j,Max=0,0,0 j+=1 while j &amp;lt;= len(s): if self.isUnique(s[i:j]): print(s[i:j],&amp;#34;is Unique&amp;#34;,i,j) Max=max(j-i,Max) j+=1 else: i+=1 return Max 成果 第一次优化 class Solution: def lengthOfLongestSubstring(self, s: str) -&amp;gt; int: if(len(s)==1): return 1 i,j,Max=0,0,0 while j &amp;lt;= len(s): st = s[i:j+1] if(j+1 &amp;lt; len(s)): index = st.</description>
     </item>
     <item>
       <title>【leetcode】1. two sum两数之和</title>
-      <link>http://localhost:1313/post/295__leetcode_1_-two-sum%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</link>
+      <link>https://blog.thinkmoon.cn/post/295__leetcode_1_-two-sum%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</link>
       <pubDate>Wed, 15 Jan 2020 10:12:10 +0000</pubDate>
-      <guid>http://localhost:1313/post/295__leetcode_1_-two-sum%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</guid>
+      <guid>https://blog.thinkmoon.cn/post/295__leetcode_1_-two-sum%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</guid>
       <description>Description Given an array of integers, return indices of the two numbers such that they add up to a specific target.&#xA;You may assume that each input would have exactly one solution, and you may not use the same element twice.&#xA;Example:&#xA;Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1]. 0. My solution(Brute Force) var twoSum = function(nums, target) { for(let i = 0; i &amp;lt; nums.</description>
     </item>
   </channel>

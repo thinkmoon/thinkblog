@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>AI on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/ai/</link>
+    <link>https://blog.thinkmoon.cn/tags/ai/</link>
     <description>Recent content in AI on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Fri, 21 Jun 2024 23:23:30 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>stabilityai/stable-diffusion-3-medium 试用体验</title>
-      <link>http://localhost:1313/post/983_stabilityai_stable-diffusion-3-medium-%E8%AF%95%E7%94%A8%E4%BD%93%E9%AA%8C/</link>
+      <link>https://blog.thinkmoon.cn/post/983_stabilityai_stable-diffusion-3-medium-%E8%AF%95%E7%94%A8%E4%BD%93%E9%AA%8C/</link>
       <pubDate>Fri, 21 Jun 2024 23:23:30 +0000</pubDate>
-      <guid>http://localhost:1313/post/983_stabilityai_stable-diffusion-3-medium-%E8%AF%95%E7%94%A8%E4%BD%93%E9%AA%8C/</guid>
+      <guid>https://blog.thinkmoon.cn/post/983_stabilityai_stable-diffusion-3-medium-%E8%AF%95%E7%94%A8%E4%BD%93%E9%AA%8C/</guid>
       <description>在当今的科技领域，人工智能和深度学习技术的发展日新月异。其中，稳定扩散模型（Stable Diffusion Model）作为一种强大的生成模型，在图像生成、视频处理等领域展现出了巨大的潜力。而 ComfyUI 则是一款功能强大的图形用户界面，为用户提供了便捷的操作和可视化的工作流程。 本文将详细介绍如何在 ComfyUI 中安装和使用稳定扩散模型，并通过实际案例展示其在图像生成方面的应用。无论你是初学者还是有一定经验的开发者，都可以通过本文了解到稳定扩散模型的基本原理和使用方法，从而为你的研究和项目提供有力的支持。&#xA;背景知识-名词解释 Stable Diffusion: 是一种强大的人工智能图像生成模型。它的主要功能是根据用户输入的文本描述，生成逼真、富有创意和多样化的图像。用户可以通过输入详细的描述，如主题、场景、颜色、风格、物体的特征等，Stable Diffusion 能够理解这些文本信息，并运用其学习到的知识和算法，生成相应的图像。 ComfyUI: 是一个用于生成图像的用户界面。它通常与图像生成模型（如 Stable Diffusion）结合使用，为用户提供了一种更直观、更易于操作的方式来控制和调整图像生成的参数和设置。ComfyUI 允许用户通过图形化的界面，以拖放、选择、输入数值等方式来定制图像生成的各种条件，例如模型选择、提示词权重、采样方法、步数、分辨率等。 CLIP（Contrastive Language-Image Pre-Training）是一种多模态预训练神经网络，由OpenAI在2021年发布。它的核心思想是使用大量图像和文本的配对数据进行预训练，以学习图像和文本之间的对齐关系。 官方地址 https://huggingface.co/stabilityai/stable-diffusion-3-medium&#xA;安装教程 下载模型，我这里先直接下载16位的试试水 下载comfy UI https://github.com/comfyanonymous/ComfyUI?tab=readme-ov-file#installing&#xA;解压下载好的 comfy UI 7z包 运行run_nvidia_gpu.bat 出现工作流界面则说明安装成功&#xA;导入checkPoint 将下载好的SD模型导入到，ComfyUI的checkpoint文件夹ComfyUI\models\checkpoints&#xA;当在工作流界面可以选择到下载的模型的时候，则说明导入成功&#xA;导入工作流 下载SD3官方的3个流程图文件&#xA;点击load选择要导入的流程图&#xA;流程图文件解释&#xA;sd3_medium_example_workflow_basic.json &amp;ndash; 基础工作流 sd3_medium_example_workflow_multi_prompt.json &amp;ndash; 多prompt工作流 sd3_medium_example_workflow_upscaling.json &amp;ndash; 带图片放大的工作流 配置流程图 切换模型，切换到下载的模型 删除原Clip节点，从模型节点中拖出clip指向prompt。 因为我上面下载的模型自带Clip能力，从模型中引入即可。&#xA;运行SD3模型 输入prompt 运行生图队列 等待一小会，开始运行则说明启动成功&#xA;大功告成 性能占用 我的显卡是4070ti super。运行的模型为16位的，一次运行耗时约10s左右，显存占用90%，基本hold住。</description>
     </item>
     <item>
       <title>deepfacelab体验记录</title>
-      <link>http://localhost:1313/post/932_deepfacelab%E4%BD%93%E9%AA%8C%E8%AE%B0%E5%BD%95/</link>
+      <link>https://blog.thinkmoon.cn/post/932_deepfacelab%E4%BD%93%E9%AA%8C%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Sun, 25 Oct 2020 20:47:43 +0000</pubDate>
-      <guid>http://localhost:1313/post/932_deepfacelab%E4%BD%93%E9%AA%8C%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://blog.thinkmoon.cn/post/932_deepfacelab%E4%BD%93%E9%AA%8C%E8%AE%B0%E5%BD%95/</guid>
       <description>前言：最近在网络上发现了几位跟我使用同一头像的朋友，更加刺激了我想要制作一个专属头像的想法。然后我就想到了使用一些业界知名开源软件来制作一个属于我的专属头像的想法。&#xA;介绍 一款视频换脸的开源软件&#xA;deepfacelab下载 源代码地址deepfacelab,可在项目的readme页面下载window环境的执行文件，最让人舒服的是，它帮我们解决了环境问题。我唯一需要解决的环境问题，就是安装显卡驱动（如果有显卡的话）&#xA;安装 安装文件是个exe文件，双击运行会进行解压。解压后文件大致如下，根目录是一些批处理命令。workspace是工作区，放一些源文件和目标文件视频，而_internal则存放着一些环境相关文件，如Vs code，cuda， python等，所谓贴心至极，莫过于此。&#xA;使用 如它贴心的环境依赖一般的容易使用，你甚至只需要点击几个文件文件，再敲几个回车，就可以完成AI换脸的全过程。大致可分为五个过程&#xA;视频抽帧&#xA;人脸提取&#xA;训练模型&#xA;合成模型&#xA;生成视频&#xA;效果展示 贴心小技巧 一定要记得把aligned里面的质量差的人脸在训练前删除&#xA;由于dst是全帧抽取，而视频合成则是以60帧每秒合成，如果原dst没有60帧，则会出现音画不同步的情况&#xA;换脸后适当提高图片锐度，会极高的提高换脸清晰度&#xA;建议将mask_blur_modifier调至150左右以提升换脸真实性</description>
     </item>
   </channel>

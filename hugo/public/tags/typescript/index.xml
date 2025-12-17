@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Typescript on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/typescript/</link>
+    <link>https://blog.thinkmoon.cn/tags/typescript/</link>
     <description>Recent content in Typescript on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Fri, 16 Dec 2022 20:58:16 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>nestjs配置swagger教程</title>
-      <link>http://localhost:1313/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/</link>
+      <link>https://blog.thinkmoon.cn/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/</link>
       <pubDate>Fri, 16 Dec 2022 20:58:16 +0000</pubDate>
-      <guid>http://localhost:1313/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/</guid>
+      <guid>https://blog.thinkmoon.cn/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/</guid>
       <description>本文记录如何在nestjs框架下配置swagger。OpenAPI是一个与语言无关的RESTful API定义说明，Nest提供了一个专有的模块来利用装饰器生成类似声明。&#xA;安装 npm install --save @nestjs/swagger swagger-ui-express 引导 import { NestFactory } from &amp;#34;@nestjs/core&amp;#34;; import { AppModule } from &amp;#34;./modules/app.module&amp;#34;; import { Logger } from &amp;#34;@nestjs/common&amp;#34;; import { SwaggerModule, DocumentBuilder } from &amp;#39;@nestjs/swagger&amp;#39;; async function bootstrap() { const app = await NestFactory.create(AppModule); const options = new DocumentBuilder() .setTitle(&amp;#39;api-collect&amp;#39;) .setDescription(&amp;#39;API文档&amp;#39;) .setVersion(&amp;#39;1.0&amp;#39;) .build(); const document = SwaggerModule.createDocument(app, options); SwaggerModule.setup(&amp;#39;doc&amp;#39;, app, document); await app.listen(3001); } bootstrap().then(() =&amp;gt; { Logger.log(&amp;#34;启动成功&amp;#34;); }); 这里主要引入了两个模块，SwaggerModule和DocumentBuilder。其中DocumentBuilder建立一个遵循OpenAPI 标准的基础文档。它提供了不同的方法来配置类似标题、描述、版本等信息属性。</description>
     </item>
     <item>
       <title>TypeScript封装API，让代码编写柔润丝滑</title>
-      <link>http://localhost:1313/post/895_typescript%E5%B0%81%E8%A3%85api_%E8%AE%A9%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E6%9F%94%E6%B6%A6%E4%B8%9D%E6%BB%91/</link>
+      <link>https://blog.thinkmoon.cn/post/895_typescript%E5%B0%81%E8%A3%85api_%E8%AE%A9%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E6%9F%94%E6%B6%A6%E4%B8%9D%E6%BB%91/</link>
       <pubDate>Tue, 21 Jul 2020 09:20:02 +0000</pubDate>
-      <guid>http://localhost:1313/post/895_typescript%E5%B0%81%E8%A3%85api_%E8%AE%A9%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E6%9F%94%E6%B6%A6%E4%B8%9D%E6%BB%91/</guid>
+      <guid>https://blog.thinkmoon.cn/post/895_typescript%E5%B0%81%E8%A3%85api_%E8%AE%A9%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E6%9F%94%E6%B6%A6%E4%B8%9D%E6%BB%91/</guid>
       <description>引言 干前端工作，大致离不开三大任务：切图，对接口，写页面逻辑。说到对接口，那肯定是离不开网络请求API的封装的。我将网络请求的封装模式大致分为三个派系：&#xA;无拘无束派 （只封装请求根地址，想咋请求就咋请求，最强的封装就是不封装）&#xA;拦截请求派 （使用一个拦截器配置请求行为和一些错误的拦截处理）&#xA;接口集成派（使用一个或多个文件，统一管理所有请求，约定不允许使用文件中未定义的接口）。&#xA;我属于第三个派系，首先介绍一下各派的风格&#xA;各派风格 无拘无束派在快速成型方面略有优势，自由度也相对较高，但是维护起来并不容易，遇到接口改版的时候一部小心就会遗漏。&#xA;拦截请求派属于较优雅的一个派系，没有太多多余的内容，剩下的内容都是为解决问题而生。一般使用一个第三方请求库（如axios，flyio等）完成封装。大致像是这样&#xA;import { FlyError, FlyResponse } from &amp;#34;flyio&amp;#34;; const Fly = require(&amp;#34;flyio/dist/npm/wx&amp;#34;); let fly = new Fly(); // 配置请求根地址 fly.config.baseURL = process.env.VUE_APP_BASE_URL; // 配置响应拦截器 fly.interceptors.response.use( // 如果请求成功,即请求状态码2xx (response: FlyResponse) =&amp;gt; { // 并且操作成功 if (response.data.success) { // 返回响应数据体 return Promise.resolve(response.data); } else { // 请求成功，但是操作失败，提示后端返回的msg，并抛出错误 uni.showToast({ icon: &amp;#34;none&amp;#34;, title: response.data.msg, }); return Promise.reject(response.data); } }, // 如果请求失败，即状态非2xx (err: FlyError) =&amp;gt; { console.</description>
     </item>
     <item>
       <title>vue中使用typescript问题解决方案集锦</title>
-      <link>http://localhost:1313/post/876_vue%E4%B8%AD%E4%BD%BF%E7%94%A8typescript%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E9%9B%86%E9%94%A6/</link>
+      <link>https://blog.thinkmoon.cn/post/876_vue%E4%B8%AD%E4%BD%BF%E7%94%A8typescript%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E9%9B%86%E9%94%A6/</link>
       <pubDate>Tue, 23 Jun 2020 22:04:32 +0000</pubDate>
-      <guid>http://localhost:1313/post/876_vue%E4%B8%AD%E4%BD%BF%E7%94%A8typescript%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E9%9B%86%E9%94%A6/</guid>
+      <guid>https://blog.thinkmoon.cn/post/876_vue%E4%B8%AD%E4%BD%BF%E7%94%A8typescript%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E9%9B%86%E9%94%A6/</guid>
       <description>本文环境 @vue/cli 4.3.1&#xA;typescript 3.9.5&#xA;相关配置文件 vue.config.js&#xA;tsconfig.json&#xA;shims-vue.d.ts&#xA;问题汇总 导入 vue 文件报错 错误信息：Cannot find module &amp;lsquo;./App.vue&amp;rsquo; or its corresponding type declarations&#xA;解决方案：修改shims-vue.d.ts&#xA;declare module &amp;#34;*.vue&amp;#34; { import Vue from &amp;#34;vue&amp;#34;; export default Vue; } Vscode 报错，编译不报错 解决方案：重启 Vscode&#xA;挂载原型$api 报错 解决方案：在src目录下新增vue-property.d.ts&#xA;import Vue from &amp;#39;vue&amp;#39; declare module &amp;#34;vue/types/vue&amp;#34; { interface Vue { $api: any; } } 无法使用@components别名 alias 路径 解决方案: 修改tsconfig.json&#xA;{ &amp;#34;compilerOptions&amp;#34;: { &amp;#34;target&amp;#34;: &amp;#34;esnext&amp;#34;, &amp;#34;module&amp;#34;: &amp;#34;esnext&amp;#34;, &amp;#34;strict&amp;#34;: true, &amp;#34;jsx&amp;#34;: &amp;#34;preserve&amp;#34;, &amp;#34;importHelpers&amp;#34;: true, &amp;#34;moduleResolution&amp;#34;: &amp;#34;node&amp;#34;, &amp;#34;experimentalDecorators&amp;#34;: true, &amp;#34;esModuleInterop&amp;#34;: true, &amp;#34;allowSyntheticDefaultImports&amp;#34;: true, &amp;#34;sourceMap&amp;#34;: true, &amp;#34;baseUrl&amp;#34;: &amp;#34;.</description>
     </item>
     <item>
       <title>初探vue3.0笔记</title>
-      <link>http://localhost:1313/post/881_%E5%88%9D%E6%8E%A2vue3_0%E7%AC%94%E8%AE%B0/</link>
+      <link>https://blog.thinkmoon.cn/post/881_%E5%88%9D%E6%8E%A2vue3_0%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Tue, 23 Jun 2020 22:03:02 +0000</pubDate>
-      <guid>http://localhost:1313/post/881_%E5%88%9D%E6%8E%A2vue3_0%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://blog.thinkmoon.cn/post/881_%E5%88%9D%E6%8E%A2vue3_0%E7%AC%94%E8%AE%B0/</guid>
       <description>&#xA;tips: 请注意区分vue3.0和vue cli 3.x/4.x&#xA;创建项目 vue create -r https://registry.npm.taobao.org vue-next-test 选择你喜欢的配置即可，创建成功后，从Demo来看，跟vue2.0的typescript写法差别看起来不大的样子。。。&#xA;未完待续 </description>
     </item>
   </channel>

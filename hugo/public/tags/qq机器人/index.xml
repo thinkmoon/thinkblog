@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>QQ机器人 on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/qq%E6%9C%BA%E5%99%A8%E4%BA%BA/</link>
+    <link>https://blog.thinkmoon.cn/tags/qq%E6%9C%BA%E5%99%A8%E4%BA%BA/</link>
     <description>Recent content in QQ机器人 on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Fri, 06 Dec 2019 12:12:01 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/qq%E6%9C%BA%E5%99%A8%E4%BA%BA/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/qq%E6%9C%BA%E5%99%A8%E4%BA%BA/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>QQ机器人起航篇（一）</title>
-      <link>http://localhost:1313/post/160_qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B5%B7%E8%88%AA%E7%AF%87_%E4%B8%80_/</link>
+      <link>https://blog.thinkmoon.cn/post/160_qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B5%B7%E8%88%AA%E7%AF%87_%E4%B8%80_/</link>
       <pubDate>Fri, 06 Dec 2019 12:12:01 +0000</pubDate>
-      <guid>http://localhost:1313/post/160_qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B5%B7%E8%88%AA%E7%AF%87_%E4%B8%80_/</guid>
+      <guid>https://blog.thinkmoon.cn/post/160_qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B5%B7%E8%88%AA%E7%AF%87_%E4%B8%80_/</guid>
       <description>一听说QQ机器人是不是感觉有点高大上？感觉离自己有点远？不过事实就是如果你想创建，或者说拥有一个QQ机器人确实一件非常容易的事情。&#xA;创建方法 1.腾讯QQ自带的QQ小冰&#xA;2.利用第三方框架在自己电脑或者windows云主机上挂一个机器人（mypcqq，酷Q等）&#xA;这个方法的好处就是可拓展性强，可二次开发，所以我在以后主要介绍这种方法&#xA;框架一（mypcQQ） 从功能上看这个框架功能略显强大（拥有撤回检测，气泡设置，卡片消息），但是缺点也很明显那就是不稳定，页面不太友好。&#xA;框架二（酷Q机器人） 因为mypcQQ我认为实在是太不稳定了，所以我在以后的QQ机器人二次开发中着重介绍酷Q机器人的二次开发。&#xA;酷Q机器人C++SDK解析 酷Q机器人工作原理 先是QQ服务器端发送数据给酷Q客户端，酷Q根据数据判断是否触发了事件，以及触发了哪类事件，不同类事件都有一个默认的type。&#xA;然后酷Q会根据这个type在JSON中查找所有具有该type的event项目，并将这些项目按照priority从小到大的顺序排列，然后按照顺序依次向你的DLL发送指令。&#xA;指令的内容就是每个event项目所规定的function值，以及该事件的type所决定的必要参数。在你的DLL内部，会先查找指令中指定的function，找到[函数名]正确的函数，然后按[参数列表]规定的顺序代入参数，执行你写的代码。&#xA;[参数列表]只规定了参数的数目、顺序和类型，而参数变量名称酷Q是不管的，也就是说只要数目顺序类型正确，参数变量的名称你可以自己修改。比如fromQQ你可以把它改成TheQNumberItFrom，或者abc，都可以，只要你自己方便就行。&#xA;最后，如何命令酷Q执行你需要的动作呢？你需要调用头文件cqp.h中声明的函数。这些函数只进行了声明，其定义在酷Q加载后会在其它DLL中定义，所以VS可能会提示这些函数未定义，但不影响编译生成，请忽视这些提示。&#xA;SDK视图 SDK文件解析 appmain.h 插件APPID的定义，内容不多，在编译前，将这里面的CQAPPID也定义为你之前的文件名AppID。规则见 http://d.cqp.me/Pro/开发/基础信息。&#xA;cqp.h cqp.h分为常量定义和函数声明两部分。常量定义部分看不懂也没关系，关键是后面的函数声明部分。函数用途按英语意思去用&#xA;每一条声明都具有如下格式： CQAPI([返回值类型]) 函数名;&#xA;[函数名]描述了该函数的功能，如果你看不懂英文（你还是放弃吧），JSON中的auth部分的注释有每一个函数英文名的翻译。&#xA;CQ_get开头的函数用于向QQ服务器获取一些状态信息（比如获取某个群员的信息），其它函数用于向服务器发送操作指令（比如发送消息）。get类函数返回你想要获取的信息，其它函数返回操作结果。不同的返回值对应的操作结果，在cqp.h的常量定义部分有说明。&#xA;你必须按照[参数列表]的规定调用这些函数。&#xA;appmain.cpp 这个cpp是最重要的部分，我们平常编写的功能都是在这个cpp里面，根据对应的规则调用，官方SDK里面有详细的注释。&#xA;JSON文件 在修改之前，你要明确JSON的作用：这个文件是你的DLL和酷Q之间的交流协议，它规定了酷Q该如何使用你写的DLL。&#xA;json规则：http://d.cqp.me/Pro/开发&#xA;event部分：// 事件列表，同一事件类型可重复定义（发布前请删除无用事件）&#xA;id：这就是个索引，只要保证你所有事件的id不重复即可&#xA;type：规定酷Q应该在何时触发这个事件。每种事件对应的type值是固定的，只要你设置的type值正确，酷Q就会在正确的时机触发你的事件。事件的名称无关紧要。&#xA;name：这个就是显示给用户看的，和你的程序没有关系。&#xA;function：自由定义，但不能重复，而且有格式要求：&#xA;1、由英文字母、数字、下划线构成&#xA;2、第一个字符不能是数字&#xA;3、大小写敏感，大写和小写是不同的&#xA;4、不能和这些关键字重名：https://msdn.microsoft.com/zh-cn/library/2e6a4at9.aspx&#xA;如果你需要删除一个事件，需要把一对{}内的内容以及之后的逗号完全删除，否则会报错。请注意不要删除[]，而且[]内的最后一对{}后不能跟逗号，其它的必须跟逗号。&#xA;如果你需要增加新的事件，建议复制粘贴再修改，以免疏忽。&#xA;参考链接：https://cqp.cc/t/27173&#xA;这篇主要让大家对酷Q有个基本的了解，下一篇做个小例子。&#xA;2019.12.6补充 不打算搞小例子了</description>
     </item>
   </channel>

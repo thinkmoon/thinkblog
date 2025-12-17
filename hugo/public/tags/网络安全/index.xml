@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>网络安全 on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</link>
+    <link>https://blog.thinkmoon.cn/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</link>
     <description>Recent content in 网络安全 on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Wed, 19 Mar 2025 14:30:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用CloudFlare反向代理七牛云存储实现SSL自由</title>
-      <link>http://localhost:1313/post/985_%E4%BD%BF%E7%94%A8cloudflare%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%83%E7%89%9B%E4%BA%91%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0ssl%E8%87%AA%E7%94%B1/</link>
+      <link>https://blog.thinkmoon.cn/post/985_%E4%BD%BF%E7%94%A8cloudflare%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%83%E7%89%9B%E4%BA%91%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0ssl%E8%87%AA%E7%94%B1/</link>
       <pubDate>Wed, 19 Mar 2025 14:19:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/985_%E4%BD%BF%E7%94%A8cloudflare%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%83%E7%89%9B%E4%BA%91%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0ssl%E8%87%AA%E7%94%B1/</guid>
+      <guid>https://blog.thinkmoon.cn/post/985_%E4%BD%BF%E7%94%A8cloudflare%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%83%E7%89%9B%E4%BA%91%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0ssl%E8%87%AA%E7%94%B1/</guid>
       <description>基于CloudFlare Workers的七牛云HTTPS代理方案 一、方案背景与核心价值 1.1 问题场景 七牛云存储作为国内主流对象存储服务，其HTTP直连访问存在两大痛点：&#xA;SSL证书成本：自定义域名HTTPS服务需单独购买证书 混合内容风险：主站HTTPS页面加载HTTP资源触发安全警告 1.2 技术选型 通过CloudFlare Workers实现四大核心能力：&#xA;协议转换层：将用户HTTPS请求转换为对七牛HTTP源站的请求 动态内容改写：实时替换响应中的HTTP资源链接 全局缓存加速：利用全球CDN节点提升访问速度 零运维成本：无需维护服务器基础设施 二、原理说明 Cloudflare Worker 是一个无服务器计算平台，通过拦截请求并修改响应实现代理。核心思路是：&#xA;将用户 HTTPS 请求转发到原始 HTTP 站点。 修改响应头，强制 HTTPS 协议并修复混合内容问题。&#xA;三、操作步骤 1. 创建 Cloudflare Worker 登录 Cloudflare 控制台 → Workers &amp;amp; Pages → 创建新 Worker。 进入代码编辑界面。 2. 编写代理脚本 addEventListener(&amp;#39;fetch&amp;#39;, event =&amp;gt; { event.respondWith(handleRequest(event.request)); }); async function handleRequest(request) { // 替换为你的 HTTP 源站地址 const originUrl = &amp;#39;http://your-http-site.com&amp;#39;; const url = new URL(request.url); // 构建指向 HTTP 源站的新请求 const newRequest = new Request(originUrl + url.</description>
     </item>
   </channel>

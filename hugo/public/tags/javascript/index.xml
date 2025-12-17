@@ -2,46 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Javascript on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/javascript/</link>
+    <link>https://blog.thinkmoon.cn/tags/javascript/</link>
     <description>Recent content in Javascript on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Fri, 16 Dec 2022 20:58:16 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>nestjs配置swagger教程</title>
-      <link>http://localhost:1313/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/</link>
+      <link>https://blog.thinkmoon.cn/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/</link>
       <pubDate>Fri, 16 Dec 2022 20:58:16 +0000</pubDate>
-      <guid>http://localhost:1313/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/</guid>
+      <guid>https://blog.thinkmoon.cn/post/976_nestjs%E9%85%8D%E7%BD%AEswagger%E6%95%99%E7%A8%8B/</guid>
       <description>本文记录如何在nestjs框架下配置swagger。OpenAPI是一个与语言无关的RESTful API定义说明，Nest提供了一个专有的模块来利用装饰器生成类似声明。&#xA;安装 npm install --save @nestjs/swagger swagger-ui-express 引导 import { NestFactory } from &amp;#34;@nestjs/core&amp;#34;; import { AppModule } from &amp;#34;./modules/app.module&amp;#34;; import { Logger } from &amp;#34;@nestjs/common&amp;#34;; import { SwaggerModule, DocumentBuilder } from &amp;#39;@nestjs/swagger&amp;#39;; async function bootstrap() { const app = await NestFactory.create(AppModule); const options = new DocumentBuilder() .setTitle(&amp;#39;api-collect&amp;#39;) .setDescription(&amp;#39;API文档&amp;#39;) .setVersion(&amp;#39;1.0&amp;#39;) .build(); const document = SwaggerModule.createDocument(app, options); SwaggerModule.setup(&amp;#39;doc&amp;#39;, app, document); await app.listen(3001); } bootstrap().then(() =&amp;gt; { Logger.log(&amp;#34;启动成功&amp;#34;); }); 这里主要引入了两个模块，SwaggerModule和DocumentBuilder。其中DocumentBuilder建立一个遵循OpenAPI 标准的基础文档。它提供了不同的方法来配置类似标题、描述、版本等信息属性。</description>
     </item>
     <item>
       <title>如何理解Promise</title>
-      <link>http://localhost:1313/post/956_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3promise/</link>
+      <link>https://blog.thinkmoon.cn/post/956_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3promise/</link>
       <pubDate>Fri, 09 Dec 2022 21:35:49 +0000</pubDate>
-      <guid>http://localhost:1313/post/956_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3promise/</guid>
+      <guid>https://blog.thinkmoon.cn/post/956_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3promise/</guid>
       <description>Promise是啥？异步函数？对象？怎么用才更自信？如何理解更好的理解Promise？本文将分享本人对于Promise的一些经验与想法。&#xA;背景知识 此段将介绍一些理解本文的背景知识，你可以很轻松愉快的阅读此段。&#xA;函数是一等公民 总所周知，在JavaScript里面，函数是一等公民。你可以用来赋值，传参，回调，包装，作为函数返回值return。&#xA;以下内容援引于JavaScript 为什么说函数是一等公民？&#xA;函数与数字一样可以存储到变量中 var fortyTwo = 42 var fortyOne = function() { return 41; } 函数与数字一样可以存储为数组的一个元素 var nums = [42, function() { return 41 }] 函数与数字一样可以在使用时直接创建出来 42 + (fuction() { return 41 })(); // 83 函数与数字一样可以被传递给另一个函数 function weirdAdd( n, fun) { return n + fun()} weirdAdd(42, function() { return 41 }) 函数与数字一样可以被另一个函数返回 function add() { var num1 = 42; return function(num2) { return num1 + num2 } } fun = add(); fun(41); // 83 函数就是变量，变量可以存放函数。就是玩~</description>
     </item>
     <item>
       <title>js使用装饰器实现操作前二次确认询问</title>
-      <link>http://localhost:1313/post/900_js%E4%BD%BF%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E5%89%8D%E4%BA%8C%E6%AC%A1%E7%A1%AE%E8%AE%A4%E8%AF%A2%E9%97%AE/</link>
+      <link>https://blog.thinkmoon.cn/post/900_js%E4%BD%BF%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E5%89%8D%E4%BA%8C%E6%AC%A1%E7%A1%AE%E8%AE%A4%E8%AF%A2%E9%97%AE/</link>
       <pubDate>Sun, 20 Sep 2020 13:18:57 +0000</pubDate>
-      <guid>http://localhost:1313/post/900_js%E4%BD%BF%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E5%89%8D%E4%BA%8C%E6%AC%A1%E7%A1%AE%E8%AE%A4%E8%AF%A2%E9%97%AE/</guid>
+      <guid>https://blog.thinkmoon.cn/post/900_js%E4%BD%BF%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E5%89%8D%E4%BA%8C%E6%AC%A1%E7%A1%AE%E8%AE%A4%E8%AF%A2%E9%97%AE/</guid>
       <description>引言 相信大家平常在开发过程中，经常会遇到此类需求。危险操作（如删除，退出登录）往往需要弹框提示给用户二次确认一下。本文介绍的是，如何使用js方法装饰器，封装二次确认弹框操作，增加小伙伴的开发效率。&#xA;装饰器介绍 装饰器是对类、函数、属性之类的一种装饰，可以针对其添加一些额外的行为。详细使用，自行百度！&#xA;常规手段 view&#xA;&amp;lt;div class=&amp;#34;bg-white flex justify-center&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;btn-primary&amp;#34; @click=&amp;#34;clickMe&amp;#34;&amp;gt;点我&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; js&#xA;clickMe() { uni.showModal({ title: &amp;#34;点击提示&amp;#34;, content: &amp;#34;你确定要点我？&amp;#34;, success: (res) =&amp;gt; { if (res.confirm) { console.log(&amp;#34;点我干啥&amp;#34;); } }, }); } 效果展示&#xA;装饰器写法 confirm.js&#xA;function confirm(message: string, title: string, cancelFn = function() {}) { return function(target: any, name: string, descriptor: any) { const originFn = descriptor.value; descriptor.value = function(rest: any) { uni.showModal({ title: title, content: message, success: (res) =&amp;gt; { if (res.</description>
     </item>
     <item>
       <title>【leetcode】1. two sum两数之和</title>
-      <link>http://localhost:1313/post/295__leetcode_1_-two-sum%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</link>
+      <link>https://blog.thinkmoon.cn/post/295__leetcode_1_-two-sum%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</link>
       <pubDate>Wed, 15 Jan 2020 10:12:10 +0000</pubDate>
-      <guid>http://localhost:1313/post/295__leetcode_1_-two-sum%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</guid>
+      <guid>https://blog.thinkmoon.cn/post/295__leetcode_1_-two-sum%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</guid>
       <description>Description Given an array of integers, return indices of the two numbers such that they add up to a specific target.&#xA;You may assume that each input would have exactly one solution, and you may not use the same element twice.&#xA;Example:&#xA;Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1]. 0. My solution(Brute Force) var twoSum = function(nums, target) { for(let i = 0; i &amp;lt; nums.</description>
     </item>
     <item>
       <title>javascript的一些笔记</title>
-      <link>http://localhost:1313/post/247_javascript%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</link>
+      <link>https://blog.thinkmoon.cn/post/247_javascript%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Wed, 13 Mar 2019 14:51:30 +0000</pubDate>
-      <guid>http://localhost:1313/post/247_javascript%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://blog.thinkmoon.cn/post/247_javascript%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</guid>
       <description>js类似于printf那样的格式化字符串 安装包&#xA;npm install sprintf-js 调用包&#xA;var sprintf = require(&amp;#39;sprintf-js&amp;#39;).sprintf, 操作实例：时间前补零操作&#xA;for (let i = 46; i &amp;gt;= 0; i--) { console.log(sprintf(&amp;#39;%2d:%02d&amp;#39;, i / 2, (i % 2 ? 0 : 30))) } </description>
     </item>
   </channel>

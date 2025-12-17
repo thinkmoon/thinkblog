@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shell on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/shell/</link>
+    <link>https://blog.thinkmoon.cn/tags/shell/</link>
     <description>Recent content in Shell on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Mon, 01 Jul 2019 17:09:24 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Shell入门 </title>
-      <link>http://localhost:1313/post/318_shell%E5%85%A5%E9%97%A8/</link>
+      <link>https://blog.thinkmoon.cn/post/318_shell%E5%85%A5%E9%97%A8/</link>
       <pubDate>Mon, 01 Jul 2019 17:09:24 +0000</pubDate>
-      <guid>http://localhost:1313/post/318_shell%E5%85%A5%E9%97%A8/</guid>
+      <guid>https://blog.thinkmoon.cn/post/318_shell%E5%85%A5%E9%97%A8/</guid>
       <description>本文诞生原因：作为一个程序员，居然不会shell，说起来也尴尬。&#xA;基本格式 #!/bin/bash ... Shell变量 Shell变量定义不需要关键字，直接定义，不要加$。如name = &amp;quot;hello&amp;quot;&#xA;Shell变量使用的时候需要加$, 花括号为可选项，但是为了让程序可以分清边界，一般使用花括号。如echo ${name}&#xA;只读变量 在前面加readonly&#xA;如：&#xA;#!/bin/bash name=&amp;#34;Hello&amp;#34; readonly name 删除变量 在前面加unset&#xA;变量被删除后不能再次使用。unset 命令不能删除只读变量。&#xA;如：&#xA;#!/bin/sh name=&amp;#34;Hello&amp;#34; unset name shell获取输入 read - 从标准输入读取数值，命令语法：&#xA;read: read [-ers] [-a array] [-d delim] [-i text] [-n nchars] [-N nchars] [-p prompt] [-t timeout] [-u fd] [name ...] 从标准输入中读取一行。 从标准输入中读取一行, 如果提供 -u 则从文件描述符FD中读取一行。该行数据与单词一样分隔, 第一个单词分给第一个变量，第二个分给第二个变量，依次类推，直至最后一个单词. 只有在$IFS中找到的字符才会被识别为单词分隔符。 如果不提供变量，这一行的读取将被存在REPLY变量中。 Options: -a 数组&#x9;将读取的单词分配给顺序数组，下标从零开始。 -d delim&#x9;继续读取直到读取DELIM的第一个字符，而不是换行符. -e&#x9;use Readline to obtain the line in an interactive shell -i text&#x9;use TEXT as the initial text for Readline -n nchars&#x9;return after reading NCHARS characters rather than waiting for a newline, but honor a delimiter if fewer than NCHARS characters are read before the delimiter -N nchars&#x9;return only after reading exactly NCHARS characters, unless EOF is encountered or read times out, ignoring any delimiter -p prompt&#x9;output the string PROMPT without a trailing newline before attempting to read -r&#x9;do not allow backslashes to escape any characters -s&#x9;do not echo input coming from a terminal -t timeout&#x9;time out and return failure if a complete line of input is not read within TIMEOUT seconds.</description>
     </item>
   </channel>

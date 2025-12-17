@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Codeigniter on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/codeigniter/</link>
+    <link>https://blog.thinkmoon.cn/tags/codeigniter/</link>
     <description>Recent content in Codeigniter on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Sat, 16 Feb 2019 22:32:43 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/codeigniter/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/codeigniter/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>codeigniter的一些笔记</title>
-      <link>http://localhost:1313/post/159_codeigniter%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</link>
+      <link>https://blog.thinkmoon.cn/post/159_codeigniter%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Sat, 16 Feb 2019 22:32:43 +0000</pubDate>
-      <guid>http://localhost:1313/post/159_codeigniter%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://blog.thinkmoon.cn/post/159_codeigniter%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</guid>
       <description>title: codeigniter | codeigniter的一些笔记&#xA;tags: codeigniter&#xA;categories: 笔记&#xA;abbrlink: 15d8&#xA;date: 2018-04-02 13:15:42&#xA;thumbnail:&#xA;codeigniter 部署坑 session 文件路径问题 解决方法 在application/config/config.php 中最后一行, 加入&#xA;$config[&amp;#39;sess_save_path&amp;#39;] =BASEPATH.&amp;#39;../&amp;#39;.&amp;#39;session_file&amp;#39;; 原因 未设置ssesion文件路径,会默认使用php.ini的文件路径,可能会出现无路径访问权限的问题&#xA;baseurl 修改 要记得修改baseurl的值,以免出现访问不成功的情况&#xA;$config[&amp;#39;base_url&amp;#39;] = &amp;#39;https://www.farminbackyard.com&amp;#39;; pasue;</description>
     </item>
   </channel>

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MFC on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/mfc/</link>
+    <link>https://blog.thinkmoon.cn/tags/mfc/</link>
     <description>Recent content in MFC on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Tue, 18 Feb 2020 18:36:35 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/mfc/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/mfc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MFC课程设计以及对xml文件的操作</title>
-      <link>http://localhost:1313/post/534_mfc%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E4%BB%A5%E5%8F%8A%E5%AF%B9xml%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C/</link>
+      <link>https://blog.thinkmoon.cn/post/534_mfc%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E4%BB%A5%E5%8F%8A%E5%AF%B9xml%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Tue, 18 Feb 2020 18:36:35 +0000</pubDate>
-      <guid>http://localhost:1313/post/534_mfc%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E4%BB%A5%E5%8F%8A%E5%AF%B9xml%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C/</guid>
+      <guid>https://blog.thinkmoon.cn/post/534_mfc%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E4%BB%A5%E5%8F%8A%E5%AF%B9xml%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C/</guid>
       <description>废话不说，进入正题，为了简便请调整项目属性为使用多字节字符集&#xA;tinyxml文件下载地址，（操作xml文件的）&#xA;http://sourceforge.net/projects/tinyxml/&#xA;一些函数功能 ValueStr //返回元素名称 SetValue //设置元素名称 Parent //返回父节点对象 FirstChild //返回第一个子节点 LastChild //返回最后一个子节点 IterateChildren //返回下一个子节点 InsertEndChild //在最后一个子节点后插入子节点 InsertBeforeChild //在指定的子节点前插入子节点 InsertAfterChild //在指定的子节点后插入子节点 ReplaceChild //替换指定的子节点 RemoveChild //删除指定的子节点 Clear //删除所有的子节点 PreviousSibling //返回同级中前一个节点 NextSibling //返回同级中后一个节点 NextSiblingElement //返回同级中后一个元素 FirstChildElement //返回第一个子元素节点 Attribute //返回元素中的属性值 QueryValueAttribute //返回元素中的属性值 SetAttribute //设置元素中的属性值 FirstAttribute //返回元素中第一个属性对象 LastAttribute //返回元素中最后一个属性对象 RemoveAttribute //删除元素中指定的属性对象 tinyxml的添加 首先，将下载的文件解压复制到原项目目录，&#xA;然后，在解决方案中头文件添加现有项，添加进去。&#xA;接下来，在stdafx.h中包含两个头文件。 mfc中xml文件的使用 第一步：建立对话框，添加CString变量（与编辑框关联起来).&#xA;第二步，（信息录入）添加按钮处理消息（双击按钮即可），利用UpdataeData（）更新数据，将数据录入xml文件。&#xA;TiXmlDocument *pDoc = new TiXmlDocument();//文件指针 const char *FileName = &amp;#34;res\\Number.xml&amp;#34;;//文件名 if(!pDoc-&amp;gt;LoadFile(FileName)) { UpdateData(TRUE); TiXmlElement *RootElement = NULL;//根节点 TiXmlElement *PersonElement = NULL;//子节点 TiXmlDeclaration *pTd = new TiXmlDeclaration(&amp;#34;1.</description>
     </item>
   </channel>

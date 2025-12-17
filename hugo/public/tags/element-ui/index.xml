@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Element-Ui on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/element-ui/</link>
+    <link>https://blog.thinkmoon.cn/tags/element-ui/</link>
     <description>Recent content in Element-Ui on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 11:28:57 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/element-ui/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/element-ui/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>el-upload视频上传支持回显和预览的一种异教徒解决方案</title>
-      <link>http://localhost:1313/post/861_el-upload%E8%A7%86%E9%A2%91%E4%B8%8A%E4%BC%A0%E6%94%AF%E6%8C%81%E5%9B%9E%E6%98%BE%E5%92%8C%E9%A2%84%E8%A7%88%E7%9A%84%E4%B8%80%E7%A7%8D%E5%BC%82%E6%95%99%E5%BE%92%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+      <link>https://blog.thinkmoon.cn/post/861_el-upload%E8%A7%86%E9%A2%91%E4%B8%8A%E4%BC%A0%E6%94%AF%E6%8C%81%E5%9B%9E%E6%98%BE%E5%92%8C%E9%A2%84%E8%A7%88%E7%9A%84%E4%B8%80%E7%A7%8D%E5%BC%82%E6%95%99%E5%BE%92%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
       <pubDate>Thu, 18 Jun 2020 11:28:57 +0000</pubDate>
-      <guid>http://localhost:1313/post/861_el-upload%E8%A7%86%E9%A2%91%E4%B8%8A%E4%BC%A0%E6%94%AF%E6%8C%81%E5%9B%9E%E6%98%BE%E5%92%8C%E9%A2%84%E8%A7%88%E7%9A%84%E4%B8%80%E7%A7%8D%E5%BC%82%E6%95%99%E5%BE%92%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+      <guid>https://blog.thinkmoon.cn/post/861_el-upload%E8%A7%86%E9%A2%91%E4%B8%8A%E4%BC%A0%E6%94%AF%E6%8C%81%E5%9B%9E%E6%98%BE%E5%92%8C%E9%A2%84%E8%A7%88%E7%9A%84%E4%B8%80%E7%A7%8D%E5%BC%82%E6%95%99%E5%BE%92%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
       <description>该文章为异教徒解决方案，各位看官看下即可，切勿模仿！！！&#xA;问题描述 原生的el-upload只支持上传图片时候的预览和回显，这是因为只针对img标签做了适配，如下图。&#xA;而如果我们上传视频，则会出现一个白方框，用户体验不佳。&#xA;解决思路 其实正确的解决思路应该是&#xA;将show-file-list属性设置为false。然后再自己循环显示file-list，以及追加对应的预览，删除按钮及功能。&#xA;设置自定义模板内容(推荐使用)&#xA;但是我觉得这样太麻烦了(时间问题）。&#xA;于是我突发奇想，如果我将img标签改成video标签呢？如下图&#xA;发现居然完美契合，毫无违和感。&#xA;预览的实现 在做到把img改为video标签之前，还需要解决的另一个问题就是，如何让视频也支持预览。老规矩，我们先来看看官方Demo怎么实现预览的。&#xA;官方的做法是增加一个dialog，然后在点击预览图片时将文件url传给dialog。我们先来实现一下改写一下dialog&#xA;&amp;lt;el-dialog :visible.sync=&amp;#34;dialogVisible&amp;#34; :modal-append-to-body=&amp;#34;true&amp;#34;&amp;gt; &amp;lt;video width=&amp;#34;100%&amp;#34; muted autoplay=&amp;#34;autoplay&amp;#34; loop=&amp;#34;loop&amp;#34; v-if=&amp;#34;dialogImageUrl[dialogImageUrl.length - 1] == 4&amp;#34; :src=&amp;#34;dialogImageUrl&amp;#34;&amp;gt;&amp;lt;/video&amp;gt; &amp;lt;img width=&amp;#34;100%&amp;#34; v-else :src=&amp;#34;dialogImageUrl&amp;#34; alt /&amp;gt; &amp;lt;/el-dialog&amp;gt; tips: 我这种判断MP4格式的方式实属异端，不建议模仿。&#xA;替换img标签 一到标签节点的操作，我第一想到的就是document操作（异端+1），直接上代码。&#xA;changeVideoTag(){ let videoTag = document.querySelector(&amp;#39;.video img&amp;#39;) console.log(&amp;#39;检测到应为video的img标签&amp;#39;, videoTag) if(videoTag){ let parentNode = videoTag.parentNode let newElement = document.createElement(&amp;#39;video&amp;#39;) newElement.setAttribute(&amp;#39;class&amp;#39;, videoTag.getAttribute(&amp;#39;class&amp;#39;)) newElement.setAttribute(&amp;#39;src&amp;#39;, videoTag.getAttribute(&amp;#39;src&amp;#39;)) parentNode.insertBefore(newElement, videoTag) } }, 该函数负责寻找video类下的img标签，然后在img标签之前，添加一个同样的videos元素节点，此处你可以选择是否移除原img标签。&#xA;最终实现效果 最后的话 这种方法非常不推荐使用，强烈建议使用自定义模板缩略图&#xA;这种方法非常不推荐使用，强烈建议使用自定义模板缩略图</description>
     </item>
   </channel>

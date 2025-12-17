@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>微信开发 on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</link>
+    <link>https://blog.thinkmoon.cn/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</link>
     <description>Recent content in 微信开发 on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Wed, 16 Jan 2019 11:13:43 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>（超详细）快速搭建一个简易微信小程序后台网站（上）</title>
-      <link>http://localhost:1313/post/15__%E8%B6%85%E8%AF%A6%E7%BB%86_%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E5%8F%B0%E7%BD%91%E7%AB%99_%E4%B8%8A_/</link>
+      <link>https://blog.thinkmoon.cn/post/15__%E8%B6%85%E8%AF%A6%E7%BB%86_%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E5%8F%B0%E7%BD%91%E7%AB%99_%E4%B8%8A_/</link>
       <pubDate>Wed, 16 Jan 2019 11:13:43 +0000</pubDate>
-      <guid>http://localhost:1313/post/15__%E8%B6%85%E8%AF%A6%E7%BB%86_%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E5%8F%B0%E7%BD%91%E7%AB%99_%E4%B8%8A_/</guid>
+      <guid>https://blog.thinkmoon.cn/post/15__%E8%B6%85%E8%AF%A6%E7%BB%86_%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E5%8F%B0%E7%BD%91%E7%AB%99_%E4%B8%8A_/</guid>
       <description>本文实践平台：腾讯云（qcloud.com)&#xA;首先我们来看看腾讯云官方的解决方案示意图&#xA;看懂了吗？看没看懂都没关系我们开始走一遍就好了。大致步骤如下：&#xA;购买腾讯云微信小程序解决方案&#xA;部署 mysql 实例到云数据库&#xA;部署网站到服务器，使网站外网可访问&#xA;将网站与数据库连接起来&#xA;配置 SSL 证书，使网站可 https 访问&#xA;构建负载均衡，使用户可以通过负载均衡的方式访问&#xA;制作服务器镜像，将可成功访问的服务器复制&#xA;新建 N（N&amp;gt;0)台服务器，将服务器重装为自定义镜像&#xA;test&#xA;详细如下：&#xA;购买腾讯云微信小程序解决方案 进入腾讯云官网（https://www.qcloud.com) 选择解决方案&amp;gt;微信小程序解决方案 就选择 3 元新购活动吧，我已经购买过了，就不再这儿演示怎么购买了。&#xA;购买成功之后腾讯云会下发资源。 succeed：此过程成功标志为资源下发成功，以及收到如下站内信。&#xA;部署 mysql 实例到云数据库 根据上图所提供的地址，使用数据库连接工具（如 Navicat）连接数据库进行数据传输。_ 数据传输_ succeed：此过程的成功标志为，在远程数据库中可查看到相应的表和数据&#xA;部署网站到服务器，使网站外网可访问 首先我们对腾讯云下发的 demo 服务器进行重装系统（精神洁癖，不重装不舒服）_ 注:不重装的话，网站的根目录在/data/release/php_weapp_demo &amp;gt; _ &amp;gt; * &amp;gt; ** &amp;gt; &amp;gt; **&#xA;我这儿装的是 centOS 6.5。版本不同可能会对应的软件安装方式不同。 2.*为服务器安装 apache_ #安装 apache&#xA;root@localhost ~]# yum -y install httpd&#xA;开机自启动 [root@localhost ~]# chkconfig httpd on&#xA;启动 httpd 服务 [root@localhost ~]# service httpd start</description>
     </item>
     <item>
       <title>醉月老哥的微信助手</title>
-      <link>http://localhost:1313/post/3_%E9%86%89%E6%9C%88%E8%80%81%E5%93%A5%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%8A%A9%E6%89%8B/</link>
+      <link>https://blog.thinkmoon.cn/post/3_%E9%86%89%E6%9C%88%E8%80%81%E5%93%A5%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%8A%A9%E6%89%8B/</link>
       <pubDate>Wed, 16 Jan 2019 11:12:02 +0000</pubDate>
-      <guid>http://localhost:1313/post/3_%E9%86%89%E6%9C%88%E8%80%81%E5%93%A5%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%8A%A9%E6%89%8B/</guid>
+      <guid>https://blog.thinkmoon.cn/post/3_%E9%86%89%E6%9C%88%E8%80%81%E5%93%A5%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%8A%A9%E6%89%8B/</guid>
       <description>前言 醉月老哥的微信助手:&#xA;不要问我为什么起这个名字，我也不知道!&#xA;这两天天气冷，在脑海里构想这个，之后便开始着手做了。&#xA;开始日期:2017年12月15日 13时47分25秒&#xA;功能定位 立志做一个对接全网内容的助手,其内容包括但不限于:糗事百科，今日头条，简书，MSDN，php.net，百度翻译，搜索引擎。争取做到微信在手，天下我有！有好的想法或者建议欢迎联系我！&#xA;特别感谢: @Goff, @Annabel&#xA;现有功能介绍 1. 糗事百科 使用说明 公众号回复&amp;quot;糗事百科&amp;quot;&#xA;效果展示 ：TODO 虽然看似基本功能完成了，但是会有一个小问题：&#xA;当爬取的内容为，图片分享时，并不能展示其对应的图片&#xA;2. 今日头条 今日头条-使用说明 公众号回复“今日头条&amp;quot;&#xA;今日头条-效果展示 今日头条-:TODO 我怎么感觉这个娱乐新闻偏多呢？（是头条热点的问题?)&#xA;1.将内容集中与政治，社会，科技&#xA;3. 醉月老哥的微信助手 醉月老哥的微信助手-使用说明 公众号回复&amp;quot;醉月老哥的微信助手&amp;quot;&#xA;醉月老哥的微信助手-效果展示 4.搜索新闻 搜索新闻-使用说明 回复&amp;rsquo;news(关键词)&amp;lsquo;搜索新闻，例如news(江歌),搜索关于江歌的新闻&#xA;搜索新闻-效果展示 搜索新闻-：TODO 让新闻来源可指向&#xA;公众号二维码 源代码地址 醉月老哥的微信助手&#xA;更新说明 更新说明</description>
     </item>
     <item>
       <title>微信公众平台开发笔记</title>
-      <link>http://localhost:1313/post/20_%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</link>
+      <link>https://blog.thinkmoon.cn/post/20_%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Wed, 16 Jan 2019 11:08:10 +0000</pubDate>
-      <guid>http://localhost:1313/post/20_%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://blog.thinkmoon.cn/post/20_%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</guid>
       <description>URL跳转, 链接跳转&#xA;https://open.weixin.qq.com/connect/oauth2/authorize?appid=&amp;quot;.$this-&amp;gt;appid.&amp;quot;&amp;amp;redirect_uri=&amp;quot;.urlencode(&amp;quot;http://192.168.43.46/auit/index.php?c=app&amp;amp;m=oauth&amp;quot;).&amp;quot;&amp;amp;response_type=code&amp;amp;scope=snsapi_userinfo&amp;amp;state=STATE#wechat_redirect&#xA;用户进入页面,拿code换取ACCESS_TOKEN, 请求代码 file_get_contents(&amp;#34;https://api.weixin.qq.com/sns/oauth2/access_token?appid=&amp;#34;.$this-&amp;gt;appid.&amp;#34;&amp;amp;secret=&amp;#34;.$this-&amp;gt;secret.&amp;#34;&amp;amp;code=&amp;#34;.$_GET[&amp;#39;code&amp;#39;].&amp;#34;&amp;amp;grant_type=authorization_code&amp;#34;); 用ACCESS_TOKEN换取用户数据,请求代码 file_get_contents(&amp;#34;https://api.weixin.qq.com/sns/userinfo?access_token=&amp;#34;.$data-&amp;gt;access_token.&amp;#34;&amp;amp;openid=&amp;#34;.$data-&amp;gt;openid.&amp;#34;&amp;amp;lang=zh_CN&amp;#34;) 流程示例代码&#xA;public function oauth(){ if (isset($_GET[&amp;#39;code&amp;#39;])){ $data=json_decode(file_get_contents(&amp;#34;https://api.weixin.qq.com/sns/oauth2/access_token?appid=&amp;#34;.$this-&amp;gt;appid.&amp;#34;&amp;amp;secret=&amp;#34;.$this-&amp;gt;secret.&amp;#34;&amp;amp;code=&amp;#34;.$_GET[&amp;#39;code&amp;#39;].&amp;#34;&amp;amp;grant_type=authorization_code&amp;#34;)); $userInfo=json_decode(file_get_contents(&amp;#34;https://api.w eixin.qq.com/sns/userinfo?access_token=&amp;#34;.$data-&amp;gt;access_token.&amp;#34;&amp;amp;openid=&amp;#34;.$data-&amp;gt;openid.&amp;#34;&amp;amp;lang=zh_CN&amp;#34;)); $user = array( &amp;#39;openid&amp;#39; =&amp;gt; $userInfo-&amp;gt;openid, &amp;#39;nickname&amp;#39; =&amp;gt; $userInfo-&amp;gt;nickname, &amp;#39;headimgurl&amp;#39; =&amp;gt; $userInfo-&amp;gt;headimgurl ); $this-&amp;gt;session-&amp;gt;set_userdata($user); $this-&amp;gt;db-&amp;gt;replace(&amp;#39;user&amp;#39;, $user); redirect(&amp;#39;client&amp;#39;); }else{ echo &amp;#34;出现未知错误，如果重复出现该错误，请联系开发者。错误代码:Oauth:10203&amp;#34;; } } php密码操作(PHP 5 &amp;gt;= 5.5.0, PHP 7) 加密操作:string password_hash ( string $password , int $algo [, array $options ] ) 示例:&#xA;password_hash(&amp;#34;admin&amp;#34;, PASSWORD_DEFAULT); 判断操作: bool password_verify ( string $password , string $hash ) 示例:</description>
     </item>
   </channel>

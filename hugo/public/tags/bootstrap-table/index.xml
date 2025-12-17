@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bootstrap-Table on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/bootstrap-table/</link>
+    <link>https://blog.thinkmoon.cn/tags/bootstrap-table/</link>
     <description>Recent content in Bootstrap-Table on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Sat, 16 Feb 2019 22:29:38 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/bootstrap-table/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/bootstrap-table/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bootstrap-table 爬坑之旅</title>
-      <link>http://localhost:1313/post/157_bootstrap-table-%E7%88%AC%E5%9D%91%E4%B9%8B%E6%97%85/</link>
+      <link>https://blog.thinkmoon.cn/post/157_bootstrap-table-%E7%88%AC%E5%9D%91%E4%B9%8B%E6%97%85/</link>
       <pubDate>Sat, 16 Feb 2019 22:29:38 +0000</pubDate>
-      <guid>http://localhost:1313/post/157_bootstrap-table-%E7%88%AC%E5%9D%91%E4%B9%8B%E6%97%85/</guid>
+      <guid>https://blog.thinkmoon.cn/post/157_bootstrap-table-%E7%88%AC%E5%9D%91%E4%B9%8B%E6%97%85/</guid>
       <description>继上次被坑后,由于未做笔记, 没想的我再次败在这个坑上, 自我感觉我还将使用bootstraap-table一段时间, 所以为了避免下次再被这个坑坑一个下午的时间. 我决定将它记录下来.&#xA;首先, 前端table插件有很多, 但是由于它是我接触的第一个,所以可能会用它一定的时间.&#xA;我采用的是, data-url,数据与视图分离的格式.&#xA;坑:&#xA;在operation的formatter和events的设定时, 切记不要设置data-field的值,否则会出现events显示不了的情况 . 在引入js拓展时,注意后面的js不能与其冲突,导致改变引入顺序 </description>
     </item>
   </channel>

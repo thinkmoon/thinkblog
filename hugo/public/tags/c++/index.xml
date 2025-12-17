@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C&#43;&#43; on 指尖魔法屋</title>
-    <link>http://localhost:1313/tags/c&#43;&#43;/</link>
+    <link>https://blog.thinkmoon.cn/tags/c&#43;&#43;/</link>
     <description>Recent content in C&#43;&#43; on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
     <lastBuildDate>Wed, 16 Jan 2019 11:12:41 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.thinkmoon.cn/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43;11新特性之auto的妙用</title>
-      <link>http://localhost:1313/post/77_c__11%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8Bauto%E7%9A%84%E5%A6%99%E7%94%A8/</link>
+      <link>https://blog.thinkmoon.cn/post/77_c__11%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8Bauto%E7%9A%84%E5%A6%99%E7%94%A8/</link>
       <pubDate>Wed, 16 Jan 2019 11:12:41 +0000</pubDate>
-      <guid>http://localhost:1313/post/77_c__11%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8Bauto%E7%9A%84%E5%A6%99%E7%94%A8/</guid>
+      <guid>https://blog.thinkmoon.cn/post/77_c__11%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8Bauto%E7%9A%84%E5%A6%99%E7%94%A8/</guid>
       <description>C++11引入了auto和decltype关键字实现类型推导，通过这两个关键字不仅能方便地获得复杂的类型，还能简化书写，提高编码效率。下面说一下C++中的auto&#xA;旧标准 auto其实并不是一个新的关键字，在旧的标准C++98/03中，它代表着“具有自动存储周期的局部变量”。啥意思呢？就是我们平常所说的变量，他与static相对。就是说所有非static类型的都是“具有自动存储期的”。也就是说在旧的标准下。&#xA;autoint i =3;//等价于int i=3; 新标准 在C++11中，auto作为一个新的类型指示符（如int，double）来指示编译器的，但是auto申明的变量的类型必须由编译器在编译时期推导出来，也称类型推导。这种类型推导不是C++所独有的，还有很多具备这种能力的语言（如Python，Javascript）。我们先来看一段Python代码&#xA;name =&amp;#34;thinkmoon&amp;#34;print&amp;#34;hello,&amp;#34;+ name 在这里的name是不需要定义类型的，因为这个类型很容易被推导为字符串性，如过要想在C++中实现这种效果，我们可以这样。&#xA;#include&amp;lt;iostream&amp;gt; int main(){ auto name =&amp;#34;thinkmoon&amp;#34;; std::cout &amp;lt;&amp;lt;&amp;#34;hello,&amp;#34;&amp;lt;&amp;lt; name &amp;lt;&amp;lt; std::endl; return0; } 效果是一样的，是不是觉得写起来特别的方便呢？&#xA;但是需要注意的是，在C++中这种静态类型推导是发生在编译期间的。而像Python这种动态类型推导却是发生在运行期间的。&#xA;auto的基本用法 #include&amp;lt;iostream&amp;gt; usingnamespace std; int main(){ auto x =5; cout &amp;lt;&amp;lt; x &amp;lt;&amp;lt; endl;//x被推导为intauto p =newauto(1); cout &amp;lt;&amp;lt;&amp;#34;*&amp;#34;&amp;lt;&amp;lt; p &amp;lt;&amp;lt;&amp;#34;=&amp;#34;&amp;lt;&amp;lt;*p &amp;lt;&amp;lt; endl;//p被推导为 int *constauto*v =&amp;amp;x, u =6; cout &amp;lt;&amp;lt;&amp;#34;*&amp;#34;&amp;lt;&amp;lt; v &amp;lt;&amp;lt;&amp;#34;=&amp;#34;&amp;lt;&amp;lt;*v &amp;lt;&amp;lt;&amp;#34;\n u=&amp;#34;&amp;lt;&amp;lt; u &amp;lt;&amp;lt; endl;//v被推导为const int *，u被推导const int } 对于最后一个类型推导有几个需要注意</description>
     </item>
   </channel>
