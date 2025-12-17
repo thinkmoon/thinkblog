@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="page-container">
+    <div class="container">
+        <div class="page-header">
+            <h1>{{ if eq .Title "Categories" }}所有分类{{ else if eq .Title "Tags" }}所有标签{{ else }}所有{{ .Title }}{{ end }}</h1>
+            <p>{{ if eq .Title "Categories" }}浏览所有文章分类{{ else if eq .Title "Tags" }}浏览所有文章标签{{ else }}浏览所有{{ .Title }}{{ end }}</p>
+        </div>
+
+        <div class="taxonomy-list">
+            {{ range .Pages }}
+            <a href="{{ .RelPermalink }}" class="taxonomy-link">
+                <span class="taxonomy-name">{{ .Title }}</span>
+                <span class="taxonomy-count">{{ len .Pages }}</span>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

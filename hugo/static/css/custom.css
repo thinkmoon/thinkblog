@@ -1,4 +1,9 @@
 /* Custom styles for ThinkBlog */
+
+:root {
+    --bg-content-subtle: #fefefe;  /* 淡雅白背景色，用于文章内容区域 */
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
@@ -26,14 +31,16 @@ header {
 }
 
 .top-menu {
-    background-color: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 122, 204, 0.1);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
     padding: 1rem 0;
+    box-shadow: 0 2px 20px rgba(0, 122, 204, 0.08);
 }
 
 .top-menu .container {
@@ -48,8 +55,13 @@ header {
 .top-menu .left a {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #fff;
+    color: #007acc;
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.top-menu .left a:hover {
+    color: #0056b3;
 }
 
 .top-menu .menu {
@@ -60,21 +72,54 @@ header {
     gap: 2rem;
 }
 
+.top-menu .menu a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.top-menu .menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #007acc, #0056b3);
+    transition: width 0.3s ease;
+}
+
+.top-menu .menu a:hover::after,
+.top-menu .menu li.active a::after {
+    width: 100%;
+}
+
+.top-menu .menu a:hover {
+    color: #007acc;
+}
+
 .top-menu .menu li.active a {
-    color: #ffd700;
+    color: #007acc;
+    font-weight: 600;
 }
 
 .top-menu .right .admin-link {
-    color: #fff;
+    color: #007acc;
     text-decoration: none;
     padding: 0.5rem 1rem;
-    border: 1px solid #fff;
-    border-radius: 4px;
+    border: 1px solid #007acc;
+    border-radius: 20px;
     transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .top-menu .right .admin-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background: #007acc;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 122, 204, 0.3);
 }
 
 .logo {
@@ -93,13 +138,30 @@ nav ul {
 }
 
 nav a {
-    color: #fff;
+    color: #333;
     text-decoration: none;
-    transition: color 0.3s;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #007acc, #0056b3);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
 }
 
 nav a:hover {
-    color: #ccc;
+    color: #007acc;
 }
 
 /* Main content */
@@ -197,24 +259,55 @@ body.home-page main {
     max-width: 980px;
     margin: 0 auto;
     padding: 45px;
+    background-color: var(--bg-content-subtle);  /* 淡雅白背景色 */
 }
 
 @media (max-width: 767px) {
     .article-content .markdown-body {
         padding: 15px;
     }
+
+    .post-header {
+        margin-top: 4rem;  /* 移动端导航栏稍矮 */
+        padding: 1.5rem 15px 2rem 15px;  /* 移动端添加上内边距 */
+        background-color: var(--bg-content-subtle);  /* 移动端也使用淡雅白背景色 */
+    }
 }
 
 .post-header {
-    border-bottom: 1px solid #eee;
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    margin-top: 3rem;  /* 避免被导航栏遮挡 */
+    padding: 2rem 45px 2rem 45px;  /* 添加上内边距 */
+    background-color: var(--bg-content-subtle);  /* 淡雅白背景色 */
+    border-bottom: 1px solid rgba(0, 122, 204, 0.1);
 }
 
 .post-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
     color: #333;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.post-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
 }
 
 .post-tags {
@@ -222,14 +315,26 @@ body.home-page main {
 }
 
 .tag {
-    display: inline-block;
-    background: #f0f0f0;
-    color: #666;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0, 122, 204, 0.08);
+    color: #007acc;
+    padding: 0.4rem 0.8rem;
+    border-radius: 16px;
     font-size: 0.8rem;
+    font-weight: 500;
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
+    border: 1px solid rgba(0, 122, 204, 0.15);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.tag:hover {
+    background: #007acc;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 122, 204, 0.2);
 }
 
 /* Footer */
@@ -431,12 +536,8 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4px;
-    margin: 40px 0;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    gap: 2px;
+    margin: 32px 0;
     flex-wrap: wrap;
 }
 
@@ -444,55 +545,168 @@ footer {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 40px;
-    height: 40px;
-    padding: 0 12px;
-    border-radius: 6px;
-    font-size: 14px;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border-radius: 16px;
+    font-size: 13px;
     text-decoration: none;
-    color: #606266;
+    color: #666;
     background: transparent;
-    border: 1px solid #dcdfe6;
-    transition: all 0.3s ease;
-    margin: 2px;
+    border: none;
+    transition: all 0.2s ease;
+    margin: 1px;
 
     &:hover {
         color: #007acc;
-        border-color: #007acc;
-        background-color: rgba(0, 122, 204, 0.05);
+        background-color: rgba(0, 122, 204, 0.08);
+        transform: translateY(-1px);
     }
 
     &.active {
         background-color: #007acc;
         color: #fff;
-        border-color: #007acc;
+        font-weight: 600;
 
         &:hover {
-            background-color: #005999;
-            border-color: #005999;
+            background-color: #0056b3;
+            transform: none;
         }
     }
 
     &.prev, &.next {
         font-weight: 500;
+        color: #888;
     }
 
     &.disabled {
-        color: #c0c4cc;
+        color: #ccc;
         cursor: not-allowed;
-        border-color: #dcdfe6;
 
         &:hover {
-            color: #c0c4cc;
+            color: #ccc;
             background: transparent;
-            border-color: #dcdfe6;
+            transform: none;
         }
     }
 }
 
+/* Taxonomy (Categories & Tags) Button Styles */
+.categories-list, .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: flex-start;
+    margin-top: 32px;
+}
+
+.category-item, .tag-item {
+    display: inline-block;
+}
+
+.category-link, .tag-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #495057;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    min-height: 48px;
+}
+
+.category-link:hover, .tag-link:hover {
+    background: #007acc;
+    color: #fff;
+    border-color: #007acc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 122, 204, 0.3);
+}
+
+.category-name, .tag-name {
+    font-weight: 600;
+}
+
+.category-count, .tag-count {
+    background: rgba(0, 0, 0, 0.1);
+    color: inherit;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 20px;
+    text-align: center;
+}
+
+.category-link:hover .category-count, .tag-link:hover .tag-count {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Taxonomy list styles */
+.taxonomy-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+    margin-top: 24px;
+}
+
+.taxonomy-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 122, 204, 0.2);
+    border-radius: 20px;
+    text-decoration: none;
+    color: #007acc;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.taxonomy-link:hover {
+    background: #007acc;
+    color: #fff;
+    border-color: #007acc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 122, 204, 0.3);
+}
+
+.taxonomy-name {
+    font-weight: 500;
+}
+
+.taxonomy-count {
+    background: rgba(0, 122, 204, 0.1);
+    color: #007acc;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+    border: 1px solid rgba(0, 122, 204, 0.2);
+}
+
+.taxonomy-link:hover .taxonomy-count {
+    background: rgba(255, 255, 255, 0.9);
+    color: #007acc;
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-    nav ul {
+    nav ul, .top-menu .menu {
         gap: 1rem;
     }
 
@@ -505,7 +719,17 @@ footer {
     }
 
     .post-header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+
+    .post-meta {
+        gap: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .tag {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
     }
 
     /* Article list responsive */
@@ -533,15 +757,27 @@ footer {
     }
 
     .pagination-container {
-        padding: 15px;
-        gap: 2px;
+        margin: 24px 0;
+        gap: 1px;
     }
 
     .pagination-link {
-        min-width: 36px;
-        height: 36px;
-        font-size: 13px;
-        padding: 0 8px;
+        min-width: 28px;
+        height: 28px;
+        font-size: 12px;
+        padding: 0 6px;
+    }
+
+    /* Taxonomy responsive */
+    .categories-list, .tags-list, .taxonomy-list {
+        gap: 6px;
+        margin-top: 20px;
+    }
+
+    .category-link, .tag-link, .taxonomy-link {
+        padding: 6px 12px;
+        font-size: 12px;
+        gap: 5px;
     }
 }
 

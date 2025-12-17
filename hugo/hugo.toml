@@ -14,7 +14,7 @@ summaryLength = 70
 
 # 语法高亮
 pygmentsCodeFences = true
-pygmentsUseClasses = true
+pygmentsUseClasses = false
 
 # 菜单配置
 [menu]
@@ -65,7 +65,7 @@ pygmentsUseClasses = true
     lineNoStart = 1
     lineNos = false
     lineNumbersInTable = true
-    noClasses = true
+    noClasses = false
     style = "github"
     tabWidth = 4
 
@@ -76,7 +76,7 @@ paginate = 10
 [params]
   description = "醉月老哥的技术博客"
   favicon = "favicon.ico"
-  custom_css = ["css/github-markdown.css", "css/custom.css"]
+  custom_css = ["css/github-markdown.css", "css/chroma.css", "css/custom.css"]
   dateFormat = "2006-01-02"
 
   [params.author]
