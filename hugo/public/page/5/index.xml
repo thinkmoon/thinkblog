@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>文章列表 - 第5页 on 指尖魔法屋</title>
-    <link>http://localhost:1313/page/5/</link>
+    <link>https://example.org/page/5/</link>
     <description>Recent content in 文章列表 - 第5页 on 指尖魔法屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 ThinkBlog. All rights reserved.</copyright>
-    <atom:link href="http://localhost:1313/page/5/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/page/5/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

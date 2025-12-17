@@ -9,7 +9,18 @@
         </div>
 
         <div class="blog-posts">
-            {{ range .Paginator.Pages }}
+            {{ $pages := .Site.RegularPages }}
+            {{ $pageSize := 10 }}
+            {{ $currentURL := .RelPermalink }}
+            {{ $currentPage := 1 }}
+            {{ $afterPage := strings.TrimPrefix "/page/" $currentURL }}
+            {{ $trimmed := strings.TrimSuffix "/" $afterPage }}
+            {{ if $trimmed }}
+                {{ $currentPage = int $trimmed }}
+            {{ end }}
+            {{ $offset := mul (sub $currentPage 1) $pageSize }}
+            {{ range $index, $element := $pages }}
+                {{ if and (ge $index $offset) (lt $index (add $offset $pageSize)) }}
             <article class="content-box">
                 {{ if .Params.featured_image }}
                 <div class="posts-default-img">
@@ -74,25 +85,27 @@
             {{ end }}
         </div>
 
-        {{ if .Paginator }}
+        {{ $totalPages := div (len (where .Site.RegularPages ".Section" "post")) 10 }}
+        {{ if gt (mod (len (where .Site.RegularPages ".Section" "post")) 10) 0 }}
+            {{ $totalPages = add $totalPages 1 }}
+        {{ end }}
+
+        {{ if gt $totalPages 1 }}
         <div class="pagination-container">
-            {{ if .Paginator.HasPrev }}
-            <a href="{{ .Paginator.Prev.URL }}" class="pagination-link prev">上一页</a>
+            {{ $maxVisible := 5 }}
+            {{ if gt $currentPage 1 }}
+            <a href="/page/{{ sub $currentPage 1 }}/" class="pagination-link prev">上一页</a>
             {{ else }}
             <span class="pagination-link prev disabled">上一页</span>
             {{ end }}
-
-            {{ $currentPage := .Paginator.PageNumber }}
-            {{ $totalPages := .Paginator.TotalPages }}
-            {{ $maxVisible := 5 }}
             {{ if le $totalPages $maxVisible }}
                 {{ range $i := (seq 1 $totalPages) }}
-                <a href="/page/page/{{ $i }}/" class="pagination-link {{ if eq $i $currentPage }}active{{ end }}">{{ $i }}</a>
+                <a href="/page/{{ $i }}/" class="pagination-link {{ if eq $i $currentPage }}active{{ end }}">{{ $i }}</a>
                 {{ end }}
             {{ else }}
                 {{ if le $currentPage 3 }}
                     {{ range $i := (seq 1 4) }}
-                    <a href="/page/page/{{ $i }}/" class="pagination-link {{ if eq $i $currentPage }}active{{ end }}">{{ $i }}</a>
+                    <a href="/page/{{ $i }}/" class="pagination-link {{ if eq $i $currentPage }}active{{ end }}">{{ $i }}</a>
                     {{ end }}
                     {{ if gt $totalPages 4 }}
                     <span class="pagination-link disabled">...</span>
@@ -102,21 +115,21 @@
                     <a href="/page/" class="pagination-link">1</a>
                     <span class="pagination-link disabled">...</span>
                     {{ range $i := (seq (sub $totalPages 3) $totalPages) }}
-                    <a href="/page/page/{{ $i }}/" class="pagination-link {{ if eq $i $currentPage }}active{{ end }}">{{ $i }}</a>
+                    <a href="/page/{{ $i }}/" class="pagination-link {{ if eq $i $currentPage }}active{{ end }}">{{ $i }}</a>
                     {{ end }}
                 {{ else }}
                     <a href="/page/" class="pagination-link">1</a>
                     <span class="pagination-link disabled">...</span>
                     {{ range $i := (seq (sub $currentPage 1) (add $currentPage 1)) }}
-                    <a href="/page/page/{{ $i }}/" class="pagination-link {{ if eq $i $currentPage }}active{{ end }}">{{ $i }}</a>
+                    <a href="/page/{{ $i }}/" class="pagination-link {{ if eq $i $currentPage }}active{{ end }}">{{ $i }}</a>
                     {{ end }}
                     <span class="pagination-link disabled">...</span>
                     <a href="/page/page/{{ $totalPages }}/" class="pagination-link">{{ $totalPages }}</a>
                 {{ end }}
             {{ end }}
 
-            {{ if .Paginator.HasNext }}
-            <a href="{{ .Paginator.Next.URL }}" class="pagination-link next">下一页</a>
+            {{ if lt $currentPage $totalPages }}
+            <a href="/page/{{ add $currentPage 1 }}/" class="pagination-link next">下一页</a>
             {{ else }}
             <span class="pagination-link next disabled">下一页</span>
             {{ end }}
@@ -124,3 +137,4 @@
         {{ end }}
     </div>
 </div>
+{{ end }}

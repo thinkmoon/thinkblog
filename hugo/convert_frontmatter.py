@@ -4,6 +4,7 @@ import re
 import glob
 import yaml
 import math
+import shutil
 
 def convert_frontmatter(content_dir):
     """Convert frontmatter from original format to Hugo format"""
@@ -73,7 +74,7 @@ def convert_frontmatter(content_dir):
             print(f"Error processing {file_path}: {e}")
 
 def generate_pagination(content_dir, posts_per_page=10):
-    """Generate pagination aliases for Hugo built-in pagination"""
+    """Generate pagination pages for custom pagination"""
 
     # Count posts in the post directory
     post_dir = os.path.join(content_dir, "post")
@@ -85,38 +86,56 @@ def generate_pagination(content_dir, posts_per_page=10):
     total_posts = len(md_files)
     total_pages = math.ceil(total_posts / posts_per_page)
 
-    print(f"Found {total_posts} posts, will create aliases for {total_pages} pages")
+    print(f"Found {total_posts} posts, creating {total_pages} pages")
 
     # Create page directory if it doesn't exist
     page_dir = os.path.join(content_dir, "page")
+    if os.path.exists(page_dir):
+        # Remove existing pagination directories (but keep _index.md)
+        for item in os.listdir(page_dir):
+            item_path = os.path.join(page_dir, item)
+            if os.path.isdir(item_path) and item.isdigit():
+                shutil.rmtree(item_path)
+                print(f"Removed old pagination directory: {item}")
+
     os.makedirs(page_dir, exist_ok=True)
 
-    # Generate aliases for pagination
-    aliases = ['/page/']  # /page/ redirects to first page
-    for page_num in range(2, total_pages + 1):  # Start from page 2
-        aliases.append(f'/page/{page_num}/')
+    # Generate pagination pages
+    for page_num in range(1, total_pages + 1):
+        page_subdir = os.path.join(page_dir, str(page_num))
+        os.makedirs(page_subdir, exist_ok=True)
 
-    # Update the main page _index.md with all aliases
+        # Create _index.md for this page
+        index_content = f"""---
+title: "文章列表 - 第{page_num}页"
+description: "所有文章的完整列表，按时间倒序排列 - 第{page_num}页"
+type: "page"
+layout: "list"
+url: "/page/{page_num}/"
+---
+"""
+        index_path = os.path.join(page_subdir, "_index.md")
+        with open(index_path, 'w', encoding='utf-8') as f:
+            f.write(index_content)
+
+        print(f"Created pagination page: {page_num}")
+
+    # Update the main page _index.md
     main_page_index = os.path.join(page_dir, "_index.md")
-    aliases_yaml = '\n'.join(f'  - "{alias}"' for alias in aliases)
-
     main_index_content = f"""---
 title: "文章列表"
 description: "所有文章的完整列表，按时间倒序排列"
 type: "page"
 layout: "list"
-paginate: 10
-aliases:
-{aliases_yaml}
 ---
 """
     with open(main_page_index, 'w', encoding='utf-8') as f:
         f.write(main_index_content)
 
-    print(f"Updated main page index with {len(aliases)} aliases for pagination")
+    print("Updated main page index")
 
 if __name__ == "__main__":
     content_dir = "content"
     convert_frontmatter(content_dir)
     generate_pagination(content_dir)
-    print("Frontmatter conversion and pagination setup completed!")
+    print("Frontmatter conversion and pagination generation completed!")

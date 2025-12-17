@@ -1,25 +1,1055 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>文章列表 - 第7页 | 指尖魔法屋</title>
 
+    
+    <meta name="description" content="所有文章的完整列表，按时间倒序排列 - 第7页">
+    <meta name="keywords" content="">
+
+    
+    <meta property="og:title" content="文章列表 - 第7页">
+    <meta property="og:description" content="所有文章的完整列表，按时间倒序排列 - 第7页">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.org/page/7/">
+    
+
+    
+    <link rel="icon" href="https://example.org/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://example.org/css/reset.css">
+    <link rel="stylesheet" href="https://example.org/css/github-markdown.css">
+    <link rel="stylesheet" href="https://example.org/css/custom.css">
+</head>
+<body>
+    
+    
+    <nav class="top-menu">
+        <div class="container">
+            <div class="left">
+                <a href="https://example.org/">指尖魔法屋</a>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a href="https://example.org/">首页</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/categories/">分类</a>
+                </li>
+                <li class="">
+                    <a href="https://example.org/tags/">标签</a>
+                </li>
+            </ul>
+            <div class="right">
+                <a href="/admin" class="admin-link">
+                    <span>登录</span>
+                </a>
+            </div>
         </div>
+    </nav>
+    
+
+    
+    <main>
+        
+<div class="page-container">
+    <div class="container">
+        <div class="page-header">
+            <h1>文章列表 - 第7页</h1>
+            
+            <p class="page-description">所有文章的完整列表，按时间倒序排列 - 第7页</p>
+            
+        </div>
+
+        <div class="blog-posts">
+            
+            
+            
+            
+            
+            
+            
+                
+            
+            
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/post/692_vscode%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5docker%E6%94%AF%E6%8C%81%E4%B8%8E%E4%B8%BB%E6%9C%BA%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/" title="Vscode无缝连接docker支持与主机文件同步">
+                        <div class="overlay"></div>
+                        <img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-21T01:33:55.png" alt="Vscode无缝连接docker支持与主机文件同步" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="https://example.org/tags/tensorflow" class="post-tag">tensorflow</a>
+                            
+                            <a href="https://example.org/tags/vscode" class="post-tag">vscode</a>
+                            
+                            <a href="https://example.org/tags/docker" class="post-tag">docker</a>
+                            
+                        </div>
+                        
+
+                        <a href="/post/692_vscode%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5docker%E6%94%AF%E6%8C%81%E4%B8%8E%E4%B8%BB%E6%9C%BA%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/" class="post-title">
+                            Vscode无缝连接docker支持与主机文件同步
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                为什么需要？ 我们在上一篇Ubuntu深度学习的相关配置中最后讲到，将工作目录下的文件装载到了容器之下，这样我们在主机中编写一个文件，如tf.py。在容器中执行，需要输入以下命令。
+docker exec tf python &#39;./tf.py&#39; 这样每改一下文件，想要看效果的话，就需要输入以上命令。而且，还不方便调试。然后，我就在想能不能做到像我平常写代码那样，在VScode中，点一下就运行，而且可以调试呢？于是便有了本文。
+准备工作 安装好VScode并且保证互联网连接正常。然后将工作目录装载到容器的/root/Project目录下，不然/tmp的文件实在是太乱七八糟了。 docker run --gpus all -itd --name tf --rm -v ~/Project:/root/Project tensorflow/tensorflow:latest-gpu-py3 操作流程 首先安装两个插件docker和Remote Development
+上图中可以看到tensorflow的容器已经处于运行中了，然后再打开Remote Development
+显示有一个容器待连接，然后选择它，打开容器中的Project文件夹
+然后安装Python插件和调试工具，修改tf.py文件
+import tensorflow as tf print(&#34;hello tensorflow&#34;) 点击右边的运行图标，成功输出。
+打开主机文件
+发现修改也已经同步，Over，现在可以愉快的写代码了。
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%E9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2020-01-02</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+                
+            
+                
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/post/52_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%AE%80%E4%BB%8B/" title="篆书转换器简介">
+                        <div class="overlay"></div>
+                        <img src="https://www.thinkmoon.cn/usr/uploads/2018/12/2762090747.jpg" alt="篆书转换器简介" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+
+                        <a href="/post/52_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%AE%80%E4%BB%8B/" class="post-title">
+                            篆书转换器简介
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                篆书转换器（Zhuan_Converter） 支持篆书与楷书互转，提供一个学习交流篆刻，书法的平台.
+让篆书学习变得更加容易
+如果你也有公众那我们关联在一起吧： 登录微信公众号
+小程序管理-添加
+关联小程序
+输入小程序APPID(小程序ID)
+wxecf9aa9fecacd72d
+我们的公众号 
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%E9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="https://example.org/categories/%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%9B%B8%E5%85%B3">
+                                        篆书转换器相关
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2020-01-01</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+                
+            
+                
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/post/638_ubuntu%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/" title="Ubuntu深度学习的相关配置">
+                        <div class="overlay"></div>
+                        <img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-19T14:19:05.png" alt="Ubuntu深度学习的相关配置" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+
+                        <a href="/post/638_ubuntu%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/" class="post-title">
+                            Ubuntu深度学习的相关配置
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                安装NVIDIA驱动 查看显卡信息 ubuntu-drivers devices 自动安装显卡驱动 sudo ubuntu-drivers autoinstall 确认是否安装成功 nvidia-smi 安装docker 安装文档
+使用阿里源安装
+# step 1: 安装必要的一些系统工具 sudo apt-get update sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common # step 2: 安装GPG证书 curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add - # Step 3: 写入软件源信息 sudo add-apt-repository &#34;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&#34; # Step 4: 更新并安装Docker-CE sudo apt-get -y update sudo apt-get -y install docker-ce # 安装指定版本的Docker-CE: # Step 1: 查找Docker-CE的版本: # apt-cache madison docker-ce # docker-ce | 17.
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%E9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-12-20</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+                
+            
+                
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/post/650_ubutnu%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E8%B4%B4/" title="Ubutnu使用问题记录贴">
+                        <div class="overlay"></div>
+                        <img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-18T05:46:47.png" alt="Ubutnu使用问题记录贴" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="https://example.org/tags/ubuntu" class="post-tag">ubuntu</a>
+                            
+                            <a href="https://example.org/tags/linux" class="post-tag">linux</a>
+                            
+                            <a href="https://example.org/tags/bash" class="post-tag">bash</a>
+                            
+                            <a href="https://example.org/tags/apt" class="post-tag">apt</a>
+                            
+                        </div>
+                        
+
+                        <a href="/post/650_ubutnu%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E8%B4%B4/" class="post-title">
+                            Ubutnu使用问题记录贴
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                安装软件未满足依赖关系 安装软件curl时提示以下内容
+下列软件包有未满足的依赖关系： curl : 依赖: libcurl4 (= 7.64.0-2ubuntu1.2) 但是 7.65.3-1ubuntu3 正要被安装 E: 无法修正错误，因为您要求某些软件包保持现状，就是它们破坏了软件包间的依赖关系。 这是由于版本不符的导致的，可能是以前卸载的时候未卸载干净。所以我们需要使用purge选项来重新卸载一次。
+sudo apt-get purge libcurl4 然后重新安装，解决问题！！
+执行bash命令提示bash: /dev/fd/63: 没有那个文件或目录 原因：&lt;（…）运算符称为进程替换，是运行命令的一种方式，其输出进入匿名管道。这就是/dev/fd/63。其思想是允许外部命令（这里是bash）将另一个命令输出视为一个文件。通常形式是使用&lt;将伪文件对象重定向到bash的输入流中。
+解决方案，使用两个&lt;
+用户不在sudo列表 别问为什么出现这个问题，，，
+解决方法 重启进恢复模式
+选择root用户
+添加用户至sudo组
+adduser username sudo 系统没有设置图标 天哪，为啥我的电脑老是出现些奇怪的问题。
+解决方法 -sudo apt update-
+sudo apt install gnome-control-center
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%E9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-12-20</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+                
+            
+                
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/post/674_ubuntu%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%8A%A0%E9%80%9Fdocker-pull/" title="Ubuntu使用阿里云加速docker pull">
+                        <div class="overlay"></div>
+                        <img src="https://blog.cdn.thinkmoon.cn/blog/typecho/2019-12-19T09:13:04.png" alt="Ubuntu使用阿里云加速docker pull" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="https://example.org/tags/docker" class="post-tag">docker</a>
+                            
+                        </div>
+                        
+
+                        <a href="/post/674_ubuntu%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%8A%A0%E9%80%9Fdocker-pull/" class="post-title">
+                            Ubuntu使用阿里云加速docker pull
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                使用 Docker 时需要首先下载一个官方镜像，例如 mysql、wordpress。然而由于网络原因，下载一个 Docker 官方镜像可能会需要很长的时间，甚至下载失败。为此，阿里云容器镜像服务提供了官方的镜像站点，从而加速官方镜像的下载。
+登陆阿里云容器镜像服务 由上图可以看到，阿里给我们分配的专享加速域名。
+配置docker源 针对Docker客户端版本大于 1.10.0 的用户
+可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器
+不过默认没有这个文件的，所以我们需要新建一个
+新建daemon.json sudo mkdir -p /etc/docker sudo touch /etc/docker/daemon.json 设置源地址 { &#34;registry-mirrors&#34;: [&#34;&lt;your accelerate address&gt;&#34;] } 重启生效 sudo systemctl daemon-reload sudo systemctl restart docker 大功吿成！！
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%E9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-12-19</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+                
+            
+                
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/post/229_%E4%BD%BF%E7%94%A8zsh%E8%AE%A9windows-cmd%E5%8F%98%E5%BE%97%E6%80%A7%E6%84%9F%E5%8F%88%E8%BF%B7%E4%BA%BA/" title="使用zsh让windows cmd变得性感又迷人">
+                        <div class="overlay"></div>
+                        <img src="https://www.thinkmoon.cn/usr/uploads/2019/03/3090454687.png" alt="使用zsh让windows cmd变得性感又迷人" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="https://example.org/tags/%E6%8A%98%E8%85%BE" class="post-tag">折腾</a>
+                            
+                        </div>
+                        
+
+                        <a href="/post/229_%E4%BD%BF%E7%94%A8zsh%E8%AE%A9windows-cmd%E5%8F%98%E5%BE%97%E6%80%A7%E6%84%9F%E5%8F%88%E8%BF%B7%E4%BA%BA/" class="post-title">
+                            使用zsh让windows cmd变得性感又迷人
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                引言 首先看一张最终效果图
+大致思路 使用win10的linux子系统，安装zsh，默认切换zsh终端。（什么鬼，这和装虚拟机有什么不一样？放心，不一样的，慢慢看）
+为什么要需要它？ cmd太丑，cmder略慢，然后就是命令的不统一性。
+一个好看的终端可以让程序员变得开心又愉快。
+如下
+准备工作 win10内部版本16215.0以上
+打开win10开发人员模式
+勾选控制面板&gt;程序&gt;启用windows功能&gt;linux子系统
+重启
+打开应用商店&gt;搜索linux, 选择你喜欢的linux发行版安装，我选的是ubuntu18.04，如果卸载了应用商店可以自行百度开启方式
+&ndash; 至此：linux系统安装成功
+在linux子系统中需要做的操作 在开始栏运行ubuntu 或者win+R，键入wsl运行。
+安装zsh sudo apt-get install zsh 设置默认shell chsh -s /bin/zsh 安装oh-my-zsh sh -c &#34;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&#34; (可选项)修改主题 nano ~/.zshrc 我的修改如下
+让bash每次打开自动执行zsh 重新打开终端窗口，我们目前的效果是这样的。
+然后就会发现，这丫的，这怎么跟我的win10保持文件共享呢？
+让linux子系统默认打开win10用户根目录 首先找到C\\windows\\system32\\wsl.exe，复制到你的win10用户根目录。
+再为根目录的bash.exe创建快捷方式发送到桌面。
+运行
+看，好神奇
+可是，，，难道每次我运行命令都要回到桌面启动？而且就不能像ubuntu那样ctrl + alt + T打开？
+为适应win10的一些配置 右键点击桌面快捷方式，选择快捷键，同时按ctrl + alt + T设置快捷键。
+桌面右键&gt;选择查看&gt;取消勾选显示桌面图标
+测试ctrl + alt + T，我可能是为数不多的秀win10桌面的程序员:) （好像还是没有linux的好看？）
+在vs code里配置默认终端为wsl.exe。效果展示
+结束语 因为截图会变模糊，实际效果比这好看的多，嗯，又多了一个装逼的东西。
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%E9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="https://example.org/categories/%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB">
+                                        教程分享
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-12-19</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+                
+            
+                
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/post/61_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E/" title="篆书转换器版本说明">
+                        <div class="overlay"></div>
+                        <img src="https://www.thinkmoon.cn/usr/uploads/2018/12/2762090747.jpg" alt="篆书转换器版本说明" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+
+                        <a href="/post/61_%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E/" class="post-title">
+                            篆书转换器版本说明
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                版本更新(仅显示发布版) v0.1.0(当前版本) 新版界面改版 V19.1.20 调整篆书生成输入框 2.优化篆书生成结果分享功能
+V19.1.9 新增篆书生成颜色选择
+重构代码逻辑
+优化界面显示
+V18.12.27 删除了使用必须先登录的操作
+增加了意见反馈跳转的功能
+V18.10.16 修复高清下载无效BUG
+增加字体库选择时字体的预览效果
+界面优化，缩小字号
+V18.9.15 广告优化 V18.8.28 完善识别功能
+优化分享功能
+修复关于页面图片不显示的问题
+V18.8.24 新增篆书识别功能
+暂时关闭社区功能
+美化界面
+V18.8.15 新增转换翻转功能 感谢@梦马的反馈建议
+删除一个转换界面
+优化程序响应速度
+V18.8.6 新增社区功能
+美化系统界面
+V18.8.2 优化广告组件的显示 V18.7.17 新增文言文转换功能 V18.7.10 删除进入时的模态对话框
+新增广告组件
+此后所有的版本将采用新的版本编号规则， 此规则更新为【某年.某月.某日】
+V1.8.7-2018/7/4 修复关于展板乱码BUG 感谢@遥哥传媒的反馈
+V1.8.4-2018/6/22 修复关于界面显示BUG V1.8.3-2018/6/21 修复转换界面BUG V1.8.2-2018/6/20 更新展板功能，支持图片高清下载和预览
+美化功能导航页面
+简化web页面
+V1.8.1-2018/6/4 再次舍弃了一些暂时没用的页面 V1.8.0-2018/3/23 舍弃了原转换界面。
+优化了转换效率
+更新了字体库。
+V1.7.0-2018/3/11 feature 美化了程序界面，将意见反馈移至页面-我
+将下载与收藏设置为长按图片操作，兼容低分辨率机型
+在页面-我，增加了一个版本说明页
+新增展板文章页字体大小调节功能，可选择适合手机的最佳展现方式
+更新了输入错误的提示。
+BUG 修复展板输入，字数不动的BUG
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%E9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="https://example.org/categories/%E7%AF%86%E4%B9%A6%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%9B%B8%E5%85%B3">
+                                        篆书转换器相关
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-12-19</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+                
+            
+                
+            <article class="content-box">
+                
+                <div class="posts-default-img">
+                    <a href="/post/26_ubuntu%E5%AE%89%E8%A3%85%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/" title="ubuntu安装后需要做的事情">
+                        <div class="overlay"></div>
+                        <img src="https://www.thinkmoon.cn/usr/uploads/2019/02/3440487827.png" alt="ubuntu安装后需要做的事情" loading="lazy">
+                    </a>
+                </div>
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="https://example.org/tags/linux" class="post-tag">linux</a>
+                            
+                        </div>
+                        
+
+                        <a href="/post/26_ubuntu%E5%AE%89%E8%A3%85%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/" class="post-title">
+                            ubuntu安装后需要做的事情
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                1. 安装chrome sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/ wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - sudo apt update sudo apt install google-chrome-stable 19年12月18日：现在觉得火狐也不错
+2. 安装Shadowsocks 不然美化界面太慢了
+3. 美化界面参考链接 安装工具
+sudo apt-get update sudo apt-get install gnome-tweak-tool sudo apt-get install gnome-shell-extensions sudo apt-get install gnome-shell-extension-dashtodock 3. 安装搜狗输入法ubuntu 18.04 LTS 安装搜狗输入法 实在是不喜欢默认输入法
+4. 换阿里源 1. 先备份源 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak 2. 删除原文件 sudo rm -f /etc/apt/sources.list 3. 新建源文件 sudo vi /etc/apt/sources.
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%E9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="https://example.org/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                                        学习笔记
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-12-18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+                
+            
+                
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+
+                        <a href="/post/253_typecho%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%9D%91/" class="post-title">
+                            typecho插件开发坑
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                类名必须以_Plugin结尾
+更新时先禁用插件
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%E9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="https://example.org/categories/%E9%97%B2%E4%BD%99%E6%8A%98%E8%85%BE">
+                                        闲余折腾
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-12-14</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+                
+            
+                
+            <article class="content-box">
+                
+
+                <div class="posts-default-box">
+                    <div class="posts-default-title">
+                        
+                        <div class="post-entry-categories">
+                            
+                            <a href="https://example.org/tags/%E8%AE%BE%E8%AE%A1" class="post-tag">设计</a>
+                            
+                        </div>
+                        
+
+                        <a href="/post/214_%E6%97%81%E9%97%A8%E5%B7%A6%E9%81%93%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%BE%E8%AE%A1%E5%87%86%E5%88%99/" class="post-title">
+                            旁门左道的个人设计准则
+                        </a>
+                    </div>
+
+                    <div class="posts-default-content">
+                        <div class="posts-text">
+                            
+                                能用组件的千万不要自己撸
+选择图标一定要越轻越好
+文字倘若不好看，那便无脑调小
+还是不好看就换个字体
+多抄一下别人的设计
+                            
+                        </div>
+
+                        <div class="posts-default-info">
+                            <div class="left">
+                                <div class="post-author">
+                                    <img src="https://blog.cdn.thinkmoon.cn/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%E9%E5%A4%B4%E5%83%8F.jpeg"
+                                         alt="醉月思" width="16" height="16" style="border-radius:50%">
+                                    <a href="https://www.thinkmoon.cn" target="_blank">醉月思</a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📁</span>
+                                    <a href="https://example.org/categories/%E5%BF%83%E8%B7%AF%E9%87%8C%E7%A8%8B">
+                                        心路里程
+                                    </a>
+                                </div>
+
+                                <div class="ico-warp">
+                                    <span class="icon">📅</span>
+                                    <span>2019-12-14</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </div>
+
+        
+        
+            
+        
 
         
         <div class="pagination-container">
             
+            
             <a href="/page/6/" class="pagination-link prev">上一页</a>
-            
-
-            
-            
             
             
                 
                     <a href="/page/" class="pagination-link">1</a>
                     <span class="pagination-link disabled">...</span>
                     
-                    <a href="/page/page/6/" class="pagination-link ">6</a>
+                    <a href="/page/6/" class="pagination-link ">6</a>
                     
-                    <a href="/page/page/7/" class="pagination-link active">7</a>
+                    <a href="/page/7/" class="pagination-link active">7</a>
                     
-                    <a href="/page/page/8/" class="pagination-link ">8</a>
+                    <a href="/page/8/" class="pagination-link ">8</a>
                     
                     <span class="pagination-link disabled">...</span>
                     <a href="/page/page/16/" class="pagination-link">16</a>
@@ -33,3 +1063,22 @@
         
     </div>
 </div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <span>Copyright © 2017-2025 指尖魔法屋. All rights reserved</span>
+            <span>POWERED BY thinkBlog · v1.0.0</span>
+            <span>网站持续搭建中，感谢关注</span>
+            <div class="beian">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17055617号</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://example.org/js/thinkblog.js"></script>
+</body>
+</html>
