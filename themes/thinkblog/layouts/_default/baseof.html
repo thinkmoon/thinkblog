@@ -74,5 +74,67 @@
 
     <!-- Scripts -->
     <script src="/js/thinkblog.js"></script>
+        <!-- Code fold styles & script: 自动折叠超过100行的代码块 (采用指尖魔法屋设计规范样式) -->
+        <style>
+        :root{--primary:#007acc;--primary-dark:#0056b3;--card-bg:rgba(255,255,255,0.96)}
+        .code-wrap{position:relative;margin:1rem 0;border-radius:12px;background:var(--card-bg);box-shadow:0 1px 6px rgba(16,24,32,0.06);overflow:hidden;border:1px solid rgba(0,0,0,0.04)}
+        .code-wrap .preview{max-height:14em;overflow:hidden;padding:0}
+        .code-wrap pre{margin:0;padding:1rem;overflow:auto;background:transparent}
+        .code-wrap.expanded .preview{max-height:none}
+        /* 使用主题一致的轮廓风格：透明底 + 主色边框/文字 */
+        .code-collapse-btn{position:absolute;right:0.6rem;top:0.6rem;background:transparent;color:var(--primary);border:1px solid rgba(0,122,204,0.16);padding:6px 10px;border-radius:999px;font-size:0.88rem;cursor:pointer;transition:background 0.18s ease,transform 0.12s,color 0.12s,box-shadow 0.12s;display:inline-flex;align-items:center}
+        .code-collapse-btn:hover{background:rgba(0,122,204,0.06);color:var(--primary-dark);transform:translateY(-1px);box-shadow:0 6px 12px rgba(0,122,204,0.06)}
+        .code-collapse-btn .icon{display:inline-block;margin-right:0.5rem;line-height:1}
+        .code-collapse-overlay{position:absolute;left:0;right:0;bottom:0;height:3rem;background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(248,249,250,0.95) 70%);pointer-events:none}
+        </style>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const codeBlocks = document.querySelectorAll('.markdown-body pre');
+            codeBlocks.forEach(function(pre){
+                const code = pre.querySelector('code');
+                if(!code) return;
+                const text = code.textContent || '';
+                const lineCount = text.split('\n').length;
+                if(lineCount <= 100) return;
+
+                const wrap = document.createElement('div');
+                wrap.className = 'code-wrap collapsed';
+
+                const preview = document.createElement('div');
+                preview.className = 'preview';
+                preview.appendChild(pre.cloneNode(true));
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'code-collapse-btn';
+                // 使用主题中一致的 Emoji 图标风格（折叠：🔽，展开：🔼）
+                btn.innerHTML = '<span class="icon">🔽</span> 展开（共 ' + lineCount + ' 行）';
+
+                const overlay = document.createElement('div');
+                overlay.className = 'code-collapse-overlay';
+
+                btn.addEventListener('click', function(){
+                    const isCollapsed = wrap.classList.contains('collapsed');
+                    if(isCollapsed){
+                        wrap.classList.remove('collapsed');
+                        wrap.classList.add('expanded');
+                        btn.innerHTML = '<span class="icon">🔼</span> 收起';
+                        wrap.replaceChild(pre, preview);
+                    } else {
+                        wrap.classList.remove('expanded');
+                        wrap.classList.add('collapsed');
+                        btn.innerHTML = '<span class="icon">🔽</span> 展开（共 ' + lineCount + ' 行）';
+                        wrap.replaceChild(preview, pre);
+                    }
+                });
+
+                pre.parentNode.replaceChild(wrap, pre);
+                wrap.appendChild(preview);
+                wrap.appendChild(overlay);
+                wrap.appendChild(btn);
+            });
+        });
+        </script>
 </body>
 </html>

@@ -24,9 +24,9 @@
                 <!-- 版权声明 -->
                 <blockquote>
                     <p>
-                        版权声明: 本文首发于
-                        <a href="{{ .Permalink }}">指尖魔法屋-{{ .Title }}</a>（{{ .Permalink }}）
-                        转载或引用必须申明原指尖魔法屋来源及源地址！
+                        <strong>版权声明</strong>: 本文首发于
+                        <a href="{{ .Permalink }}">指尖魔法屋-{{ .Title }}</a>（<a href="{{ .Permalink }}">{{ .Permalink }}</a>）
+                        转载或引用必须申明原<a href="{{ .Site.BaseURL }}">指尖魔法屋</a>来源及源地址！
                     </p>
                 </blockquote>
             </div>
@@ -40,4 +40,6 @@
                  data-ad-slot="2621880404">
             </ins>
 </div>
+<!-- Code fold styles & script are provided globally in baseof.html -->
+
 {{ end }}
